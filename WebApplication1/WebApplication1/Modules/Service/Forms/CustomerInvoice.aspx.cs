@@ -1623,7 +1623,8 @@ namespace DXBMS.Modules.Service
 
 
             }
-            else {
+         else if (txtJobCardType.Text != "INSURANCE" && ddlInvtype.SelectedValue == "Depriciation")
+            {
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {

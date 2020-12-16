@@ -690,7 +690,7 @@ namespace DXBMS.Modules.Service
                                                               };
             param_Schedule[0].Value = txtProduct.Text.Trim();
             param_Schedule[1].Value = txtVersion.Text.Trim();
-            objMBLL.FillDrp_SP(ddlScheduleJC, "sp_2W_MaintainenceSchedule_Select", "KM", "KM", param_Schedule, true, "Select", false, "");
+            objMBLL.FillDrp_SP(ddlScheduleJC, "sp_2W_MaintainenceSchedule_Select", "ScheduleCode", "KM", param_Schedule, true, "Select", false, "");
             
             if (dsJobCardMaster.Tables[0].Columns.Contains("SIRMaster"))
             {
@@ -2394,56 +2394,50 @@ namespace DXBMS.Modules.Service
                 totsubletInv = 0;
                 totBoutInv = 0;
 
-                if (PartsDT.Rows.Count > 0)
-                {
-                    foreach (DataRow dr in PartsDT.Rows)
+                
+                    foreach (GridViewRow dr in gvJobCardParts.Rows)
                     {
 
-                        totParts =totParts+double.Parse(dr["Total"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dr["Total"].ToString().Replace("&nbsp;", "").Trim());
+                    totParts = totParts + SysFunctions.CustomCDBL(dr.Cells[10].Text);
 
                     }
 
-                }
-                if (JobDT.Rows.Count > 0)
-                {
-                    foreach (DataRow dr in JobDT.Rows)
+                
+                foreach (GridViewRow dr in gvJobCard.Rows)
                     {
 
-                        totJob =totJob+ double.Parse(dr["Amount"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dr["Amount"].ToString().Replace("&nbsp;", "").Trim());
+                        totJob =totJob+ SysFunctions.CustomCDBL(dr.Cells[9].Text);
 
                     }
 
-                }
-                if (LubDT.Rows.Count > 0)
-                {
-                    foreach (DataRow dr in LubDT.Rows)
+                
+                
+                    foreach (GridViewRow dr in gvLubParts.Rows)
                     {
 
-                        totlub =totlub+ double.Parse(dr["Total"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dr["Total"].ToString().Replace("&nbsp;", "").Trim());
+                        totlub =totlub+SysFunctions.CustomCDBL(dr.Cells[10].Text);
+
 
                     }
 
-                }
-                if (SubletDT.Rows.Count > 0)
-                {
-                    foreach (DataRow dr in SubletDT.Rows)
+                
+                 foreach (GridViewRow dr in gvSublet.Rows)
                     {
 
-                        totsubletInv =totsubletInv+ double.Parse(dr["SubletAmount"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dr["SubletAmount"].ToString().Replace("&nbsp;", "").Trim());
+                        totsubletInv =totsubletInv+ SysFunctions.CustomCDBL(dr.Cells[7].Text);
 
                     }
 
-                }
-                if (BoutDT.Rows.Count > 0)
-                {
-                    foreach (DataRow dr in BoutDT.Rows)
+                
+               
+                    foreach (GridViewRow dr in gvJobCardPartsBought.Rows)
                     {
 
-                        totBoutInv =totBoutInv+ double.Parse(dr["InvoiceTotal"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dr["InvoiceTotal"].ToString().Replace("&nbsp;", "").Trim());
+                        totBoutInv =totBoutInv+ SysFunctions.CustomCDBL(dr.Cells[9].Text);
 
                     }
 
-                }
+                
                 totEst = totJob + totlub + totsubletInv + totBoutInv + totParts;
                 txtJobCardTotal.Text = totEst.ToString();
             }
@@ -6823,7 +6817,7 @@ namespace DXBMS.Modules.Service
         {
             SqlParameter[] param = { new SqlParameter("@DealerCode",SqlDbType.Char,5),//0
                                         new SqlParameter("@ProdCode",SqlDbType.Char,20),//01
-                                        new SqlParameter("@KM",SqlDbType.Float)//02                                        
+                                        new SqlParameter("@KM",SqlDbType.Char)//02                                        
                                     };
 
 
@@ -6850,6 +6844,7 @@ namespace DXBMS.Modules.Service
             {
                 ViewState["Parts"] = dsJobCardParts.Tables[0]; gvJobCardParts.DataSource = dsJobCardParts; gvJobCardParts.DataBind();
             }
+            CalculateTotal();
         }
 
         protected void gv_JobTech_RowDataBound(object sender, GridViewRowEventArgs e)

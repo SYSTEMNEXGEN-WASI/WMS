@@ -1,14 +1,11 @@
 ﻿using CConn;
 using Microsoft.ApplicationBlocks.Data;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace DXBMS.Modules.Service.Forms
@@ -1102,6 +1099,11 @@ namespace DXBMS.Modules.Service.Forms
                     IQuery = "Update PaymentReceiptMaster set VoucherNo ='" + strAutoCode + "' , VoucherFlag = 'Y' " +
                                               "Where DealerCode='" + Session["DealerCode"].ToString() + "' and ReceiptNo ='" + ViewState["InvoiceNo"].ToString() + "'";
                 }
+                else if (type == "SA" || ViewState["Type"].ToString() == "SA")
+                {
+                    IQuery = "Update ChargeOutMaster set VoucherNo ='" + strAutoCode + "' , VoucherFlag = 'Y' " +
+                                              "Where DealerCode='" + Session["DealerCode"].ToString() + "' and ChargeOutNo ='" + ViewState["InvoiceNo"].ToString() + "'";
+                }
                 else
                 {
                     IQuery = "Update PurInvMaster set VoucherNo ='" + strAutoCode + "' , VoucherFlag = 'Y' " +
@@ -1475,17 +1477,14 @@ namespace DXBMS.Modules.Service.Forms
 
 
             DataSet ds = new DataSet();
-            ds = myFunc.FillDataSet("sp_W2_PayableInvoice_GL", dsParamInv);
+            ds = myFunc.FillDataSet("sp_W2_StockAdj_GL", dsParamInv);
 
             if (ds.Tables[0].Rows.Count > 0)
             {
                 string AccountCode = ds.Tables[0].Rows[0]["AccountCode"].ToString();
                 string VendorDesc = ds.Tables[0].Rows[0]["VendorDesc"].ToString();
-                double TotalAmtCustomer = Math.Round(Convert.ToDouble(ds.Tables[0].Rows[0]["TotalIncTax"]), 2);
-                double FurTaxTotal = Math.Round(Convert.ToDouble(ds.Tables[0].Rows[0]["FurTaxTotal"]), 2);
-                double ExTaxTotal = Math.Round(Convert.ToDouble(ds.Tables[0].Rows[0]["ExTaxTotal"]), 2);
-                double GSTTotal = Math.Round(Convert.ToDouble(ds.Tables[0].Rows[0]["GSTTotal"]), 2);
-                double DiscountAmt = Math.Round(Convert.ToDouble(ds.Tables[0].Rows[0]["DiscountAmt"]), 2);
+                double TotalAmtCustomer = Math.Round(Convert.ToDouble(ds.Tables[0].Rows[0]["TotalAmount"]), 2);
+               
                 //double WHT20 = Convert.ToDouble(ds.Tables[0].Rows[0]["WHT20%"]);
                 //double OtherCharges = Convert.ToDouble(ds.Tables[0].Rows[0]["OtherCharges"]);
                 double pCkd = Math.Round(Convert.ToDouble(ds.Tables[0].Rows[0]["PC.K.D"]), 2);
@@ -1498,10 +1497,10 @@ namespace DXBMS.Modules.Service.Forms
                 double lImport = Math.Round(Convert.ToDouble(ds.Tables[0].Rows[0]["LImport"]), 2);
 
 
-                string Naration = "Invoice : " + ds.Tables[0].Rows[0]["PurInvNo"].ToString().Trim() + " | " +
-                    "GRN No : " + ds.Tables[0].Rows[0]["GRNNo"].ToString().Trim() + " | " +
-                    "Order No : " + ds.Tables[0].Rows[0]["OrderNo"].ToString().Trim() + " | " +
-                                  "Vendor : " + ds.Tables[0].Rows[0]["VendorDesc"].ToString().Trim();
+                string Naration = "Charge Out : " + ds.Tables[0].Rows[0]["ChargeOutNo"].ToString().Trim() + " | " +
+                                  "StockType : " + ds.Tables[0].Rows[0]["StockType"].ToString().Trim() + " | " +
+                                   "Reason : " + ds.Tables[0].Rows[0]["Reason"].ToString().Trim() + " | " +
+                                   "Vendor : " + ds.Tables[0].Rows[0]["VendorDesc"].ToString().Trim();
 
 
                 if (ds.Tables[0].Rows[0]["VoucherNo"].ToString().Trim() != "")
@@ -1527,73 +1526,53 @@ namespace DXBMS.Modules.Service.Forms
 
                 if (TotalAmtCustomer > 0)
                 {
-                    AddCustomerAmount(TotalAmtCustomer, AccountCode, VendorDesc, Naration);
+                    string code = GetAccountCode("ChargeOutAccount");
+                    AddDebitAmount(TotalAmtCustomer, code, Naration);
+                 
                 }
-                if (DiscountAmt > 0)
-                {
-                    string code = GetAccountCode("CashDiscountTaken");
-                    AddCreditAmount(DiscountAmt, code, Naration);
-                }
-
-                if (GSTTotal > 0)
-                {
-                    string code = GetAccountCode("GSTAccount");
-                    AddDebitAmount(GSTTotal, code, Naration);
-                }
-
-                if (FurTaxTotal > 0)
-                {
-                    string code = GetAccountCode("FurtherAccount");
-                    AddDebitAmount(FurTaxTotal, code, Naration);
-                }
-
-                if (ExTaxTotal > 0)
-                {
-                    string code = GetAccountCode("ExtraTax");
-                    AddDebitAmount(ExTaxTotal, code, Naration);
-                }
+              
 
 
                 if (pCkd > 0)
                 {
                     string code = GetAccountCode("PartsStock(CKD)");
-                    AddDebitAmount(pCkd, code, Naration);
+                    AddCreditAmount(pCkd, code, Naration);
                 }
                 if (pLocal > 0)
                 {
                     string code = GetAccountCode("PartsStock(Local)");
-                    AddDebitAmount(pLocal, code, Naration);
+                    AddCreditAmount(pLocal, code, Naration);
                 }
                 if (pMarket > 0)
                 {
                     string code = GetAccountCode("PartsStock(Market)");
-                    AddDebitAmount(pMarket, code, Naration);
+                    AddCreditAmount(pMarket, code, Naration);
                 }
                 if (pImport > 0)
                 {
                     string code = GetAccountCode("PartsStock(Import)");
-                    AddDebitAmount(pImport, code, Naration);
+                    AddCreditAmount(pImport, code, Naration);
                 }
 
                 if (lLocal > 0)
                 {
                     string code = GetAccountCode("LubricantStock(Local)");
-                    AddDebitAmount(lLocal, code, Naration);
+                    AddCreditAmount(lLocal, code, Naration);
                 }
                 if (lMarket > 0)
                 {
                     string code = GetAccountCode("LubricantStock(Market)");
-                    AddDebitAmount(lMarket, code, Naration);
+                    AddCreditAmount(lMarket, code, Naration);
                 }
                 if (lCkd > 0)
                 {
                     string code = GetAccountCode("LubricantStock(CKD)");
-                    AddDebitAmount(lCkd, code, Naration);
+                    AddCreditAmount(lCkd, code, Naration);
                 }
                 if (lImport > 0)
                 {
                     string code = GetAccountCode("LubricantStock(Import)");
-                    AddDebitAmount(lImport, code, Naration);
+                    AddCreditAmount(lImport, code, Naration);
                 }
 
             }

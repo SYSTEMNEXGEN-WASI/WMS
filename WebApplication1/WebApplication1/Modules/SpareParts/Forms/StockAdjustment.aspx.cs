@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Printing;
 using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using DXBMS.Data;
 using System.Threading;
 using System.IO;
 using System.Data.OleDb;
 
 using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
-using System.Diagnostics;
 
 namespace DXBMS.Modules.SpareParts.Forms
 {
@@ -34,6 +27,7 @@ namespace DXBMS.Modules.SpareParts.Forms
         DataTable PartsDT;
         clsLookUp clslook = new clsLookUp();
         static int btnValue = 0;
+        double TotalAmount=0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.Session["UserName"] == null)
@@ -592,24 +586,8 @@ namespace DXBMS.Modules.SpareParts.Forms
                 gv_purchase.DataSource = PartsDT;
                 PartsDT.AcceptChanges();
                 gv_purchase.DataBind();
-                //if (PartsDT.Rows.Count == 0)
-                //{
-                //    txtJobsTotal.Text = "0";
-                //    lblJobCardTotal.Text = "0";
-                //}
-                //else
-                //{
-                //    txtJobsTotal.Text = JobDT.Rows.Count.ToString();
-
-                //}
-                if (lblTotalAMount.Text != "")
-                {
-                    lblTotalAMount.Text = Convert.ToString(Convert.ToDouble(lblTotalAMount.Text) - amount);
-                }
-                else
-                {
-                    lblTotalAMount.Text = "";
-                }
+               
+                SumTOtalAMount();
 
             }
             catch (Exception ex)
@@ -869,7 +847,15 @@ namespace DXBMS.Modules.SpareParts.Forms
             }
             return isValid;
         }
-
+        public void SumTOtalAMount()
+        {
+            foreach (GridViewRow row in gv_purchase.Rows)
+            {
+                Label lblgrn_no = (Label)row.FindControl("lblAmount");
+                TotalAmount = TotalAmount + SysFunctions.CustomCDBL(lblgrn_no.Text);
+            }
+            lblTotalAMount.Text = TotalAmount.ToString();
+        }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
 
@@ -935,7 +921,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                 Session["StockDetail"] = PartsDT; gv_purchase.DataSource = PartsDT; gv_purchase.DataBind();
 
             }
-
+            SumTOtalAMount();
             RadioIN.Enabled = false;
             RadioOUT.Enabled = false;
             //sysFunc.ClearTextBoxes(Page);
