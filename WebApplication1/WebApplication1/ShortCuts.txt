@@ -1,0 +1,29 @@
+Short Cut For Job Card
+
+alt+j for JobCard Look Up
+alt+q for Estimate Look Up
+alt+v for Vehicle Look Up
+alt+t for Tax Look Up
+alt+s for Save 
+alt+p for post
+alt+l for print
+alt+h for history
+alt+w for clear 
+alt+y for Delete
+alt+i for Item
+alt+o for Lubricant/oil
+alt+k for Jobs
+alt+n for SubletJob
+alt+n for Consumable Parts 
+alt+b for Bought out Parts 
+
+For Invoice 
+alt+i Invoice 
+alt+j JobCard
+alt+q Customer
+alt+s for Save 
+alt+g for GL
+alt+w for clear 
+alt+y for Delete
+alt+l for print
+alt+p for proforma invoice print

@@ -1,0 +1,217 @@
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Root.master.cs" Inherits="DXBMS.RootMaster" %>
+
+<%-- DXCOMMENT: Page Root.master is a master page that contains the root layout (it includes Header, Cental Area, and Footer) --%>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Content/Site.css" />
+    
+</head>
+<body runat="server" id="Body">
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <dx:ASPxSplitter ID="ASPxSplitter1" runat="server" AllowResize="False" Orientation="Vertical"
+        FullscreenMode="True" SeparatorVisible="False" Width="100%">
+        <Styles>
+            <Pane>
+                <Paddings Padding="0px" />
+                <Border BorderWidth="0px" />
+            </Pane>
+        </Styles>
+        <Panes>
+            <dx:SplitterPane Name="Header" Size="83px" MinSize="83px">
+                <PaneStyle CssClass="headerPane">
+                    <BorderBottom BorderWidth="1px" />
+                </PaneStyle>
+                <ContentCollection>
+                    <dx:SplitterContentControl ID="SplitterContentControl1" runat="server">
+                        <div class="headerTop">
+                            <div class="logo">
+                                <%--<dx:ASPxImage ID="imgLogo" runat="server" ShowLoadingImage="true" 
+                                    ImageUrl="~/Images/hinoheader.jpg" Height="100%" Width="100%">
+                                </dx:ASPxImage>--%>
+                                <asp:Image ID="imgHeader" runat="server"  ImageUrl="~/Images/hinoheader.jpg" Height="100%" Width="100%"/>
+                            </div>
+                           <%-- <div class="templateTitle">
+                                <a id="TitleLink" href="~/" runat="server">BMS</a>
+                            </div>--%>
+                            <%--<div class="loginControl">
+                               
+                                
+                            </div>--%>
+                            
+                        </div>
+                        <div class="headerMenu">
+                            
+                            <%-- DXCOMMENT: Configure the header menu --%>
+                            <dx:ASPxMenu ID="MenuTop" runat="server" RenderMode="Lightweight">
+                                <Items>
+                                    <dx:MenuItem Name="mnuHome" Text="Home" NavigateUrl="~/Default.aspx">
+                                        <Items>
+                                            <dx:MenuItem NavigateUrl="~/Main/logout.aspx" Text="Log Out">
+                                            </dx:MenuItem>
+                                        </Items>
+                                        <Image Url="~/Images/Home_16x16.png">
+                                        </Image>
+                                    </dx:MenuItem>
+                                    <dx:MenuItem Name="mnuStoreSpare" Text="Store Spare">
+                                        <Items>
+                                            <dx:MenuItem Name="mnuItemMaster" Text="Item Master">
+                                                <Image Url="~/Images/IDE_16x16.png">
+                                                </Image>
+                                            </dx:MenuItem>
+                                            <dx:MenuItem Name="mnuLocationMaster" Text="Location Master" 
+                                                NavigateUrl="~/Modules/SpareParts/SparePartsLocations.aspx">
+                                                <Image Url="~/Images/Organizer_16x16.png">
+                                                </Image>
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/StandardPartStockStatusReport.aspx" 
+                                                Text="Parts Stock Status">
+                                            </dx:MenuItem>
+                                        </Items>
+                                        <Image Url="~/Images/Organizer_16x16.png">
+                                        </Image>
+                                    </dx:MenuItem>
+                                    <dx:MenuItem Text="Purchase">
+                                        <Items>
+                                            <dx:MenuItem Name="mnuPO" 
+                                                NavigateUrl="~/Modules/Transactions/PurchaseOrder.aspx" Text="Purchase Order">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem Name="mnuDC" Text="Delivery Challan" 
+                                                NavigateUrl="~/Modules/Transactions/DeliveryChallan.aspx">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem Name="mnuGRN" Text="Goods Recipt Note(GRN)" 
+                                                NavigateUrl="~/Modules/Transactions/GoodReceiptandInspectionNote.aspx">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem Name="mnuPR" Text="Purchase Return" Visible="False">
+                                            </dx:MenuItem>
+                                        </Items>
+                                    </dx:MenuItem>
+                                    <dx:MenuItem Text="Sales">
+                                        <Items>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Transactions/CounterSalesInvoice.aspx" 
+                                                Text="Counter Sales Invoice">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem Text="Issue Stock" 
+                                                NavigateUrl="~/Modules/Transactions/StockIssueForm.aspx">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Masters/CustomerMaster.aspx" 
+                                                Text="Customer Profile">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Transactions/CustomerPaymentReceipt.aspx" 
+                                                Text="Customer Payment Receipt Entry">
+                                            </dx:MenuItem>
+                                        </Items>
+                                    </dx:MenuItem>
+                                    <dx:MenuItem Text="Services">
+                                        <Items>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Service/NewCustomerVehicalInformation.aspx" 
+                                                Text="New Vehicle">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem Text="Job Card" NavigateUrl="~/Modules/Service/JobCardNew.aspx">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem Text="Customer Invoice" 
+                                                NavigateUrl="~/Modules/Service/CustomerInvoice.aspx">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem Text="Customer Estimate" 
+                                                NavigateUrl="~/Modules/Service/CustomerEstimate.aspx">
+                                            </dx:MenuItem>
+                                        </Items>
+                                    </dx:MenuItem>
+                                    <dx:MenuItem Text="Reports">
+                                        <Items>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/SalesReturnReport.aspx?ReportID=PartsSalesAndReturnDet" 
+                                                Text="Part Sale And Return Detail">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/SalesReturnReport.aspx?ReportID=CounterSalesDetail" 
+                                                Text="Counter Sales Detail Report">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/PartItemLedgerForm.aspx" 
+                                                Text="Items Ledger" ToolTip="Item Stock Ledger">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/StockBalanceReport.aspx" 
+                                                Text="Stock Balance Report">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/InvoicesList.aspx" 
+                                                Text="Invoices List">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/JobCardHistoryReport.aspx" 
+                                                Text="Job Card History">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/GRNDetailReport.aspx" 
+                                                Text="GRN Detail Report">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/JobCardDetailReport.aspx" 
+                                                Text="Job Card Detail">
+                                            </dx:MenuItem>
+                                            <dx:MenuItem NavigateUrl="~/Modules/Reports/CustomerWiseOutstandingSummary.aspx" 
+                                                Text="Customer Outstanding Summary">
+                                            </dx:MenuItem>
+                                        </Items>
+                                    </dx:MenuItem>
+                                </Items>
+                                <Border BorderWidth="0px" />
+                                <BorderTop BorderWidth="1px" />
+                            </dx:ASPxMenu>
+                        
+
+
+                        </div>
+                    </dx:SplitterContentControl>
+                </ContentCollection>
+            </dx:SplitterPane>
+            <dx:SplitterPane Name="Content" MinSize="500px" >
+				<PaneStyle CssClass="mainContentPane">
+<BorderBottom BorderWidth="1px"></BorderBottom>
+                </PaneStyle>
+                <ContentCollection>
+                    <dx:SplitterContentControl ID="SplitterContentControl3" runat="server" SupportsDisabledAttribute="True">
+                        <asp:ContentPlaceHolder ID="Content" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </dx:SplitterContentControl>
+                </ContentCollection>
+                <PaneStyle BackColor="white">
+                    <BorderBottom BorderWidth="1px" />
+                </PaneStyle>
+            </dx:SplitterPane>
+
+            <dx:SplitterPane Name="Footer" Size="25px" PaneStyle-CssClass="footerPane">
+                <PaneStyle CssClass="footerPane"></PaneStyle>
+                    <ContentCollection>
+                    <dx:SplitterContentControl ID="SplitterContentControl4" runat="server">
+                        
+                        <div class="footerMenu">
+                            <%-- DXCOMMENT: Configure the footer menu --%>
+                            <dx:ASPxMenu ID="MenuFotter" runat="server" RenderMode="Lightweight"
+                                EnableHotTrack="False" Theme="Office2010Black" Visible="False">
+                                <Items>
+                                    <dx:MenuItem Name="mnufHelp" Text="Help">
+                                    </dx:MenuItem>
+                                    <dx:MenuItem Name="mnufAboutUs" Text="About Us">
+                                    </dx:MenuItem>
+                                </Items>
+                                <Border BorderWidth="0px" />
+                                <Paddings Padding="0px" />
+                            </dx:ASPxMenu>
+
+
+                        </div>
+                        <div>
+                            <dx:ASPxLabel ID="ASPxLabel2" runat="server">
+                            </dx:ASPxLabel>
+                        </div>
+                    </dx:SplitterContentControl>
+                </ContentCollection>
+                </dx:SplitterPane>
+        </Panes>
+    </dx:ASPxSplitter>
+	
+<%-- DXCOMMENT: Configure the header menu --%><%-- DXCOMMENT: Configure the footer menu --%>
+
+    </form>
+</body>
+</html>

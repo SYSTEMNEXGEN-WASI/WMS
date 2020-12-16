@@ -1,0 +1,534 @@
+﻿/* DEFAULTS
+----------------------------------------------------------*/
+
+body   
+{
+    background: #b6b7bc;
+    font-size: 12px;
+    font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    color:#696969;
+    
+}
+
+a:link, a:visited
+{
+    color: #034af3;
+}
+
+a:hover
+{
+    color: #1d60ff;
+    text-decoration: none;
+}
+
+a:active
+{
+    color: #034af3; 
+}
+
+p
+{
+    margin-bottom: 10px;
+    line-height: 1.6em;
+	text-align: center;
+	height: 420px;
+}
+
+
+/* HEADINGS   
+----------------------------------------------------------*/
+
+h1, h2, h3, h4, h5, h6
+{
+    font-size: 1.5em;
+    color: #ffffff;
+    font-variant: small-caps;
+    text-transform: none;
+    /*font-weight: 200;*/
+    margin-bottom: 0px;
+}
+
+h1
+{
+    font-size: 1.6em;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+h2
+{
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+h3
+{
+    font-size: 1.2em;
+}
+
+h4
+{
+    font-size: 1.1em;
+}
+
+h5, h6
+{
+    font-size: 1em;
+}
+
+/* this rule styles <h1> and <h2> tags that are the 
+first child of the left and right table columns */
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+{
+    margin-top: 0px;
+}
+
+
+/* PRIMARY LAYOUT ELEMENTS   
+----------------------------------------------------------*/
+
+.page
+{
+    width: 100%;
+
+    background-color: #fff;
+    margin: 0px auto 0px auto;
+    border: 1px solid #496077;
+}
+
+.header
+{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height:62px;
+    /*background: url('../Images/hinoheader.jpg')  left top no-repeat;*/
+    background-size: 90% 100%;
+    top: 0px;
+    left: 0px;
+}
+
+.header h1
+{
+    font-weight: 700;
+    margin: 0px;
+    padding: 0px 0px 0px 20px;
+    color: #f9f9f9;
+    border: none;
+    line-height: 2em;
+    font-size: 2em;
+}
+
+.main
+{
+    height: 100%;
+	width: 100%;
+    padding: 0px 12px;
+    
+    
+     /*background: url('../Images/SDMSBackground.jpg')  left top no-repeat;*/
+    min-height:100%;
+}
+
+.leftCol
+{
+    padding: 6px 0px;
+    margin: 12px 8px 8px 8px;
+    width: 200px;
+    min-height: 200px;
+}
+
+/*.footer
+{
+    color: #4e5766;
+    padding: 8px 0px 0px 0px;
+    margin: 0px auto;
+    text-align: center;
+    line-height: normal;
+}*/
+
+
+/* TAB MENU   
+----------------------------------------------------------*/
+
+div.hideSkiplink
+{
+    background-color:#050302;
+    border-radius:5px;
+    width:100%;
+}
+/*custom font for text*/
+@import url(http://fonts.googleapis.com/css?family=Nunito);
+/*CSS file for fontawesome - an iconfont we will be using. This CSS file imported contains the font-face declaration. More info: http://fortawesome.github.io/Font-Awesome/ */
+@import url(http://thecodeplayer.com/uploads/fonts/fontawesome/css/font-awesome.min.css);
+
+/*Basic reset*/
+* {margin: 0; padding: 0;}
+
+body {
+	/*background: #4EB889;
+	font-family: Nunito, arial, verdana;*/
+}
+#accordian {
+	background: #004050;
+	width: 250px;
+	/*margin: 100% auto 0 auto;*/
+	color: white;
+	/*Some cool shadow and glow effect*/
+	box-shadow: 
+		0 5px 15px 1px rgba(0, 0, 0, 0.6), 
+		0 0 200px 1px rgba(255, 255, 255, 0.5);
+		height: 700px;
+}
+/*heading styles*/
+#accordian h3 {
+	font-size: 17px;
+	line-height: 34px;
+	padding: 0 10px;
+	cursor: pointer;
+	/*fallback for browsers not supporting gradients*/
+	background: #003040; 
+	background: linear-gradient(#003040, #002535);
+}
+/*heading hover effect*/
+#accordian h3:hover {
+	text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
+}
+/*iconfont styles*/
+#accordian h3 span {
+	font-size: 16px;
+	margin-right: 10px;
+}
+/*list items*/
+#accordian li {
+	list-style-type: none;
+}
+
+/*links*/
+#accordian ul ul li a {
+	color: white;
+	text-decoration: none;
+	font-size: 15px;
+	line-height: 27px;
+	display: block;
+	padding: 0 15px;
+	/*transition for smooth hover animation*/
+	transition: all 0.15s;
+}
+/*hover effect on links*/
+#accordian ul ul li a:hover {
+	background: #003545;
+	border-left: 5px solid lightgreen;
+}
+/*Lets hide the non active LIs by default*/
+#accordian ul ul {
+	display: none;
+}
+#accordian li.active ul {
+	display: block;
+}
+.submenu a:hover {
+  background-color: #666;
+  display:block;
+}
+
+
+/* FORM ELEMENTS   
+----------------------------------------------------------*/
+
+fieldset
+{
+    margin: 1em 0px;
+    padding: 1em;
+    border: 1px solid #ccc;
+    padding-bottom: 0px;
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
+}
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label
+{
+    display: block;
+}
+
+fieldset label.inline 
+{
+    display: inline;
+}
+
+legend 
+{
+    font-size: 17px;
+    font-weight: 600;
+    padding: 2px 4px 4px 4px;
+}
+
+input.textEntry 
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+input.passwordEntry 
+{
+    width: 320px;
+    border: 1px solid #ccc;
+}
+
+div.accountInfo
+{
+    width: 42%;
+}
+
+/* MISC  
+----------------------------------------------------------*/
+
+.clear
+{
+    clear: both;
+}
+
+.title
+{
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+}
+
+.loginDisplay
+{
+    font-size: 1.1em;
+    display: block;
+    text-align: right;
+    padding: 10px;
+    color: White;
+}
+
+.loginDisplay a:link
+{
+    color: white;
+}
+
+.loginDisplay a:visited
+{
+    color: white;
+}
+
+.loginDisplay a:hover
+{
+    color: white;
+}
+
+.failureNotification
+{
+    font-size: 1.2em;
+    color: Red;
+}
+
+.bold
+{
+    font-weight: bold; 
+}
+
+.submitButton
+{
+    text-align: right;
+    padding-right: 10px;
+}
+.Login_hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+/* CSS for GridView */
+.mGrid { 
+    width: 100%; 
+    background-color: #fff; 
+    margin: 5px 0 10px 0; 
+    border: solid 1px #525252; 
+    border-collapse:collapse; 
+}
+.mGrid td { 
+    padding: 2px; 
+    border: solid 1px #c1c1c1; 
+    color: #717171; 
+}
+.mGrid th { 
+    padding: 4px 2px; 
+    color: #fff; 
+    background: #424242 repeat-x top; 
+    border-left: solid 1px #525252; 
+    font-size: 1em;
+    text-align: center;
+    text-transform: uppercase;
+}
+.mGrid .alt { background: #fcfcfc repeat-x top; }
+.mGrid .pgr  
+{
+    background: #424242 repeat-x top;
+    text-align: -webkit-center;
+}
+.mGrid .pgr table { margin: 5px 0; }
+.mGrid .pgr td { 
+    border-width: 0; 
+    padding: 0 6px; 
+    border-left: solid 1px #666; 
+    font-weight: bold; 
+    color: #fff; 
+    line-height: 12px; 
+ }   
+.mGrid .pgr a { color: #666; text-decoration: none; }
+.mGrid .pgr a:hover { color: #000; text-decoration: none; }
+
+
+/*UZair
+
+.dropdown-menu.pull-right
+{
+    right:0;
+    left:auto;
+   }
+   
+   .top-nav {
+    margin-top:20px;
+}
+.top-nav img {
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    width:33px;
+}
+.top-nav .icon-user i {
+    height: 33px;
+    width:33px;
+    line-height: 33px;
+    display: inline-block;
+    font-size: 1.7em;
+    padding-left: 10px;
+}
+.top-nav .icon-user .username {
+    color: #555555;
+    font-size: 13px;
+    position: relative;
+    top: -5px;
+}
+.top-nav .icon-user .caret {
+    position: relative;
+    top: -4px;
+}
+.top-nav ul.top-menu>li .dropdown-menu.logout {
+    width:170px !important;
+}
+.top-nav li.dropdown .dropdown-menu {
+    float:right;
+    right:0;
+    left:auto;
+}
+.dropdown-menu.extended.logout>li {
+    float:left;
+    width:100%;
+}
+.log-arrow-up {
+    background:url("../images/top-arrow.png") no-repeat;
+    width:18px;
+    height:10px;
+    margin-top:-20px;
+    float:right;
+    margin-right:15px;
+}
+.dropdown-menu.extended.logout>li>a {
+    border-bottom:none !important;
+}
+.full-width .dropdown-menu.extended.logout>li>a:hover {
+    background:#F1F2F7 !important;
+    color:#32323a !important;
+}
+.dropdown-menu.extended.logout>li>a:hover {
+    background:#F1F2F7 !important;
+    border-radius:5px;
+}
+.dropdown-menu.extended.logout>li>a:hover i {
+    color:#ffa2a2;
+}
+.dropdown-menu.extended.logout>li>a i {
+    font-size:17px;
+}
+.dropdown-menu.extended.logout>li>a>i {
+    padding-right:10px;
+}
+.top-nav .username {
+    font-size:13px;
+    color:#fff;
+}
+.top-nav ul.top-menu>li>a {
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    padding: 0px;
+    background: none;
+    margin-right: 0;
+    border: 1px solid #ff7b1e;
+    background: #ff7b1e;
+}
+.top-nav ul.top-menu>li.language>a {
+    margin-top:-2px;
+    padding:4px 12px;
+    line-height:20px;
+}
+.top-nav ul.top-menu>li.language>a img {
+    border-radius:0;
+    -webkit-border-radius:0;
+    width:18px;
+}
+.top-nav ul.top-menu>li.language ul.dropdown-menu li img {
+    border-radius:0;
+    -webkit-border-radius:0;
+    width:18px;
+}
+.top-nav ul.top-menu>li {
+    margin-left:10px;
+}
+.top-nav ul.top-menu>li>a:hover,.top-nav ul.top-menu>li>a:focus {
+    border:1px solid #FF5E00;
+    background:#FF5E00 !important;
+    border-radius:100%;
+    -webkit-border-radius:100%;
+}
+.top-nav .dropdown-menu.extended.logout {
+    top:50px;
+}
+.top-nav .nav .caret {
+    border-bottom-color:#A4AABA;
+    border-top-color:#A4AABA;
+}
+.top-nav ul.top-menu>li>a:hover .caret {
+    border-bottom-color:#000;
+    border-top-color: #000;
+}
+
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+   border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}*/
+/*.top-nav ul.top-menu>li>a {
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    padding: 0px;
+    background: none;
+    margin-right: 0;
+    border: 1px solid #ff7b1e;
+    background: #ff7b1e;
+}*/

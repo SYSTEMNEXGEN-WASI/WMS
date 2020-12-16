@@ -1,0 +1,1149 @@
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Reports\StandardPartStockStatusReport.aspx
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Reports\rptCounterSaleDetail.rpt
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Reports\rptPartSaleAndReturnDetail.rpt
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Reports\SpareReports\rptPartsStockStatusNew.rpt
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Service\ServiceReports\rptPaymentReceiptPrint.rpt
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Reports\rptCounterSaleDetail.cs
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Reports\rptPartSaleAndReturnDetail.cs
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Reports\SpareReports\rptPartsStockStatusNew.cs
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Reports\StandardPartStockStatusReport.aspx.cs
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Reports\StandardPartStockStatusReport.aspx.designer.cs
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\Modules\Service\ServiceReports\rptPaymentReceiptPrint.cs
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\DXBMS.dll
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\bin\DXBMS.pdb
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\obj\Debug\DXBMS.Modules.Reports.SpareReports.XtraReportGSTInvoice.resources
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\obj\Debug\DXBMS.Modules.Reports.SpareReports.XtraReportPartStock.resources
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\obj\Debug\DXBMS.Properties.Resources.resources
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\obj\Debug\DXBMS.dll.licenses
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\obj\Debug\DXBMS.dll
+W:\Work\imran suhail\BMS\DXBMSTEST\DXBMS\obj\Debug\DXBMS.pdb
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\Interop.CRQUERYENGINE.dll
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\DXBMS.Modules.Reports.SpareReports.XtraReportGSTInvoice.resources
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\DXBMS.Modules.Reports.SpareReports.XtraReportPartStock.resources
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\DXBMS.Properties.Resources.resources
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\DXBMS.dll.licenses
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\StandardPartStockStatusReport.aspx
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptCounterSaleDetail.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptPartSaleAndReturnDetail.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\SpareReports\rptPartsStockStatusNew.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptPaymentReceiptPrint.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptCounterSaleDetail.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptPartSaleAndReturnDetail.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\SpareReports\rptPartsStockStatusNew.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\StandardPartStockStatusReport.aspx.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\StandardPartStockStatusReport.aspx.designer.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptPaymentReceiptPrint.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\DXBMS.dll
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\DXBMS.pdb
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\DXBMS.dll
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\DXBMS.pdb
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCard.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\JobCardPartsDetail.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCard.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptItemStockLedger.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptItemStockLedger.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptStockBalanceNew.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptStockBalanceNew.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptInvoices.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptInvoices.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptJobHistory.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptJobHistory.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptPartsReceivedDetail.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptStockLedgerNew.rpt
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptPartsReceivedDetail.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\bin\Modules\Reports\rptStockLedgerNew.cs
+W:\Work\imran suhail\BMS\DXBMS\DXBMS\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Reports\rptCounterSaleDetail.rpt
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Reports\rptStockLedgerNew.rpt
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptPaymentReceiptPrint.rpt
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCard.rpt
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Reports\rptCounterSaleDetail.cs
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Reports\rptStockLedgerNew.cs
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\JobCardPartsDetail.cs
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCard.cs
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.cs
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\Modules\Service\ServiceReports\rptPaymentReceiptPrint.cs
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\DXBMS.dll
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\bin\DXBMS.pdb
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\Interop.CRQUERYENGINE.dll
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\DXBMS.Modules.Reports.SpareReports.XtraReportGSTInvoice.resources
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\DXBMS.Modules.Reports.SpareReports.XtraReportPartStock.resources
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\DXBMS.Properties.Resources.resources
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\DXBMS.dll.licenses
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\DXBMS.dll
+W:\Work\imran suhail\BMS\Akram\DXBMS-22-03-2017\DXBMS\DXBMS\obj\Debug\DXBMS.pdb
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCustomerWiseOutstandingSummary.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_SSTInvoiceReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.rpt
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_SSTInvoiceReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCustomerWiseOutstandingSummary.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.cs
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\DXBMS.dll
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\bin\DXBMS.pdb
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\obj\Debug\Interop.CRQUERYENGINE.dll
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\obj\Debug\DXBMS.Properties.Resources.resources
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll.licenses
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll
+C:\Users\u_ahm\onedrive\documents\visual studio 2010\Projects\WebApplication1\WebApplication1\obj\Debug\DXBMS.pdb
+E:\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCustomerWiseOutstandingSummary.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crtStockAdjustment.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.rpt
+E:\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crtStockAdjustment.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCustomerWiseOutstandingSummary.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.cs
+E:\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.cs
+E:\WebApplication1\WebApplication1\bin\DXBMS.dll.config
+E:\WebApplication1\WebApplication1\bin\DXBMS.dll
+E:\WebApplication1\WebApplication1\bin\DXBMS.pdb
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.Data.AdoDotNetInterop.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportSource.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.Shared.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.Web.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.Windows.Forms.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\WebApplication1\WebApplication1\bin\FlashControlV71.dll
+E:\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\WebApplication1\WebApplication1\bin\stdole.dll
+E:\WebApplication1\WebApplication1\bin\ShockwaveFlashObjects.dll
+E:\WebApplication1\WebApplication1\obj\Debug\Interop.CRQUERYENGINE.dll
+E:\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+E:\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+E:\WebApplication1\WebApplication1\obj\Debug\DXBMS.Properties.Resources.resources
+E:\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+E:\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll.licenses
+E:\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll
+E:\WebApplication1\WebApplication1\obj\Debug\DXBMS.pdb
+E:\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCustomerWiseOutstandingSummary.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.rpt
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCustomerWiseOutstandingSummary.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.cs
+E:\WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.cs
+E:\WMS\WebApplication1\WebApplication1\bin\DXBMS.dll.config
+E:\WMS\WebApplication1\WebApplication1\bin\DXBMS.dll
+E:\WMS\WebApplication1\WebApplication1\bin\DXBMS.pdb
+E:\WMS\WebApplication1\WebApplication1\bin\stdole.dll
+E:\WMS\WebApplication1\WebApplication1\obj\Debug\Interop.CRQUERYENGINE.dll
+E:\WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+E:\WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.Properties.Resources.resources
+E:\WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+E:\WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll.licenses
+E:\WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll
+E:\WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.pdb
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.Data.AdoDotNetInterop.dll
+E:\WMS\WebApplication1\WebApplication1\bin\FlashControlV71.dll
+E:\WMS\WebApplication1\WebApplication1\bin\ShockwaveFlashObjects.dll
+E:\WMS\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+E:\WMS\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.rpt
+E:\WMS\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.rpt
+E:\WMS\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\History.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCustomerWiseOutstandingSummary.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.rpt
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\crtStockAdjustment.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.rpt
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.rpt
+E:\WMS\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.cs
+E:\WMS\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.cs
+E:\WMS\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\History.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.cs
+E:\WMS\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\crtStockAdjustment.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCustomerWiseOutstandingSummary.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.cs
+E:\WMS\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.cs
+E:\WMS\WebApplication1\bin\DXBMS.dll.config
+E:\WMS\WebApplication1\bin\DXBMS.dll
+E:\WMS\WebApplication1\bin\DXBMS.pdb
+E:\WMS\WebApplication1\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.Data.AdoDotNetInterop.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportSource.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.Shared.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.Web.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.Windows.Forms.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\WMS\WebApplication1\bin\FlashControlV71.dll
+E:\WMS\WebApplication1\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\WMS\WebApplication1\bin\stdole.dll
+E:\WMS\WebApplication1\bin\ShockwaveFlashObjects.dll
+E:\WMS\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
+E:\WMS\WebApplication1\obj\Debug\Interop.CRQUERYENGINE.dll
+E:\WMS\WebApplication1\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+E:\WMS\WebApplication1\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+E:\WMS\WebApplication1\obj\Debug\DXBMS.Properties.Resources.resources
+E:\WMS\WebApplication1\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+E:\WMS\WebApplication1\obj\Debug\DXBMS.dll.licenses
+E:\WMS\WebApplication1\obj\Debug\DXBMS.dll
+E:\WMS\WebApplication1\obj\Debug\DXBMS.pdb
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportSource.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.Shared.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.Web.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.Windows.Forms.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\WMS\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
+E:\WMS\WebApplication1\WebApplication1\bin\KeepAutomation.Barcode.Crystal.dll
+E:\WMS\WebApplication1\WebApplication1\bin\MessagingToolkit.QRCode.dll
+E:\WMS\WebApplication1\WebApplication1\bin\QRCoder.dll
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.rpt
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.cs
+D:\old wms\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.cs
+D:\old wms\WebApplication1\WebApplication1\bin\DXBMS.dll.config
+D:\old wms\WebApplication1\WebApplication1\bin\DXBMS.dll
+D:\old wms\WebApplication1\WebApplication1\bin\DXBMS.pdb
+D:\old wms\WebApplication1\WebApplication1\bin\CrystalDecisions.CrystalReports.Design.dll
+D:\old wms\WebApplication1\WebApplication1\bin\CrystalDecisions.CrystalReports.Engine.dll
+D:\old wms\WebApplication1\WebApplication1\bin\CrystalDecisions.Data.AdoDotNetInterop.dll
+D:\old wms\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\old wms\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportSource.dll
+D:\old wms\WebApplication1\WebApplication1\bin\CrystalDecisions.Shared.dll
+D:\old wms\WebApplication1\WebApplication1\bin\CrystalDecisions.VSDesigner.dll
+D:\old wms\WebApplication1\WebApplication1\bin\CrystalDecisions.Web.dll
+D:\old wms\WebApplication1\WebApplication1\bin\CrystalDecisions.Windows.Forms.dll
+D:\old wms\WebApplication1\WebApplication1\bin\MessagingToolkit.QRCode.dll
+D:\old wms\WebApplication1\WebApplication1\bin\QRCoder.dll
+D:\old wms\WebApplication1\WebApplication1\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+D:\old wms\WebApplication1\WebApplication1\bin\EnvDTE.dll
+D:\old wms\WebApplication1\WebApplication1\bin\VSLangProj.dll
+D:\old wms\WebApplication1\WebApplication1\bin\VsWebSite.Interop.dll
+D:\old wms\WebApplication1\WebApplication1\bin\EnvDTE80.dll
+D:\old wms\WebApplication1\WebApplication1\bin\FlashControlV71.dll
+D:\old wms\WebApplication1\WebApplication1\bin\stdole.dll
+D:\old wms\WebApplication1\WebApplication1\bin\ShockwaveFlashObjects.dll
+D:\old wms\WebApplication1\WebApplication1\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CRDESIGNERLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CRQUERYENGINE.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CRReportPromptEMFLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CRREPORTSOURCEBRIDGELib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisCommLayerLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisCommonControlsLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisRequestModelLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisXmlSerializeLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalClientDocLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalDocMgmtUndoManagerLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalPrintControlLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsCommonObjectModelLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsControllersLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsCubeDefModelLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsDataDefModelLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsDTSAgentLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsLocalConnectionMgrLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsObjectFactoryLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsReportDefModelLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportViewerExportLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportViewerWebReportSourceLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.EMFGENLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.PAGEOBJECTMODELLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.PROMPTINGLib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.SAXSERIALIZELib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\Interop.VLELib.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\DXBMS.Properties.Resources.resources
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll.licenses
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll
+D:\old wms\WebApplication1\WebApplication1\obj\Debug\DXBMS.pdb
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReportHCV.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReportHCV.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\DXBMS.dll.config
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\DXBMS.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\DXBMS.pdb
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\AjaxControlToolkit.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.CrystalReports.Design.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.CrystalReports.Engine.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.Data.AdoDotNetInterop.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportSource.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.Shared.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.VSDesigner.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.Web.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.Windows.Forms.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\MessagingToolkit.QRCode.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\QRCoder.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\EnvDTE.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\VSLangProj.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\VsWebSite.Interop.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\EnvDTE80.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\FlashControlV71.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\stdole.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\ShockwaveFlashObjects.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CRDESIGNERLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CRQUERYENGINE.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CRReportPromptEMFLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CRREPORTSOURCEBRIDGELib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisCommLayerLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisCommonControlsLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisRequestModelLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisXmlSerializeLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalClientDocLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalDocMgmtUndoManagerLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalPrintControlLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsCommonObjectModelLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsControllersLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsCubeDefModelLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsDataDefModelLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsDTSAgentLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsLocalConnectionMgrLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsObjectFactoryLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsReportDefModelLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportViewerExportLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportViewerWebReportSourceLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.EMFGENLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.PAGEOBJECTMODELLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.PROMPTINGLib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.SAXSERIALIZELib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.VLELib.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.Properties.Resources.resources
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll.licenses
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.pdb
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateBoutPartsDetail.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateSublet.rpt
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateSublet.cs
+D:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateBoutPartsDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimatePrint.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateBoutPartsDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateSublet.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptInsAging.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetailSup.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetailSup.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetailSup.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGatePassForm.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardStock.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardPDI.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGatePass.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrintIns.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardIns.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPaymentRefund.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReportHCV.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleGatePass.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReportIns.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAdvancePayment.rpt
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\crpUtilityAuditReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\ptIncommingPaymentDetail2.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\CopyofrptJobCard.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAfterSaleInvoice.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetailSup.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetailSup.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetailSup.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGatePassForm.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptInsAging.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAging.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateSublet.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateBoutPartsDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGatePass.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardIns.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardPDI.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardStock.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAdvancePayment.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReportIns.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPaymentRefund.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrintIns.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\FSK_GSTInvoiceReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_GSTInvoiceReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\GRN_SSTInvoiceReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TRReportHCV.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_GSTInvoiceReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\TR_SSTInvoiceReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoice.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGSTInvoicePrint.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptIncommingPaymentDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentReceiptTaxDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrint.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\History.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobHistory.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptPurchaseRegisterReport2.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\crptVendorLedgerReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorDetailReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PurchaseOrderReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleGatePass.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSale.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptGRNPrint.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoices.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptItemStockLedger.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartSaleAndReturnDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsReceivedDetail.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockLocationWise.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPartsStockStatusNew.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPurchaseReturnReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptSaleReturnReport.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptStockBalanceNew.cs
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\DXBMS.dll.config
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\DXBMS.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\DXBMS.pdb
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\AjaxControlToolkit.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.CrystalReports.Design.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.Data.AdoDotNetInterop.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.ReportSource.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.Shared.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.VSDesigner.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.Web.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\CrystalDecisions.Windows.Forms.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\MessagingToolkit.QRCode.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\PdfSharp.Charting.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\PdfSharp.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\QRCoder.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\EnvDTE.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\VSLangProj.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\VsWebSite.Interop.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\EnvDTE80.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\FlashControlV71.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\stdole.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\ShockwaveFlashObjects.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\PdfSharp.xml
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\PdfSharp.Charting.xml
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\de\PdfSharp.resources.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\bin\de\PdfSharp.Charting.resources.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CRDESIGNERLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CRQUERYENGINE.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CRReportPromptEMFLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CRREPORTSOURCEBRIDGELib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalActiveXReportViewerLib13.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisCommLayerLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisCommonControlsLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisRequestModelLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalAnalysisXmlSerializeLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalClientDocLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalDocMgmtUndoManagerLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalPrintControlLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsCommonObjectModelLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsControllersLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsCubeDefModelLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsDataDefModelLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsDTSAgentLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsLocalConnectionMgrLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsObjectFactoryLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportsReportDefModelLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportViewerExportLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.CrystalReportViewerWebReportSourceLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.EMFGENLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.PAGEOBJECTMODELLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.PROMPTINGLib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.SAXSERIALIZELib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\Interop.VLELib.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.ResolveComReference.cache
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.Properties.Resources.resources
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.GenerateResource.Cache
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll.licenses
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.pdb
+E:\AL Haj Faw\Project\AHFM\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
