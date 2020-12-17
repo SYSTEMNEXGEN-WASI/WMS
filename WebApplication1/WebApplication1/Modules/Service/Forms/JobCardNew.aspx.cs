@@ -1078,6 +1078,7 @@ namespace DXBMS.Modules.Service
                        /*47*/ new SqlParameter("@RepairSuguestion",SqlDbType. VarChar,100),
                          /*47*/ new SqlParameter("@CusRemark",SqlDbType.VarChar,100),
                            /*47*/ new SqlParameter("@CouponNo",SqlDbType.VarChar,50),
+                           /*47*/ new SqlParameter("@ScheduleCode",SqlDbType.Char,08),
         };
 
 
@@ -1144,7 +1145,7 @@ namespace DXBMS.Modules.Service
             }
             else
             {
-                JobCardMaster_param[24].Value = ddlScheduleJC.SelectedValue.ToString();
+                JobCardMaster_param[24].Value = ddlScheduleJC.SelectedItem.ToString();
             }
 
 
@@ -1204,6 +1205,14 @@ namespace DXBMS.Modules.Service
             JobCardMaster_param[53].Value = txtRepairSugest.Text;
             JobCardMaster_param[54].Value = txtCusRemarks.Text;
             JobCardMaster_param[55].Value = txtCouponNo.Text;
+            if (ddlScheduleJC.SelectedIndex == 0)
+            {
+                JobCardMaster_param[56].Value = "";
+            }
+            else
+            {
+                JobCardMaster_param[56].Value = ddlScheduleJC.SelectedValue.ToString();
+            }
             #endregion
 
 
@@ -1301,16 +1310,11 @@ namespace DXBMS.Modules.Service
                             Inser_JobCardBoutPartsDetail();
                             bool c;
                             bool d;
-                            if(ddlPayMode.SelectedValue=="Intra" ||ddlPayMode.SelectedValue== "Internal")
-                            {
-
-                            }
-
-                            else
+                            if (gvJobCardParts.Rows.Count > 0 || gvLubParts.Rows.Count > 0)
                             {
                                 Inser_SIR_Master_Detail();
                             }
-                          
+
                         }
                         else { objMBLL.ShowMessageBox("Update Fail", lblMsg); }
                     }
@@ -3540,12 +3544,60 @@ namespace DXBMS.Modules.Service
             //dsParam[1].Value = ddlJobCardCode.SelectedValue.ToString().Trim();
             dsParam[1].Value = txtJobCardCode.Text.Trim();
             dsJobCardParts = new DataSet();
-            dsJobCardParts = myFunc.FillDataSet("sp_W2_JobCard_PartsDetail_Select", dsParam);
-            if (dsJobCardParts.Tables[0].Rows.Count > 0) { SendAlert("Cannot Post due to parts entered!"); return; }
+            if (ddlJobCardTypeCode.SelectedValue == "008")
+            {
+                if (ddlPayMode.SelectedValue == "WAP")
+                {
+                    if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
+                    {
+                        //SendAlert(); return;
+                        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Parts as per Job Card");
+                        
+                        return;
+                    }
 
-            dsJobCardLub = new DataSet();
-            dsJobCardLub = myFunc.FillDataSet("sp_W2_JobCard_LubricanteDetail_Select", dsParam);
-            if (dsJobCardLub.Tables[0].Rows.Count > 0) { SendAlert("Cannot Post due to lube parts entered!"); return; }
+                    if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
+                    {
+                        //SendAlert(); return;
+                        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Lubricant");
+                        
+                        return;
+                    }
+
+                }
+                else if (ddlPayMode.SelectedValue == "NWAP")
+                {
+                    if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
+                    {
+                        //SendAlert(); return;
+                        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Parts as per Job Card");
+
+                        return;
+                    }
+
+                    if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
+                    {
+                        //SendAlert(); return;
+                        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Lubricant");
+
+                        return;
+                    }
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                dsJobCardParts = myFunc.FillDataSet("sp_W2_JobCard_PartsDetail_Select", dsParam);
+                if (dsJobCardParts.Tables[0].Rows.Count > 0) { SendAlert("Cannot Post due to parts entered!"); return; }
+
+                dsJobCardLub = new DataSet();
+                dsJobCardLub = myFunc.FillDataSet("sp_W2_JobCard_LubricanteDetail_Select", dsParam);
+                if (dsJobCardLub.Tables[0].Rows.Count > 0) { SendAlert("Cannot Post due to lube parts entered!"); return; }
+            }
+            
 
             string strSql = "Update dbo.JobCardMaster set GatePass='" + txtJobCardCode.Text.Trim() +"'," + //ddlJobCardCode.SelectedValue.ToString().Trim() 
                             "DelvDate='" + grl.SaveDate(DateTime.Now.ToString("dd/MM/yyyy")) + "'," +
@@ -3579,7 +3631,7 @@ namespace DXBMS.Modules.Service
         }
 
         //Method for Next due Maintenance Posting on FFI and PDI jobcards.
-        private bool Create_NDM(string strJobCardCode, string Action)
+        private bool Create_NDM(string strJobCardCode, string Action, string oldgatepass)
         {
             SqlParameter[] MDNINV_param = { new SqlParameter("@DealerCode",SqlDbType.Char,5),//0
                                         new SqlParameter("@JobCardCode",SqlDbType.Char,8),//01
@@ -3589,7 +3641,7 @@ namespace DXBMS.Modules.Service
                                         new SqlParameter("@Action",SqlDbType.VarChar,50)};//05
             MDNINV_param[0].Value = Session["DealerCode"].ToString();
             MDNINV_param[1].Value = strJobCardCode;
-            MDNINV_param[2].Value = strJobCardCode;
+            MDNINV_param[2].Value = oldgatepass;
             MDNINV_param[3].Value = grl.SaveDate(DateTime.Now.ToString("dd-MM-yyyy"));
             MDNINV_param[4].Value = Session["UserName"].ToString();
             MDNINV_param[5].Value = Action;
@@ -3604,20 +3656,22 @@ namespace DXBMS.Modules.Service
         }
 
         //Method For POsting PSF Data 
-        private bool PostServiceFollowUp(string strJobCardCode, string Action)
+        private bool PostServiceFollowUp(string strJobCardCode, string Action,string oldgatepass)
         {
             SqlParameter[] MDNINV_param = { new SqlParameter("@DealerCode",SqlDbType.Char,5),//0
                                         new SqlParameter("@JobCardCode",SqlDbType.Char,8),//01
                                         new SqlParameter("@GatePassNo",SqlDbType.Char,8),//02
                                         new SqlParameter("@GatePassDate",SqlDbType.DateTime),//03
                                         new SqlParameter("@UpdUser",SqlDbType.VarChar,50),//04
-                                        new SqlParameter("@Action",SqlDbType.VarChar,50)};//05
+                                        new SqlParameter("@Action",SqlDbType.VarChar,50),//05
+                                        new SqlParameter("@TransType", SqlDbType.VarChar, 50) };//07
             MDNINV_param[0].Value = Session["DealerCode"].ToString();
             MDNINV_param[1].Value = strJobCardCode;
-            MDNINV_param[2].Value = strJobCardCode;
+            MDNINV_param[2].Value = oldgatepass;
             MDNINV_param[3].Value = grl.SaveDate(DateTime.Now.ToString("dd-MM-yyyy"));
             MDNINV_param[4].Value = Session["UserName"].ToString();
             MDNINV_param[5].Value = Action;
+            MDNINV_param[6].Value = "JobCard";
             if (myFunc.ExecuteSP_NonQuery("sp_CRM_Post_PostServiceFollowup_OnJobCardUpdate", MDNINV_param))
             {
                 return true;
@@ -5908,37 +5962,21 @@ namespace DXBMS.Modules.Service
 
             if (ddlJobCardTypeCode.SelectedItem.Text == "Warranty")
             {
-                btnGatePass_Click(null, null);
                
+                callPostingJobCard(); search_result = true;
 
-                if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", txtJobCardCode.Text.Trim(), " and qty <> recqty") )
-                {
-                    SendAlert("Parts have not been issued yet"); return;
-                }
 
-                if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", txtJobCardCode.Text.Trim(), " and qty <> recqty"))
-                {
-                    SendAlert("Lubricant parts have not been issued yet"); return;
-                }
-                return;
             }
-            //Check RecQuty and IssuQty is equal
-            string StrSIRNo = string.Empty;
-            DataSet dsSIR = new DataSet();
-            StrSIRNo = grl.GetStringValuesAgainstCodes("JobCardCode", txtJobCardCode.Text.Trim(), "SIRMaster", "JobCardMaster",Session["DealerCode"].ToString());
-            myFunc.ExecuteQuery("Select * From SIRDetail Where Dealercode='" + Session["DealerCode"].ToString() + "' And SIRNo='" + StrSIRNo + "'", ref dsSIR);
-            if (ds.Tables[0].Rows.Count > 0)
+            if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", txtJobCardCode.Text.Trim(), " and qty <> recqty"))
             {
-                foreach (DataRow dr in dsSIR.Tables[0].Rows)
-                {
-                    if (Convert.ToInt32(dr["Quantity"]) != Convert.ToInt32(dr["RecQty"]))
-                    {
-                        
-                        grl.UserMsg(lblMsg, Color.Red, "Stock not issue yet", txtCustomer);
-                        return;
-                    }
-                }
+                SendAlert("Parts have not been issued yet"); return;
             }
+
+            if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", txtJobCardCode.Text.Trim(), " and qty <> recqty"))
+            {
+                SendAlert("Lubricant parts have not been issued yet"); return;
+            }
+          
             /////////////////
             if (ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "007")
             {
@@ -5947,38 +5985,14 @@ namespace DXBMS.Modules.Service
             else if (ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "001" || ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "013"|| ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "014")
             {
                 callPostingJobCard(); search_result = true;
-                if (Create_NDM(txtJobCardCode.Text.Trim(), "InvoiceCreated") == false)
-                {
-                    grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
-                    ObjTrans.RollBackTransaction(ref Trans);
-                    return;
-                }
-                if (PostServiceFollowUp(txtJobCardCode.Text.Trim(), "InvoiceCreated") == false)
-                {
-                    grl.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be inserted");
-                    ObjTrans.RollBackTransaction(ref Trans);
-                    return;
-                }
+               
             }
             else if (ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "002")
             {
                 callPostingJobCard(); search_result = true;
-
-                if (Create_NDM(txtJobCardCode.Text.Trim(), "InvoiceCreated") == false)
-                {
-                    grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
-                    ObjTrans.RollBackTransaction(ref Trans);
-                    return;
-                }
-                if (PostServiceFollowUp(txtJobCardCode.Text.Trim(), "InvoiceCreated") == false)
-                {
-                    grl.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be inserted");
-                    ObjTrans.RollBackTransaction(ref Trans);
-                    return;
-                }
             }
             btnGatePass_Click(null,null);
-
+           
             if (search_result == false) { SendAlert("Cannot post due to Job Type / Job Card Type!"); return; }
             clearAll();
         }
@@ -7079,6 +7093,19 @@ namespace DXBMS.Modules.Service
                 {
                     MakeGatePassReport(oldgatepass);
                 }
+                if (Create_NDM(txtJobCardCode.Text.Trim(), "InvoiceCreated", oldgatepass) == false)
+                {
+                    grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
+                    ObjTrans.RollBackTransaction(ref Trans);
+                    return;
+                }
+                if (PostServiceFollowUp(txtJobCardCode.Text.Trim(), "JobCardPost", oldgatepass) == false)
+                {
+                    grl.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be inserted");
+                    ObjTrans.RollBackTransaction(ref Trans);
+                    return;
+                }
+
             }
             catch (Exception ex)
             {

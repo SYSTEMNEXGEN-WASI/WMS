@@ -814,8 +814,9 @@ namespace DXBMS.Modules.Service
                                         new SqlParameter("@GatePassNo",SqlDbType.Char,8),//02
                                         new SqlParameter("@GatePassDate",SqlDbType.DateTime),//03
                                         new SqlParameter("@UpdUser",SqlDbType.VarChar,50),//04
-                                        new SqlParameter("@Action",SqlDbType.VarChar,50)};//05
-            MDNINV_param[0].Value = Session["DealerCode"].ToString();
+                                        new SqlParameter("@Action",SqlDbType.VarChar,50),//05
+                                            new SqlParameter("@TransType", SqlDbType.VarChar, 50)};//05
+        MDNINV_param[0].Value = Session["DealerCode"].ToString();
             
             if(Action== "GatePassGenerated")
             {
@@ -832,6 +833,7 @@ namespace DXBMS.Modules.Service
             
             MDNINV_param[4].Value = Session["UserName"].ToString();
             MDNINV_param[5].Value = Action;
+            MDNINV_param[6].Value = "Invoice";
             if (myFunc.ExecuteSP_NonQuery("sp_CRM_Post_PostServiceFollowup_OnJobCardUpdate", MDNINV_param))
             {
                 return true;
@@ -1588,7 +1590,7 @@ namespace DXBMS.Modules.Service
             CusTax = (DataTable)Session["CusTax"];
             DataTable dt = dsTaxDetail.Tables[0];
 
-            if (txtJobCardType.Text == "INSURANCE" && ddlInvtype.SelectedValue == "Depriciation")
+            if (SysFunctions.CustomCDBL(txtDepAmount.Text)>0)
             {
                 for (int i = 0; i < CusTax.Rows.Count; i++)
                 {
@@ -1996,8 +1998,6 @@ namespace DXBMS.Modules.Service
             if (HFJobCard.Value == "") {
 
                 myFunc.UserMsg(lblMsg, Color.Red, "JobCard code should not be blank");
-                //lblMSGPop.Text = "JobCard code should not be blank ";
-                //PopupControlMSG.ShowOnPageLoad = true;
                 return;
             }
             if (!myFunc.CheckVoucherPostFlag(Session["DealerCode"].ToString(), txtVoucherNo.Text))
@@ -2006,26 +2006,9 @@ namespace DXBMS.Modules.Service
                 return;
             }
 
-            //if (grl.ValuesAgainstCodes("InvoiceNo", ddlInvoiceNo.SelectedValue, "VoucherNo", "CustomerInvoice", "", Session["DealerCode"].ToString()))
-            //{
-            //    grl.UserMsg(lblMsg, Color.Red, "Voucher Exists can't delete the record.");
-            //    return;
-            //}
-
-            //if (grl.CodeExists("CustomerInvoice", "InvoiceNo", txtInvoiceNo.Text) == false) {
-            //    myFunc.UserMsg(lblMsg, Color.Red, "Invoice no. not exist");
-            //    //lblMSGPop.Text = "Invoice no. not exist ";
-            //    //PopupControlMSG.ShowOnPageLoad = true;
-            //    return;
-
-            //}
 
             if (grl.CodeExists("PaymentReceiptDetail", "InvoiceNo", ddlInvoiceNo.SelectedValue.ToString().Trim(), " and InvoiceType in (Service','Dep','Insurance')") == true)
-            {
-
-                myFunc.UserMsg(lblMsg, Color.Red, "Invoice No. can not be deleted, payment receipt has made");
-                //lblMSGPop.Text ="Invoice No. can not be deleted, payment receipt has made" ;
-                //PopupControlMSG.ShowOnPageLoad = true;
+            {   myFunc.UserMsg(lblMsg, Color.Red, "Invoice No. can not be deleted, payment receipt has made");
                 return;
             }
 
@@ -2035,7 +2018,6 @@ namespace DXBMS.Modules.Service
                 if (ObjTrans.BeginTransaction(ref Trans) == true)
                 {
                     string IQuery = "Update CustomerInvoice set GatePass ='',DelFlag='Y'" +
-                        //"DelvDate='"+ grl.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) +"',DelvTime='"+grl.SaveTime(DateTime.Now.ToString("HH:mm"))  +"' " +
                                      "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + HFJobCard.Value.Trim() + "'";
                     IQuery += " Update JobCardMaster Set gatePass='' Where DealerCode='" + Session["DealerCode"].ToString() + "' And JobCardCode='" + HFJobCard.Value.Trim() + "'";
                     myFunc.ExecuteQuery(IQuery, Trans);
@@ -2044,19 +2026,12 @@ namespace DXBMS.Modules.Service
 
                     if (Create_NDM(HFJobCard.Value.Trim(), "InvoiceDeleted") == false)
                     {
-                        //grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be Deleted");
                         myFunc.UserMsg(lblMsg, Color.Red, "NDM Data Can not be Deleted");
-                        //lblMSGPop.Text = "NDM Data Can not be Deleted";
-                        //PopupControlMSG.ShowOnPageLoad = true;
                         ObjTrans.RollBackTransaction(ref Trans);
-
                         return;
                     }
                     if (PostServiceFollowUp(HFJobCard.Value.Trim(), "InvoiceDeleted") == false)
-                    {
-                        myFunc.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be Deleted");
-                        //lblMSGPop.Text = "Post Service FollowUp Data Can not be Deleted";
-                        //PopupControlMSG.ShowOnPageLoad = true;
+                    {   myFunc.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be Deleted");
                         ObjTrans.RollBackTransaction(ref Trans);
                         return;
                     }
@@ -2333,7 +2308,7 @@ namespace DXBMS.Modules.Service
                 }
             if (ViewState["InvoiceNo"] != null)
             {
-                if (Create_NDM(ViewState["InvoiceNo"].ToString(), "InvoiceCreated") == false)
+                if (Create_NDM(txtJobCardCode.Text.Trim(), "InvoiceCreated") == false)
                 {
                     grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
                     ObjTrans.RollBackTransaction(ref Trans);

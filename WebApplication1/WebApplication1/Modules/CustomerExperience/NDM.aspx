@@ -142,16 +142,14 @@
                         </tr>
                         <tr>
                             <td colspan="6">
+                             
                                 <asp:Calendar ID="Calendar1" runat="server" Width="100%" 
-                                    BackColor="White" DayNameFormat="FirstLetter" Font-Size="8pt" Font-Names="Verdana"
-                                    CellPadding="4" ForeColor="Black" Height="180px" DayHeaderStyle-CssClass="calDayHeader"
+                                    BackColor="White" DayNameFormat="FirstLetter" Font-Size="8pt" Font-Names="Arial"
+                                     DayHeaderStyle-CssClass="calDayHeader"
                                      OnSelectionChanged="Calendar1_SelectionChanged">
-                                    <%--WeekendDayStyle-CssClass="calWeekendDay" TitleStyle-CssClass="calTitle" SelectedDayStyle-CssClass="calSelectedDay"
-                                     NextPrevStyle-CssClass="calNextPrev" SelectorStyle-CssClass="calSelector"
-                                    TodayDayStyle-CssClass="calTodayDay" OtherMonthDayStyle-CssClass="calOtherMonthDay" CssClass="CalendarClass"--%>
-
+                                 
                                 </asp:Calendar>
-                                <%-- TitleStyle-CssClass="TitleStyle" DayHeaderStyle-CssClass="DayHeaderStyle" Format="dd-MM-yyyy"--%>
+                             
                             </td>
                         </tr>
                     </table>
