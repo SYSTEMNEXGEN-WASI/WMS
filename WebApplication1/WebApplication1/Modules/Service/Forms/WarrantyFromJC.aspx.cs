@@ -879,7 +879,7 @@ namespace DXBMS.Modules.Service.Forms
             param[1].Value = ddlTypes.SelectedValue;
             param[2].Value = sysFunc.SaveDate(txtFromDate.Text);
             param[3].Value = sysFunc.SaveDate(txtToDate.Text);
-
+           
             ds = ObjGenral.FillDataSet("sp_2W_Service_GetClaimBilling_JC", param);
 
             if (ds.Tables[0].Rows.Count > 0)

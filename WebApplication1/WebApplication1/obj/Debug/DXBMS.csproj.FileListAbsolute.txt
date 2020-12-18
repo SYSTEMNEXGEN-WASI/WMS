@@ -1312,7 +1312,6 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\PdfSharp.Charting.xml
 E:\github-WMS\WebApplication1\WebApplication1\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
 E:\github-WMS\WebApplication1\WebApplication1\bin\de\PdfSharp.resources.dll
 E:\github-WMS\WebApplication1\WebApplication1\bin\de\PdfSharp.Charting.resources.dll
-E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\Interop.CRDESIGNERLib.dll
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\Interop.CRQUERYENGINE.dll
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\Interop.CRReportPromptEMFLib.dll

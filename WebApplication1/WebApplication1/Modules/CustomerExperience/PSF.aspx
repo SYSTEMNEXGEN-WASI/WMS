@@ -130,6 +130,16 @@
 											<asp:Label ID="Label10" runat="server" MaxLength="10" Text='<%# Bind("FollowUpDate") %>' ></asp:Label>
 										</ItemTemplate>										                                        
 									</asp:TemplateField>
+                                    <asp:TemplateField HeaderText="JobCardCode">
+										<ItemTemplate>
+											<asp:Label ID="lblTransCode" runat="server" MaxLength="10" Text='<%# Bind("TransCode") %>' ></asp:Label>
+										</ItemTemplate>										                                        
+									</asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Trans Type">
+										<ItemTemplate>
+											<asp:Label ID="lblTransType" runat="server" MaxLength="10" Text='<%# Bind("TransType") %>' ></asp:Label>
+										</ItemTemplate>										                                        
+									</asp:TemplateField>
 																		
 								</Columns>
 

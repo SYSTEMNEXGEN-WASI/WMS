@@ -167,6 +167,8 @@ namespace DXBMS.Modules.CustomerExperience
             ds.Tables[0].Columns.Add(new DataColumn("Complain", typeof(string)));
             ds.Tables[0].Columns.Add(new DataColumn("Remarks", typeof(string)));
             ds.Tables[0].Columns.Add(new DataColumn("Satisfied", typeof(string)));//10
+            ds.Tables[0].Columns.Add(new DataColumn("TransCode", typeof(string)));//10
+            ds.Tables[0].Columns.Add(new DataColumn("TransType", typeof(string)));//10
 
             DataRow dr = ds.Tables[0].NewRow();
             ds.Tables[0].Rows.Add(dr);
@@ -323,7 +325,8 @@ namespace DXBMS.Modules.CustomerExperience
                 DropDownList ddlSatisfied = (DropDownList)grdPostServiceFollowup.Rows[e.RowIndex].FindControl("ddl_Satisfied");
 
                 Label JobCode = (Label)grdPostServiceFollowup.Rows[e.RowIndex].FindControl("lblJobCode");
-
+                Label TransType = (Label)grdPostServiceFollowup.Rows[e.RowIndex].FindControl("lblTransType");
+                Label TransCode = (Label)grdPostServiceFollowup.Rows[e.RowIndex].FindControl("lblTransCode");
 
                 ds_update = (DataSet)Session["PostServiceFollowUp"];
 
@@ -347,10 +350,20 @@ namespace DXBMS.Modules.CustomerExperience
 
                 if (ObjTrans.BeginTransaction(ref Trans) == true)
                 {
+                   if(TransType.Text== "JobCard")
+                    {
+                        string sql = "update CRM_Post_PostServiceFollowup set Satisfied = '" + ddlSatisfied.SelectedValue.ToString() + "', Remarks = '" + txtRemakrs.Text + "' , FollowUpDate ='" + sysFunc.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "'" +
+                                              ", Complain = '" + txtComplain.Text + "' where DealerCode = '" + Session["DealerCode"].ToString() + "' and TransCode = '" + TransCode.Text + "' ";
+                        myFunc.ExecuteQuery(sql, Trans);
+                    }
+                   else if (TransType.Text == "Invoice")
+                    {
+                        string sql = "update CRM_Post_PostServiceFollowup set Satisfied = '" + ddlSatisfied.SelectedValue.ToString() + "', Remarks = '" + txtRemakrs.Text + "' , FollowUpDate ='" + sysFunc.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "'" +
+                      ", Complain = '" + txtComplain.Text + "' where DealerCode = '" + Session["DealerCode"].ToString() + "' and JobCardCode = '" + JobCode.Text + "' ";
+                        myFunc.ExecuteQuery(sql, Trans);
 
-                    string sql = "update CRM_Post_PostServiceFollowup set Satisfied = '" + ddlSatisfied.SelectedValue.ToString() + "', Remarks = '" + txtRemakrs.Text + "' , FollowUpDate ='" + sysFunc.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "'" +
-                        ", Complain = '" + txtComplain.Text + "' where DealerCode = '" + Session["DealerCode"].ToString() + "' and JobCardCode = '" + JobCode.Text + "' ";
-                    myFunc.ExecuteQuery(sql, Trans);
+                    }
+                  
 
                 }
 
