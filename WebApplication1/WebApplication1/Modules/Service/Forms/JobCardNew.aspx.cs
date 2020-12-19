@@ -1014,14 +1014,12 @@ namespace DXBMS.Modules.Service
                     {
                         txtSIRMasterId.Text = "";
                     }
-                }
-                else
-                {
                     if (txtSIRMasterId.Text.Trim() == string.Empty)
                     {
                         txtSIRMasterId.Text = grl.AutoGen("sirmaster", "SIRNO", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
                     }
                 }
+               
                
             }
            else
@@ -1281,11 +1279,10 @@ namespace DXBMS.Modules.Service
                                         Inser_SIR_Master_Detail();
                                     }
 
-                                    else
-                                    {
-                                        Inser_SIR_Master_Detail();
-                                    }
-
+                                }
+                                else
+                                {
+                                    Inser_SIR_Master_Detail();
                                 }
 
                             }

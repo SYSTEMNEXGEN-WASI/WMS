@@ -775,7 +775,7 @@ namespace DXBMS.Modules.Service.Forms
             
             double strAdvBalAmt = 0;
             double strAdvAmt = SysFunctions.CustomCDBL(txtAdvAmount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txtAdvAmount.Text.Trim());
-            if (ddlCust.SelectedIndex == 0)
+            if (ddlCust.SelectedIndex <= 0)
             {
                 //PaymentReceiptEntry2(2);
                 SysFuncs.UserMsg(lblMsg, Color.Red, "Please Select  the  Customer First!");
@@ -1194,7 +1194,8 @@ namespace DXBMS.Modules.Service.Forms
                     ObjTrans.CommittTransaction(ref Trans);
                     lblMsg.Visible = true;
                     SysFuncs.UserMsg(lblMsg, Color.Green, "Record Saved Successfully: " + strReceiptNo);
-                    clearAll();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);
+              //  clearAll();
                 
             }
             catch (Exception ex) { ObjTrans.RollBackTransaction(ref Trans);
@@ -1207,6 +1208,7 @@ namespace DXBMS.Modules.Service.Forms
 
         protected void clearAll()
         {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "reloads()", true);
             //txtReceiptNo.Text = "";
             //ddlPaymentReceiptType.SelectedValue = "Service";
             SysFuncs.ClearTextBoxes(Page);
@@ -1444,8 +1446,9 @@ namespace DXBMS.Modules.Service.Forms
                             ObjTrans.CommittTransaction(ref Trans);
 
                             SysFuncs.UserMsg(lblMsg, Color.Green, "Record Deleted Successfully : " + ddlReceptNo.SelectedValue.ToString().Trim());
-                            clearAll();
-                        }
+                        //   clearAll();
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Deletealert()", true);
+                    }
                     }
                     catch (Exception ex) { ObjTrans.RollBackTransaction(ref Trans); throw ex; }
                 //}

@@ -315,7 +315,8 @@
                                             <td style="text-align: right;">
                                                 <asp:Button ID="btnSave" runat="server"  Width="100px" Text="Save" OnClick="btnSave_Click" />
                                                  <asp:Button ID="btnPrint" runat="server"  Width="100px" Text="Print" OnClick="btnPrint_Click" />
-
+                                                  <asp:Button ID="btnPost" runat="server"  Width="100px" Text="Post" OnClick="btnPost_Click" />
+                                                    <asp:Button ID="btnDelete" runat="server"  Width="100px" Text="Post" OnClick="btnDelete_Click" />
 
                                                 <asp:Button ID="btnClear" runat="server"  Width="100px" Text="Clear" OnClick="btnClear_Click"  />
 

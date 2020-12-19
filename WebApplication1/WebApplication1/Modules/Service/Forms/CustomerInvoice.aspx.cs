@@ -2401,7 +2401,7 @@ namespace DXBMS.Modules.Service
 
                         return;
                     }
-                    if (PostServiceFollowUp(txtJobCardCode.Text, "InvoiceDeleted") == false)
+                    if (PostServiceFollowUp(ddlInvoiceNo.SelectedValue, "InvoiceDeleted") == false)
                     {
                         myFunc.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be Deleted");
                         //lblMSGPop.Text = "Post Service FollowUp Data Can not be Deleted";

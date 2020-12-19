@@ -1345,3 +1345,4 @@ E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.GenerateRes
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll.licenses
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.pdb
+E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache

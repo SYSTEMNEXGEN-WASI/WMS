@@ -157,7 +157,11 @@ namespace DXBMS.Modules.Service.Forms
         private void setGatePassInfo(DataSet dsJobCardMaster)
         {
             DataTable dt;
-            //ddlRegNo.Text = dsJobCardMaster.Tables[0].Rows[0]["RegNo"].ToString();
+            if (dsJobCardMaster.Tables[0].Rows[0]["PostFlag"].ToString() == "Y")
+            {
+                btnSave.Enabled = false;
+            }
+          
             txtGatePassCode.Text = dsJobCardMaster.Tables[0].Rows[0]["GatePassCode"].ToString();
             txtGatePassDate.Text = Convert.ToDateTime(dsJobCardMaster.Tables[0].Rows[0]["GatePassDate"]).ToString("dd/MM/yyyy");
             txtGatePassCode.Text = dsJobCardMaster.Tables[0].Rows[0]["GatePassCode"].ToString();
@@ -315,14 +319,40 @@ namespace DXBMS.Modules.Service.Forms
                 {
                     sysfun.UserMsg(lblMessage, Color.Red, "Please Select Trans Type First!", txtRegNo);
                 }
+
                 if (txtGatePassCode.Text == "")
                 {
+                    if (!sec.UserRight("2590", "002"))
+                    {
+                        Response.Redirect("~/Test.aspx");
+                    }
                     Autostr = myFunc.AutoGen("GatePassTemp", "GatePassCode", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
                 }
                 else
                 {
+                    if (!sec.UserRight("2590", "003"))
+                    {
+                        Response.Redirect("~/Test.aspx");
+                    }
                     Autostr = txtGatePassCode.Text;
-                }
+                    string CCon = CConnection.GetConnectionString();
+                    
+                    SqlDataAdapter dta = new SqlDataAdapter("Select Post from GatePassTemp where  CompCode='" + Session["DealerCode"].ToString() + "' and GatePassCode='" + txtGatePassCode.Text + "' and DelFlag<>'Y'  ", CCon);
+
+                    DataTable dt = new DataTable();
+                    dta.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        string Postflag = dt.Rows[0]["Post"].ToString();
+                    
+                        if (Postflag == "Y")
+                        {
+                            sysfun.UserMsg(lblMessage, Color.Red, "GatePass Can't Be Edit or Delete. . .! It is Already Posted. ");
+
+                            return;
+                        }
+                    }
+                    }
 
                 SqlParameter[] GatePass_param = {                                            
            /*0*/ new SqlParameter("@DealerCode",SqlDbType.Char,5), 
@@ -472,6 +502,10 @@ namespace DXBMS.Modules.Service.Forms
 
         protected void btnPrint_Click(object sender, EventArgs e)
         {
+            if (!sec.UserRight("2590", "006"))
+            {
+                Response.Redirect("~/Test.aspx");
+            }
             ReportDocument rpt, crReportDocument, RD;
             PdfDocument outputDocument = new PdfDocument();
             string strCriteria, rptTitle;
@@ -570,6 +604,62 @@ namespace DXBMS.Modules.Service.Forms
 
             ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
 
+        }
+
+        protected void btnPost_Click(object sender, EventArgs e)
+        {
+            if (txtGatePassCode.Text == "")
+            {
+                sysfun.UserMsg(lblMessage, Color.Green, "Please Select GatePass ");
+                return;
+            }
+            if (!sec.UserRight("2590", "005"))
+            {
+                Response.Redirect("~/Test.aspx");
+            }
+            string sql = "Update GatePassTemp set PostFlag='Y' where GatePassCode='"+txtGatePassCode.Text+"'";
+            if (sysfun.ExecuteQuery_NonQuery(sql))
+            {
+               
+                sysfun.UserMsg(lblMessage, Color.Green, "GatePass Posted");
+            }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (txtGatePassCode.Text == "")
+            {
+                sysfun.UserMsg(lblMessage, Color.Green, "Please Select GatePass ");
+                return;
+            }
+            if (!sec.UserRight("2590", "004"))
+            {
+                Response.Redirect("~/Test.aspx");
+            }
+            string CCon = CConnection.GetConnectionString();
+
+            SqlDataAdapter dta = new SqlDataAdapter("Select Post from GatePassTemp where  CompCode='" + Session["DealerCode"].ToString() + "' and GatePassCode='" + txtGatePassCode.Text + "' and DelFlag<>'Y'  ", CCon);
+
+            DataTable dt = new DataTable();
+            dta.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                string Postflag = dt.Rows[0]["Post"].ToString();
+
+                if (Postflag == "Y")
+                {
+                    sysfun.UserMsg(lblMessage, Color.Red, "GatePass Can't Be Edit or Delete. . .! It is Already Posted. ");
+
+                    return;
+                }
+            }
+
+            string sql = "Update GatePassTemp set DelFlag='Y' where GatePassCode='" + txtGatePassCode.Text + "'";
+            if (sysfun.ExecuteQuery_NonQuery(sql))
+            {
+
+                sysfun.UserMsg(lblMessage, Color.Green, "GatePass Deleted");
+            }
         }
 
         protected void btnClear_Click(object sender, EventArgs e)

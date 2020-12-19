@@ -435,7 +435,7 @@ namespace DXBMS.Modules.Service.Forms
                                    new SqlParameter("@VoucherFlag",SqlDbType.Char,1),//13 
                                    new SqlParameter("@SoftwareVersion",SqlDbType.VarChar,25),//14 
                                    new SqlParameter("@BillType",SqlDbType.VarChar,5),//15 
-                                   new SqlParameter("@VehType",SqlDbType.Char,3),//16 
+                                   new SqlParameter("@VehType",SqlDbType.Char,04),//16 
                                    new SqlParameter("@CreditNo",SqlDbType.VarChar,50),//17 
                                    new SqlParameter("@GSTAmount",SqlDbType.Decimal,50),//18 
                                    new SqlParameter("@SSTAmount",SqlDbType.Decimal,50),//19 
@@ -649,7 +649,7 @@ namespace DXBMS.Modules.Service.Forms
                 txtRemarks.Text = ds.Tables[0].Rows[0]["Remarks"].ToString();
             }
             //txtCode.Text = ds.Tables[0].Rows[0]["SSTNo"].ToString();
-            ddlTypes.SelectedValue = ds.Tables[0].Rows[0]["VehicleCategory"].ToString();
+            ddlTypes.SelectedValue = ds.Tables[0].Rows[0]["VehicleCategory"].ToString().Trim();
             txtBillDate.Text = Convert.ToDateTime(ds.Tables[0].Rows[0]["BillDate"].ToString()).ToString("dd/MM/yyyy");
             txtPSTCode.Text = ds.Tables[0].Rows[0]["SSTNo"].ToString();
             txtGSTCode.Text = ds.Tables[0].Rows[0]["GSTNo"].ToString();
@@ -865,7 +865,8 @@ namespace DXBMS.Modules.Service.Forms
                 lblMessage.Text = "Please Select Dates";
                 return;
             }
-
+            string sql = "";
+            DataTable dt ;
             LoadEmptyGrid();
 
             lblMessage.Text = string.Empty;
@@ -879,22 +880,23 @@ namespace DXBMS.Modules.Service.Forms
             param[1].Value = ddlTypes.SelectedValue;
             param[2].Value = sysFunc.SaveDate(txtFromDate.Text);
             param[3].Value = sysFunc.SaveDate(txtToDate.Text);
-           
-            ds = ObjGenral.FillDataSet("sp_2W_Service_GetClaimBilling_JC", param);
 
-            if (ds.Tables[0].Rows.Count > 0)
+            // ds = ObjGenral.FillDataSet("sp_2W_Service_GetClaimBilling_JC", param);
+            sql = "sp_2W_Service_GetClaimBilling_JC  '" + param[0].Value + "','" + param[1].Value + "','" + param[2].Value + "','" + param[3].Value + "'";
+            dt = ObjGenral.GetData(sql);
+            if (dt.Rows.Count > 0)
             {
-                Grdbillings.DataSource = ds;
+                Grdbillings.DataSource = dt;
                 Grdbillings.DataBind();
-                Session["JENDetail"] = ds.Tables[0];
+                Session["JENDetail"] = dt;
 
-                if (ds.Tables[0].Rows.Count > 0)
+                if (dt.Rows.Count > 0)
                 {
                     foreach (GridViewRow gvr in Grdbillings.Rows)
                     {
-                        PST = TotalAmount +  SysFunctions.CustomCDBL(ds.Tables[0].Rows[0]["PSTSubletAmount"].ToString())+ SysFunctions.CustomCDBL(ds.Tables[0].Rows[0]["PSTLaborAmount"].ToString());
-                        GST = TotalAmount + SysFunctions.CustomCDBL(ds.Tables[0].Rows[0]["HandlingAmount"].ToString()) + SysFunctions.CustomCDBL(ds.Tables[0].Rows[0]["GSTAmount"].ToString());
-                        TotalAmount = TotalAmount + SysFunctions.CustomCDBL(ds.Tables[0].Rows[0]["TotalAmount"].ToString());
+                        PST = TotalAmount + SysFunctions.CustomCDBL(dt.Rows[0]["HandlingAmount"].ToString()) +  SysFunctions.CustomCDBL(dt.Rows[0]["PSTSubletAmount"].ToString())+ SysFunctions.CustomCDBL(dt.Rows[0]["PSTLaborAmount"].ToString());
+                        GST = TotalAmount  + SysFunctions.CustomCDBL(dt.Rows[0]["GSTAmount"].ToString());
+                        TotalAmount = TotalAmount + SysFunctions.CustomCDBL(dt.Rows[0]["TotalAmount"].ToString());
                         CheckBox Chk = (CheckBox)gvr.Cells[0].FindControl("ChkBox");
                         Chk.Checked = true;
                         //ChkBox.Checked = true;
@@ -995,8 +997,8 @@ namespace DXBMS.Modules.Service.Forms
         {
             if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState == DataControlRowState.Alternate || e.Row.RowState == DataControlRowState.Normal))
             {
-                Part = Part + SysFunctions.CustomCDBL(e.Row.Cells[5].Text.Replace("&nbsp;", "").Trim() == "" ? "0" : e.Row.Cells[5].Text.Replace("&nbsp;", "").Trim());
-                GST = GST + SysFunctions.CustomCDBL(e.Row.Cells[7].Text.Replace("&nbsp;", "").Trim() == "" ? "0" : e.Row.Cells[7].Text.Replace("&nbsp;", "").Trim());
+              //  Part = Part + SysFunctions.CustomCDBL(e.Row.Cells[5].Text.Replace("&nbsp;", "").Trim() == "" ? "0" : e.Row.Cells[5].Text.Replace("&nbsp;", "").Trim());
+               // GST = GST + SysFunctions.CustomCDBL(e.Row.Cells[7].Text.Replace("&nbsp;", "").Trim() == "" ? "0" : e.Row.Cells[7].Text.Replace("&nbsp;", "").Trim());
 
 
             }
@@ -1006,8 +1008,8 @@ namespace DXBMS.Modules.Service.Forms
             }
             else if (e.Row.RowType == DataControlRowType.Footer)
             {
-                txtPartAmount.Text = Part.ToString();
-                txtGSTAmt.Text = GST.ToString();
+               // txtPartAmount.Text = Part.ToString();
+                //txtGSTAmt.Text = GST.ToString();
             }
         }
 
@@ -1026,12 +1028,14 @@ namespace DXBMS.Modules.Service.Forms
 
         public double CalculatePST()
         {
+            PST = 0;
           string pst = ObjGenral.GetStringValuesAgainstCodes("DealerCode", Session["DealerCode"].ToString(), "PST", "Dealer", Session["DealerCode"].ToString());
           return  PST = (SysFunctions.CustomCDBL(txtLaborAmount.Text)+SysFunctions.CustomCDBL(txtHandlingAmt.Text)) * (SysFunctions.CustomCDBL(pst) / 100);
             
         }
         public double CalculatePart()
         {
+            Part = 0;
             foreach (GridViewRow gvr in Grdbillings.Rows)
             {
                 CheckBox Chk = (CheckBox)gvr.Cells[0].FindControl("ChkBox");
@@ -1043,12 +1047,14 @@ namespace DXBMS.Modules.Service.Forms
                 }
 
             }
-
+            txtPartAmount.Text = Part.ToString();
             return Part = SysFunctions.CustomCDBL(Part);
 
         }
         public double  CalculateGST()
         {
+            CalculatePart();
+            GST = 0;
             foreach (GridViewRow gvr in Grdbillings.Rows)
             {
                 CheckBox Chk = (CheckBox)gvr.Cells[0].FindControl("ChkBox");
