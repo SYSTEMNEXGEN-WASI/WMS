@@ -334,9 +334,7 @@ namespace DXBMS.Modules.Service
                     string IQuery = "";
                     string strAutoInvoiceNo = string.Empty;
 
-                    //string Decission = IsExist();
-                    //if (Decission == "Insert")
-                    //{
+                   
                     strAutoInvoiceNo = grl.AutoGen("UniqueInvoiceNo", "InvoiceNo", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
                     IINV_param[1].Value = strAutoInvoiceNo;
                     if (myFunc.ExecuteSP_NonQuery("[sp_W2_CustomerInvoice_Insert]", IINV_param, Trans))
@@ -344,14 +342,7 @@ namespace DXBMS.Modules.Service
                         IQuery = "Update JobCardMaster set GatePass ='" + txtJobCardCode.Text.ToString().Trim() + "'," +
                                  "DelvDate='" + grl.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "',DelvTime='" + grl.SaveTime(DateTime.Now.ToString("HH:mm")) + "' " +
                                  "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + txtJobCardCode.Text + "'";
-                        //////////////////Generate MDN/////////////
-                        //if (Create_NDM(txtJobCardNo.Text, "InvoiceCreated") == false)
-                        //{
-                        //    grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
-                        //    ObjTrans.RollBackTransaction(ref Trans);
-                        //    return;
-                        //}
-                        ///////////////////////////
+                     
                         if (myFunc.ExecuteQuery(IQuery, Trans))
                         {
                             ///Update GST Invoice Table
@@ -366,12 +357,7 @@ namespace DXBMS.Modules.Service
                                 Session["GSTInvNo"] = GSTInvNo;
                                 if (myFunc.ExecuteSP_NonQuery("[sp_W2_GSTInvoice_Insert]", GSTINV_param, Trans))
                                 {
-                                    //if (ddlInvtype.SelectedItem.Value == "Depriciation")
-                                    //{
-                                    //    IQuery = "Update CustomerInvoice set DepSaleInvoice='" + GSTInvNo + "' " +
-                                    //         "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + ddlJobCardCode.SelectedValue.ToString().Trim() + "'";
-                                    //}else
-                                    //{
+                                   
                                     IQuery = "Update CustomerInvoice set SaleInvoice='" + GSTInvNo + "' " +
                                          "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + txtJobCardCode.Text + "' and InvoiceNo = '" + strAutoInvoiceNo + "'";
                                     //}
@@ -490,25 +476,265 @@ namespace DXBMS.Modules.Service
                 myFunc.UserMsg(lblMsg, Color.Green, ex.Message);
                 ObjTrans.RollBackTransaction(ref Trans);
             }
-            //try
-            //{
-            //    if (ObjTrans.BeginTransaction(ref Trans) == true)
-            //    {
-            //        txtInvoiceNo.Text = grl.AutoGen("UniqueInvoiceNo", "InvoiceNo", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
-            //        INV_param[1].Value = txtInvoiceNo.Text;
-            //        if (myFunc.ExecuteSP_NonQuery("[sp_W2_CustomerInvoice_Insert]", INV_param, Trans))
-            //        {
-            //            ObjTrans.CommittTransaction(ref Trans);
-            //        }
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //    ObjTrans.RollBackTransaction(ref Trans);
-            //}
+         
         }
 
+
+
         private void InvoiceEntry()
+        {
+            string NewInvNo = "";
+            #region JobCard Master Param
+            SqlParameter[] INV_param = {         
+            /*0*/ new SqlParameter("@DealerCode",SqlDbType.Char,5),         /*1*/ new SqlParameter("@InvoiceNo",SqlDbType.Char,8),
+           /*2*/ new SqlParameter("@InvoiceDate",SqlDbType.DateTime),       /*3*/ new SqlParameter("@JobCardCode",SqlDbType.Char,8),
+           /*4*/ new SqlParameter("@CusCode",SqlDbType. Char,8),            /*5*/ new SqlParameter("@GrossAmount",SqlDbType.Decimal),
+           /*6*/ new SqlParameter("@GSTPer",SqlDbType.Decimal),             /*7*/ new SqlParameter("@GSTAmount",SqlDbType.Decimal),
+           /*8*/ new SqlParameter("@SubTotal",SqlDbType.Decimal),           /*9*/ new SqlParameter("@DiscountAmount",SqlDbType.Decimal),
+           /*10*/ new SqlParameter("@DiscountPer",SqlDbType.VarChar,8),     /*11*/ new SqlParameter("@NetAmountCustomer",SqlDbType.Decimal),
+           /*12*/ new SqlParameter("@NetAmountInsurance",SqlDbType.Decimal), /*13*/ new SqlParameter("@InsCode",SqlDbType. Char,4),
+           /*14*/ new SqlParameter("@BranchCode",SqlDbType. Char,4),           /*15*/ new SqlParameter("@Gatepass",SqlDbType. Char,8),
+           /*16*/ new SqlParameter("@PaidC",SqlDbType. Decimal),           /*17*/ new SqlParameter("@PaidI",SqlDbType. Decimal),
+           /*18*/ new SqlParameter("@VOD",SqlDbType.Decimal),           /*19*/ new SqlParameter("@TotalDep",SqlDbType. Decimal),
+           /*20*/ new SqlParameter("@SaleInvoice",SqlDbType.VarChar,50),           /*21*/ new SqlParameter("@DepSaleInvoice",SqlDbType.VarChar,50),
+           /*22*/ new SqlParameter("@InvType",SqlDbType. Char,3),           /*23*/ new SqlParameter("@VoucherNo",SqlDbType. VarChar,50),
+           /*24*/ new SqlParameter("@VoucherFlag",SqlDbType.Char,1),           /*25*/ new SqlParameter("@DelFlag ",SqlDbType.Char,1),
+           /*26*/ new SqlParameter("@UpdUser",SqlDbType. VarChar,50),           /*27*/ new SqlParameter("@UpdDate",SqlDbType.DateTime),
+           /*28*/ new SqlParameter("@UpdTime",SqlDbType. DateTime),           /*29*/ new SqlParameter("@UpdTerm",SqlDbType. VarChar,50),
+           /*30*/ new SqlParameter("@PartsDiscount",SqlDbType. Decimal),           /*31*/ new SqlParameter("@PartsDiscountPer",SqlDbType.Decimal),
+           /*32*/ new SqlParameter("@OtherDiscount",SqlDbType.Decimal),           /*33*/ new SqlParameter("@OtherDiscountPer",SqlDbType.Decimal),
+           /*34*/ new SqlParameter("@OutKM",SqlDbType.VarChar,50),              /*35*/ new SqlParameter("@PSTPer",SqlDbType.Decimal),
+           /*36*/ new SqlParameter("@PSTAmount",SqlDbType.Decimal),              /*37*/ new SqlParameter("@TaxType",SqlDbType.VarChar,10),
+           /*38*/ new SqlParameter("@TRNumber",SqlDbType.Char,15),            /*39*/ new SqlParameter("@TRDate",SqlDbType.DateTime),
+            /*40*/ new SqlParameter("@ReceiptMode",SqlDbType.VarChar)
+         };
+
+            double totalAmtForCustomer = Convert.ToDouble(txtTotalAmtCustomer.Text) -
+                (CustomCDBL(txtDiscountParts.Text.Trim() == "" ? "0" : txtDiscountParts.Text.Trim()) +
+                    CustomCDBL(txtDiscLabor.Text == "" ? "0" : txtDiscLabor.Text.Trim()));
+
+            INV_param[0].Value = Session["DealerCode"].ToString();
+            //INV_param[1].Value = Decission will take on Insert/U.pdate
+            INV_param[2].Value = grl.SaveDate(txtInvoiceDate.Text);
+            INV_param[3].Value = HFJobCard.Value.Trim();
+            INV_param[4].Value = ddlCustCode.SelectedValue.ToString().Trim();
+            INV_param[5].Value = CustomCDBL(txtGrossAmount.Text);
+            INV_param[6].Value = CustomCDBL(txtGSTPercent.Text == "" ? "0" : txtGSTPercent.Text);
+            if (txtJobCardType.Text.Trim() == "INSURANCE")
+            {
+                INV_param[7].Value = CustomCDBL(lblCusTaxAmt.Text);
+            }
+            else
+            {
+                INV_param[7].Value = CustomCDBL(txtTaxAmount.Text);
+            }
+
+            INV_param[8].Value = CustomCDBL(txtSubTotal.Text);
+            INV_param[9].Value = CustomCDBL(txtDiscLabor.Text == "" ? "0" : txtDiscLabor.Text.Trim()); //Value not found
+            INV_param[10].Value = CustomCDBL(txtDiscLaborPercent.Text == "" ? "0" : txtDiscLaborPercent.Text.Trim()); //Value not found
+            INV_param[11].Value = CustomCDBL(txtTotalAmtCustomer.Text);
+            INV_param[12].Value = CustomCDBL(txtTotalAmntInsurance.Text);
+            INV_param[13].Value = ddlInsCo.SelectedIndex == 0 ? "" : ddlInsCo.SelectedValue;
+            INV_param[14].Value = ddlInsBranch.SelectedValue.ToString().Trim();
+            INV_param[15].Value = ddlJobCardCode.SelectedValue.ToString().Trim(); //Value not found
+            INV_param[16].Value = CustomCDBL(txtPaidCustomer.Text);
+            INV_param[17].Value = CustomCDBL(txtPaidInsurance.Text);
+            INV_param[18].Value = CustomCDBL(txtVEODAmount.Text);
+            INV_param[19].Value = CustomCDBL(txtDepAmount.Text == "" ? "0" : txtDepAmount.Text);
+            INV_param[20].Value = ""; //Value not found
+            INV_param[21].Value = ""; //Value not found
+            if (txtJobCardType.Text.Trim() == "INSURANCE")
+            {
+                INV_param[22].Value = "Dep"; //Value not found
+            }
+            else
+            {
+                INV_param[22].Value = "Inv";
+            }
+            INV_param[23].Value = ""; //Value not found
+            INV_param[24].Value = "N"; //Value not found
+            INV_param[25].Value = "N";
+            INV_param[26].Value = Session["UserName"].ToString();
+            INV_param[27].Value = grl.SaveDate(DateTime.Now.ToString("dd/MM/yyyy"));
+            INV_param[28].Value = grl.SaveTime(DateTime.Now.ToString("HH:mm"));
+            INV_param[29].Value = Environment.MachineName;
+            INV_param[30].Value = CustomCDBL(txtDiscountParts.Text.Trim() == "" ? "0" : txtDiscountParts.Text.Trim());
+            INV_param[31].Value = CustomCDBL(txtDiscPercentPart.Text.Trim() == "" ? "0" : txtDiscPercentPart.Text.Trim());
+            INV_param[32].Value = CustomCDBL(txtDistOtherParts.Text);
+            INV_param[33].Value = CustomCDBL(txtDistOtherPercent.Text);
+            INV_param[34].Value = txtOutKM.Text;
+            INV_param[35].Value = CustomCDBL(txtPSTPercent.Text == "" ? "0" : txtPSTPercent.Text);
+            INV_param[36].Value = CustomCDBL(txtPSTAmount.Text);
+            INV_param[37].Value = txtTaxType.Text.Trim();
+            INV_param[38].Value = txtTRNumber.Text.Trim();
+            if (txtTRDate.Text == "")
+            {
+                INV_param[39].Value = (Object)DBNull.Value;
+            }
+            else
+            {
+                INV_param[39].Value = myFunc.SaveDate(txtTRDate.Text);
+            }
+            INV_param[40].Value = ddlReciptMode.SelectedValue;
+            #endregion
+            try
+            {
+                if (ObjTrans.BeginTransaction(ref Trans) == true)
+                {
+                    string IQuery = "";
+                    string Decission = IsExist();
+                    if (Decission == "Insert")
+                    {
+
+                        NewInvNo = grl.AutoGen("UniqueInvoiceNo", "InvoiceNo", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+                        INV_param[1].Value = NewInvNo;
+
+                        ViewState["InvoiceNo"] = NewInvNo;
+
+                        if (myFunc.ExecuteSP_NonQuery("[sp_W2_CustomerInvoice_Insert]", INV_param, Trans))
+                        {
+                            IQuery = "Update JobCardMaster set GatePass ='" + txtJobCardCode.Text.Trim() + "'," +
+                                     "DelvDate='" + grl.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "',DelvTime='" + grl.SaveTime(DateTime.Now.ToString("HH:mm")) + "' " +
+                                     "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + txtJobCardCode.Text.Trim() + "'";
+                          
+                            if (myFunc.ExecuteQuery(IQuery, Trans))
+                            {
+                                ///Update GST Invoice Table
+                                if (double.Parse(txtGSTAmount.Text.Trim()) != 0)
+                                {
+                                    SqlParameter[] GSTINV_param = { new SqlParameter("@DealerCode",SqlDbType.Char,5),new SqlParameter("@GSTInvNo",SqlDbType.Char,8),
+                                                                new SqlParameter("@GSTInvDate",SqlDbType.DateTime),new SqlParameter("@RefNo",SqlDbType.Char,8) };
+                                    string GSTInvNo = grl.AutoGen("UniqueSalesTaxInvoice", "SalesTaxInvNO", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+                                    GSTINV_param[0].Value = Session["DealerCode"].ToString(); GSTINV_param[1].Value = GSTInvNo;
+                                    GSTINV_param[2].Value = grl.SaveDate(DateTime.Now.ToString("dd/MM/yyyy"));
+                                    GSTINV_param[3].Value = NewInvNo.Trim();
+                                    if (myFunc.ExecuteSP_NonQuery("[sp_W2_GSTInvoice_Insert]", GSTINV_param, Trans))
+                                    {
+                                        IQuery = "Update CustomerInvoice set SaleInvoice='" + GSTInvNo + "' " +
+                                                 "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + txtJobCardCode.Text + "' and InvoiceNo = '" + NewInvNo + "'";
+                                        myFunc.ExecuteQuery(IQuery, Trans);
+                                    }
+
+                                    // save item tax into table
+                                    SaveItemSalesTax(GSTInvNo, NewInvNo);
+
+                                }
+
+                                ///Update PST Invoice Table
+                                if (txtJobCardType.Text != "INSURANCE")
+                                {
+
+
+                                    if (double.Parse(txtPSTAmount.Text.Trim()) != 0)
+                                    {
+                                        SqlParameter[] PSTINV_param = {
+                                        new SqlParameter("@DealerCode",SqlDbType.Char,5),
+                                        new SqlParameter("@PSTInvNo",SqlDbType.Char,8),
+                                        new SqlParameter("@PSTInvDate",SqlDbType.DateTime),
+                                        new SqlParameter("@RefNo",SqlDbType.Char,8)
+                                    };
+                                        string PSTInvNo = grl.AutoGen("PSTUniqueSalesTaxInvoice", "SSTSalesTaxInvNo", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+
+                                        PSTINV_param[0].Value = Session["DealerCode"].ToString();
+                                        PSTINV_param[1].Value = PSTInvNo;
+                                        PSTINV_param[2].Value = grl.SaveDate(DateTime.Now.ToString("dd/MM/yyyy"));
+                                        PSTINV_param[3].Value = NewInvNo.Trim();
+
+                                        if (myFunc.ExecuteSP_NonQuery("[sp_W2_PSTInvoice_Insert]", PSTINV_param, Trans))
+                                        {
+                                            IQuery = "Update CustomerInvoice set SSTSaleInvoice='" + PSTInvNo + "' " +
+                                                     "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + txtJobCardCode.Text + "' and InvoiceNo = '" + NewInvNo + "'";
+                                            myFunc.ExecuteQuery(IQuery, Trans);
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                        else { myFunc.UserMsg(lblMsg, Color.Red, "Can't save"); }
+                    }
+                    else if (Decission == "Update")
+                    {
+                        INV_param[1].Value = ddlInvoiceNo.SelectedValue.ToString().Trim();
+
+                        if (myFunc.ExecuteSP_NonQuery("[sp_W2_CustomerInvoice_Update]", INV_param, Trans))
+                        {
+
+                            if (grl.GetStringValuesAgainstCodes("InvoiceNo", ddlInvoiceNo.SelectedValue.ToString().Trim(), "SaleInvoice", "CustomerInvoice", Session["DealerCode"].ToString()) == "")
+                            {
+                                ///Update GST Invoice Table
+                                if (double.Parse(txtGSTAmount.Text.Trim()) != 0)
+                                {
+                                    SqlParameter[] GSTINV_param = {
+                                        new SqlParameter("@DealerCode",SqlDbType.Char,5),
+                                        new SqlParameter("@GSTInvNo",SqlDbType.Char,8),
+                                        new SqlParameter("@GSTInvDate",SqlDbType.DateTime),
+                                        new SqlParameter("@RefNo",SqlDbType.Char,8)
+                                    };
+                                    string GSTInvNo = grl.AutoGen("UniqueSalesTaxInvoice", "SalesTaxInvNO", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+
+                                    GSTINV_param[0].Value = Session["DealerCode"].ToString();
+                                    GSTINV_param[1].Value = GSTInvNo;
+                                    GSTINV_param[2].Value = grl.SaveDate(DateTime.Now.ToString("dd/MM/yyyy"));
+                                    GSTINV_param[3].Value = ddlInvoiceNo.SelectedValue.ToString().Trim();
+
+                                    if (myFunc.ExecuteSP_NonQuery("[sp_W2_GSTInvoice_Insert]", GSTINV_param, Trans))
+                                    {
+                                        IQuery = "Update CustomerInvoice set SaleInvoice='" + GSTInvNo + " " +
+                                                 "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + ddlJobCardCode.SelectedValue.ToString().Trim() + "'";
+                                        myFunc.ExecuteQuery(IQuery, Trans);
+                                    }
+                                }
+                            }
+
+                            if (grl.GetStringValuesAgainstCodes("InvoiceNo", ddlInvoiceNo.SelectedValue.ToString(), "SSTSaleInvoice", "CustomerInvoice", Session["DealerCode"].ToString()) == "")
+                            {
+                                ///Update PST Invoice Table
+                                if (double.Parse(txtPSTAmount.Text.Trim()) != 0)
+                                {
+                                    SqlParameter[] PSTINV_param = {
+                                        new SqlParameter("@DealerCode",SqlDbType.Char,5),
+                                        new SqlParameter("@PSTInvNo",SqlDbType.Char,8),
+                                        new SqlParameter("@PSTInvDate",SqlDbType.DateTime),
+                                        new SqlParameter("@RefNo",SqlDbType.Char,8)
+                                    };
+
+                                    string PSTInvNo = grl.AutoGen("PSTUniqueSalesTaxInvoice", "SSTSalesTaxInvNo", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+
+                                    PSTINV_param[0].Value = Session["DealerCode"].ToString();
+                                    PSTINV_param[1].Value = PSTInvNo;
+                                    PSTINV_param[2].Value = grl.SaveDate(DateTime.Now.ToString("dd/MM/yyyy"));
+                                    PSTINV_param[3].Value = ddlInvoiceNo.SelectedValue.ToString().Trim();
+
+                                    if (myFunc.ExecuteSP_NonQuery("[sp_W2_PSTInvoice_Insert]", PSTINV_param, Trans))
+                                    {
+                                        IQuery = "Update CustomerInvoice set SSTSaleInvoice='" + PSTInvNo + "' " +
+                                                 "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + ddlJobCardCode.SelectedValue.ToString().Trim() + "'";
+                                        myFunc.ExecuteQuery(IQuery, Trans);
+                                    }
+                                }
+                            }
+                       
+                        }
+                        else { objMBLL.ShowMessageBox("Update Failed", txtColorName); }
+                    }
+                    if (ObjTrans.CommittTransaction(ref Trans))
+                    {
+                        HFJobCard.Value = "InvoiceCreated";
+                    }
+                    
+                    myFunc.UserMsg(lblMsg, Color.Green, "Record Saved Successfully: " + NewInvNo);
+                    
+                }
+            }
+            catch (Exception er)
+            {
+
+                myFunc.UserMsg(lblMsg, Color.Red, "Error: " + er.Message);
+                ObjTrans.RollBackTransaction(ref Trans);
+            }
+        }
+        private void InvoiceEntryDep()
         {
             string NewInvNo = "";
             #region JobCard Master Param
@@ -623,14 +849,7 @@ namespace DXBMS.Modules.Service
                             IQuery = "Update JobCardMaster set GatePass ='" + txtJobCardCode.Text.Trim() + "'," +
                                      "DelvDate='" + grl.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "',DelvTime='" + grl.SaveTime(DateTime.Now.ToString("HH:mm")) + "' " +
                                      "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JobCardCode='" + txtJobCardCode.Text.Trim() + "'";
-                            //////////////////Generate MDN/////////////
-                            //if (Create_NDM(txtJobCardNo.Text, "InvoiceCreated") == false)
-                            //{
-                            //    grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
-                            //    ObjTrans.RollBackTransaction(ref Trans);
-                            //    return;
-                            //}
-                            ///////////////////////////
+                          
                             if (myFunc.ExecuteQuery(IQuery, Trans))
                             {
                                 ///Update GST Invoice Table
@@ -650,11 +869,11 @@ namespace DXBMS.Modules.Service
                                     }
 
                                     // save item tax into table
-                                    SaveItemSalesTax(GSTInvNo, NewInvNo);
+                                    SaveItemSalesTaxDep(GSTInvNo, NewInvNo);
 
                                 }
 
-                                ///Update PST Invoice Table
+                              
                                 if (txtJobCardType.Text != "INSURANCE")
                                 {
 
@@ -748,12 +967,7 @@ namespace DXBMS.Modules.Service
                                     }
                                 }
                             }
-                            //IQuery = "Update JobCardMaster set SIRMaster='" + txtInvoiceNo.Text + "', GatePass ='" + txtInvoiceNo.Text + "',DelvDate='" + grl.SaveDate(DateTime.Now.ToString("yyyy/MM/dd")) + "',DelvTime='" + grl.SaveTime(DateTime.Now.ToString("HH:mm")) + "' Where DealerCode='" + Session["DealerCode"].ToString() + "'" +
-                            //        " and JobCardCode='" + txtJobCardNo.Text + "'";
-                            //if (myFunc.ExecuteQuery(IQuery, Trans))
-                            //{
-
-                            //}       
+                            
 
                         }
                         else { objMBLL.ShowMessageBox("Update Failed", txtColorName); }
@@ -1573,6 +1787,58 @@ namespace DXBMS.Modules.Service
         }
         private void SaveItemSalesTax(string InvoiceNumber, string InvNo = "")
         {
+         
+            // Calculate PartItems Tax
+            SqlParameter[] dsParam = {  new SqlParameter("@DealerCode",SqlDbType.Char,5),
+                                        new SqlParameter("@JobCardCode",SqlDbType.Char,8),
+                                        new SqlParameter("@InvType",SqlDbType.Char,15)
+                                         };
+            dsParam[0].Value = Session["DealerCode"].ToString();
+            dsParam[1].Value = (HFJobCard.Value == "" ? null : HFJobCard.Value.Trim());
+            dsParam[2].Value = txtTaxType.Text.Trim();
+
+
+            DataSet dsTaxDetail = new DataSet();
+         
+            dsTaxDetail = (DataSet)Session["dsTaxDetail"];
+           
+            DataTable dt = dsTaxDetail.Tables[0];
+            
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    string ityp = dt.Rows[i]["Type"].ToString();
+                    double gstPerc = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["GSTPerc"]));
+                    double fgstPerc = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["FGSTPerc"]));
+                    double exTaxPerc = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["ExTaxPerc"]));
+                    double gstAmt = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["GSTAmount"]));
+                    double fgstAmt = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["FGSTAmount"]));
+                    double exTaxAmt = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["ExTaxAmount"]));
+                    double dep = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["Dep"]));
+                    double depAmt = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["DepAmount"]));
+
+                    string itmCode = dt.Rows[i]["ItemCode"].ToString();
+                    double taxAmount = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["GrossAmount"]));
+                    string jcno = dt.Rows[i]["JobCardCode"].ToString();
+
+                    string sql = "insert into ItemsTaxTrx (DealerCode,SINumber,SalesTaxNo,ItemCode,GSTPerc,FGSTPerc,SalesTaxAmount,InvoiceType,InvoiceNumber,JobCardCode,ItemType,GSTAmount,FGSTAmount,ExGSTPerc,ExGSTAmount,Dep,DepAmount,BillType)";
+                    sql += " values('" + Session["DealerCode"].ToString() + "','" + InvNo + "','" + InvoiceNumber + "','" + itmCode + "','" + gstPerc + "','" + fgstPerc + "','" + taxAmount + "','J','" + InvNo + "','" + jcno + "','" + ityp + "','" + gstAmt + "','" + fgstAmt + "','" + exTaxPerc + "','" + exTaxAmt + "','" + dep + "','" + depAmt + "','J')";
+
+                    //string sql = "insert into ItemsTaxTrx (DealerCode,InvoiceNumber,JobCardCode,ItemType,SalesTaxNo,ItemCode,GSTPerc,FGSTPerc,SalesTaxAmount,InvoiceType,GSTAmount,FGSTAmount)";
+                    //sql += " values('" + Session["DealerCode"].ToString() + "','" + InvNo + "','" + jcno + "','" + ityp + "','" + InvoiceNumber + "','" + itmcod + "','" + stxpct.ToString() + "','" + ftxpct.ToString() + "','" + totamt + "','J','" + gstot.ToString() + "','" + fstot.ToString() + "')";
+
+                    DataTable dtmp = myFunc.GetData(sql);
+                    dtmp.Dispose();
+                }
+
+                dt.Dispose();
+            
+
+
+
+        }
+        private void SaveItemSalesTaxDep(string InvoiceNumber, string InvNo = "")
+        {
             double totTax = 0;
             // Calculate PartItems Tax
             SqlParameter[] dsParam = {  new SqlParameter("@DealerCode",SqlDbType.Char,5),
@@ -1625,38 +1891,7 @@ namespace DXBMS.Modules.Service
 
 
             }
-         else if (txtJobCardType.Text != "INSURANCE" && ddlInvtype.SelectedValue == "Depriciation")
-            {
-
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-
-                    string ityp = dt.Rows[i]["Type"].ToString();
-                    double gstPerc =   CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["GSTPerc"]));
-                    double fgstPerc =  CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["FGSTPerc"]));
-                    double exTaxPerc = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["ExTaxPerc"]));
-                    double gstAmt =    CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["GSTAmount"]));
-                    double fgstAmt =   CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["FGSTAmount"]));
-                    double exTaxAmt =  CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["ExTaxAmount"]));
-                    double dep =       CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["Dep"]));
-                    double depAmt =    CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["DepAmount"]));
-
-                    string itmCode = dt.Rows[i]["ItemCode"].ToString();
-                    double taxAmount = CustomCDBL(Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["GrossAmount"]));
-                    string jcno = dt.Rows[i]["JobCardCode"].ToString();
-
-                    string sql = "insert into ItemsTaxTrx (DealerCode,SINumber,SalesTaxNo,ItemCode,GSTPerc,FGSTPerc,SalesTaxAmount,InvoiceType,InvoiceNumber,JobCardCode,ItemType,GSTAmount,FGSTAmount,ExGSTPerc,ExGSTAmount,Dep,DepAmount,BillType)";
-                    sql += " values('" + Session["DealerCode"].ToString() + "','" + InvNo + "','" + InvoiceNumber + "','" + itmCode + "','" + gstPerc + "','" + fgstPerc + "','" + taxAmount + "','J','" + InvNo + "','" + jcno + "','" + ityp + "','" + gstAmt + "','" + fgstAmt + "','" + exTaxPerc + "','" + exTaxAmt + "','" + dep + "','" + depAmt + "','J')";
-
-                    //string sql = "insert into ItemsTaxTrx (DealerCode,InvoiceNumber,JobCardCode,ItemType,SalesTaxNo,ItemCode,GSTPerc,FGSTPerc,SalesTaxAmount,InvoiceType,GSTAmount,FGSTAmount)";
-                    //sql += " values('" + Session["DealerCode"].ToString() + "','" + InvNo + "','" + jcno + "','" + ityp + "','" + InvoiceNumber + "','" + itmcod + "','" + stxpct.ToString() + "','" + ftxpct.ToString() + "','" + totamt + "','J','" + gstot.ToString() + "','" + fstot.ToString() + "')";
-
-                    DataTable dtmp = myFunc.GetData(sql);
-                    dtmp.Dispose();
-                }
-
-                dt.Dispose();
-            }
+      
         
 
 
@@ -2160,19 +2395,16 @@ namespace DXBMS.Modules.Service
             {
                 if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", HFJobCard.Value.Trim(), Session["DealerCode"].ToString(), " and qty <> recqty"))
                 {
-                    //SendAlert(); return;
+                   
                     myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Parts as per Job Card");
-                    //lblMSGPop.Text = "Parts have not been issued yet";
-                    //PopupControlMSG.ShowOnPageLoad = true;
+                   
                     return;
                 }
 
                 if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", HFJobCard.Value.Trim(), Session["DealerCode"].ToString(), " and qty <> recqty"))
                 {
-                    //SendAlert(); return;
+                   
                     myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Lubricant");
-                    //lblMSGPop.Text = "Lubricant parts have not been issued yet";
-                    //PopupControlMSG.ShowOnPageLoad = true;
                     return;
                 }
                 if (grl.IsExist("JobCardCode", HFJobCard.Value.Trim(), "CustomerInvoice", Session["DealerCode"].ToString(), " And InvType = 'Inv' And DelFlag = 'N'"))
@@ -2195,8 +2427,7 @@ namespace DXBMS.Modules.Service
                 {
                     //SendAlert(); return;
                     myFunc.UserMsg(lblMsg, Color.Red, "Gross Amount is not correct");
-                    //lblMSGPop.Text ="Gross Amount is not correct" ;
-                    //PopupControlMSG.ShowOnPageLoad = true;
+                   
                     return;
                 }
                 if (txtJobCardType.Text == "INSURANCE")
@@ -2204,11 +2435,6 @@ namespace DXBMS.Modules.Service
                     
                     if (ddlInsCo.SelectedItem.Text == "--Select--")
                     {
-                        //lblMsg.Visible = true;
-                        //grl.UserMsg(lblMsg, Color.Red, );
-                        //return;
-                        //lblMSGPop.Text ="Select Insurance company" ;
-                        //PopupControlMSG.ShowOnPageLoad = true;
                         myFunc.UserMsg(lblMsg, Color.Red, "Select Insurance company");
 
                         return;
@@ -2221,21 +2447,19 @@ namespace DXBMS.Modules.Service
                     {
 
                         myFunc.UserMsg(lblMsg, Color.Red, "Select Insurance company branch");
-                        //lblMSGPop.Text = "Select Insurance company branch";
-                        //PopupControlMSG.ShowOnPageLoad = true;
+                       
                         return;
                     }
                     else
                     {
                         lblMsg.Text = "";
                     }
-                    //InvType IN ('Ins','Dep')
+                    
                     if (grl.IsExist("JobCardCode", HFJobCard.Value.Trim(), "CustomerInvoice", Session["DealerCode"].ToString()," And InvType = 'Ins' and DelFlag='N' "))
                     {
 
                         myFunc.UserMsg(lblMsg, Color.Red, "insurance invoice can not be Save");
-                        //lblMSGPop.Text ="insurance invoice can not be edit" ;
-                        //PopupControlMSG.ShowOnPageLoad = true;
+                    
                         return;
                     }
                     else
@@ -2246,7 +2470,7 @@ namespace DXBMS.Modules.Service
                     
                 }
 
-                //InvoiceEntry();
+               
                 if (txtJobCardType.Text.Trim() != "INSURANCE")
                 {
                     InvoiceEntry();
@@ -2266,7 +2490,7 @@ namespace DXBMS.Modules.Service
                     InsuranceInvoiceEntry();
                     if (Convert.ToDouble(txtDepAmount.Text) > 0)
                     {
-                        InvoiceEntry();
+                        InvoiceEntryDep();
                     }
                 }
                 //else

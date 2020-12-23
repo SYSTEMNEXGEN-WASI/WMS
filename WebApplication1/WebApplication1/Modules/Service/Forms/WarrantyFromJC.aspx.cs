@@ -72,7 +72,7 @@ namespace DXBMS.Modules.Service.Forms
         {
             ddlTypes.Items.Add(new ListItem("Select", "Select"));
             ddlTypes.Items.Add(new ListItem("WAP", "WAP"));
-            ddlTypes.Items.Add(new ListItem("NWAP", "NWAP"));
+            ddlTypes.Items.Add(new ListItem("NAP", "NAP"));
           
         }
 

@@ -440,6 +440,7 @@
                                     <asp:Button ID="btnSubmit" runat="server" Text="Save"  OnClick="btnSubmit_Click" OnClientClick="this.disabled = true; this.value = 'Please Wait'; ShowProgress()" UseSubmitBehavior="false" />
                                     <asp:Button ID="btnCLear" runat="server" Text="Clear"  OnClick="btnClear_Click" />
                                     <asp:Button ID="btnPrint" runat="server" Text="Print"  OnClick="btnPrint_Click" />
+                                     <asp:Button ID="btnGL" runat="server" Text="GL"  OnClick="btnGL_Click" />
                                     <asp:Button ID="btnGatePass" runat="server" Text="Gate Pass"  OnClick="btnGatePass_Click" OnClientClick="this.disabled = true; this.value = 'Please Wait'; ShowProgress()" UseSubmitBehavior="false" />
                                 </td>
                             </tr>

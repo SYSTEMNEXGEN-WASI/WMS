@@ -11,6 +11,44 @@
         <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../js/chosen.jquery.js" type="text/javascript"></script>
         <script src="../../../js/chosen.jquery.min.js" type="text/javascript"></script>
+          <script src="../../Data/sweetalert.js" type="text/javascript"></script>  
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+     <script type="text/javascript">
+           function Savealert() {
+               Swal.fire({
+                   position: 'Centered',
+                   icon: 'success',
+                   title: 'Your record has been saved',
+                   showConfirmButton: false,
+                   timer: 6000
+               })
+               window.location.href = "CustomerPaymentRec.aspx";
+           }
+           function Updatealert() {
+               Swal.fire({
+                   position: 'Centered',
+                   icon: 'success',
+                   title: 'Your record has been update',
+                   showConfirmButton: false,
+                   timer: 6000
+               })
+               window.location.href = "CustomerPaymentRec.aspx";
+           }
+           function Deletealert() {
+            Swal.fire({
+                   position: 'Centered',
+                   icon: 'success',
+                   title: 'Your record has been delete',
+                   showConfirmButton: false,
+                   timer: 6000
+                    })
+            window.location.href = "CustomerPaymentRec.aspx";
+           }
+           function reloads() {
+               window.location.href = "CustomerPaymentRec.aspx";
+           }
+
+       </script>
     <script language="javascript" type="text/javascript">
         function AmtTot() {
             var TotalInsAmt = document.getElementById('<%=txtInstAmt.ClientID%>').value;

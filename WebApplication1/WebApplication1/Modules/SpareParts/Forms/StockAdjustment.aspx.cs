@@ -166,6 +166,12 @@ namespace DXBMS.Modules.SpareParts.Forms
 
             try
             {
+
+                if (ddlChargeOutNo.SelectedIndex != 0)
+                {
+                    sysFuncs.UserMsg(lblMessage, Color.Red, "This  record is already exist ", null);
+                    return;
+                }
                 if (txtChargeOutDate.Text == "")
                 {
 

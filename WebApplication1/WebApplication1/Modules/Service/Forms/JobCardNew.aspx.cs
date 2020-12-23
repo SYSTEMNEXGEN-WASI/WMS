@@ -1010,15 +1010,35 @@ namespace DXBMS.Modules.Service
             {
                 if (ddlJobCardTypeCode.SelectedValue == "008")
                 {
-                    if (ddlPayMode.SelectedValue == "NWAP")
+                    if (ddlPayMode.SelectedValue != "NAP")
+                    {
+                        if (txtSIRMasterId.Text.Trim() == string.Empty)
+                        {
+                            txtSIRMasterId.Text = grl.AutoGen("sirmaster", "SIRNO", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+                        }
+                        else
+                        {
+                            txtSIRMasterId.Text = "";
+                        }
+
+                        
+                    }
+                    else
                     {
                         txtSIRMasterId.Text = "";
                     }
+                   
+
+                }
+                else if (ddlJobCardTypeCode.SelectedValue != "008")
+                {
                     if (txtSIRMasterId.Text.Trim() == string.Empty)
                     {
                         txtSIRMasterId.Text = grl.AutoGen("sirmaster", "SIRNO", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
                     }
+                   
                 }
+                
                
                
             }
@@ -1274,7 +1294,7 @@ namespace DXBMS.Modules.Service
                             {
                                 if (ddlJobCardTypeCode.SelectedValue == "008")
                                 {
-                                    if (ddlPayMode.SelectedValue != "NWAP")
+                                    if (ddlPayMode.SelectedValue != "NAP")
                                     {
                                         Inser_SIR_Master_Detail();
                                     }
@@ -1286,57 +1306,71 @@ namespace DXBMS.Modules.Service
                                 }
 
                             }
-                            else { objMBLL.ShowMessageBox("Saving Faild", txtCustomer); }
+                           
+                        }
+                        else { objMBLL.ShowMessageBox("Saving Faild", txtCustomer); }
+                    }
+                    else
+                    {
+                        //Jobcard no exist if delfalg='N'
+                        //Gate <> ''
+                        //txtchassisno. engine 
+                        if (txtSIRMasterId.Text.Trim() != string.Empty)
+                        {
+                            if (grl.CodeExists("JobCardMaster", "SIRMaster", txtSIRMasterId.Text.Trim(), "And JobCardCode <> '" + txtJobCardCode.Text.Trim() + "'", GlobalVar.mDealerCode)) //ddlJobCardCode.SelectedValue.ToString().Trim() 
+                            {
+
+                                grl.UserMsg(lblMsg, Color.Red, "SIRNo already used in another JobCard", txtCustomer);
+                                return;
+                            }
+                        }
+                        //if (ddlJobCardCode.SelectedIndex != 0)
+                        //{
+                        //    if (grl.IsExist("JobCardCode", ddlJobCardNo.Text, "JobCardMaster",Session["DealerCode"].ToString(), "And DelFlag='N' And GatePass<>''"))
+                        //    {
+                        //        
+                        //        grl.UserMsg(lblMsg, Color.Red, "JobCard dose not Exists", txtCustomer);
+                        //        return;
+                        //    }
+                        //}
+                        if (ViewState["JobCardCode"].ToString().Trim() != "")
+                        {
+                            JobCardMaster_param[1].Value = ViewState["JobCardCode"].ToString().Trim();
                         }
                         else
                         {
-                            //Jobcard no exist if delfalg='N'
-                            //Gate <> ''
-                            //txtchassisno. engine 
-                            if (txtSIRMasterId.Text.Trim() != string.Empty)
+                            JobCardMaster_param[1].Value = txtJobCardCode.Text.Trim();// ddlJobCardCode.SelectedValue.ToString().Trim();
+                        }
+                        if (myFunc.ExecuteSP_NonQuery("[sp_Update_JobcardMaster]", JobCardMaster_param, Trans))
+                        {
+                            Inser_JobCardDetail();
+                            Inser_JobCardPartsDetail();
+                            Inser_JobCardLubricanteDetail();
+                            Inser_JobCardSubletDetail();
+                            Inser_JobCardConPartsDetail();
+                            Inser_JobCardBoutPartsDetail();
+                            bool c;
+                            bool d;
+                            if (gvJobCardParts.Rows.Count > 0 || gvLubParts.Rows.Count > 0)
                             {
-                                if (grl.CodeExists("JobCardMaster", "SIRMaster", txtSIRMasterId.Text.Trim(), "And JobCardCode <> '" + txtJobCardCode.Text.Trim() + "'", GlobalVar.mDealerCode)) //ddlJobCardCode.SelectedValue.ToString().Trim() 
+                                if (ddlJobCardTypeCode.SelectedValue == "008")
                                 {
+                                    if (ddlPayMode.SelectedValue != "NAP")
+                                    {
+                                        Inser_SIR_Master_Detail();
+                                    }
 
-                                    grl.UserMsg(lblMsg, Color.Red, "SIRNo already used in another JobCard", txtCustomer);
-                                    return;
                                 }
-                            }
-                            //if (ddlJobCardCode.SelectedIndex != 0)
-                            //{
-                            //    if (grl.IsExist("JobCardCode", ddlJobCardNo.Text, "JobCardMaster",Session["DealerCode"].ToString(), "And DelFlag='N' And GatePass<>''"))
-                            //    {
-                            //        
-                            //        grl.UserMsg(lblMsg, Color.Red, "JobCard dose not Exists", txtCustomer);
-                            //        return;
-                            //    }
-                            //}
-                            if (ViewState["JobCardCode"].ToString().Trim() != "")
-                            {
-                                JobCardMaster_param[1].Value = ViewState["JobCardCode"].ToString().Trim();
-                            }
-                            else
-                            {
-                                JobCardMaster_param[1].Value = txtJobCardCode.Text.Trim();// ddlJobCardCode.SelectedValue.ToString().Trim();
-                            }
-                            if (myFunc.ExecuteSP_NonQuery("[sp_Update_JobcardMaster]", JobCardMaster_param, Trans))
-                            {
-                                Inser_JobCardDetail();
-                                Inser_JobCardPartsDetail();
-                                Inser_JobCardLubricanteDetail();
-                                Inser_JobCardSubletDetail();
-                                Inser_JobCardConPartsDetail();
-                                Inser_JobCardBoutPartsDetail();
-                                bool c;
-                                bool d;
-                                if (gvJobCardParts.Rows.Count > 0 || gvLubParts.Rows.Count > 0)
+                                else
                                 {
                                     Inser_SIR_Master_Detail();
                                 }
 
                             }
-                            else { objMBLL.ShowMessageBox("Update Fail", lblMsg); }
+
                         }
+                        else { objMBLL.ShowMessageBox("Update Fail", lblMsg); }
+                    }
 
                         if (ObjTrans.CommittTransaction(ref Trans) == true)
                         {
@@ -1358,7 +1392,7 @@ namespace DXBMS.Modules.Service
                         }
                         clearAll();
 
-                    }
+                    
                 }
             }
             catch (Exception ex)
@@ -4595,7 +4629,7 @@ namespace DXBMS.Modules.Service
                 ddlPayMode.Items.Clear();
                 ddlPayMode.Items.Add(new ListItem("Select", "Select"));
                 ddlPayMode.Items.Add(new ListItem("WAP", "WAP"));
-                ddlPayMode.Items.Add(new ListItem("NWAP", "NWAP"));
+                ddlPayMode.Items.Add(new ListItem("NAP", "NAP"));
             }
             else
             {
@@ -5008,7 +5042,7 @@ namespace DXBMS.Modules.Service
         protected void imgEstNo_Click(object sender, ImageClickEventArgs e)
         {
             ViewState["lookupid"] = 73;
-            clslook.LU_Get_CustomerEstimateNoForm(imgJobCardCode, ViewState["lookupid"].ToString(), "", "../../../");
+            clslook.LU_Get_CustomerEstimateNoForm_JC(imgJobCardCode, ViewState["lookupid"].ToString(), "", "../../../");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Close Look Up Window First')", true);
         }
 

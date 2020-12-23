@@ -172,7 +172,13 @@ public class clsLookUp : PageBase
                         "    JobTypeMaster JT ON J.JobCardType = JT.JobTypeCode  ";
 
     //Append in where clause
-    AppendInWhere = " J.DealerCode IN ('AAAAA','" + Session["DealerCode"].ToString() + "')  And  J.Gatepass='' And DelFlag='N' and J.Jobtypecode <> '001' and J.JobTypeCode <> '002' and J.JobCardType <> 'Warranty' and J.JobCardType <> 'Repeated JobCard'  ";
+    AppendInWhere = " J.DealerCode IN ('AAAAA','" + Session["DealerCode"].ToString() + "')  And  J.Gatepass='' And DelFlag='N' "+
+            "and J.JobCardType <> '001' and J.JobCardType <> '002' " +
+            "and J.JobCardType <> '008' and J.JobCardType <> '007' " +
+            "and J.JobCardType <> '013' "+
+            "and J.JobCardType <> '018' " +
+            "and J.JobCardType <> '019' " +
+            "and J.JobCardType <> '014' ";
         HttpContext.Current.Session["ColumnsName"] = SelectClause;
         AppendOrderby = "Order by J.JobCardCode Desc";
         HttpContext.Current.Session["AppendInWhere"] = AppendInWhere;
@@ -348,6 +354,28 @@ public void LU_Get_JobCardNo(Control obj, string lookupid, string AppendInWhere,
                         "    FROM CustomerEstimateMaster CE ";
 
         AppendInWhere = " CE.DealerCode IN ('AAAAA','" + Session["DealerCode"].ToString() + "')  And DelFlag='N'";
+        HttpContext.Current.Session["ColumnsName"] = SelectClause;
+        AppendOrderby = "Order by CE.CustomerEstimateCode Desc";
+        HttpContext.Current.Session["AppendInWhere"] = AppendInWhere;
+        HttpContext.Current.Session["AppendOrderby"] = AppendOrderby;
+        ShowLookUp(obj, lookupid, RootURL);
+    }
+    public void LU_Get_CustomerEstimateNoForm_JC(Control obj, string lookupid, string AppendInWhere, string RootURL)
+    {
+
+        //string SelectClause = "SELECT J.JobCardCode, J.RegNo, J.UserName, JT.JobTypeCode " +
+        //                "    FROM JobCardMaster J LEFT OUTER JOIN " +
+        //                "    JobTypeMaster JT ON J.JobTypeCode = JT.JobTypeCode and J.Gatepass='' ";
+        string AppendOrderby;
+        Session["AppendOrderby"] = string.Empty;
+        //string SelectClause = "SELECT CE.CustomerEstimateCode, CE.RegNo, CE.UserName " +
+        //              "    FROM CustomerEstimateMaster CE INNER JOIN " +
+        //            "    CustomerEstimateDetail CED ON CE.CustomerEstimateCode = CED.CustomerEstimateCode  ";
+        //Append in where clause
+        string SelectClause = "SELECT CE.CustomerEstimateCode as 'Customer Estimate', CE.RegNo as 'Reg No', CE.UserName as 'User Name',CE.Type as 'Type'  " +
+                        "    FROM CustomerEstimateMaster CE ";
+
+        AppendInWhere = " CE.DealerCode IN ('AAAAA','" + Session["DealerCode"].ToString() + "')  And DelFlag='N' and CE.CustomerEstimateCode not in (Select J.EstimateCode from JobCardMaster J where J.EstimateCode=CE.CustomerEstimateCode and J.DealerCode=CE.DealerCode )";
         HttpContext.Current.Session["ColumnsName"] = SelectClause;
         AppendOrderby = "Order by CE.CustomerEstimateCode Desc";
         HttpContext.Current.Session["AppendInWhere"] = AppendInWhere;

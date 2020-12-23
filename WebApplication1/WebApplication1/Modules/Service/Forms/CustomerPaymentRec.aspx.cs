@@ -677,6 +677,8 @@ namespace DXBMS.Modules.Service.Forms
                         txtAdj.Value = "t";
                         Count = Count + SysFunctions.CustomCDBL(row.Cells[6].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[6].Text.Trim());
                         gvPendingInvoice.FooterRow.Cells[6].Text = Count.ToString();
+                        return;
+
                     }
                     
 
