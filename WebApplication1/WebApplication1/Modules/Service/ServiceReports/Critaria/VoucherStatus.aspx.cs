@@ -49,6 +49,8 @@ namespace DXBMS.Modules.Service.ServiceReports.Critaria
             {
                 Response.Redirect("~/Test.aspx");
             }
+            gvPendingVoucher.DataSource = null;
+            gvPendingVoucher.DataBind();
             GetData();
 
         }
@@ -57,6 +59,12 @@ namespace DXBMS.Modules.Service.ServiceReports.Critaria
         {
             gvPendingVoucher.PageIndex = e.NewPageIndex;
             GetData();
+        }
+
+        protected void btnCLear_Click(object sender, EventArgs e)
+        {
+            gvPendingVoucher.DataSource = null;
+            gvPendingVoucher.DataBind();
         }
     }
 }

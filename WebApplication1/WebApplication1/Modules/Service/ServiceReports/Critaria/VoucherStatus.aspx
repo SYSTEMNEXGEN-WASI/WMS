@@ -127,6 +127,14 @@ To Date
 </asp:GridView>
 </tr>
 </table>
+<table width="100%" style="border-collapse: separate; border-spacing: 5px;"
+                            class="table table-condensed table-bordered table-hover">
+<tr>
+<td style="text-align:right">
+  <asp:Button ID="btnCLear" runat="server" Text="Clear"  OnClick="btnCLear_Click" />
+</td>
+</tr>
+</table>
 
 
 </div>
