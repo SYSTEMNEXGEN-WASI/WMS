@@ -71,7 +71,7 @@ namespace DXBMS.Modules.Service.Forms
                     {
                         LoadFSBGrid(leadId);
                     }
-                    else
+                    else if (type == "PV")
                     {
                         LoadPVGrid(leadId);
                         
@@ -91,8 +91,8 @@ namespace DXBMS.Modules.Service.Forms
                     totCredit = totDebit = 0;
                 }else
                 {
-                    string leadId = Session["CusInv"].ToString();
-                    type = Session["Type"].ToString();
+                    string leadId = Request.Params.Get("CusInv");
+                    type = Request.Params.Get("Type");
 
                     initializeDDLs(ddlJournalNo);
                     //ddlJournalNo.SelectedIndex = 1;
@@ -117,7 +117,7 @@ namespace DXBMS.Modules.Service.Forms
                     {
                         LoadDSGrid(leadId);
                     }
-                    else
+                    else if (type == "PV")
                     {
                         LoadPVGrid(leadId);
                        
@@ -180,6 +180,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     Session["VoucherNo"] = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -287,6 +288,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     Session["VoucherNo"] = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -438,6 +440,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     Session["VoucherNo"] = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -605,6 +608,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -1315,7 +1319,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
-
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -1504,7 +1508,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
-
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -1583,7 +1587,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
-
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();

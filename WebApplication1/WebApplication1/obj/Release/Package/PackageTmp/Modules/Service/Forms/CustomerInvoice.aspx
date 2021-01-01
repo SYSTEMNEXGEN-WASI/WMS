@@ -179,7 +179,7 @@
              <div class="row">
                 <div class="col-lg-12">
                <span class="fa-arrow-left fa"></span>
-                        <asp:LinkButton ID="lnkBack" ForeColor="Black" runat="server" PostBackUrl="~/" Text="Back"></asp:LinkButton>
+                        <asp:LinkButton ID="lnkBack" ForeColor="Black" runat="server" PostBackUrl="~/Modules/Service/Forms/CI.aspx" Text="Back"></asp:LinkButton>
                 <div class="col-md-4 pull-right" style="margin-top:10px;">
                 <asp:Label runat="server" ID="lblMode" Font-Size="16px" Font-Bold="true" ForeColor="Black"> </asp:Label>
                 </div>

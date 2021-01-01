@@ -438,10 +438,10 @@
                            CultureTimePlaceholder="" Enabled="true" Mask="99:99" MaskType="Time" TargetControlID="txtPromistedTime" />
                            </td>
                            <td colspan="1">
-                            Coupon No./Claim No
+                            Notification No/Coupon No
                             </td>
                            <td colspan="2">
-                             <asp:TextBox ID="txtCouponNo" runat="server" MaxLength="10" TabIndex="7" 
+                             <asp:TextBox ID="txtCouponNo" runat="server" MaxLength="15" TabIndex="7" 
                                                 Width="100%"></asp:TextBox>
                             </td>
                           

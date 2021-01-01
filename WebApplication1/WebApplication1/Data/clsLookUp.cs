@@ -171,10 +171,10 @@ public class clsLookUp : PageBase
                         "    FROM JobCardMaster J LEFT OUTER JOIN " +
                         "    JobTypeMaster JT ON J.JobCardType = JT.JobTypeCode  ";
 
-    //Append in where clause
-    AppendInWhere = " J.DealerCode IN ('AAAAA','" + Session["DealerCode"].ToString() + "')  And  J.Gatepass='' And DelFlag='N' "+
+        //Append in where clause and J.JobCardType <> '008'
+        AppendInWhere = " J.DealerCode IN ('AAAAA','" + Session["DealerCode"].ToString() + "')  And  J.Gatepass='' And DelFlag='N' "+
             "and J.JobCardType <> '001' and J.JobCardType <> '002' " +
-            "and J.JobCardType <> '008' and J.JobCardType <> '007' " +
+            "and J.JobCardType <> '007' " +
             "and J.JobCardType <> '013' "+
             "and J.JobCardType <> '018' " +
             "and J.JobCardType <> '019' " +

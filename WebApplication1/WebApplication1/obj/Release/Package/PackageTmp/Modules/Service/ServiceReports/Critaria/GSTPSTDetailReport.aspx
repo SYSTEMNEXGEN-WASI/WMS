@@ -13,9 +13,9 @@
                                 <td align="right">Report of</td>
                                 <td  align="right">
                                     <asp:RadioButtonList ID="rbStatus" runat="server" RepeatDirection="Horizontal" Width="100%" AutoPostBack="true">
-                                       
+                                        <asp:ListItem Selected="True" Text="Combine" Value="Com"  />
                                         <asp:ListItem Text="PST" Value="PST" />
-                                        <asp:ListItem Text="GST" Value="GST" Selected="True" />
+                                        <asp:ListItem Text="GST" Value="GST"  />
                                     </asp:RadioButtonList>
                                 </td>
                             </tr>

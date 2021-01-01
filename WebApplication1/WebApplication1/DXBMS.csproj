@@ -941,6 +941,18 @@
       <DependentUpon>Ins_CombineReportPerfor.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Modules\Service\ServiceReports\ConbineTaxDetail.cs">
+      <DependentUpon>ConbineTaxDetail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Modules\Service\ServiceReports\JobCardSummary.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobCardSummary.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Modules\Service\ServiceReports\PSTDetailReport.cs">
       <DependentUpon>PSTDetailReport.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1145,6 +1157,18 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Modules\Service\ServiceReports\rptJobCard.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptJobCard.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modules\Service\ServiceReports\rptJobCardDateWise1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptJobCardDateWise.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Modules\Service\ServiceReports\rptJobCardIns.cs">
       <DependentUpon>rptJobCardIns.rpt</DependentUpon>
@@ -1740,13 +1764,6 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Modules\Service\ServiceReports\rptJobCard.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptJobCard.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Modules\Service\ServiceReports\rptJobCardDateWise.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2107,11 +2124,6 @@
       <LastGenOutput>JobCardPartsDetail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Modules\Service\ServiceReports\rptJobCard.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <LastGenOutput>rptJobCard1.cs</LastGenOutput>
-    </Content>
     <Content Include="Modules\Service\ServiceReports\rptJobCardDetail.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptJobCardDetail.cs</LastGenOutput>
@@ -2154,8 +2166,8 @@
     </Content>
     <Content Include="Modules\Service\ServiceReports\rptJobCardDateWise.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptJobCardDateWise.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>rptJobCardDateWise1.cs</LastGenOutput>
     </Content>
     <Content Include="Modules\Service\ServiceReports\rptJobCardDateWiseOld.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2303,6 +2315,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Ins_CombineReportPerfor.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Service\ServiceReports\ConbineTaxDetail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ConbineTaxDetail.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Service\ServiceReports\JobCardSummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>JobCardSummary.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Service\ServiceReports\PSTDetailReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PSTDetailReport.cs</LastGenOutput>
@@ -2449,6 +2469,10 @@
       <LastGenOutput>rptPaymentRefund.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Modules\Service\ServiceReports\rptJobCard.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptJobCard.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Service\ServiceReports\rptSFIBilling.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptSFIBilling.cs</LastGenOutput>

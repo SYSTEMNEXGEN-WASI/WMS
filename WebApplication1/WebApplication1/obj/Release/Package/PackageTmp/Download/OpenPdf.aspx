@@ -11,7 +11,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <table style="border-right: 1px">
+        <%--<table style="border-right: 1px">
         <tr>
             <td>
                 <asp:ImageButton ID="btnPrin" runat="server" ImageUrl="~/Images/Print.png" OnClick="btnPrin_Click"
@@ -46,7 +46,7 @@
                 
             </td>
         </tr>
-    </table>
+    </table>--%>
     <div>
         <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
     </div>

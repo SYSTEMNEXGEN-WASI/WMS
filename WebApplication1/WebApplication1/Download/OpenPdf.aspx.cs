@@ -84,22 +84,22 @@ namespace DXBMS.Download
             
             //CrystalReportViewer1.ToolPanelView = CrystalDecisions.Web.ToolPanelViewType.None;
 
-            //ExportOptions CrExportOptions;
-            System.IO.Stream oStream = null;
-            byte[] byteArray = null;
-            oStream = RD.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-            byteArray = new byte[oStream.Length];
-            oStream.Read(byteArray, 0, Convert.ToInt32(oStream.Length - 1));
+            ////ExportOptions CrExportOptions;
+            //System.IO.Stream oStream = null;
+            //byte[] byteArray = null;
+            //oStream = RD.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            //byteArray = new byte[oStream.Length];
+            //oStream.Read(byteArray, 0, Convert.ToInt32(oStream.Length - 1));
+            CrystalReportViewer1.ReportSource = RD;
+        //    Response.ClearContent();
+          //  Response.ClearHeaders();
+         //   Response.ContentType = "application/pdf";
+          //  Response.BinaryWrite(byteArray);
+           // Response.Flush();
+           // Response.Close();
 
-            Response.ClearContent();
-            Response.ClearHeaders();
-            Response.ContentType = "application/pdf";
-            Response.BinaryWrite(byteArray);
-            Response.Flush();
-            Response.Close();
-
-            RD.Close();
-            RD.Dispose();
+          //  RD.Close();
+          //  RD.Dispose();
 
             //Response.Buffer = false;
             //Response.ClearContent();

@@ -158,7 +158,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
-
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -341,6 +341,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     Session["VoucherNo"] = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -448,6 +449,8 @@ namespace DXBMS.Modules.Service.Forms
                 {
                     lblText.Text = "Edit Mode";
                     txtVoucherNo.Text = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
+                    txtVoucherDate.Enabled = false;
+                      txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -564,6 +567,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     Session["VoucherNo"] = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -1298,6 +1302,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     Session["VoucherNo"] = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -1509,6 +1514,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = ds.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     Session["VoucherNo"] = ds.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(ds.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();
@@ -1626,6 +1632,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherNo.Text = ds.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     Session["VoucherNo"] = ds.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(ds.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
+                    txtVoucherDate.Enabled = false;
                 }
 
                 ds = new DataSet();

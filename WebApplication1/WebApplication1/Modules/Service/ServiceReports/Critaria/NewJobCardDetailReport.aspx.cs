@@ -77,33 +77,13 @@ namespace DXBMS.Modules.Service.ServiceReports.Critaria
             param[2].Value = ToDate.ToString("yyyy-MM-dd");
             param[2].Value = rbStatus.SelectedItem.Value.ToString();
 
-
-
-            //if (myFunc.ExecuteSPDMIS("sp2W_Spare_InvoiceDetail", param, ref rder))
-            //if(myFunc.ExecuteSP("sp2W_Spare_InvoiceDetail",param,ref rder))
-            //{
-            //    objDsReports.sp2W_Spare_InvoiceDetail.Load(rder);
-
-
-            //}
-
+           
             DataTable dt = new DataTable();
             string sql = "exec sp_JobCardDetailReport '" + Session["DealerCode"].ToString() + "','" + FromDate.ToString("yyyy-MM-dd") + "','" + ToDate.ToString("yyyy-MM-dd") + "','" + rbStatus.SelectedItem.Value.ToString() + "'";
             dt = myFunc.GetData(sql);
-            RD.PrintOptions.PaperSize = PaperSize.PaperA4;
-
-
-            //RD.Load(Server.MapPath("../../SpareReports/rptJobCardDateWise.rpt"));
             RD.Load(Server.MapPath("../rptJobCardDateWise.rpt"));
-            //string path = Server.MapPath("../rptJobCardDateWise.rpt");
-            //RD.DataDefinition.FormulaFields["DealerPhone"].Text = "'" + myFunc.GetStringValuesAgainstCodes("DealerCode", Session["DealerCode"].ToString(), "Phone1", "Dealer") + "'";
-            //RD.DataDefinition.FormulaFields["DealerEmail"].Text = "'" + myFunc.GetStringValuesAgainstCodes("DealerCode", Session["DealerCode"].ToString(), "Email", "Dealer") + "'";
-
-            //RD.DataDefinition.FormulaFields["DealerName"].Text = "'" + myFunc.GetStringValuesAgainstCodes("DealerCode", Session["DealerCode"].ToString(), "DealerDesc", "Dealer") + "'";
-            //RD.DataDefinition.FormulaFields["DealerAddress"].Text = "'" + myFunc.GetStringValuesAgainstCodes("DealerCode", Session["DealerCode"].ToString(), "Address1", "Dealer") + "" +
-            //                                                               myFunc.GetStringValuesAgainstCodes("DealerCode", Session["DealerCode"].ToString(), "Address2", "Dealer") + "" +
-            //                                                               myFunc.GetStringValuesAgainstCodes("DealerCode", Session["DealerCode"].ToString(), "Address3", "Dealer") + " (" +
-            //                                                               myFunc.GetStringValuesAgainstCodes("DealerCode", Session["DealerCode"].ToString(), "Phone1", "Dealer") + ") '";
+            RD.OpenSubreport(Server.MapPath("../JobCardSummary.rpt"));
+                                               
             RD.DataDefinition.FormulaFields["DealerDesc"].Text = "'" + Session["DealerDesc"].ToString() + "'";
             RD.DataDefinition.FormulaFields["DealerAddress"].Text = "'" + Session["DealerAddress"].ToString() + "'";
             RD.DataDefinition.FormulaFields["DealerPhone"].Text = "'" + Session["DealerPhone"].ToString() + "'";

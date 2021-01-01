@@ -41,7 +41,8 @@ namespace DXBMS.Data {
         private sp_JobCardLubDetail_PrintDataTable tablesp_JobCardLubDetail_Print;
         
         private sp_JobCardSubletDetail_PrintDataTable tablesp_JobCardSubletDetail_Print;
-        
+
+       
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -97,6 +98,7 @@ namespace DXBMS.Data {
                 if ((ds.Tables["sp_JobCardSubletDetail_Print"] != null)) {
                     base.Tables.Add(new sp_JobCardSubletDetail_PrintDataTable(ds.Tables["sp_JobCardSubletDetail_Print"]));
                 }
+               
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;

@@ -1042,7 +1042,16 @@ namespace DXBMS.Modules.Service.Forms
 
                 if (Chk.Checked)
                 {
-                    Part = Part + SysFunctions.CustomCDBL(gvr.Cells[5].Text);
+                    if(gvr.Cells[5].Text== "&nbsp;")
+                    {
+
+                    }
+                    else
+                    {
+                        Part = Part + SysFunctions.CustomCDBL(gvr.Cells[5].Text);
+                    }
+                   
+
                    
                 }
 

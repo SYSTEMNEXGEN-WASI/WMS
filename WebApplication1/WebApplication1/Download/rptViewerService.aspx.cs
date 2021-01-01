@@ -134,7 +134,7 @@ namespace DXBMS.Modules.Service.ServiceReports
                 //CrystalReportViewer1.ReportSource = rpt;
                 //  rpt.SetDataSource(DsRpt.sp_CustomerEstimateMaster_Print.DataSet);
 
-                //Session["RDService"] = RD;
+                Session["RDService"] = rpt;
             }
             else
             {

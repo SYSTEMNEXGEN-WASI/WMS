@@ -4625,7 +4625,7 @@ namespace DXBMS.Modules.Service
             }
              if (ddlJobCardTypeCode.SelectedValue == "008")
             {
-                txtLabor.Enabled = false;
+               // txtLabor.Enabled = false;
                 ddlPayMode.Items.Clear();
                 ddlPayMode.Items.Add(new ListItem("Select", "Select"));
                 ddlPayMode.Items.Add(new ListItem("WAP", "WAP"));
