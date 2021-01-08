@@ -359,7 +359,7 @@
                                      </tr>
                                      <tr>
                                        <td>Advance Payment Insurance</td>
-                                        <td><asp:DropDownList width="100%" runat="server" ID="ddlLiaIA"></asp:DropDownList></td> 
+                                        <td><asp:DropDownList width="100%" runat="server"  ID="ddlLiaIA"></asp:DropDownList></td> 
                                         
                                      </tr>
                             </table>
@@ -375,7 +375,7 @@
                                     <asp:Label ID="lblMsg" runat="server" Font-Bold="True" Font-Size="Small" ForeColor="#339933"></asp:Label>                                
                                 </td>
                                 <td align="center">
-                                    <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" Visible="true" OnClientClick="this.disabled = true; this.value = 'Please Wait';" UseSubmitBehavior="false"/>
+                                    <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click"  Visible="true" OnClientClick="this.disabled = true; this.value = 'Please Wait';" />
                                     <asp:Button ID="btnLoad" runat="server" Text="Load" OnClick="btnLoad_Click" Visible="false"/>
                                 </td>
                             </tr>                

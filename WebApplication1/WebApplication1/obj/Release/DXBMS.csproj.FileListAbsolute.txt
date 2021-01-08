@@ -1114,7 +1114,6 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Rep
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
-E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardSubletDetail.rpt
@@ -1217,7 +1216,6 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.cs
-E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCard.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs

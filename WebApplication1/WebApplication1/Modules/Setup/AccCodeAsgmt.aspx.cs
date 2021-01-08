@@ -338,8 +338,6 @@ namespace DXBMS.Modules.Setup
                 param[51].Value = ddlLiaAPR.SelectedValue;
                 param[52].Value = ddlLiaIA.SelectedValue;
                 SysFunc.ExecuteSP_NonQuery("SP_Insert_AccountCodeSetup", param);
-                
-
                 lblMsg.Visible = true;
                 lblMsg.Text = "Account(s) Saved Successfully";
 

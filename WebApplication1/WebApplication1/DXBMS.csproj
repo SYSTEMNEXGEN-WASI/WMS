@@ -1764,13 +1764,6 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Modules\Service\ServiceReports\rptJobCardDateWise.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptJobCardDateWise.rpt</DependentUpon>
-      <SubType>Component</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
     <Compile Include="Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

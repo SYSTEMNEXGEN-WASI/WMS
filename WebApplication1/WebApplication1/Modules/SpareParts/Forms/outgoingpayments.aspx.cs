@@ -1767,12 +1767,11 @@ namespace DXBMS.Modules.SpareParts.Forms
 
         protected void btnGL_Click(object sender, EventArgs e)
         {
-            //string URL = "../../Service/Forms/GL.aspx?CusInv=" + ddlpayment_no.SelectedValue + "&Type=PV";
-            string URL = "../../Service/Forms/GL.aspx";
-            Session["CusInv"] = ddlpayment_no.SelectedValue;
-            Session["Type"] = "PV";
+            string URL = "../../Service/Forms/GL.aspx?CusInv=" + ddlpayment_no.SelectedValue + "&Type=PV";
             string fullURL = "window.open('" + URL + "', '_blank', 'height=600,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
             ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
+            //string URL = "../../Service/Forms/GL.aspx?CusInv=" + ddlpayment_no.SelectedValue + "&Type=PV";
+         
         }
 
         protected void ddlpayment_mode_SelectedIndexChanged(object sender, EventArgs e)
