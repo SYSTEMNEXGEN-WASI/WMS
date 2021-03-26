@@ -1,0 +1,705 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Root.Master.cs" Inherits="DXBMS.Root" %>
+<%-- <meta name="viewport"  content="width=device-width, initial-scale=1.0">--%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+     
+<head id="Head1" runat="server">
+	<title>Workshop Management System</title>
+	<link rel="shortcut icon" href="Images/DMS_Logo_Fav.png" type="image/x-icon" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link href="css/style.css" rel='stylesheet' type='text/css' />
+	<link href="css/font-awesome.css" rel="stylesheet" />
+	<link href="css/chosen.css" rel="stylesheet" type="text/css" />
+
+	<link href="Content/Style.css" rel="stylesheet" type="text/css" />
+	<link href="App_Themes/Theme1/MainCSS.css" rel="stylesheet" type="text/css" />
+	<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+	<link href="css/datatables.min.css" rel="stylesheet" type="text/css" />
+    <script src='ResolveUrl("~/crystalreportviewers13/js/crviewer/crv.js")'type="text/javascript"></script>
+	<asp:ContentPlaceHolder ID="head" runat="server">
+	</asp:ContentPlaceHolder>
+
+	<style type="text/css">
+
+        @media (min-width: 1074px){
+            .Lead {
+                font-size: 16px !important;
+            }
+        }
+
+		@media (max-width: 764px) {
+			.field {
+				width: 100% !important;
+			}
+
+			div#ctl00_Content_TabContainer1_TabPanel1_ddlBay_chosen {
+				width: 100% !important;
+			}
+
+			div#ctl00_Content_TabContainer1_TabPanel1_ddlJobs_Labor_chosen {
+				width: 100% !important;
+			}
+
+			div#ctl00_Content_ddlBillingType_chosen {
+				width: 100% !important;
+			}
+
+			div#ctl00_Content_TabContainer1_TabPanel4_ddlBaySubletJob_chosen {
+				width: 100% !important;
+			}
+
+			div#ctl00_Content_ddlScheduleJC_chosen {
+				width: 100% !important;
+			}
+
+			div#ctl00_Content_ddlVehRegNo_chosen {
+				WIDTH: 100% !IMPORTANT;
+			}
+
+			div#ctl00_Content_ddlEstNo_chosen {
+				WIDTH: 100% !important;
+			}
+
+			div#ctl00_Content_ddlJobCardCode_chosen {
+				width: 100% !important;
+			}
+
+			.WidthAt764 {
+				width: 100% !important;
+			}
+
+			.Heading {
+				width: 50% !important;
+			}
+
+			.fieldset {
+				width: 50% !important;
+			}
+
+			.ctl00_Content_ddlEstNo_chosen {
+				width: 100% !important;
+			}
+
+			.TextBox {
+				width: auto !important;
+			}
+		}
+
+		div#ctl00_Content_ddlParts_chosen {
+			width: 70% !important;
+		}
+
+		div#ctl00_Content_ddllLubs_chosen {
+			width: 80% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel4_ddlBaySubletJob_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer2_TabPanel2_ddlParts_chosen {
+			width: 80% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel1_ddlJobs_Labor_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel1_ddlBay_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel1_ddlTechnicianEmpCode_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer2_TabPanel1_ddlJobs_chosen {
+			WIDTH: 45% !important;
+		}
+
+		div#ctl00_Content_TabContainer2_TabPanel3_ddllLubs_chosen {
+			width: 70% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel2_ddlPartCode_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel3_ddlLubCode_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel4_ddlVendorCode_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel4_ddlJobs_Sublet_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel5_ddlConsumableParts_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel2_ddlVendor_chosen {
+			width: 24% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPanel3_ddlAppSt_chosen {
+			width: 100% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPPRCause_ddlDefect_chosen {
+			width: 60% !important;
+		}
+
+		div#ctl00_Content_TabContainer1_TabPPRCause_ddlComplains_chosen {
+			width: 70% !important;
+		}
+
+		.ajax__scroll_none {
+			overflow: inherit !important;
+		}
+
+		.chosen-container-single .chosen-single {
+			height: 25px;
+			line-height: 25px;
+		}
+
+		.Ulmain {
+			float: right;
+			padding: 0px 0px;
+			width: 75%;
+			background: #eee;
+		}
+
+			.Ulmain > li {
+				list-style: none;
+				display: block;
+			}
+
+				.Ulmain > li > a {
+					padding: 28px 10px;
+					display: block;
+					cursor: pointer;
+					font-weight: bold;
+					text-decoration: none;
+				}
+
+					.Ulmain > li > a:hover {
+						background: #ddd;
+						color: #000;
+					}
+
+		.uldropdown {
+			position: absolute;
+			top: 50px;
+			left: auto;
+			background-color: #eee;
+			width: 65%;
+			padding: 5px;
+			border: 2px solid #ccc;
+		}
+
+			.uldropdown > li {
+				list-style: none;
+			}
+
+		.user-label {
+			float: right;
+			/*margin-right: 27px;*/
+			margin-top: -9px;
+		}
+
+		.user-image {
+			background: #fff;
+			/*margin-left: 10px;*/
+			border-radius: 0%;
+			width: 40px;
+			height: 40px;
+			float: left;
+			margin-top: -17px;
+		}
+
+		.user-header > p {
+			height: auto;
+			margin: 10px 0px;
+		}
+
+		.user-header {
+			text-align: center;
+		}
+
+		.img-circle {
+			border-radius: 50%;
+			background: #fff;
+			height: 70px;
+			width: 70px;
+		}
+
+		.user-footer {
+			text-align: center;
+		}
+
+		.btn-logout {
+			padding: 2px 10px;
+			margin: 5px 0px;
+			background: #fff;
+			border: 1px solid #ccc;
+			cursor: pointer;
+		}
+
+			.btn-logout:hover {
+				background: #ccc;
+			}
+
+		.chosen-container .chosen-results {
+			font-family: Monospace;
+			font-size: 11px;
+		}
+
+		.chosen-container-single .chosen-single span {
+			font-family: Monospace;
+			font-size: 11px;
+		}
+
+		.chosen-drop {
+			width: 100%;
+		}
+
+		ol, ul {
+			margin-bottom: 0 !important;
+		}
+	</style>
+</head>
+<body>
+
+	<form id="form1" runat="server">
+		<asp:ScriptManager ID="ScriptManager1" runat="server" ScriptMode="Release" AsyncPostBackTimeout ="360000">
+		</asp:ScriptManager>
+		<div class="page" style="overflow:hidden">
+			<div class="header">
+				<div class="row" style="padding: 0px; margin-right: 1px;">
+					<div class="col-lg-12" style="padding-right: 0px;">
+						<div class="col-lg-2 col-md-2 col-sm-2">
+							<asp:ImageButton ID="Image1" Width="150px" Height="50px" runat="server" ImageUrl="~/Images/365dms.png" PostBackUrl="~/Default.aspx" />
+						</div>
+						<div class="col-lg-8 col-md-8  col-sm-8" style="margin-top: 10px">
+							<asp:Label ID="lblCoDesc" runat="server" Width="100%" Style="color: white; text-align:center;"  class="bold lead text-uppercase"></asp:Label>
+						</div>
+						<div class="col-lg-4 col-md-4  col-sm-4" style="display:none;">
+							<asp:Image ID="Imagelogo" Width="20%" Height="20%"  runat="server"  />
+							
+						</div>
+                        
+                        <div class="col-lg-2 col-md-2  col-sm-2">
+                            <ul class="Ulmain">
+							<li>
+								<a class="user-menu">
+									<asp:Image ID="ImgProfile" runat="server" class="user-image" />
+									<span class="user-label"><asp:Label ID="lblUser" runat="server" Text="Admin"></asp:Label></span>
+								</a>
+								<ul class="uldropdown" style="display: none;">
+									<li class="user-header">
+										<asp:Image ID="ImgProfile2" runat="server" class="img-circle" />
+										<p>
+											<asp:Label ID="lblUser2" runat="server" Text="Admin"></asp:Label>
+										</p>
+									</li>
+									<li class="user-footer">
+										<asp:Button ID="btnLogOut" CssClass="btn-logout" runat="server" CausesValidation="false" Text="Log out" OnClick="btnLogout_OnClick"></asp:Button>
+									</li>
+
+								</ul>
+							</li>
+						</ul>
+                        </div>
+						
+
+					</div>
+
+				</div>
+
+
+
+			</div>
+			<%-- <table width="100%">
+		<tr>
+		<td style="vertical-align:bottom;">
+		<asp:Image ID="Image1" runat="server" ImageUrl="~/Images/HinoLogo.gif" />
+		</td>
+		<td align="right" style="font-size:15px; color:Black; font-weight:bold; font-style:oblique; vertical-align:bottom;">
+		Authorized Hinopak Dealership
+		</td>
+		
+		</tr>
+		</table>--%>
+			<%--<hr class="Login_hr" />--%>
+			<div width="100%">
+
+				<table style="width: 100%; display: none;">
+					<tr>
+						<td>
+							<asp:Label ID="lblUserName" runat="server" />
+						</td>
+						<td align="right">
+							<asp:Label ID="lblDealerName" runat="server" Style="font-style: italic" />
+						</td>
+					</tr>
+				</table>
+				<table width="100%">
+					<%--<tr>
+						<td colspan="2">
+						</td>
+					</tr>--%>
+					<tr>
+						<td style="width: 18%; vertical-align: top; background: #004050;">
+							<div id="accordian">
+								<ul class="mainmenu">
+									<li>
+										<h3><span class="icon-user"></span>Business Partner</h3>
+										<ul>
+											<li>
+												<asp:LinkButton ID="lnkCompanyProfile"  runat="server" CausesValidation="False" PostBackUrl="~/Modules/BusinessPartner/CompanyProfile.aspx">Dealer Profile</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkVendor"  runat="server" CausesValidation="False" PostBackUrl="~/Modules/BusinessPartner/Vendor.aspx">Vendor Profile</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkCountprofile"  runat="server" CausesValidation="False" PostBackUrl="~/Modules/BusinessPartner/Customer.aspx">Customer Profile</asp:LinkButton></li>
+										<li>
+												<asp:LinkButton ID="lnkEmployeeMaster"  runat="server"  CausesValidation="False" PostBackUrl="~/Modules/Setup/employeemaster.aspx">Employee Master</asp:LinkButton></li>
+                                        </ul>
+									</li>
+									<li>
+										<h3><span class="icon-cogs"></span>Master Data</h3>
+										<ul >
+                                            <li>
+                                                <asp:LinkButton ID="lnkCustomerSearch" runat="server" Visible="False" CausesValidation="false" PostBackUrl="~/Modules/Setup/CustomerTracking.aspx">Customer Tracking</asp:LinkButton>
+                                            </li>
+											
+											<li>
+												<asp:LinkButton ID="lnkJobMaster" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/JobMaster.aspx">Job Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkLaborMaster" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/LaborMaster.aspx">Labor Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkVehicleMaster" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/VehicleMaster.aspx">Vehicle Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkBayMaster" runat="server"  Visible="true"  CausesValidation="False" PostBackUrl="~/Modules/Setup/Bay.aspx">Bay Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton12" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/CityMaster.aspx">City Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton13" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/StateMaster.aspx">State Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton14" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/PaymentMode.aspx">Payment Mode Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton15" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/BankMaster.aspx">Bank Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton16" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/ItemCategory.aspx">Item Category</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkDesignation" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/Designation.aspx">Designation Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkDepartment" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/Department.aspx">Department Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkJobCategory" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/JobCategory.aspx">Job Category</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkFeedBack" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/FeedBackMaster.aspx">Feedback Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkFeedbackQues" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/FeedBackQuestion.aspx">Feedback Questions</asp:LinkButton></li>
+                                            <li>
+												<asp:LinkButton ID="LinkButton39" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/Version.aspx">Version</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkBrand" runat="server"  Visible="false"  CausesValidation="False" PostBackUrl="~/Modules/Setup/Brand.aspx">Brand Master</asp:LinkButton></li>
+                                            <li>
+												<asp:LinkButton ID="LinkButton25" runat="server"  Visible="True"  CausesValidation="False" PostBackUrl="~/Modules/Setup/AccCodeAsgmt.aspx">Account Assignment</asp:LinkButton></li>
+                                           
+                                            <li><asp:LinkButton ID="LinkButton27" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/Complaint.aspx">Complaints</asp:LinkButton></li>
+                                            <li><asp:LinkButton ID="LinkButton28" runat="server"  Visible="true"  CausesValidation="False" PostBackUrl="~/Modules/Setup/CVO.aspx">CVO</asp:LinkButton></li>
+                                            <li><asp:LinkButton ID="LinkButton29" runat="server"  Visible="true"  CausesValidation="False" PostBackUrl="~/Modules/Setup/TaxTypes.aspx">Tax Type</asp:LinkButton></li>
+                                            <li><asp:LinkButton ID="LinkButton30" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/Unit.aspx">Unit</asp:LinkButton></li>
+                                            <li><asp:LinkButton ID="LinkButton31" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/InputType.aspx">Input Type</asp:LinkButton></li>
+                                            <li><asp:LinkButton ID="LinkButton32" runat="server"  Visible="true"  CausesValidation="False" PostBackUrl="~/Modules/Setup/URF.aspx">URF</asp:LinkButton></li>
+										</ul>
+									</li>
+									<li>
+										<h3><span class="icon-dashboard"></span>Service</h3>
+										<ul>
+                                         <li>
+												<asp:LinkButton ID="LinkButton26" runat="server" Visible="false"   CausesValidation="False" PostBackUrl="~/Modules/Setup/ImportItem.aspx">Import Items</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LnkCustVehicle" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';"  PostBackUrl="~/Modules/Service/Forms/CV.aspx">Customer Vehicle</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkCustEstimate" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/CustomerEstimate.aspx">Customer Estimate</asp:LinkButton></li>
+                                                <li>
+												<asp:LinkButton ID="LinkButton43" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/UpdateLossNo.aspx">Update Estimate Loss No</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LnkJobCard" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/JC.aspx">Job Card</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkCustInvoice" runat="server" Visible="true" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/CI.aspx">Customer Invoice</asp:LinkButton></li>
+                                              <li>
+												<asp:LinkButton ID="LinkButton21" runat="server"  CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" Visible="false" PostBackUrl="~/Modules/Service/Forms/CustomerInvoiceInsurance.aspx">Insurance Invoice </asp:LinkButton></li> 
+                                                <%-- <li>
+												<asp:LinkButton ID="LinkButton24" runat="server" CausesValidation="False" PostBackUrl="~/Modules/Service/Forms/DealerTechnical.aspx">Dealer Technical</asp:LinkButton></li>--%>
+                                                 <li>
+												<asp:LinkButton ID="LinkButton37" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/DTRAppr-Reject.aspx">Dealer Technical</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/WRAppr-Reject.aspx">Warranty</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton41" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/WarrantyFromJC.aspx">Warranty Claim Memo</asp:LinkButton></li>
+                                                <li>
+												<asp:LinkButton ID="LinkButton49" Visible="false" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/ACMemo.aspx">Warranty Claim Credit Memo</asp:LinkButton></li>
+                                            <%--<li>
+												<asp:LinkButton ID="lnkApproval" runat="server" CausesValidation="False" PostBackUrl="~/Modules/Service/Forms/Approval.aspx">Approval</asp:LinkButton></li>--%>
+											<li>
+												<asp:LinkButton ID="LinkButton7" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/FreeService.aspx">Free Service Covering Letter</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton8" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" Visible="True" PostBackUrl="~/Modules/Service/Forms/Schedule.aspx">Schedule</asp:LinkButton></li>
+                                            <li>
+												<asp:LinkButton ID="LinkButton23" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/VehicleTracking.aspx">Vehicle Tracking</asp:LinkButton></li>
+                                             <li>
+												<asp:LinkButton ID="LinkButton46" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/Forms/GatePassTemp.aspx">Gate Pass</asp:LinkButton></li>
+                                            
+                                            
+										</ul>
+									</li>
+									<!-- we will keep this LI open by default -->
+									<li>
+										<h3><span class="icon-tasks"></span>Spare Parts</h3>
+										<ul>
+											<li>
+												<asp:LinkButton ID="lnkItemMaster" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/Forms/ItemMaster.aspx">Item Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkPartLocMaster" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/Forms/PartLocationMaster.aspx">Part Location Master</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkPurchaseOrder" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';"  OnClick="lnkPurchaseOrder_Click">Purchase Order</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LnkDeliverChallan" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';"  OnClick="LnkDeliverChallan_Click">Order Confirmation</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LnkGRN" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';"  OnClick="LnkGRN_Click" >Goods Receipt Note</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkPayInv" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';"  OnClick="lnkPayInv_Click">Payable Invoice</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkPurchaseReturn" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';"  OnClick="lnkPurchaseReturn_Click">Purchase Return</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkCountSaleInv" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" OnClick="lnkCountSaleInv_Click">Direct Sales</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkStockIssue" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" OnClick="lnkStockIssue_Click">Stock Issue</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lknStockAdj" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';"  OnClick="lknStockAdj_Click">Stock Adjustmnet</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkStockReturn" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/Forms/StockReturn.aspx">Stock Return</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkSalesReturn" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/Forms/SalesReturnForm.aspx">Sales Return</asp:LinkButton></li>
+											<%--<li><asp:LinkButton ID="lnkSparePartsLoc" runat="server" CausesValidation="False" PostBackUrl="~/Modules/SpareParts/Forms/SparePartsLocations.aspx">Spare Parts Location</asp:LinkButton></li>--%>
+											<li>
+												<asp:LinkButton ID="lnkTransLoc" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/Forms/TransferofLocation.aspx">Transfer of Location</asp:LinkButton></li>
+											<%--<li><asp:LinkButton ID="LinkButton23" runat="server" CausesValidation="False" PostBackUrl="~/Modules/SpareParts/Forms/WorkFlowPolicyMaster.aspx">Transfer of Location</asp:LinkButton></li>
+										<li><asp:LinkButton ID="LinkButton24" runat="server" CausesValidation="False" PostBackUrl="~/Modules/SpareParts/Forms/WorkFlowRolls.aspx">Transfer of Location</asp:LinkButton></li>
+										<li><asp:LinkButton ID="LinkButton25" runat="server" CausesValidation="False" PostBackUrl="~/Modules/SpareParts/Forms/WorkFlowSetup.aspx">Transfer of Location</asp:LinkButton></li>--%>
+										</ul>
+									</li>
+
+									<li>
+										<h3><span class="icon-comments"></span>Customer Experience</h3>
+										<ul>
+											<li>
+												<asp:LinkButton ID="lnkPSF" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';"  PostBackUrl="~/Modules/CustomerExperience/PSF.aspx">PSF</asp:LinkButton>
+												<asp:LinkButton ID="lnkNDM" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/CustomerExperience/NDM.aspx">NDM</asp:LinkButton>
+												<asp:LinkButton ID="LnkAppt" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';"  PostBackUrl="~/Modules/CustomerExperience/Appointment.aspx">Appointment</asp:LinkButton>
+											</li>
+										</ul>
+									</li>
+
+                                    <li>
+										<h3><span class="icon-comments"></span>Work Flow</h3>
+										<ul>
+											<li>
+                                                <asp:LinkButton ID="LinkButton36" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/WorkFlow/Solution.aspx">Solution</asp:LinkButton>
+                                                <asp:LinkButton ID="LinkButton35" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/WorkFlow/WorkFlowSetup.aspx">Workflow Setup</asp:LinkButton>
+												<asp:LinkButton ID="LinkButton33" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/WorkFlow/WorkFlowPolicy.aspx">Workflow Policy</asp:LinkButton>
+												<asp:LinkButton ID="LinkButton34" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/WorkFlow/WorkFlowRolls.aspx">Workflow Rolls</asp:LinkButton>
+												
+											</li>
+										</ul>
+									</li>
+                                    <li>
+                                    <h3><span class="icon-credit-card"></span>Vouchers</h3>
+                                    <ul>
+                                    <li>
+                                   <asp:LinkButton ID="LinkButton47" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/VoucherStatus.aspx">Pending Voucher</asp:LinkButton>
+                                    </li>
+                                    </ul>
+                                    </li>
+									<li>
+										<h3><span class="icon-credit-card"></span>Payments</h3>
+										<ul>
+											<li>
+												<asp:LinkButton ID="LnkCustpayment" runat="server" CausesValidation="False" PostBackUrl="~/Modules/Service/Forms/CustomerPaymentRec.aspx">Incoming Payment</asp:LinkButton></li>
+                                                <li>
+												<asp:LinkButton ID="LinkButton24" runat="server" CausesValidation="False" Visible="false" PostBackUrl="~/Modules/Service/Forms/VendorPaymentReceipt.aspx">Vendor Incoming Payment</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkPaymentMaster" runat="server" CausesValidation="False" PostBackUrl="~/Modules/SpareParts/Forms/outgoingpayments.aspx">Outgoing Payment</asp:LinkButton></li>
+                                                <li>
+												<asp:LinkButton ID="LinkButton44" runat="server" CausesValidation="False" PostBackUrl="~/Modules/SpareParts/Forms/PaymentRefund.aspx">Payment Refund</asp:LinkButton></li>
+
+                                              <li>
+                                              <asp:LinkButton ID="LinkButton48" runat="server" CausesValidation="False" PostBackUrl="~/Modules/Service/Forms/InsuranceAdvance.aspx">Insurance Advance</asp:LinkButton>
+
+                                              </li>
+                                             
+										</ul>
+									</li>
+									<li>
+										<h3><span class="icon-copy"></span>Service Reports</h3>
+										<ul>
+											<li>
+												<asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/DailyCollectionReport.aspx?Name=DCR">Incoming Detail Report</asp:LinkButton></li>
+											<li>                                                                        
+												<asp:LinkButton ID="LinkButton9" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/DailyCollectionReport.aspx?Name=Aging">Aging\Outstanding Report</asp:LinkButton></li>
+                                                	<li>                                                                        
+												<asp:LinkButton ID="LinkButton45" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/InsAging.aspx">Insurance Aging Report</asp:LinkButton></li>
+											<li>                                                                        
+												<asp:LinkButton ID="LinkButton10" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/DailyCollectionReport.aspx?Name=ASI">After Sale Invoice Report</asp:LinkButton></li>
+											<li>                                                                        
+												<asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/NewJobCardDetailReport.aspx">JobCard Detail Report</asp:LinkButton></li>
+											<li>                                                                        
+												<asp:LinkButton ID="LinkButton5" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/JobCardHistoryReport.aspx">JobCard History Report</asp:LinkButton></li>
+											<li>                                                                       
+												<asp:LinkButton ID="LinkButton6" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/CustomerExperience/Reports/Critaria/crtPSF.aspx">PSF Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton18" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/UtilityAuditReport.aspx">Utility Audit Report</asp:LinkButton></li>
+                                            <li>                                                                         
+												<asp:LinkButton ID="LinkButton38" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/DTRDetail.aspx"> Dealer Technical Report</asp:LinkButton></li>
+										<li>                                                                            
+												<asp:LinkButton ID="LinkButton40" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/WarrantyDetail.aspx">Warranty Report</asp:LinkButton></li>
+                                        <li>                                                                            
+												<asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/GSTPSTDetailReport.aspx">Taxes Report</asp:LinkButton></li>
+                                       <li>
+												<asp:LinkButton ID="LinkButton50" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/CustomerWiseOutstandingSummary.aspx?Name=IR">Invoice Revenue Report</asp:LinkButton></li>
+                                        </ul>
+									</li>
+									<li>
+										<h3><span class="icon-copy"></span>Spare Part Reports</h3>
+										<ul>
+                                        <li>
+												<asp:LinkButton ID="LinkButton42" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/ProfitLossPartsReport.aspx">Parts Out Flow Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton11" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/CustomerWiseOutstandingSummary.aspx?Name=PTV">Payment to Vendor Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton17" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/CustomerWiseOutstandingSummary.aspx?Name=SA">Stock Adjustment Detail Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkCustWiseOutSum" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/CustomerWiseOutstandingSummary.aspx?Name=CO">Customer Outstanding Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkInvList" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/CustomerWiseOutstandingSummary.aspx?Name=IL">Invoice List Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton22" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/CustomerWiseOutstandingSummary.aspx?Name=DS">Direct Sales Detail Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="linkGRNDetail" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/CustomerWiseOutstandingSummary.aspx?Name=GRN">GRN Detail Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkPartItem" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/PartItemLedgerForm.aspx">Item Ledger Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkPartyledger" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/Partyledger.aspx">Party Ledger Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkSalesRtn" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/SalesReturnReport.aspx">Sales Return Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkstnpartstksta" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/StandardPartStockStatusReportNew.aspx">Stock Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="lnkstkbalRpt" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/StockBalanceReport.aspx">Stock Balance Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton19" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/PurchaseRegisterReport.aspx">Purchase Register Report</asp:LinkButton></li>
+											<li>
+												<asp:LinkButton ID="LinkButton20" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/VendorLedgerReport.aspx">Vendor Ledger Report</asp:LinkButton></li>
+											<li><asp:LinkButton ID="lnkViewrpt" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/SpareParts/SpareReports/Critaria/MinimumLevel.aspx">Minimum Level Report</asp:LinkButton></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</td>
+						<td style="vertical-align: top;">
+							<div>
+								<asp:ContentPlaceHolder ID="Content" runat="server">
+								</asp:ContentPlaceHolder>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<asp:HiddenField ID="hidAccordionIndex" runat="server" Value="0" />
+				<div class="clear">
+				</div>
+			</div>
+			<div class="footer" style="color: wheat;">
+				Version 2020-12-21-06
+			</div>
+            <div class="footer" style="color: wheat; text-align:right">
+				Build Date 2020-12-21
+			</div>
+		</div>
+	</form>
+	<%--<script src="../../../../js/jquery2.0.3.min.js" type="text/javascript"></script>--%>
+	<script src="../../../../js/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script src="../../../../js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="../../../../js/chosen.jquery.js" type="text/javascript"></script>
+	<script src="../../../../js/chosen.jquery.min.js" type="text/javascript"></script>
+	<%--<script src="<%= Page.ResolveUrl("~/js/jquery-3.2.1.min.js") %>" type="text/javascript"></script>
+	<script src="<%= Page.ResolveUrl("~/js/bootstrap.min.js") %>" type="text/javascript"></script>
+	<script src="<%= Page.ResolveUrl("~/js/chosen.jquery.js") %>" type="text/javascript"></script>
+	<script src="<%= Page.ResolveUrl("~/js/chosen.jquery.min.js") %>" type="text/javascript"></script>--%>
+
+	<!-- prefix free to deal with vendor prefixes -->
+	<script src="http://thecodeplayer.com/uploads/js/prefixfree-1.0.7.js" type="text/javascript"></script>
+	<!-- jQuery -->
+	<%--<script src="http://thecodeplayer.com/uploads/js/jquery-1.7.1.min.js" type="text/javascript"></script>--%>
+	<script src="../../../../js/datatables.min.js" type="text/javascript"></script>
+	<%--<script src="<%= Page.ResolveUrl("~/js/datatables.min.js") %>" type="text/javascript"></script>--%>
+	<script type="text/javascript">
+		
+		$(document).ready(function () {               
+
+			$(".select-chosen").chosen();
+
+			Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+			function EndRequestHandler(sender, args) {
+				$(".select-chosen").chosen();
+			}
+
+			$(".select-chosen").outerWidth(230);
+
+			$(".TabPanel").click(function () {
+				$(".chosen-select").chosen({ width: '100%' });
+			});  
+
+
+			$("#accordian h3").click(function () {
+				//slide up all the link lists
+			$("#accordian ul ul").slideUp();
+				//slide down the link list below the h3 clicked - only if its closed
+				if (!$(this).next().is(":visible")) {
+					$(this).next().slideDown();
+				}
+			});
+
+			$(".user-menu").click(function () {
+				$(".uldropdown").toggle("slow");
+			});
+
+			/*For Accordian*/
+			$(function () {
+				$("#accordion").accordion();
+				if (localStorage.getItem('active') != null) {
+					$($('h3').get(parseInt(localStorage.getItem('active')))).trigger("click");
+				}
+			});
+
+			$('h3').click(function () {
+				localStorage.setItem('active', $(this).index("h3"));
+			});
+			/*For Accordian*/ 
+
+//            window.onload = function () {
+//                window.history.forward(1);
+//            }
+
+		});   
+
+	</script>
+</body>
+</html>
