@@ -2061,7 +2061,7 @@ AppendInWhere = " A.DealerCode in('"+ Session["DealerCode"].ToString() + "','COM
               "Case when R.TransType='Advance' then R.AdvanceAmount else R.InvAdjTotal end as 'Total Amount' "+
               "from PaymentReceiptMaster R " +
               "inner join Customer C on C.CusCode = R.CusCode and C.DealerCode = R.DealerCode";
-        AppendInWhere = " R.DealerCode IN ('" + Session["DealerCode"].ToString() + "') and R.DelFlag='N' ";
+        AppendInWhere = " R.DealerCode IN ('" + Session["DealerCode"].ToString() + "') and R.DelFlag='N' and R.InvoiceType in ('Insurance','CountrSale','Service','Dep') ";
         AppendOrderby = "order by ReceiptNo desc";
         HttpContext.Current.Session["AppendInWhere"] = AppendInWhere;
         HttpContext.Current.Session["AppendOrderby"] = AppendOrderby;

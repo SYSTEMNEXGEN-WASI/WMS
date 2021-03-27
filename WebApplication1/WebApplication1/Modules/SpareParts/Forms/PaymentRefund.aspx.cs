@@ -373,6 +373,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                         ClearAll();
                         
                         SysFuncs.UserMsg(success_add_item, Color.Green, "Record Saved Sucessfully against Refund No" + strReceiptNo );
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + strReceiptNo + "')", true);
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);
                         return true;
                        
@@ -498,7 +499,7 @@ namespace DXBMS.Modules.SpareParts.Forms
             {
                 stream.CopyTo(outputFileStream);
             }
-
+            RD.Dispose(); RD.Close();
             string URL = "../../../Download/PrintReport.aspx";
 
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";

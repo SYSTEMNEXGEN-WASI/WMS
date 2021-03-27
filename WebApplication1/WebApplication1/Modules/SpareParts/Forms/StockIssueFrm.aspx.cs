@@ -13,6 +13,7 @@ using CrystalDecisions.Shared;
 using CConn;
 using DXBMS.Data;
 
+
 namespace DXBMS.Modules.SpareParts.Forms
 {
     public partial class StockIssueFrm : System.Web.UI.Page
@@ -764,6 +765,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                     ObjTrans.CommittTransaction(ref Trans);
                     SysFunc.UserMsg(LbErr, Color.Green, "Record saved and post successfully. Last Code: " + strIssueNo);
                     //strSubmitBehavior = "Y";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Updated Successfully: " + strIssueNo + "')", true);
                     btnClear_Click(btnClear, EventArgs.Empty);
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);
                 }

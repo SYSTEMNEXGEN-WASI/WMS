@@ -563,6 +563,7 @@ namespace DXBMS.Modules.Service.Forms
                 if (ObjGenral.ExecuteSP_NonQuery("sp_Service_FFIPDIBillMaster_Insert", param))
                 {
                     lblLastBillNo.Text = "Last Code Generated : " + " " + BillNo;
+                   
                 }
                 else
                 {
@@ -625,6 +626,7 @@ namespace DXBMS.Modules.Service.Forms
                         ObjGenral.ExecuteSP_NonQuery("sp_Service_FFIPDIBillDetail_Insert", param1);
                     }
                     lblMessage.Text = "Record Has been Inserted Sucessfully !!!";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + BillNo + "')", true);
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);
                 }
             }
@@ -994,7 +996,7 @@ namespace DXBMS.Modules.Service.Forms
             string File = FilePath + FileName;
             Session["RD"] = RD;
             //RD.ExportToDisk(ExportFormatType.PortableDocFormat, File);
-
+            RD.Dispose(); RD.Close();
             string URL;
             URL = "../../../../Download/rptViewerService.aspx?FileName=" + FileName;
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1500,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";

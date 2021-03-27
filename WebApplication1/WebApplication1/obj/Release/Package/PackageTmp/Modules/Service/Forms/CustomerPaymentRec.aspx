@@ -306,7 +306,16 @@
                                                OnClick="btnAutoAdj_Click" Text="Amount Adjustment" Width="170px"/>
                                                </td>
              </tr>
-              
+              <tr>
+                <td>
+           Advance Balance
+           </td>
+           <td>
+          <asp:TextBox ID="txtAdvanceBalance" runat="server" ReadOnly="true" SkinID="ROTextBox" Width="100%"></asp:TextBox>
+           </td>
+
+
+              </tr>
               
               </table>
             
@@ -568,7 +577,7 @@
                             OnClick="btnDelete_Click" />
                         <asp:Button ID="btnClear" runat="server" Width="100px" Text="Clear" OnClick="btnClear_Click" />
                         <asp:Button ID="btnPrint" runat="server" Width="100px" Text="Print" OnClick="btnPrint_Click" />
-                        <asp:Button ID="btnGL" runat="server" Width="100px" Text="GL" OnClick="btnGL_Click"/>
+                        <asp:Button ID="btnGL" runat="server" Width="100px" Text="GL" OnClick="btnGL_Click" UseSubmitBehavior="false" />
                     </td>
                 </tr>
             </table>

@@ -410,6 +410,7 @@
     <Content Include="Modules\Service\ServiceReports\Critaria\DTRDetail.aspx" />
     <Content Include="Modules\Service\ServiceReports\Critaria\GSTPSTDetailReport.aspx" />
     <Content Include="Modules\Service\ServiceReports\Critaria\InsAging.aspx" />
+    <Content Include="Modules\Service\ServiceReports\Critaria\InvoiceDetailRevenue.aspx" />
     <Content Include="Modules\Service\ServiceReports\Critaria\NewJobCardDetailReport.aspx" />
     <Content Include="Modules\Service\ServiceReports\Critaria\UtilityAuditReport.aspx" />
     <Content Include="Modules\Service\ServiceReports\Critaria\VoucherStatus.aspx" />
@@ -894,6 +895,13 @@
     <Compile Include="Modules\Service\ServiceReports\Critaria\InsAging.aspx.designer.cs">
       <DependentUpon>InsAging.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Service\ServiceReports\Critaria\InvoiceDetailRevenue.aspx.cs">
+      <DependentUpon>InvoiceDetailRevenue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Service\ServiceReports\Critaria\InvoiceDetailRevenue.aspx.designer.cs">
+      <DependentUpon>InvoiceDetailRevenue.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Service\ServiceReports\Critaria\NewJobCardDetailReport.aspx.cs">
       <DependentUpon>NewJobCardDetailReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1163,6 +1171,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rptJobCard.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modules\SpareParts\SpareReports\rptInvoiceRevenue.cs">
+      <DependentUpon>rptInvoiceRevenue.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Modules\Service\ServiceReports\rptJobCardDateWise1.cs">
       <AutoGen>True</AutoGen>
@@ -2466,6 +2480,11 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptJobCard.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Modules\SpareParts\SpareReports\rptInvoiceRevenue.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptInvoiceRevenue.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Modules\Service\ServiceReports\rptSFIBilling.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptSFIBilling.cs</LastGenOutput>

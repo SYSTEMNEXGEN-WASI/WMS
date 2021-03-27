@@ -1216,7 +1216,6 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimatePartsDetail.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateDetail.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEstimateLubDetail.cs
-E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWise.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDateWiseOld.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.cs
@@ -1306,3 +1305,4 @@ E:\github-WMS\WebApplication1\WebApplication1\obj\Release\DXBMS.csproj.GenerateR
 E:\github-WMS\WebApplication1\WebApplication1\obj\Release\DXBMS.dll.licenses
 E:\github-WMS\WebApplication1\WebApplication1\obj\Release\DXBMS.dll
 E:\github-WMS\WebApplication1\WebApplication1\obj\Release\DXBMS.pdb
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoiceRevenue.rpt

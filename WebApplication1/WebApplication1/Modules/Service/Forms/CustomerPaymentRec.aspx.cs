@@ -91,12 +91,14 @@ namespace DXBMS.Modules.Service.Forms
             {
                 ddlCust.SelectedValue = item;
                 ddlCust_SelectedIndexChanged(null,null);
-                   
+                txtAdvanceBalance.Text = SysFuncs.GetStringValuesAgainstCodes("CusCode", ddlCust.SelectedValue.Trim(), "Sum(AdvanceBalanceAmount)", "PaymentReceiptMaster", "And IsAdjustAdvance='Y' And AmountPaid - AdvanceAdjustedAmount >= 1 and TransType='Advance' and CusCode='" + item + "' ", Session["DealerCode"].ToString());
+
             }
            else if (ViewState["lookupid"].ToString() == "1")
             {
                 ddlCust.SelectedValue = item;
                 ddlCust_SelectedIndexChanged(null, null);
+                txtAdvanceBalance.Text = SysFuncs.GetStringValuesAgainstCodes("CusCode", ddlCust.SelectedValue.Trim(), "Sum(AdvanceBalanceAmount)", "PaymentReceiptMaster", "And IsAdjustAdvance='Y' And AmountPaid - AdvanceAdjustedAmount >= 1 and TransType='Advance' and CusCode='" + item + "' ", Session["DealerCode"].ToString());
 
             }
             else
@@ -104,6 +106,7 @@ namespace DXBMS.Modules.Service.Forms
                 
                 ddlReceptNo.SelectedValue = item;
                 ddlReceptNo_SelectedIndexChanged(null, null);
+                txtAdvanceBalance.Text = SysFuncs.GetStringValuesAgainstCodes("CusCode", ddlCust.SelectedValue.Trim(), "Sum(AdvanceBalanceAmount)", "PaymentReceiptMaster", "And IsAdjustAdvance='Y' And AmountPaid - AdvanceAdjustedAmount >= 1 and TransType='Advance' and CusCode='" + txtCust.Text + "' ", Session["DealerCode"].ToString());
             }
         }
         private void createPartsDT()
@@ -622,9 +625,18 @@ namespace DXBMS.Modules.Service.Forms
                         {
                             AdvanceAdjustAmount();
                         }
-                 //   CalSubTotal();
+                    foreach (GridViewRow row in gvPendingInvoice.Rows)
+                    {
+
+                        CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                        if ((row.Cells[7].Text.Replace("&nbsp;", "") == "" ? "0" : row.Cells[7].Text) == "0")
+                        {
+                            chkSelect.Checked = false;
+                        }
 
                     }
+
+                }
 
                 
             }
@@ -741,7 +753,7 @@ namespace DXBMS.Modules.Service.Forms
             totAdvAmount = SysFunctions.CustomCDBL(txtAdvAmount.Text);
             totTaxAmt= SysFunctions.CustomCDBL(lblTotalAmount.Text);
             txttotAmount.Text = (totInsAmt + totTaxAmt + totAdvAmount).ToString();
-
+            txtAdj.Value = "f";
 
 
 
@@ -1196,6 +1208,7 @@ namespace DXBMS.Modules.Service.Forms
                     ObjTrans.CommittTransaction(ref Trans);
                     lblMsg.Visible = true;
                     SysFuncs.UserMsg(lblMsg, Color.Green, "Record Saved Successfully: " + strReceiptNo);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + strReceiptNo + "')", true);
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);
               //  clearAll();
                 
@@ -1309,7 +1322,7 @@ namespace DXBMS.Modules.Service.Forms
             {
                 stream.CopyTo(outputFileStream);
             }
-
+            RD.Dispose(); RD.Close();
             string URL = "../../../Download/PrintReport.aspx";
 
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
@@ -1431,8 +1444,23 @@ namespace DXBMS.Modules.Service.Forms
                                 LinkButton chkSelect = (LinkButton)row.FindControl("lnkInvoiceNo");
 
                                 SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceiptDetail_Delete]", PmtRecDetail_param, Trans);
-                                    string IQuery = "Update dbo.CustomerInvoice set PaidC=PaidC - '" + row.Cells[7].Text.Trim() + "' " +
-                                          "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + chkSelect.Text + "'";
+                                string IQuery = "";
+                                if (ddlPaymentReceiptType.SelectedValue != "CountrSale" && ddlPaymentReceiptType.SelectedValue != "Insurance")
+                                {
+                                    IQuery = "Update dbo.CustomerInvoice set PaidC=PaidC - '" + row.Cells[7].Text.Trim() + "' " +
+                                        "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + chkSelect.Text + "'";
+                                }
+                                else if(ddlPaymentReceiptType.SelectedValue == "Insurance")
+                                {
+                                    IQuery = "Update dbo.CustomerInvoice set PaidI=PaidI - '" + row.Cells[7].Text.Trim() + "' " +
+                                        "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + chkSelect.Text + "'";
+                                }
+                                else
+                                {
+                                    IQuery = "Update dbo.CounterSaleMaster set TotReceipt=TotReceipt - '" + row.Cells[7].Text.Trim() + "' " +
+                                    "Where DealerCode='" + Session["DealerCode"].ToString() + "' and SaleInvNo='" + chkSelect.Text + "'";
+                                }
+                                  
                                     SysFuncs.ExecuteQuery(IQuery, Trans);
                                 }
 
@@ -1956,6 +1984,7 @@ namespace DXBMS.Modules.Service.Forms
                 ViewState["lookupid"] = 95;
                 clslook.LU_Get_CustomerPayRec(imgCustomerCode, ViewState["lookupid"].ToString(), "DealerCode = '" + Session["DealerCode"].ToString() + "'", ddlPaymentReceiptType.SelectedValue, ddlInsCo.SelectedValue, "../../../");
             }
+
             
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Close Look Up Window First')", true);

@@ -79,7 +79,7 @@ namespace DXBMS.Modules.Service.ServiceReports.Critaria
                 }
                 sql = "exec sp_DailyCollectionSP '" + Session["DealerCode"].ToString() + "','" + FDate + "','" + TDate + "'";
                 RD.Load(Server.MapPath("../../ServiceReports/ptIncommingPaymentDetail2.rpt"));
-                RD.DataDefinition.FormulaFields["ReportTitle"].Text = "\"" + "INCOMMING PAYMENTS DETAIL" + "\"";
+                RD.DataDefinition.FormulaFields["ReportTitle"].Text = "\"" + "INCOMING PAYMENTS DETAIL" + "\"";
             }
             else if (ViewState["Name"].ToString() == "ASI")
             {

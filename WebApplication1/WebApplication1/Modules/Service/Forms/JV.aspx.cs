@@ -1108,6 +1108,11 @@ namespace DXBMS.Modules.Service.Forms
                     IQuery = "Update ChargeOutMaster set VoucherNo ='" + strAutoCode + "' , VoucherFlag = 'Y' " +
                                               "Where DealerCode='" + Session["DealerCode"].ToString() + "' and ChargeOutNo ='" + ViewState["InvoiceNo"].ToString() + "'";
                 }
+                else if (type == "FSB" || ViewState["Type"].ToString() == "FSB")
+                {
+                    IQuery = "Update FFIPDIBillMaster set VoucherNo ='" + strAutoCode + "' , VoucherFlag = 'Y' " +
+                                              "Where DealerCode='" + Session["DealerCode"].ToString() + "' and FPBillNo ='" + ViewState["InvoiceNo"].ToString() + "'";
+                }
                 else
                 {
                     IQuery = "Update PurInvMaster set VoucherNo ='" + strAutoCode + "' , VoucherFlag = 'Y' " +

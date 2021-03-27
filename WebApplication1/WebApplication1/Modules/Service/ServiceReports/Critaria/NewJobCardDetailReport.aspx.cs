@@ -21,6 +21,7 @@ namespace DXBMS.Modules.Service.ServiceReports.Critaria
 
         SysFunction myFunc = new SysFunction();
         SecurityBll sec= new SecurityBll();
+        MainBLL objMBLL = new MainBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.Session["UserName"] == null)
@@ -35,6 +36,11 @@ namespace DXBMS.Modules.Service.ServiceReports.Critaria
             if (!IsPostBack)
             {
                 dtTo.Text = dtFrom.Text = DateTime.Now.ToString("dd-MM-yyyy");
+                SqlParameter[] JobCardMaster_param = {                                            
+           /*0*/ new SqlParameter("@DealerCode",SqlDbType.Char,5)};
+                JobCardMaster_param[0].Value = Session["DealerCode"].ToString();
+
+                objMBLL.FillDrp_SP(ddlAdvisorCode, "sp_Get_Advisor", "EmpCode", "EmpName", JobCardMaster_param, true, "Select", false, "");
             }
         }
 
@@ -70,16 +76,18 @@ namespace DXBMS.Modules.Service.ServiceReports.Critaria
                                    new SqlParameter("@DealerCode",SqlDbType.Char,5),//0
                                    new SqlParameter("@FromDate",SqlDbType.DateTime),//0
                                    new SqlParameter("@ToDate",SqlDbType.DateTime),//0
-                                   new SqlParameter("@Status",SqlDbType.VarChar,10)//0
+                                   new SqlParameter("@Status",SqlDbType.VarChar,10),//0
+                                    new SqlParameter("@EmpCode",SqlDbType.Char,06)//0
                                };
             param[0].Value = Session["DealerCode"].ToString();
             param[1].Value = FromDate.ToString("yyyy-MM-dd");
             param[2].Value = ToDate.ToString("yyyy-MM-dd");
-            param[2].Value = rbStatus.SelectedItem.Value.ToString();
+            param[3].Value = rbStatus.SelectedItem.Value.ToString();
+            param[4].Value = ddlAdvisorCode.SelectedValue;
 
-           
+
             DataTable dt = new DataTable();
-            string sql = "exec sp_JobCardDetailReport '" + Session["DealerCode"].ToString() + "','" + FromDate.ToString("yyyy-MM-dd") + "','" + ToDate.ToString("yyyy-MM-dd") + "','" + rbStatus.SelectedItem.Value.ToString() + "'";
+            string sql = "exec sp_JobCardDetailReport '" + Session["DealerCode"].ToString() + "','" + FromDate.ToString("yyyy-MM-dd") + "','" + ToDate.ToString("yyyy-MM-dd") + "','" + rbStatus.SelectedItem.Value.ToString() + "','" + ddlAdvisorCode.SelectedValue + "'";
             dt = myFunc.GetData(sql);
             RD.Load(Server.MapPath("../rptJobCardDateWise.rpt"));
             RD.OpenSubreport(Server.MapPath("../JobCardSummary.rpt"));

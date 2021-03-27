@@ -831,6 +831,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                 {
                     ObjTrans.CommittTransaction(ref Trans);
                     SysFunc.UserMsg(LbErr, Color.Green, "Record Saved and post successfully. Last Code:" + GRNCode);
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " +GRNCode + "')", true);
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);
                 }
             }

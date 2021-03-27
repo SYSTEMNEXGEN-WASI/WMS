@@ -665,7 +665,7 @@ namespace DXBMS.Modules.Service
             txtEngineNo.Text = dsJobCardMaster.Tables[0].Rows[0]["EngineNo"].ToString();
             txtCustomer.Text = dsJobCardMaster.Tables[0].Rows[0]["CusCode"].ToString();
             txtCustomerDesc.Text = dsJobCardMaster.Tables[0].Rows[0]["Customer"].ToString();
-            txtEndUser.Text = dsJobCardMaster.Tables[0].Rows[0]["CusCode"].ToString();
+            txtEndUser.Text = dsJobCardMaster.Tables[0].Rows[0]["EndUserCode"].ToString();
             txtEndUserDesc.Text = dsJobCardMaster.Tables[0].Rows[0]["EndUser"].ToString();
             txtUserPhNo.Text = dsJobCardMaster.Tables[0].Rows[0]["Phone"].ToString();
             txtBrand.Text = dsJobCardMaster.Tables[0].Rows[0]["BrandCode"].ToString();
@@ -1289,7 +1289,7 @@ namespace DXBMS.Modules.Service
                             //bool b = (d4 > 0 ? Inser_JobCardSubletDetail() : false);
                             bool b = (rowInJobCardSubletDetail(gvSublet) == true ? Inser_JobCardSubletDetail() : false);
                             bool e = (rowInJobCardConPartsDetail(gvJobCardConParts) == true ? Inser_JobCardConPartsDetail() : false);
-                            bool f = (rowInJobCardBoutPartsDetail(gvJobCardConParts) == true ? Inser_JobCardBoutPartsDetail() : false);
+                            bool f = (rowInJobCardBoutPartsDetail(gvJobCardPartsBought) == true ? Inser_JobCardBoutPartsDetail() : false);
                             if (gvJobCardParts.Rows.Count > 0 || gvLubParts.Rows.Count > 0)
                             {
                                 if (ddlJobCardTypeCode.SelectedValue == "008")
@@ -1378,11 +1378,17 @@ namespace DXBMS.Modules.Service
                             if (txtJobCardCode.Text.Trim() == "") //ddlJobCardCode.SelectedIndex
                             {
                                 lblMsg.Text = "Record Saved Successfully: " + HFJobCard.Value;
-                            }
+                            
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved Successfully: " + HFJobCard.Value + "')", true);
+                        }
                             else
                             {
                                 lblMsg.Text = "Record Updated Successfully: " + HFJobCard.Value;
-                            }
+                            
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Updated Successfully: " + HFJobCard.Value+"')", true);
+                            
+                           
+                        }
 
                         }
                         else
@@ -1763,7 +1769,7 @@ namespace DXBMS.Modules.Service
 
                 if (myFunc.ExecuteSP_NonQuery("sp_W2_JobCard_BoutPartsDetail_Delete", JobCardPartsDetail_Delete_param, Trans))
                 {
-                    BoutDT = (DataTable)Session["BoutPartsDataTables"];
+                    BoutDT = (DataTable)ViewState["BoutParts"];
                     DataRow[] drr = BoutDT.Select();
                     for (int i = 0; i < drr.Length; i++)
                     {
@@ -3251,7 +3257,7 @@ namespace DXBMS.Modules.Service
 
             string URL;
             URL = "../../../Download/rptViewerService.aspx?FileName=" + FileName;
-
+            RD.Dispose(); RD.Close();
             //URL = FilePath + "OpenPdf.aspx?FileName=" + FileName;
             //txtPartItemDesc.Text = URL;
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
@@ -3359,7 +3365,7 @@ namespace DXBMS.Modules.Service
             string File = FilePath + FileName;
             //crReportDocument.SetDatabaseLogon("SDMS", "sdms161", "192.168.1.47", "SDMS");
             //RD.ExportToDisk(ExportFormatType.PortableDocFormat, File);
-
+            RD.Dispose(); RD.Close();
             string URL;
             URL = "../../../Download/rptViewerService.aspx?FileName=" + FileName;
 
@@ -3482,7 +3488,7 @@ namespace DXBMS.Modules.Service
             }
             stream.Dispose(); stream.Close();
             stream = null;
-
+            RD.Dispose(); RD.Close();
             string URL = "../../../Download/PrintReport.aspx";
           
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
@@ -3601,25 +3607,25 @@ namespace DXBMS.Modules.Service
             dsJobCardParts = new DataSet();
             if (ddlJobCardTypeCode.SelectedValue == "008")
             {
-                if (ddlPayMode.SelectedValue == "WAP")
-                {
-                    if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
-                    {
-                        //SendAlert(); return;
-                        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Parts as per Job Card");
+                //if (ddlPayMode.SelectedValue == "WAP")
+                //{
+                //    if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
+                //    {
+                //        //SendAlert(); return;
+                //        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Parts as per Job Card");
                         
-                        return;
-                    }
+                //        return;
+                //    }
 
-                    if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
-                    {
-                        //SendAlert(); return;
-                        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Lubricant");
+                //    if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
+                //    {
+                //        //SendAlert(); return;
+                //        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Lubricant");
                         
-                        return;
-                    }
+                //        return;
+                //    }
 
-                }
+                //}
                
                
             }
@@ -4623,9 +4629,9 @@ namespace DXBMS.Modules.Service
                 TabContainer1.Tabs[6].Visible = true;
                 TabContainer1.Tabs[7].Visible = true;
             }
-             if (ddlJobCardTypeCode.SelectedValue == "008")
+            if (ddlJobCardTypeCode.SelectedValue == "008")
             {
-               // txtLabor.Enabled = false;
+                // txtLabor.Enabled = false;
                 ddlPayMode.Items.Clear();
                 ddlPayMode.Items.Add(new ListItem("Select", "Select"));
                 ddlPayMode.Items.Add(new ListItem("WAP", "WAP"));
@@ -5639,7 +5645,7 @@ namespace DXBMS.Modules.Service
         protected void lnkBoutRemove_Click(object sender, ImageClickEventArgs e)
         {
 
-            BoutDT = (DataTable)ViewState["BoutPartsDataTables"];
+            BoutDT = (DataTable)ViewState["BoutParts"];
             ImageButton btn = sender as ImageButton;
             TableCell tc = btn.Parent as TableCell;
             GridViewRow gvr = tc.Parent as GridViewRow;
@@ -5658,7 +5664,7 @@ namespace DXBMS.Modules.Service
                 lblBInvAmt.Text = "0";
                 lblBParts.Text = "0";
             }
-            ViewState["BoutPartsDataTables"] = BoutDT;
+            ViewState["BoutParts"] = BoutDT;
             CalculateTotal();
 
         }
@@ -5728,9 +5734,9 @@ namespace DXBMS.Modules.Service
                 //}
                 //txtPartTotalQuantity.Text = Count.ToString();
                 //ClearPartsTextBoxes();
-                DataSet ds = new DataSet();
-                ds = (DataSet)ViewState["PartsDetailsDS"];
-                DataRow row = ds.Tables["PartsDetailsDS"].NewRow();
+                DataTable ds = new DataTable();
+                ds = (DataTable)ViewState["BoutParts"];
+                DataRow row = ds.NewRow();
 
                 row["ItemCode"] = txtBItemCode.Text.Trim();
                 row["ItemDesc"] = txtBItemDesc.Text.Trim();
@@ -5741,8 +5747,8 @@ namespace DXBMS.Modules.Service
                 row["PurchaseTotal"] = double.Parse(txtBPrice.Text) * double.Parse(txtBQty.Text);
                 row["InvoiceTotal"] = double.Parse(txtBAmt.Text) * double.Parse(txtBQty.Text);
 
-                ds.Tables["PartsDetailsDS"].Rows.Add(row);
-                BoutDT = ds.Tables["PartsDetailsDS"];
+                ds.Rows.Add(row);
+                BoutDT = ds;
                 //ViewState["ObjPOds"] = ds;
                 decimal Count = 0;
                 decimal InvAmt = 0;
@@ -5752,13 +5758,13 @@ namespace DXBMS.Modules.Service
                     InvAmt = InvAmt + Convert.ToDecimal(dr["InvoiceTotal"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dr["InvoiceTotal"].ToString().Replace("&nbsp;", "").Trim());
                 }
 
-                gvJobCardPartsBought.DataSource = ds.Tables["PartsDetailsDS"];
+                gvJobCardPartsBought.DataSource = ds;
                 gvJobCardPartsBought.DataBind();
                 ViewState["BoutPartsDataTable"] = ds;
                 //dtJobs = ds.Tables["WarrantyLaborTable"];
-                Session["BoutPartsDataTables"] = ds.Tables["PartsDetailsDS"];
-                ViewState["BoutPartsDataTables"] = ds.Tables["PartsDetailsDS"];
-                ViewState["BoutDT"]= ds.Tables["PartsDetailsDS"]; 
+                Session["BoutPartsDataTables"] = ds;
+                ViewState["BoutPartsDataTables"] = ds;
+                ViewState["BoutDT"]= ds; 
                 ClearBoutPartsTextBoxes();
                 CalculateTotal();
 
@@ -7254,6 +7260,7 @@ namespace DXBMS.Modules.Service
                 stream.CopyTo(outputFileStream);
             }
             stream.Dispose(); stream.Close();
+            RD.Dispose(); RD.Close();
             string URL = "../../../Download/PrintReport.aspx";
 
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";

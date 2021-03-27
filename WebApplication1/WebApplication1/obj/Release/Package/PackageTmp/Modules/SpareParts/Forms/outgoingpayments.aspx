@@ -5,12 +5,14 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Content" Runat="Server">
-<script src="../../../js/jquery-3.2.1.min.js" type="text/javascript"></script>
+   <script type="text/javascript" src="../../../Jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../../../Jquery/MaxLength.min.js"></script>
+    <script src="../../../js/jquery-3.2.1.min.js" type="text/javascript"></script>
         <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../js/chosen.jquery.js" type="text/javascript"></script>
         <script src="../../../js/chosen.jquery.min.js" type="text/javascript"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
- <script src="../../Data/sweetalert.js" type="text/javascript"></script>  
+          <script src="../../Data/sweetalert.js" type="text/javascript"></script>  
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
  <script type="text/javascript">
            function Savealert() {
                Swal.fire({
@@ -138,137 +140,101 @@
                 <asp:TextBox runat="server" ID="txttotOutStanding" ReadOnly="true" SkinID="ROTextBox" Width="100%"></asp:TextBox>
                 </td>
                 </tr>
+                 <%-- Row 4 --%>
+               <tr >
+               <td>
+               Invoice total
+               </td>
                
-                  <tr>
-              <td>Voucher No </td>
+           <td> <asp:TextBox ID="txttotAdj" runat="server" ReadOnly="True" SkinID="ROTextBox" 
+                            Visible="false" Width="80px"></asp:TextBox> 
+                            <asp:TextBox runat="server" ReadOnly="true" SkinID="ROTextBox" Width="100%" ID="txtInvTotal"></asp:TextBox>
+           <asp:HiddenField ID="txtAdj" runat="server" Value="f" />
+           </td>
+           <td>Voucher No 
+
+           </td>
               <td>
               <asp:TextBox ID="txtVoucherNo" runat="server" ReadOnly="true" SkinID="ROTextBox"></asp:TextBox>
               </td>
-                   <td  align="right" ><asp:Button ID="btn_fifo" runat="server" Text="Auto Adjust (FIFO)" Width="150px" OnClick="btn_fifo_Click" CausesValidation="false" /></td>
+          
+            <td colspan="1" align="right">
+             <asp:Button ID="btnPendingInv" runat="server" Text="Pending Invoices" Width="150px" OnClick="btnPendingInv_Click" CausesValidation="false" /></td>
+
+                                            
+                 <td  align="right" >
+                   <asp:Button ID="btn_fifo" runat="server" Text="Auto Adjust (FIFO)" Width="150px" OnClick="btn_fifo_Click" CausesValidation="false" /></td>
+                  <asp:TextBox ID="txtSelectedTotalRefAmount" runat="server" Width ="80px" Visible="false"></asp:TextBox>
+                                         
+             </tr>
                 
-                </tr>
-                    <%--<tr>
-                        
-                        <td>
-                            <asp:Button ID="btn_voucher" runat="server" Text="Voucher" CausesValidation="false" />
-                        </td>
-                        <td>
-                            <asp:Button ID="btn_pendinginv" runat="server" Text="Pending Invoices" 
-                                Width="125px" CausesValidation="false" /> <%--onclick="btn_pendinginv_Click" />
-                        </td>
-                    </tr>--%>
+              
                 </table>
                 </fieldset>
                   <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Width="100%"
                         Style="direction: ltr; text-align: left;">
-                                       <%-- Tab Of Invoice List  --%>
-           <asp:TabPanel class="TabPanel" ID="TabPanel4" runat="server" HeaderText="Sele Person Information">
+                                  <%-- Tab For Pending Invoice View --%>   
+                                   <asp:TabPanel class="TabPanel" ID="TabPanel5" runat="server" HeaderText="Sele Person Information">
           <HeaderTemplate>
-            List of Invoices
+           Invoice List of Selected Vendor
            </HeaderTemplate>
            <ContentTemplate>
-           <table width="100%" style="border-collapse:separate; border-spacing:5px;" class="table table-condensed table-bordered table-hover">
-            
-            <tr >
-                    <td width="11%">Invoice No.</td>
-                    <td width="60%">
-                        <asp:DropDownList ID="ddlinvoice_no" runat="server" Width="80%" OnSelectedIndexChanged="ddlinvoice_no_SelectedIndexChanged" AutoPostBack="true" Font-Names ="monospace"></asp:DropDownList>
-                        <asp:ListSearchExtender ID="ListSearchExtender8" runat="server" TargetControlID="ddlinvoice_no" QueryPattern="Contains"></asp:ListSearchExtender>
-                    </td>
-                    <td width="12%">
-                        <asp:TextBox ID="txttotal_netamt" runat="server" placeholder="Total Amount" 
-                            Enabled="false" Width="80px" Visible="True"></asp:TextBox> 
-                    
-                        <asp:TextBox ID="txtadd_adjamount" runat="server" 
-                            placeholder="Enter Adj. Amount here..." MaxLength="6" Width="80px" 
-                            Visible="False"></asp:TextBox> 
-                    </td>
-                    <td>
-                        <asp:ImageButton ID="Ibadd_invoice" runat="server" OnClick="Ibadd_invoice_Click" AlternateText="Add" 
-                             style="margin-left:20px;  " CausesValidation="false" ImageUrl="~/Images/Grid_Update.png"/>
-                    </td>
-
-                </tr>
-              
+            <table width="100%" style="border-collapse:separate; border-spacing:5px;" class="table table-condensed table-bordered table-hover">
             <tr>
-                    <td width="100%" colspan="4">    
-                    <asp:GridView ID="GridView_Invoice" runat="server" AutoGenerateColumns="False" ShowHeaderWhenEmpty="true" Width="100%"
-                         ShowFooter="true"  OnRowDataBound="GridView_Invoice_RowDataBound" OnRowEditing="GridView_Invoice_RowEditing"
-                         OnRowCancelingEdit="GridView_Invoice_RowCancelingEdit" OnRowUpdating="GridView_Invoice_RowUpdating">
-                        
-                        <HeaderStyle CssClass="GridHeader" />
-                        <FooterStyle CssClass="GridFooter" />
-                        <Columns>
-                            <asp:CommandField ShowEditButton="True" EditImageUrl="~/Images/Grid_Edit.png"
-                                 UpdateImageUrl="~/Images/Grid_Update.png" CancelImageUrl="~/Images/Grid_Cancel.png"></asp:CommandField>
-                        </Columns>
-                          <Columns>
-                            <asp:TemplateField HeaderText="Transaction No.">
-                              <ItemTemplate >
-                                <asp:Label ID="lblGRNNo" runat="server" Text='<%# Bind("GRNNo") %>' ></asp:Label>
-                            </ItemTemplate> 
-                            </asp:TemplateField>
-                              <asp:TemplateField HeaderText="Invoice No.">
-                              <ItemTemplate >
-                                <asp:Label ID="lblInvoiceNo" runat="server" Text='<%# Bind("RefInvNo") %>' ></asp:Label>
-                            </ItemTemplate> 
-                            </asp:TemplateField>
-                             <asp:TemplateField HeaderText="Invoice Date">
-                              <ItemTemplate >
-                                <asp:Label ID="lblInvDate" runat="server" Text='<%# Bind("RefInvDate") %>' ></asp:Label>
-                            </ItemTemplate> 
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Invoice Amount" ItemStyle-HorizontalAlign="Right"    >
-                            <ItemTemplate >
-                                <asp:Label ID="txtInvAmt" runat="server" Text='<%# Bind("NetTotal") %>' ></asp:Label>
-                             </ItemTemplate>
-                            <FooterTemplate>
-                                <asp:Label ID="txttotal_amt" runat="server" Text=""></asp:Label>
-                            </FooterTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Outstanding" ItemStyle-HorizontalAlign="Right"    >
-                            <ItemTemplate >
-                                <asp:Label ID="txtOutstanding" runat="server" Text='<%# Bind("Outstanding") %>' ></asp:Label>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                <asp:Label ID="txttotalOut_amt" runat="server" Text=""></asp:Label>
-                            </FooterTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Adjustment" ItemStyle-HorizontalAlign="Right"    >
-                            <ItemTemplate >
-                                <asp:Label ID="lblAdjustment" runat="server" Text='<%# Bind("Adjustment") %>' ></asp:Label>
-                            </ItemTemplate>
-                            <EditItemTemplate>
-                                <asp:TextBox ID="txtAdjustment" runat="server" Text='<%# Bind("Adjustment") %>' ></asp:TextBox>
-                            </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:Label ID="txttotalAdj_amt" runat="server" Text=""></asp:Label>
-                            </FooterTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Remaining" ItemStyle-HorizontalAlign="Right"    >
-                            <ItemTemplate >
-                                <asp:Label ID="txtRemaining" runat="server" Text='<%# Bind("Remaining") %>' ></asp:Label>
-                            </ItemTemplate>
-                            <FooterTemplate>
-                                <asp:Label ID="txttotalRem_amt" runat="server" Text=""></asp:Label>
-                            </FooterTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Remove" ItemStyle-HorizontalAlign="Center">
-                            <ItemTemplate >
-                            <asp:ImageButton ID="BtnRemove" runat="server" CausesValidation="false"
-                            ImageUrl="~/Images/Delete_16x16.png" onclick="BtnRemove_Click"
-                            ToolTip="Remove" />
-                            </ItemTemplate>
-                            </asp:TemplateField>
-                          </Columns>
-                    </asp:GridView>
-                    </td>
-                </tr>
+            <td>
+              
+             <asp:GridView ID="gvPendingInvoice" runat="server" AutoGenerateColumns="false" 
+                            OnRowCreated="gvPendingInvoice_RowCreated" 
+                            OnRowDataBound="gvPendingInvoice_RowDataBound" ShowFooter="true" 
+                            ShowHeaderWhenEmpty="true" Width="100%">
+                            <HeaderStyle CssClass="GridHeader" />
+                            <FooterStyle CssClass="GridFooter" />
+                            <Columns>
+                            <%--   --%>
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        <asp:CheckBox ID="chkSelectAll" runat="server" AutoPostBack="True" OnCheckedChanged="chkSelectAll_CheckedChanged"
+                                            Text="Select All" />
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                    <%--   oncheckedchanged="chkSelect_CheckedChanged" /> --%>
+                                        <asp:CheckBox ID="chkSelect" runat="server" AutoPostBack="true"  oncheckedchanged="chkSelect_CheckedChanged" />
+                                          
+                                        <asp:ImageButton ID="BtnRemove" runat="server" 
+                                            ImageUrl="~/Images/Delete_16x16.png" OnClick="BtnRemove_Click1" 
+                                            ToolTip="Remove" Visible="false" />
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Center" Width="5%" />
+                                </asp:TemplateField>
+                                <asp:BoundField DataField="S NO" HeaderText="S NO" HeaderStyle-Width ="30px"/>
+                                 <asp:TemplateField HeaderText="Invoice No.">
+                                                    <ItemTemplate>
+                                                       <asp:LinkButton ID="lnkInvoiceNo" Text='<%# Bind("RefNo") %>' runat="server" OnClick="lnkInvoiceNo_Click"></asp:LinkButton></ItemTemplate> <%----%>
+                                                    <ItemStyle Width="5%"></ItemStyle>
+                                            </asp:TemplateField>
+                               <%-- <asp:BoundField DataField="Ref No" HeaderText="Invoice No" HeaderStyle-Width ="50px" />--%>
+                                 <asp:BoundField DataField="JobCardCode" HeaderText="GRN No" HeaderStyle-Width ="50px" />
+                                <asp:BoundField DataField="Ref Date" HeaderText="Ref Date" />
+                                <asp:BoundField DataField="Ref Amount" HeaderText="Inv Amount" />
+                                <asp:BoundField DataField="OutStanding" HeaderText="OutStanding" />
+                                <asp:BoundField DataField="Adjustment" HeaderText="Adjusted" />
+                                <asp:BoundField DataField="Remaining" HeaderText="Balance" />
+                                <%--<asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lnkDelete" runat="server" onclick="lnkDelete_Click" >Remove</asp:LinkButton></ItemTemplate>
+                                            <ItemStyle Width="5%"></ItemStyle>
+                                        </asp:TemplateField>--%>
+                            </Columns>
+                        </asp:GridView>
+            </td>
+            </tr>
             </table>
            </ContentTemplate>
-           </asp:TabPanel>
+            </asp:TabPanel>
+                                     
+                                     
+                                     
+           
              <%-- Tab Of Tax And Discount  --%>
             <asp:TabPanel class="TabPanel" ID="TabPanel1" runat="server" HeaderText="Sele Person Information">
           <HeaderTemplate>

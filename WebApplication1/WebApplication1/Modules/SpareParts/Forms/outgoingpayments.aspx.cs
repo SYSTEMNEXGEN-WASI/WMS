@@ -1,22 +1,19 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing.Design;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using CrystalDecisions.Web;
 using CrystalDecisions.Shared;
-using DXBMS.Data;
 using System.Drawing;
 
 using System.IO;
 using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
-using System.Diagnostics;
+
+/// <summary>
+/// 
+/// Pending Invoice Working Start
+/// </summary>
 
 namespace DXBMS.Modules.SpareParts.Forms
 {
@@ -30,11 +27,15 @@ namespace DXBMS.Modules.SpareParts.Forms
         DataSet dsInvoice;
         DataSet dsTax;
         Transaction obj_trans = new Transaction();
-        double totInvoice, totOutstanding, totTaxAmt, totAdjAmt, totInsAmt, TotRefAmt, totAdvAmount;
+        double totInvoice, totOutstanding, totTaxAmt, totAdjAmt, totInsAmt, TotRefAmt, totAdvAmount,totremaingbalance=0;
         double RunningTotal = 0.00;
-        double SumOfSelectedInvoice = 0.00, Count = 0.00;
+        double SumOfSelectedInvoice = 0.00, Count = 0.00, AdjustedAmount = 0.00;
         string advbalamount="";
         clsLookUp clslook = new clsLookUp();
+        int countInvoices;
+        DataTable dtPendingInvoice;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.Session["UserName"] == null)
@@ -71,7 +72,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                 
                 ddlinclude_adv.Items.Add(new ListItem("Select", ""));
 
-                create_InvoiveDS();
+                createPartsDT();
                 create_TaxDetailsDS();
                 
                 RadioButtonList1.SelectedIndex = 1;
@@ -123,10 +124,10 @@ namespace DXBMS.Modules.SpareParts.Forms
         {
             SysFunc.Clearddl(Page);
             SysFunc.ClearTextBoxes(Page);
-            create_InvoiveDS();
+            createPartsDT();
             create_TaxDetailsDS();
 
-            LoadDDL_Invoice();
+            //LoadDDL_Invoice();
             txtpayment_date.Text = DateTime.Now.ToString("dd-MM-yyyy");
             txtinstrument_date.Text = DateTime.Now.ToString("dd-MM-yyyy");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "reloads()", true);
@@ -169,15 +170,15 @@ namespace DXBMS.Modules.SpareParts.Forms
             ObjMainBll.FillDropDown(ddlpayment_head, "SELECT TaxHead,TaxID FROM TaxType where Type='Payment'", "TaxHead", "TaxID", "Select");
         }
 
-        private void LoadDDL_Invoice()
-        {
-            string WhereQuery = "DealerCode = '" + Session["DealerCode"] + "' " +
-                 "AND (TotalIncTax - TotPayment) > 1" +
-                 " And VendorCode = '" + ddlvendor.SelectedValue + "'";
+        //private void LoadDDL_Invoice()
+        //{
+        //    string WhereQuery = "DealerCode = '" + Session["DealerCode"] + "' " +
+        //         "AND (TotalIncTax - TotPayment) > 1" +
+        //         " And VendorCode = '" + ddlvendor.SelectedValue + "'";
 
-            string[] Columns = new string[] { "PurInvNo", "CONVERT(Varchar(10),PurInvDate,105)", "'GRN No: '+GRNNo", "'PRNP No: '+VendorInvNo" };
-            SysFunc.GetMultiColumnsDDL(ddlinvoice_no, Columns, "PurInvMaster", WhereQuery, "PurInvNo", "Order by PurInvNo Desc", false, false);
-        }
+        //    string[] Columns = new string[] { "PurInvNo", "CONVERT(Varchar(10),PurInvDate,105)", "'GRN No: '+GRNNo", "'PRNP No: '+VendorInvNo" };
+        //    SysFunc.GetMultiColumnsDDL(ddlinvoice_no, Columns, "PurInvMaster", WhereQuery, "PurInvNo", "Order by PurInvNo Desc", false, false);
+        //}
 
         private void LoadDDL_PaymentNo()
         {
@@ -209,121 +210,121 @@ namespace DXBMS.Modules.SpareParts.Forms
         //    }
         //}
 
-        private void create_InvoiveDS()
-        {
-            dsInvoice = new DataSet();
-            dsInvoice.Tables.Add("InvoiceDetail");
-            dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("GRNNo", typeof(string)));
-            dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("RefInvNo", typeof(string)));
-            dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("RefInvDate", typeof(string)));
-            dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("NetTotal", typeof(string)));
-            dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("Outstanding", typeof(string)));
-            dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("Adjustment", typeof(string)));
-            dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("Remaining", typeof(string)));
+        //private void create_InvoiveDS()
+        //{
+        //    dsInvoice = new DataSet();
+        //    dsInvoice.Tables.Add("InvoiceDetail");
+        //    dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("GRNNo", typeof(string)));
+        //    dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("RefInvNo", typeof(string)));
+        //    dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("RefInvDate", typeof(string)));
+        //    dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("NetTotal", typeof(string)));
+        //    dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("Outstanding", typeof(string)));
+        //    dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("Adjustment", typeof(string)));
+        //    dsInvoice.Tables["InvoiceDetail"].Columns.Add(new DataColumn("Remaining", typeof(string)));
 
-            GridView_Invoice.DataSource = dsInvoice.Tables["InvoiceDetail"];
-            GridView_Invoice.DataBind();
+        //    GridView_Invoice.DataSource = dsInvoice.Tables["InvoiceDetail"];
+        //    GridView_Invoice.DataBind();
 
-            Session["InvoiceDS"] = dsInvoice;
+        //    Session["InvoiceDS"] = dsInvoice;
 
-        }
+        //}
 
-        private void create_ROW_Invoice()
-        {
-            try
-            {
-                DataTable dt_newrow = new DataTable();
+        //private void create_ROW_Invoice()
+        //{
+        //    try
+        //    {
+        //        DataTable dt_newrow = new DataTable();
 
-                SqlDataReader dr_invoice = null;
+        //        SqlDataReader dr_invoice = null;
 
-                SqlParameter[] param = {
-                                    new SqlParameter("@DealerCode",SqlDbType.Char),//0
-                                    new SqlParameter("@GRNNo",SqlDbType.Char),//1
-                                    new SqlParameter("@VendorCode", SqlDbType.Char)//2
-                                   };
+        //        SqlParameter[] param = {
+        //                            new SqlParameter("@DealerCode",SqlDbType.Char),//0
+        //                            new SqlParameter("@GRNNo",SqlDbType.Char),//1
+        //                            new SqlParameter("@VendorCode", SqlDbType.Char)//2
+        //                           };
 
-                param[0].Value = Session["DealerCode"].ToString();
-                param[1].Value = ddlinvoice_no.SelectedItem.Value;
-                param[2].Value = ddlvendor.SelectedItem.Value;
+        //        param[0].Value = Session["DealerCode"].ToString();
+        //        param[1].Value = ddlinvoice_no.SelectedItem.Value;
+        //        param[2].Value = ddlvendor.SelectedItem.Value;
 
-                SysFunc.ExecuteSP("SP_Select_GRNMaster", param, ref dr_invoice);
+        //        SysFunc.ExecuteSP("SP_Select_GRNMaster", param, ref dr_invoice);
 
-                dt_newrow.Load(dr_invoice);
+        //        dt_newrow.Load(dr_invoice);
 
-                DataSet ds = new DataSet();
+        //        DataSet ds = new DataSet();
 
-                ds = (DataSet)Session["InvoiceDS"];
+        //        ds = (DataSet)Session["InvoiceDS"];
 
                 
-                DataRow row = ds.Tables["InvoiceDetail"].NewRow();
-                //double adj_amt = double.Parse(txtadd_adjamount.Text == "" ? "0" : txtadd_adjamount.Text);
-                //double sum = Convert.ToDouble(txttotal_netamt.Text) - adj_amt;
+        //        DataRow row = ds.Tables["InvoiceDetail"].NewRow();
+        //        //double adj_amt = double.Parse(txtadd_adjamount.Text == "" ? "0" : txtadd_adjamount.Text);
+        //        //double sum = Convert.ToDouble(txttotal_netamt.Text) - adj_amt;
 
-                row["GRNNo"] = dt_newrow.Rows[0]["GRNNo"].ToString();
-                row["RefInvNo"] = dt_newrow.Rows[0]["RefInvNo"].ToString();
-                row["RefInvDate"] = dt_newrow.Rows[0]["RefInvDate"].ToString();
-                row["NetTotal"] = dt_newrow.Rows[0]["NetTotal"].ToString();
-                row["Outstanding"] = dt_newrow.Rows[0]["Outstanding"].ToString();
-                row["Adjustment"] = dt_newrow.Rows[0]["Adjustment"].ToString();//txtadd_adjamount.Text == "" ? "0" : txtadd_adjamount.Text;
-                row["Remaining"] = dt_newrow.Rows[0]["Remaining"].ToString();//sum.ToString();
+        //        row["GRNNo"] = dt_newrow.Rows[0]["GRNNo"].ToString();
+        //        row["RefInvNo"] = dt_newrow.Rows[0]["RefInvNo"].ToString();
+        //        row["RefInvDate"] = dt_newrow.Rows[0]["RefInvDate"].ToString();
+        //        row["NetTotal"] = dt_newrow.Rows[0]["NetTotal"].ToString();
+        //        row["Outstanding"] = dt_newrow.Rows[0]["Outstanding"].ToString();
+        //        row["Adjustment"] = dt_newrow.Rows[0]["Adjustment"].ToString();//txtadd_adjamount.Text == "" ? "0" : txtadd_adjamount.Text;
+        //        row["Remaining"] = dt_newrow.Rows[0]["Remaining"].ToString();//sum.ToString();
 
-                ds.Tables["InvoiceDetail"].Rows.Add(row);
+        //        ds.Tables["InvoiceDetail"].Rows.Add(row);
 
-                GridView_Invoice.DataSource = ds.Tables["InvoiceDetail"];
-                GridView_Invoice.DataBind();
+        //        GridView_Invoice.DataSource = ds.Tables["InvoiceDetail"];
+        //        GridView_Invoice.DataBind();
 
-                Session["InvoiceDS"] = ds;
-            }
-            catch (Exception ex)
-            {
-                success_add_item.Visible = true;
-                success_add_item.Text = ex.Message;
-            }
+        //        Session["InvoiceDS"] = ds;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = ex.Message;
+        //    }
 
-        }
+        //}
 
-        private void ShowInvoiceData()
-        {
-            try
-            {
+        //private void ShowInvoiceData()
+        //{
+        //    try
+        //    {
 
-                DataSet ds = (DataSet)Session["InvoiceDS"];
+        //        DataSet ds = (DataSet)Session["InvoiceDS"];
 
-                SqlDataReader dr = null;
+        //        SqlDataReader dr = null;
 
-                SqlParameter[] param = {
-                                    new SqlParameter("@DealerCode",SqlDbType.Char),//0
-                                    new SqlParameter("@GRNNo",SqlDbType.Char),//1
-                                    new SqlParameter("@VendorCode", SqlDbType.Char)//2
-                                   };
+        //        SqlParameter[] param = {
+        //                            new SqlParameter("@DealerCode",SqlDbType.Char),//0
+        //                            new SqlParameter("@GRNNo",SqlDbType.Char),//1
+        //                            new SqlParameter("@VendorCode", SqlDbType.Char)//2
+        //                           };
 
-                param[0].Value = Session["DealerCode"].ToString();
-                param[1].Value = ddlinvoice_no.SelectedItem.Value;
-                param[2].Value = ddlvendor.SelectedItem.Value;
+        //        param[0].Value = Session["DealerCode"].ToString();
+        //        param[1].Value = ddlinvoice_no.SelectedItem.Value;
+        //        param[2].Value = ddlvendor.SelectedItem.Value;
 
-                ds = SysFunc.FillDataSet("SP_Select_GRNMaster", param);
-                //dt.Load(dr);
+        //        ds = SysFunc.FillDataSet("SP_Select_GRNMaster", param);
+        //        //dt.Load(dr);
                 
-                if (ds.Tables[0].Rows.Count == 0)
-                {
-                    ds.Tables[0].Rows.Add(ds.Tables[0].NewRow());
-                }
-                else
-                {                
+        //        if (ds.Tables[0].Rows.Count == 0)
+        //        {
+        //            ds.Tables[0].Rows.Add(ds.Tables[0].NewRow());
+        //        }
+        //        else
+        //        {                
 
-                    GridView_Invoice.DataSource = ds;
-                    GridView_Invoice.DataBind();
-                }
+        //            GridView_Invoice.DataSource = ds;
+        //            GridView_Invoice.DataBind();
+        //        }
 
 
-                Session["InvoiceDS"] = ds;
-            }
-            catch (Exception ex)
-            {
-                success_add_item.Visible = true;
-                success_add_item.Text = ex.Message;
-            }
-        }
+        //        Session["InvoiceDS"] = ds;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = ex.Message;
+        //    }
+        //}
 
         protected void ddlpayment_head_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -354,46 +355,46 @@ namespace DXBMS.Modules.SpareParts.Forms
             //}
         }
 
-        protected void ddlinvoice_no_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (ddlinvoice_no.SelectedIndex == 0)
-            {
-                success_add_item.Visible = true;
-                success_add_item.Text = "Select Invoice No ";
-                txttotal_netamt.Text = "";
-                return;
-            }
+        //protected void ddlinvoice_no_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if (ddlinvoice_no.SelectedIndex == 0)
+        //    {
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = "Select Invoice No ";
+        //        txttotal_netamt.Text = "";
+        //        return;
+        //    }
 
-            try
-            {
-                DataTable dt_newrow = new DataTable();
+        //    try
+        //    {
+        //        DataTable dt_newrow = new DataTable();
 
-                SqlDataReader dr_invoice = null;
+        //        SqlDataReader dr_invoice = null;
 
-                SqlParameter[] param = {
-                                    new SqlParameter("@DealerCode",SqlDbType.Char),//0
-                                    new SqlParameter("@PurInvNo",SqlDbType.Char),//1
-                                    new SqlParameter("@VendorCode", SqlDbType.Char)//2
-                                   };
+        //        SqlParameter[] param = {
+        //                            new SqlParameter("@DealerCode",SqlDbType.Char),//0
+        //                            new SqlParameter("@PurInvNo",SqlDbType.Char),//1
+        //                            new SqlParameter("@VendorCode", SqlDbType.Char)//2
+        //                           };
 
-                param[0].Value = Session["DealerCode"].ToString();
-                param[1].Value = ddlinvoice_no.SelectedValue.ToString().Trim();
-                param[2].Value = ddlvendor.SelectedItem.Value.ToString().Trim();
+        //        param[0].Value = Session["DealerCode"].ToString();
+        //        param[1].Value = ddlinvoice_no.SelectedValue.ToString().Trim();
+        //        param[2].Value = ddlvendor.SelectedItem.Value.ToString().Trim();
 
-                SysFunc.ExecuteSP("SP_Select_GRNMaster", param, ref dr_invoice);
+        //        SysFunc.ExecuteSP("SP_Select_GRNMaster", param, ref dr_invoice);
 
-                dt_newrow.Load(dr_invoice);
+        //        dt_newrow.Load(dr_invoice);
 
-                txttotal_netamt.Text = dt_newrow.Rows[0]["Outstanding"].ToString();
+        //        txttotal_netamt.Text = dt_newrow.Rows[0]["Outstanding"].ToString();
 
-            }
-            catch (Exception ex)
-            {
-                success_add_item.Visible = true;
-                success_add_item.Text = ex.Message;
-            }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = ex.Message;
+        //    }
 
-        }
+        //}
 
         protected void btn_delete_Click(object sender, EventArgs e)
         {
@@ -434,18 +435,16 @@ namespace DXBMS.Modules.SpareParts.Forms
                                            new SqlParameter("@RecTotal",SqlDbType.Float),//4
                                        };
 
-                    for (int i = 0; i < GridView_Invoice.Rows.Count; i++)
+                   foreach (GridViewRow rows in gvPendingInvoice.Rows)
                     {
-                        Label lblgrn_no = (Label)GridView_Invoice.Rows[i].FindControl("lblGRNNo");
-                        Label lblInvNo = (Label)GridView_Invoice.Rows[i].FindControl("lblInvoiceNo");
-                        Label lblAdjAmt = (Label)GridView_Invoice.Rows[i].FindControl("lblAdjustment");
 
+                        LinkButton PurInvNo = (LinkButton)rows.FindControl("lnkInvoiceNo");
 
                         param[0].Value = Session["DealerCode"].ToString();
-                        param[1].Value = lblgrn_no.Text;
-                        param[2].Value = lblInvNo.Text;
+                        param[1].Value = rows.Cells[3].Text;
+                        param[2].Value = PurInvNo.Text;
                         param[3].Value = ddlvendor.SelectedItem.Value;
-                        param[4].Value = Convert.ToDouble(lblAdjAmt.Text);
+                        param[4].Value = SysFunction.CustomCDBL(rows.Cells[7].Text);
 
 
                         SysFunc.ExecuteSP_NonQuery("SP_Update_GRNMaster_RecTotal", param, trans);
@@ -455,7 +454,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                     }
 
                     string del_paymentdetail = "delete from OutgoingPaymentDetail where PaymentNo = '" + ddlpayment_no.SelectedItem.Value + "'" +
-                                                "AND DealerCode = '" + Session["DealerCode"].ToString() + "' AND TransNo = '" + ddlinvoice_no.SelectedItem.Value + "'";
+                                                "AND DealerCode = '" + Session["DealerCode"].ToString() + "' ";
 
                     SysFunc.ExecuteQuery_NonQuery(del_paymentdetail);
 
@@ -480,7 +479,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                     SysFunc.ClearTextBoxes(Page);
                     SysFunc.Clearddl(Page);
 
-                    create_InvoiveDS();
+                    createPartsDT();
                     create_TaxDetailsDS();
 
                     success_add_item.Visible = true;
@@ -517,7 +516,7 @@ namespace DXBMS.Modules.SpareParts.Forms
             totAdvAmount = SysFunctions.CustomCDBL(txtadvajdusted_amt.Text);
             totTaxAmt = +totTaxAmt;
             txttotal_amount.Text = (totInsAmt + totTaxAmt + totAdvAmount).ToString();
-
+            txtAdj.Value = "f";
 
 
 
@@ -532,7 +531,7 @@ namespace DXBMS.Modules.SpareParts.Forms
             }
             string strAutoCode = string.Empty;
             SqlTransaction trans = null;
-           
+          
             
             bool check = false;
 
@@ -560,7 +559,20 @@ namespace DXBMS.Modules.SpareParts.Forms
                     return;
                 }
             }
-
+            if (txtAdj.Value == "f")
+            {
+                success_add_item.Visible = true;
+                success_add_item.ForeColor = System.Drawing.Color.Red;
+                success_add_item.Text = "Please Adjust Amount First.";
+                return;
+            }
+            if (!(ddlpayment_no.SelectedIndex <= 0))
+            {
+                success_add_item.Visible = true;
+                success_add_item.ForeColor = System.Drawing.Color.Red;
+                success_add_item.Text = "Edit Payment is not Allowed.";
+                return;
+            }
             try
             {
                 if (obj_trans.BeginTransaction(ref trans) == true)
@@ -581,6 +593,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                 {
                     if (ddlpayment_no.SelectedIndex != 0)
                     {
+
                         if (!sec.UserRight("2560", "003"))
                         {
                             Response.Redirect("~/Test.aspx");
@@ -715,60 +728,60 @@ namespace DXBMS.Modules.SpareParts.Forms
                                            new SqlParameter("@TotPayment",SqlDbType.Float),//4
                                         };
 
-                    for (int i = 0; i < GridView_Invoice.Rows.Count; i++)
+                    foreach (GridViewRow row in gvPendingInvoice.Rows)
                     {
-                        Label lblgrn_no = (Label)GridView_Invoice.Rows[i].FindControl("lblGRNNo");
-                        Label lblInvNo = (Label)GridView_Invoice.Rows[i].FindControl("lblInvoiceNo");
-                        Label lblInvDate = (Label)GridView_Invoice.Rows[i].FindControl("lblInvDate");
-                        Label lblNetTotal = (Label)GridView_Invoice.Rows[i].FindControl("txtInvAmt");
-                        Label lblOutSt = (Label)GridView_Invoice.Rows[i].FindControl("txtOutstanding");
-                        Label lblAdjAmt = (Label)GridView_Invoice.Rows[i].FindControl("lblAdjustment");
+                        CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                        LinkButton PurinvoiceNo = (LinkButton)row.FindControl("lnkInvoiceNo");
+                        if (chkSelect.Checked)
+                        {
 
 
-                        param2[0].Value = Session["DealerCode"].ToString();
-                        param2[1].Value = RadioButtonList1.SelectedItem.Value;
-                        param2[2].Value = strAutoCode;
-                        param2[3].Value = RadioButtonList2.SelectedItem.Value;
-                        param2[4].Value = lblInvNo.Text;
-                        param2[5].Value = SysFunc.SaveDate(lblInvDate.Text);
-                        param2[6].Value = Convert.ToDouble(lblNetTotal.Text.Trim());
-                        param2[7].Value = Convert.ToDouble(lblOutSt.Text.Trim());
-                        param2[8].Value = Convert.ToDouble(lblAdjAmt.Text.Trim());
-                        param2[9].Value = lblgrn_no.Text;
 
-                        param4[0].Value = Session["DealerCode"].ToString();
-                        //param4[1].Value = ddlvendor.SelectedItem.Value;
-                        //param4[2].Value = lblgrn_no.Text;
-                        param4[1].Value = lblInvNo.Text;
-                        param4[2].Value = lblAdjAmt.Text;
+                            param2[0].Value = Session["DealerCode"].ToString();
+                            param2[1].Value = RadioButtonList1.SelectedItem.Value;
+                            param2[2].Value = strAutoCode;
+                            param2[3].Value = RadioButtonList2.SelectedItem.Value;
+                            param2[4].Value = PurinvoiceNo.Text;
+                            param2[5].Value = SysFunc.SaveDate(row.Cells[4].Text.Trim());
+                            param2[6].Value = SysFunction.CustomCDBL(row.Cells[5].Text.Trim());
+                            param2[7].Value = SysFunction.CustomCDBL(row.Cells[6].Text.Trim());
+                            param2[8].Value = SysFunction.CustomCDBL(row.Cells[7].Text.Trim());
+                            param2[9].Value = row.Cells[3].Text.Trim();
 
-                        SysFunc.ExecuteSP_NonQuery("Sp_Insert_OutgoingPaymentDetail", param2, trans);
-                        SysFunc.ExecuteSP_NonQuery("Sp_Insert_GRNMaster_RecTotal", param4, trans);
+                            param4[0].Value = Session["DealerCode"].ToString();
+                            //param4[1].Value = ddlvendor.SelectedItem.Value;
+                            //param4[2].Value = lblgrn_no.Text;
+                            param4[1].Value = PurinvoiceNo.Text;
+                            param4[2].Value = row.Cells[7].Text.Trim();
+
+                            SysFunc.ExecuteSP_NonQuery("Sp_Insert_OutgoingPaymentDetail", param2, trans);
+                            SysFunc.ExecuteSP_NonQuery("Sp_Insert_GRNMaster_RecTotal", param4, trans);
+                        }
                     }
-
-                    SqlParameter[] param3 = {
+                        SqlParameter[] param3 = {
                                                     new SqlParameter("@DealerCode",SqlDbType.Char),//0
                                                     new SqlParameter("@PaymentNo",SqlDbType.Char),//1
                                                     new SqlParameter("@ReceiptHead",SqlDbType.Char),//2
                                                     new SqlParameter("@Amount",SqlDbType.Float),//3
                                                     new SqlParameter("@AccountCode",SqlDbType.Char),//4
                                                 };
-                    for (int j = 0; j < GridView_payment.Rows.Count; j++)
-                    {
+                        for (int j = 0; j < GridView_payment.Rows.Count; j++)
+                        {
 
-                        Label lblReceiptHead = (Label)GridView_payment.Rows[j].FindControl("lblReceiptHead");
-                        Label lblTaxAmount = (Label)GridView_payment.Rows[j].FindControl("lblTaxAmount");
-                        Label lblAccountCode = (Label)GridView_payment.Rows[j].FindControl("lblAccountCode");
+                            Label lblReceiptHead = (Label)GridView_payment.Rows[j].FindControl("lblReceiptHead");
+                            Label lblTaxAmount = (Label)GridView_payment.Rows[j].FindControl("lblTaxAmount");
+                            Label lblAccountCode = (Label)GridView_payment.Rows[j].FindControl("lblAccountCode");
 
-                        param3[0].Value = Session["DealerCode"].ToString();
-                        param3[1].Value = strAutoCode;
-                        param3[2].Value = lblReceiptHead.Text;
-                        param3[3].Value = Convert.ToDouble(lblTaxAmount.Text.Trim());
-                        param3[4].Value = lblAccountCode.Text.Trim();
+                            param3[0].Value = Session["DealerCode"].ToString();
+                            param3[1].Value = strAutoCode;
+                            param3[2].Value = lblReceiptHead.Text;
+                            param3[3].Value = Convert.ToDouble(lblTaxAmount.Text.Trim());
+                            param3[4].Value = lblAccountCode.Text.Trim();
 
-                        SysFunc.ExecuteSP_NonQuery("Sp_Insert_OutgoingPaymentTaxDetail", param3, trans);
-                    }
-
+                            SysFunc.ExecuteSP_NonQuery("Sp_Insert_OutgoingPaymentTaxDetail", param3, trans);
+                        }
+                    
+                
                     check = true;
 
                 }
@@ -790,11 +803,12 @@ namespace DXBMS.Modules.SpareParts.Forms
 
                 SysFunc.ClearTextBoxes(Page);
                 SysFunc.Clearddl(Page);
-                create_InvoiveDS();
+                createPartsDT();
                 create_TaxDetailsDS();
 
                 success_add_item.Visible = true;
                 success_add_item.Text = "Payment No: " + strAutoCode + " Addedd Successfully";
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + strAutoCode + "')", true);
 
                 LoadDDL_PaymentNo();
                 //LoadDDL_Invoice();
@@ -813,88 +827,88 @@ namespace DXBMS.Modules.SpareParts.Forms
         double total_Adjustment = 0.00;
         double total_Remaining = 0.00;
 
-        protected void GridView_Invoice_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
+        //protected void GridView_Invoice_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
 
-            try
-            {
-                if (e.Row.RowType == DataControlRowType.DataRow && !(GridView_Invoice.EditIndex == e.Row.RowIndex))
-                {
-                    Label NetTotal = (Label)e.Row.FindControl("txtInvAmt");
-                    Label Outstanding = (Label)e.Row.FindControl("txtOutstanding");
-                    Label Adjustment = (Label)e.Row.FindControl("lblAdjustment");
+        //    try
+        //    {
+        //        if (e.Row.RowType == DataControlRowType.DataRow && !(GridView_Invoice.EditIndex == e.Row.RowIndex))
+        //        {
+        //            Label NetTotal = (Label)e.Row.FindControl("txtInvAmt");
+        //            Label Outstanding = (Label)e.Row.FindControl("txtOutstanding");
+        //            Label Adjustment = (Label)e.Row.FindControl("lblAdjustment");
 
-                    Label Remaining = (Label)e.Row.FindControl("txtRemaining");
+        //            Label Remaining = (Label)e.Row.FindControl("txtRemaining");
 
-                    total_sum += Convert.ToDouble(NetTotal.Text);
-                    total_Outstanding += Convert.ToDouble(Outstanding.Text);
-                    total_Adjustment += Convert.ToDouble(Adjustment.Text);
-                    total_Remaining += Convert.ToDouble(Remaining.Text);
-                }
-                if (e.Row.RowType == DataControlRowType.DataRow && (GridView_Invoice.EditIndex == e.Row.RowIndex))
-                {
-                    Label NetTotal = (Label)e.Row.FindControl("txtInvAmt");
-                    TextBox txtAdj = (TextBox)e.Row.FindControl("txtAdjustment");
-                    Label Outstanding = (Label)e.Row.FindControl("txtOutstanding");
-                    Label Adjustment = (Label)e.Row.FindControl("lblAdjustment");
+        //            total_sum += Convert.ToDouble(NetTotal.Text);
+        //            total_Outstanding += Convert.ToDouble(Outstanding.Text);
+        //            total_Adjustment += Convert.ToDouble(Adjustment.Text);
+        //            total_Remaining += Convert.ToDouble(Remaining.Text);
+        //        }
+        //        if (e.Row.RowType == DataControlRowType.DataRow && (GridView_Invoice.EditIndex == e.Row.RowIndex))
+        //        {
+        //            Label NetTotal = (Label)e.Row.FindControl("txtInvAmt");
+        //            TextBox txtAdj = (TextBox)e.Row.FindControl("txtAdjustment");
+        //            Label Outstanding = (Label)e.Row.FindControl("txtOutstanding");
+        //            Label Adjustment = (Label)e.Row.FindControl("lblAdjustment");
 
-                    Label Remaining = (Label)e.Row.FindControl("txtRemaining");
+        //            Label Remaining = (Label)e.Row.FindControl("txtRemaining");
 
-                    total_sum += Convert.ToDouble(NetTotal.Text);
-                    total_Outstanding += Convert.ToDouble(Outstanding.Text);
-                    total_Adjustment += Convert.ToDouble(txtAdj.Text);
-                    total_Remaining += Convert.ToDouble(Remaining.Text);
-                }
+        //            total_sum += Convert.ToDouble(NetTotal.Text);
+        //            total_Outstanding += Convert.ToDouble(Outstanding.Text);
+        //            total_Adjustment += Convert.ToDouble(txtAdj.Text);
+        //            total_Remaining += Convert.ToDouble(Remaining.Text);
+        //        }
 
-                if (e.Row.RowType == DataControlRowType.Footer)
-                {
-                    Label total_amount = (Label)e.Row.FindControl("txttotal_amt");
-                    Label total_outstanding = (Label)e.Row.FindControl("txttotalOut_amt");
-                    Label total_adjustment = (Label)e.Row.FindControl("txttotalAdj_amt");
-                    Label total_remaining = (Label)e.Row.FindControl("txttotalRem_amt");
+        //        if (e.Row.RowType == DataControlRowType.Footer)
+        //        {
+        //            Label total_amount = (Label)e.Row.FindControl("txttotal_amt");
+        //            Label total_outstanding = (Label)e.Row.FindControl("txttotalOut_amt");
+        //            Label total_adjustment = (Label)e.Row.FindControl("txttotalAdj_amt");
+        //            Label total_remaining = (Label)e.Row.FindControl("txttotalRem_amt");
 
-                    total_amount.Text = total_sum.ToString();
-                    total_outstanding.Text = total_Outstanding.ToString();
-                    total_adjustment.Text = total_Adjustment.ToString();
-                    total_remaining.Text = total_Remaining.ToString();
+        //            total_amount.Text = total_sum.ToString();
+        //            total_outstanding.Text = total_Outstanding.ToString();
+        //            total_adjustment.Text = total_Adjustment.ToString();
+        //            total_remaining.Text = total_Remaining.ToString();
 
-                }
-            }
-            catch (Exception ex)
-            {
-                success_add_item.Visible = true;
-                success_add_item.Text = ex.Message;
-            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = ex.Message;
+        //    }
 
-        }
+        //}
 
-        protected void BtnRemove_Click(object sender, ImageClickEventArgs e)
-        {
+        //protected void BtnRemove_Click(object sender, ImageClickEventArgs e)
+        //{
 
-            DataSet dsdelete_invoice = new DataSet();
+        //    DataSet dsdelete_invoice = new DataSet();
 
-            try
-            {
-                dsdelete_invoice = (DataSet)Session["InvoiceDS"];
+        //    try
+        //    {
+        //        dsdelete_invoice = (DataSet)Session["InvoiceDS"];
 
-                ImageButton BtnLnk = (ImageButton)sender;
-                GridViewRow rowGv = (GridViewRow)BtnLnk.Parent.Parent;
-                int rowGvIndex = rowGv.RowIndex;
+        //        ImageButton BtnLnk = (ImageButton)sender;
+        //        GridViewRow rowGv = (GridViewRow)BtnLnk.Parent.Parent;
+        //        int rowGvIndex = rowGv.RowIndex;
 
-                dsdelete_invoice.Tables[0].Rows[rowGvIndex].Delete();
-                GridView_Invoice.DataSource = dsdelete_invoice.Tables[0];
-                GridView_Invoice.DataBind();
-                dsdelete_invoice.Tables[0].AcceptChanges();
-                Session["InvoiceDS"] = dsdelete_invoice;
-                CalOutStanding();
-            }
-            catch (Exception ex)
-            {
-                success_add_item.Visible = true;
-                success_add_item.Text = ex.Message;
-            }
+        //        dsdelete_invoice.Tables[0].Rows[rowGvIndex].Delete();
+        //        GridView_Invoice.DataSource = dsdelete_invoice.Tables[0];
+        //        GridView_Invoice.DataBind();
+        //        dsdelete_invoice.Tables[0].AcceptChanges();
+        //        Session["InvoiceDS"] = dsdelete_invoice;
+        //        CalOutStanding();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = ex.Message;
+        //    }
 
-        }
+        //}
 
         protected void btn_fifo_Click(object sender, EventArgs e)
         {
@@ -914,17 +928,12 @@ namespace DXBMS.Modules.SpareParts.Forms
             }
             try
             {
-                Label lblAdj_Total_Footer = (Label)GridView_Invoice.FooterRow.Cells[6].FindControl("txttotalAdj_amt");
-                Label txttotal_amt_Footer = (Label)GridView_Invoice.FooterRow.Cells[6].FindControl("txttotal_amt");
+               // Label lblAdj_Total_Footer = (Label)GridView_Invoice.FooterRow.Cells[6].FindControl("txttotalAdj_amt");
+               // Label txttotal_amt_Footer = (Label)gvPendingInvoice.FooterRow.Cells[6].FindControl("txttotal_amt");
                 //txttotal_amount.Text = Convert.ToString(Convert.ToDouble(txttotal_amount.Text.Trim() == "" ? "0" : txttotal_amount.Text.Trim()) + double.Parse(txtins_amount.Text == "" ? "0" : txtins_amount.Text));
 
-                decimal RunningTotal = decimal.Parse(txttotal_amount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txttotal_amount.Text.Trim());
-                if (Convert.ToDecimal(txttotal_amount.Text) < Convert.ToDecimal(txtins_amount.Text))
-                {
-                    success_add_item.Visible = true;
-                    success_add_item.Text = "Adjusted amount should not be greater then Total Amount. ";
-                    return;
-                }
+                double RunningTotal = SysFunctions.CustomCDBL(txttotal_amount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txttotal_amount.Text.Trim());
+               
                 if (double.Parse(txttotal_amount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txttotal_amount.Text.Trim()) < 1)
                 {
                     success_add_item.Visible = true;
@@ -936,13 +945,21 @@ namespace DXBMS.Modules.SpareParts.Forms
 
                 
 
-                Label lblNet_Total = (Label)GridView_Invoice.FooterRow.Cells[4].FindControl("txttotal_amt");
-                Label lblOutstanding_Total = (Label)GridView_Invoice.FooterRow.Cells[5].FindControl("txttotalOut_amt");
-                Label lblAdjusted_Total = (Label)GridView_Invoice.FooterRow.Cells[6].FindControl("txttotalAdj_amt");
-                Label lblRemaining_Total = (Label)GridView_Invoice.FooterRow.Cells[6].FindControl("txttotalRem_amt");
+              
+                foreach (GridViewRow row in gvPendingInvoice.Rows)
+                {
+                    CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                    if (chkSelect.Checked)
+                    {
+                        SumOfSelectedInvoice = SysFunctions.CustomCDBL(SumOfSelectedInvoice + SysFunctions.CustomCDBL(row.Cells[6].Text));
+
+
+                    }
+                }
+
                 double dOutStAmt = 0; 
                 double Count = 0.00;
-                if (RunningTotal > decimal.Parse(lblNet_Total.Text.Trim()) && GridView_Invoice.Rows.Count < 1)
+                if (RunningTotal > SumOfSelectedInvoice && gvPendingInvoice.Rows.Count < 1)
                 {
                     success_add_item.Visible = true;
                     success_add_item.Text = "Adjusted amount not greater then Total Amount ";
@@ -953,64 +970,59 @@ namespace DXBMS.Modules.SpareParts.Forms
                 if (RunningTotal > 0)
                 {
 
-                    foreach (GridViewRow row in GridView_Invoice.Rows)
+                    if (gvPendingInvoice.Rows.Count > 0)
                     {
-                        Label lblgrn_no = (Label)row.FindControl("lblGRNNo");
-                        Label lblInvNo = (Label)row.FindControl("lblInvoiceNo");
-                        Label lblInvDate = (Label)row.FindControl("lblInvDate");
-                        Label lblNetTotal = (Label)row.FindControl("txtInvAmt");
-                        Label lblOutSt = (Label)row.FindControl("txtOutstanding");
-                        Label lblAdjAmt = (Label)row.FindControl("lblAdjustment");
-                        Label lblRem = (Label)row.FindControl("txtRemaining");
 
-                        if (RunningTotal > decimal.Parse(lblNetTotal.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : lblNetTotal.Text.Trim()))
+
+                        SumOfSelectedInvoice = 0;
+                        double Receive = 0.00;
+                        double Remaining = 0.00;
+                        foreach (GridViewRow row in gvPendingInvoice.Rows)
                         {
-
-                            lblAdjAmt.Text = lblNetTotal.Text;
-
-                            lblRem.Text = (double.Parse(lblOutSt.Text) - double.Parse(lblAdjAmt.Text)).ToString();
-
-
-                            RunningTotal = RunningTotal - Convert.ToDecimal(lblOutSt.Text.Trim());
-                            //dOutStAmt = dOutStAmt - double.Parse(lblNetTotal.Text.Trim());
-
-                            //lblOutSt.Text = lblRem.Text;
-                            //txttotAdj.Text = row.Cells[5].Text;
-
-                            //txtAdj.Value = "t";
-
-                            Count = Count + double.Parse(lblAdjAmt.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : lblAdjAmt.Text.Trim());
-
-                            lblAdj_Total_Footer.Text = Count.ToString();
-                            lblOutstanding_Total.Text = lblOutSt.Text;
-                            lblRemaining_Total.Text = lblRem.Text;
-                            // gvPendingInvoice.FooterRow.Cells[5].Text = Count.ToString();
-
+                            CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                            if (chkSelect.Checked)
+                            {
+                                SumOfSelectedInvoice = SysFunctions.CustomCDBL(SumOfSelectedInvoice + SysFunctions.CustomCDBL(row.Cells[6].Text));
+                            }
                         }
+                        RunningTotal = SumOfSelectedInvoice;
 
+                        // txttotAmount.Text = SumOfSelectedInvoice.ToString();
+                        Remaining = double.Parse(txtins_amount.Text == "" ? "0" : txtins_amount.Text);
+                        if (double.Parse(txttotal_amount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txttotal_amount.Text.Trim()) < 1)
+                        {
+                            success_add_item.Visible = true;
+                            SysFunc.UserMsg(success_add_item, Color.Red, "Total amount should not be zero.", txttotal_amount);
+                            return;
+                        }
+                        if (SysFunctions.CustomCDBL(txttotal_amount.Text) > SumOfSelectedInvoice)
+                        {
+                            SysFunc.UserMsg(success_add_item, Color.Red, "Total amount should not be greater then Selected Invoice.", txttotal_amount);
+                            success_add_item.Visible = true;
+                            return;
+                        }
                         else
                         {
+                            RunningTotal = SysFunctions.CustomCDBL(txtins_amount.Text);
+                            AdjustAmount();
+                            if (cbinlude_adv.Checked)
+                            {
+                                AdvanceAdjustAmount();
+                            }
+                            foreach (GridViewRow row in gvPendingInvoice.Rows)
+                            {
 
-                            lblAdjAmt.Text = RunningTotal.ToString();
-                            //lblAdjAmt.Text = dOutStAmt.ToString();
+                                CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                                if ((row.Cells[7].Text.Replace("&nbsp;", "") == "" ? "0" : row.Cells[7].Text) == "0")
+                                {
+                                    chkSelect.Checked = false;
+                                }
 
-                            lblRem.Text = (double.Parse(lblOutSt.Text) - double.Parse(lblAdjAmt.Text)).ToString();
-
-                            //   txttotAdj.Text = lblAdjAmt.Text;
-                            RunningTotal = RunningTotal - Convert.ToDecimal(lblOutSt.Text.Trim());
-                            // txtAdj.Value = "t";
-                            // lblOutSt.Text = lblRem.Text;
-                            Count = Count + double.Parse(lblAdjAmt.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : lblAdjAmt.Text.Trim());
-
-                            lblAdj_Total_Footer.Text = Count.ToString();
-                            lblOutstanding_Total.Text = lblOutSt.Text;
-                            lblRemaining_Total.Text = lblRem.Text;
-
-                            //  gvPendingInvoice.FooterRow.Cells[5].Text = Count.ToString();
-
-                            break;
-
+                            }
+                            txtInvTotal.Text = CaltotalInvAmount().ToString();
+                            txttotOutStanding.Text = CaltotalInvAmount().ToString();
                         }
+
 
                     }
                 }
@@ -1023,7 +1035,101 @@ namespace DXBMS.Modules.SpareParts.Forms
             }
 
         }
+        /// <summary>
+        /// Adjust Amount
+        /// </summary>
+        public void AdjustAmount()
+        {
+           
+            RunningTotal = SysFunctions.CustomCDBL(txttotal_amount.Text);
 
+            ///Adjustment 
+            ///
+            foreach (GridViewRow row in gvPendingInvoice.Rows)
+            {
+
+                CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                if (chkSelect.Checked)
+                {
+
+                    // double.Parse(row.Cells[5].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[5].Text.Trim())
+                    if (RunningTotal > SysFunctions.CustomCDBL(row.Cells[6].Text))
+                    {
+                        row.Cells[7].Text = row.Cells[6].Text;
+                        row.Cells[8].Text = (SysFunctions.CustomCDBL(row.Cells[6].Text) - SysFunctions.CustomCDBL(row.Cells[7].Text)).ToString();
+                        RunningTotal = RunningTotal - SysFunctions.CustomCDBL(row.Cells[6].Text.Trim());
+                        txttotAdj.Text = txttotal_amount.Text;
+                        totremaingbalance = totremaingbalance + SysFunction.CustomCDBL(row.Cells[8].Text);
+                        //(SumOfSelectedInvoice - double.Parse(lblTotalAmount.Text.Trim())).ToString();
+                        txtAdj.Value = "t";
+                        Count = Count + SysFunctions.CustomCDBL(row.Cells[6].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[6].Text.Trim());
+                        gvPendingInvoice.FooterRow.Cells[6].Text = Count.ToString();
+                    }
+                    else
+                    {
+                        row.Cells[7].Text = RunningTotal.ToString();
+                        row.Cells[8].Text = (SysFunctions.CustomCDBL(row.Cells[6].Text) - SysFunctions.CustomCDBL(row.Cells[7].Text)).ToString();
+                        txttotAdj.Text = txttotal_amount.Text;
+                        //(RunningTotal - double.Parse(lblTotalAmount.Text.Trim())).ToString();
+                        txtAdj.Value = "t";
+                        totremaingbalance = totremaingbalance + SysFunction.CustomCDBL(row.Cells[8].Text);
+                        Count = Count + SysFunctions.CustomCDBL(row.Cells[6].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[6].Text.Trim());
+                        gvPendingInvoice.FooterRow.Cells[6].Text = Count.ToString();
+                       
+                        return;
+
+                    }
+
+
+
+
+                }
+                
+                var footerRow = gvPendingInvoice.FooterRow;
+                footerRow.Cells[7].Text = txttotAdj.Text;
+                footerRow.Cells[8].Text = totremaingbalance.ToString();
+                txtInvTotal.Text = CaltotalInvAmount().ToString();
+                txttotOutStanding.Text = CaltotalInvAmount().ToString();
+
+            }
+
+        }
+        public void AdvanceAdjustAmount()
+        {
+
+           
+            RunningTotal = SysFunctions.CustomCDBL(txttotal_amount.Text);
+
+
+            ///Adjustment 
+            ///
+            foreach (GridViewRow row in gvPendingInvoice.Rows)
+            {
+                CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                if (chkSelect.Checked)
+                {
+
+                    // double.Parse(row.Cells[5].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[5].Text.Trim())
+                    if (RunningTotal > SysFunctions.CustomCDBL(row.Cells[6].Text))
+                    {
+                        row.Cells[7].Text = row.Cells[6].Text;
+                        row.Cells[8].Text = (SysFunctions.CustomCDBL(row.Cells[6].Text) - SysFunctions.CustomCDBL(row.Cells[7].Text)).ToString();
+                        RunningTotal = RunningTotal - SysFunctions.CustomCDBL(row.Cells[6].Text.Trim());
+                    }
+                    else
+                    {
+                        row.Cells[7].Text = RunningTotal.ToString();
+                        row.Cells[8].Text = (SysFunctions.CustomCDBL(row.Cells[6].Text) - SysFunctions.CustomCDBL(row.Cells[7].Text)).ToString();
+                    }
+
+
+
+
+                }
+
+            }
+
+        }
         protected void BtnRemove_Tax_Click(object sender, ImageClickEventArgs e)
         {
             DataSet dsdelete_tax = new DataSet();
@@ -1242,101 +1348,101 @@ namespace DXBMS.Modules.SpareParts.Forms
 
         }
 
-        protected void GridView_Invoice_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            try
-            {
-                DataSet ds = new DataSet();
+        //protected void GridView_Invoice_RowEditing(object sender, GridViewEditEventArgs e)
+        //{
+        //    try
+        //    {
+        //        DataSet ds = new DataSet();
 
-                GridView_Invoice.EditIndex = e.NewEditIndex;
+        //        GridView_Invoice.EditIndex = e.NewEditIndex;
 
-                ds = (DataSet)Session["InvoiceDS"];
+        //        ds = (DataSet)Session["InvoiceDS"];
 
-                GridView_Invoice.DataSource = ds.Tables[0];
+        //        GridView_Invoice.DataSource = ds.Tables[0];
 
-                GridView_Invoice.DataBind();
+        //        GridView_Invoice.DataBind();
 
-            }
+        //    }
 
-            catch (Exception ex)
-            {
+        //    catch (Exception ex)
+        //    {
 
-                success_add_item.Visible = true;
-                success_add_item.Text = ex.Message;
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = ex.Message;
 
-            }
+        //    }
 
-        }
+        //}
 
-        protected void GridView_Invoice_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            DataSet ds = new DataSet();
+        //protected void GridView_Invoice_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        //{
+        //    DataSet ds = new DataSet();
 
-            GridView_Invoice.EditIndex = -1;
+        //    GridView_Invoice.EditIndex = -1;
 
-            ds = (DataSet)Session["InvoiceDS"];
+        //    ds = (DataSet)Session["InvoiceDS"];
 
-            GridView_Invoice.DataSource = ds.Tables[0];
+        //    GridView_Invoice.DataSource = ds.Tables[0];
 
-            GridView_Invoice.DataBind();
-        }
+        //    GridView_Invoice.DataBind();
+        //}
 
-        protected void GridView_Invoice_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            DataSet dsupdate_invoice = new DataSet();
+        //protected void GridView_Invoice_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        //{
+        //    DataSet dsupdate_invoice = new DataSet();
 
-            double adjusted_amt = 0.0;
+        //    double adjusted_amt = 0.0;
 
-            try
-            {
-                Label lblGRNno = (Label)GridView_Invoice.Rows[e.RowIndex].FindControl("lblGRNNo");
-                TextBox txtAdjustment = (TextBox)GridView_Invoice.Rows[e.RowIndex].FindControl("txtAdjustment");
-                Label lblAdjustment = (Label)GridView_Invoice.Rows[e.RowIndex].FindControl("lblAdjustment");
-                Label lblNetTotal = (Label)GridView_Invoice.Rows[e.RowIndex].FindControl("txtInvAmt");
-                Label lblRemaining = (Label)GridView_Invoice.Rows[e.RowIndex].FindControl("txtRemaining");
+        //    try
+        //    {
+        //        Label lblGRNno = (Label)GridView_Invoice.Rows[e.RowIndex].FindControl("lblGRNNo");
+        //        TextBox txtAdjustment = (TextBox)GridView_Invoice.Rows[e.RowIndex].FindControl("txtAdjustment");
+        //        Label lblAdjustment = (Label)GridView_Invoice.Rows[e.RowIndex].FindControl("lblAdjustment");
+        //        Label lblNetTotal = (Label)GridView_Invoice.Rows[e.RowIndex].FindControl("txtInvAmt");
+        //        Label lblRemaining = (Label)GridView_Invoice.Rows[e.RowIndex].FindControl("txtRemaining");
 
-                adjusted_amt = Convert.ToDouble(txtAdjustment.Text.Trim() == "" ? "0" : txtAdjustment.Text.Trim());
+        //        adjusted_amt = Convert.ToDouble(txtAdjustment.Text.Trim() == "" ? "0" : txtAdjustment.Text.Trim());
 
-                if (adjusted_amt <= 0)
-                {
-                    success_add_item.Visible = true;
-                    success_add_item.Text = "Adjusted Amount not Zero(0).";
-                    return;
-                }
+        //        if (adjusted_amt <= 0)
+        //        {
+        //            success_add_item.Visible = true;
+        //            success_add_item.Text = "Adjusted Amount not Zero(0).";
+        //            return;
+        //        }
 
-                if (adjusted_amt > Convert.ToDouble(lblNetTotal.Text))
-                {
-                    success_add_item.Visible = true;
-                    success_add_item.Text = "Adjusted Amount not greater than Total Amount : " + lblNetTotal.Text;
-                    return;
-                }
+        //        if (adjusted_amt > Convert.ToDouble(lblNetTotal.Text))
+        //        {
+        //            success_add_item.Visible = true;
+        //            success_add_item.Text = "Adjusted Amount not greater than Total Amount : " + lblNetTotal.Text;
+        //            return;
+        //        }
 
-                dsupdate_invoice = (DataSet)Session["InvoiceDS"];
+        //        dsupdate_invoice = (DataSet)Session["InvoiceDS"];
 
-                foreach (DataRow dr in dsupdate_invoice.Tables[0].Rows)
-                {
-                    if (dr["GRNNo"].ToString() == lblGRNno.Text)
-                    {
-                        dr["Adjustment"] = adjusted_amt;
-                        dr["Remaining"] = Convert.ToDouble(dr["NetTotal"].ToString()) - adjusted_amt;
-                    }
-                }
+        //        foreach (DataRow dr in dsupdate_invoice.Tables[0].Rows)
+        //        {
+        //            if (dr["GRNNo"].ToString() == lblGRNno.Text)
+        //            {
+        //                dr["Adjustment"] = adjusted_amt;
+        //                dr["Remaining"] = Convert.ToDouble(dr["NetTotal"].ToString()) - adjusted_amt;
+        //            }
+        //        }
 
-                GridView_Invoice.EditIndex = -1;
+        //        GridView_Invoice.EditIndex = -1;
 
-                GridView_Invoice.DataSource = dsupdate_invoice.Tables[0];
-                GridView_Invoice.DataBind();
-                CalOutStanding();
+        //        GridView_Invoice.DataSource = dsupdate_invoice.Tables[0];
+        //        GridView_Invoice.DataBind();
+        //        CalOutStanding();
 
-                Session["TaxDS"] = dsupdate_invoice;
-            }
+        //        Session["TaxDS"] = dsupdate_invoice;
+        //    }
 
-            catch (Exception ex)
-            {
-                success_add_item.Visible = true;
-                success_add_item.Text = ex.Message;
-            }
-        }
+        //    catch (Exception ex)
+        //    {
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = ex.Message;
+        //    }
+        //}
 
         protected void ib_addtax_Click(object sender, ImageClickEventArgs e)
         {
@@ -1390,93 +1496,93 @@ namespace DXBMS.Modules.SpareParts.Forms
             }
         }
 
-        protected void Ibadd_invoice_Click(object sender, ImageClickEventArgs e)
-        {
-            if (ddlinvoice_no.SelectedIndex == 0)
-            {
-                success_add_item.Visible = true;
-                success_add_item.Text = "Select Invoice No.";
-                return;
-            }
+        //protected void Ibadd_invoice_Click(object sender, ImageClickEventArgs e)
+        //{
+        //    if (ddlinvoice_no.SelectedIndex == 0)
+        //    {
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = "Select Invoice No.";
+        //        return;
+        //    }
 
-            double adj_amt = double.Parse(txtadd_adjamount.Text == "" ? "0" : txtadd_adjamount.Text);
+        //    double adj_amt = double.Parse(txtadd_adjamount.Text == "" ? "0" : txtadd_adjamount.Text);
 
-            try
-            {
-                //if (adj_amt == 0)
-                //{
-                //    success_add_item.Visible = true;
-                //    success_add_item.Text = "Adjusted Amount could not be Zero(0) or Null ";
-                //    return;
-                //}
+        //    try
+        //    {
+        //        //if (adj_amt == 0)
+        //        //{
+        //        //    success_add_item.Visible = true;
+        //        //    success_add_item.Text = "Adjusted Amount could not be Zero(0) or Null ";
+        //        //    return;
+        //        //}
 
-                //if (adj_amt > 0 && adj_amt <= Convert.ToDouble(txttotal_netamt.Text))
-                //{
+        //        //if (adj_amt > 0 && adj_amt <= Convert.ToDouble(txttotal_netamt.Text))
+        //        //{
 
-                dsInvoice = (DataSet)Session["InvoiceDS"];
+        //        dsInvoice = (DataSet)Session["InvoiceDS"];
 
-                float netamt = float.Parse(txttotal_netamt.Text);
-                double netamnt = Double.Parse(txttotal_netamt.Text);
+        //        float netamt = float.Parse(txttotal_netamt.Text);
+        //        double netamnt = Double.Parse(txttotal_netamt.Text);
 
-                double sum = netamnt - adj_amt;
-                //double sum = Int32.Parse(txttotal_netamt.Text.Trim(), System.Globalization.CultureInfo.InvariantCulture) - adj_amt;
-                //double sum = Convert.ToDouble(txttotal_netamt.Text, System.Globalization.CultureInfo.InvariantCulture) - adj_amt;
+        //        double sum = netamnt - adj_amt;
+        //        //double sum = Int32.Parse(txttotal_netamt.Text.Trim(), System.Globalization.CultureInfo.InvariantCulture) - adj_amt;
+        //        //double sum = Convert.ToDouble(txttotal_netamt.Text, System.Globalization.CultureInfo.InvariantCulture) - adj_amt;
 
-                //if (dsInvoice.Tables["InvoiceDetail"].Rows.Count == 0)
-                //{
-                //    foreach (DataRow dtRow in dsInvoice.Tables["InvoiceDetail"].Rows)
-                //    {
-                //        dtRow["Adjustment"] = adj_amt;
-                //        dtRow["Remaining"] = sum;
+        //        //if (dsInvoice.Tables["InvoiceDetail"].Rows.Count == 0)
+        //        //{
+        //        //    foreach (DataRow dtRow in dsInvoice.Tables["InvoiceDetail"].Rows)
+        //        //    {
+        //        //        dtRow["Adjustment"] = adj_amt;
+        //        //        dtRow["Remaining"] = sum;
 
-                //        return;
-                //    }
+        //        //        return;
+        //        //    }
 
-                //}
+        //        //}
 
-                foreach (DataRow dtRow in dsInvoice.Tables["InvoiceDetail"].Rows)
-                {
-                    if (ddlinvoice_no.SelectedItem.Value == dtRow["RefInvNo"].ToString())
-                    {
-                        success_add_item.Visible = true;
-                        success_add_item.Text = "GRN No : " + ddlinvoice_no.SelectedItem.Value + " Already Selected";
+        //        foreach (DataRow dtRow in dsInvoice.Tables["InvoiceDetail"].Rows)
+        //        {
+        //            if (ddlinvoice_no.SelectedItem.Value == dtRow["RefInvNo"].ToString())
+        //            {
+        //                success_add_item.Visible = true;
+        //                success_add_item.Text = "GRN No : " + ddlinvoice_no.SelectedItem.Value + " Already Selected";
 
-                        return;
-                    }
+        //                return;
+        //            }
 
-                }
+        //        }
 
-                //}
-                //else
-                //{
-                //    success_add_item.Visible = true;
-                //    success_add_item.Text = "Adjusted Amount not greater than Total Amount : " + txttotal_netamt.Text;
-                //    return;
-                //}
-
-
-                Session["InvoiceDS"] = dsInvoice;
-                create_ROW_Invoice();
+        //        //}
+        //        //else
+        //        //{
+        //        //    success_add_item.Visible = true;
+        //        //    success_add_item.Text = "Adjusted Amount not greater than Total Amount : " + txttotal_netamt.Text;
+        //        //    return;
+        //        //}
 
 
-                //Label total_adjusted_footer = (Label)GridView_Invoice.FooterRow.Cells[6].FindControl("txttotalAdj_amt");
-                //txttotal_amount.Text = Convert.ToString(Convert.ToDouble(txttotal_amount.Text.Trim() == "" ? "0" : txttotal_amount.Text.Trim()) + 
-                //                        Convert.ToDouble(txttotal_netamt.Text.Trim() == "" ? "0" : txttotal_netamt.Text.Trim()));
-                CalSubTotal();
-                CalOutStanding();
-                clearInvoice();
+        //        Session["InvoiceDS"] = dsInvoice;
+        //        create_ROW_Invoice();
 
-            }
-            catch (Exception ex)
-            {
-                success_add_item.Visible = true;
-                success_add_item.Text = ex.Message;
-            }
-        }
+
+        //        //Label total_adjusted_footer = (Label)GridView_Invoice.FooterRow.Cells[6].FindControl("txttotalAdj_amt");
+        //        //txttotal_amount.Text = Convert.ToString(Convert.ToDouble(txttotal_amount.Text.Trim() == "" ? "0" : txttotal_amount.Text.Trim()) + 
+        //        //                        Convert.ToDouble(txttotal_netamt.Text.Trim() == "" ? "0" : txttotal_netamt.Text.Trim()));
+        //        CalSubTotal();
+        //        CalOutStanding();
+        //        clearInvoice();
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        success_add_item.Visible = true;
+        //        success_add_item.Text = ex.Message;
+        //    }
+        //}
         public void CalOutStanding()
         {
             SumOfSelectedInvoice = 0;
-            foreach (GridViewRow row in GridView_Invoice.Rows)
+            foreach (GridViewRow row in gvPendingInvoice.Rows)
             {
                 Label chkSelect = (Label)row.FindControl("txtOutstanding");
                
@@ -1487,11 +1593,11 @@ namespace DXBMS.Modules.SpareParts.Forms
 
         }
 
-        public void clearInvoice()
-        {
-            ddlinvoice_no.SelectedIndex = 0;
-            txttotal_netamt.Text = "";
-        }
+        //public void clearInvoice()
+        //{
+        //    ddlinvoice_no.SelectedIndex = 0;
+        //    txttotal_netamt.Text = "";
+        //}
         protected void btn_print_Click(object sender, EventArgs e)
         {
             if (!sec.UserRight("2560", "006"))
@@ -1571,6 +1677,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                     stream.CopyTo(outputFileStream);
                 }
                 stream.Dispose(); stream.Close();
+                RD.Dispose(); RD.Close();
                 string URL = "../../../Download/PrintReport.aspx";
 
                 string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
@@ -1608,13 +1715,13 @@ namespace DXBMS.Modules.SpareParts.Forms
                 SysFunc.Clearddl(Page);
                 SysFunc.ClearTextBoxes(Page);
 
-                create_InvoiveDS();
+                createPartsDT();
                 create_TaxDetailsDS();
 
                 return;
             }
 
-            create_InvoiveDS();
+            createPartsDT();
             create_TaxDetailsDS();
 
             try
@@ -1689,8 +1796,8 @@ namespace DXBMS.Modules.SpareParts.Forms
 
                ds= SysFunc.FillDataSet("sp_OutgoingPaymentDetail_Select", param);
                 
-                GridView_Invoice.DataSource = ds.Tables[0];
-                GridView_Invoice.DataBind();
+                gvPendingInvoice.DataSource = ds.Tables[0];
+                gvPendingInvoice.DataBind();
 
                 Session["InvoiceDS"] = ds;
 
@@ -1758,7 +1865,7 @@ namespace DXBMS.Modules.SpareParts.Forms
 
         protected void ddlvendor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadDDL_Invoice();
+           
         }
 
         protected void ddlpayment_account_SelectedIndexChanged(object sender, EventArgs e)
@@ -1810,5 +1917,200 @@ namespace DXBMS.Modules.SpareParts.Forms
         //{
         //    ShowInvoiceData();
         //}
+
+        //////
+
+        //Pending Invoice Detail
+        protected void gvPendingInvoice_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[0].Width = 100;
+            e.Row.Cells[1].Width = 60; e.Row.Cells[2].Width = 100;
+            e.Row.Cells[3].Width = 100;
+            e.Row.Cells[4].Width = e.Row.Cells[5].Width = e.Row.Cells[6].Width = e.Row.Cells[7].Width = 100;
+            e.Row.Cells[4].HorizontalAlign = e.Row.Cells[5].HorizontalAlign = e.Row.Cells[6].HorizontalAlign = e.Row.Cells[7].HorizontalAlign = HorizontalAlign.Right;
+        }
+
+        protected void gvPendingInvoice_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                countInvoices = countInvoices + 1;
+                e.Row.Cells[1].Text = countInvoices.ToString();
+                TotRefAmt = TotRefAmt + double.Parse(e.Row.Cells[5].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : e.Row.Cells[5].Text.Trim());
+                totOutstanding = totOutstanding + double.Parse(e.Row.Cells[6].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : e.Row.Cells[6].Text.Trim());
+                totAdjAmt = totAdjAmt + double.Parse(e.Row.Cells[7].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : e.Row.Cells[7].Text.Trim());
+                totremaingbalance = totremaingbalance + SysFunction.CustomCDBL(e.Row.Cells[8].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : e.Row.Cells[8].Text.Trim());
+
+            }
+            else if (e.Row.RowType == DataControlRowType.Header)
+            {
+                countInvoices = 0;
+                totInvoice = totOutstanding = totAdjAmt = 0;
+            }
+            else if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                e.Row.Cells[1].Text = "Total";
+                e.Row.Cells[5].Text = TotRefAmt.ToString();
+                e.Row.Cells[6].Text = totOutstanding.ToString();
+                e.Row.Cells[7].Text = txttotAdj.Text.ToString();
+                e.Row.Cells[8].Text = totremaingbalance.ToString();
+                e.Row.ForeColor = Color.White;
+                e.Row.BackColor.Equals("#055a83");
+            }
+        }
+
+        protected void chkSelectAll_CheckedChanged(object sender, EventArgs e)
+        {
+            bool chkFlag = false;
+            CheckBox chkSelectAll = (CheckBox)gvPendingInvoice.HeaderRow.FindControl("chkSelectAll");
+            if (chkSelectAll.Checked)
+                chkFlag = true;
+            txtSelectedTotalRefAmount.Text = "0.00";
+            foreach (GridViewRow dr in gvPendingInvoice.Rows)
+            {
+                CheckBox chk = (CheckBox)dr.Cells[0].FindControl("chkSelect");
+                chk.Checked = chkFlag;
+
+
+                // if (chk.Checked) txtSelectedTotalRefAmount.Text = (Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim()) + Convert.ToDecimal(dr.Cells[5].Text)).ToString();
+                //  else txtSelectedTotalRefAmount.Text = "0.00";
+                // txtins_amount.Text = txtSelectedTotalRefAmount.Text;
+
+            }
+            txtInvTotal.Text = CaltotalInvAmount().ToString();
+        }
+
+        protected void btnPendingInv_Click(object sender, EventArgs e)
+        {
+            if (ddlvendor.SelectedIndex <= 0)
+            {
+                SysFunc.UserMsg(success_add_item, Color.Red,"Please Select Any Vendor");
+                return;
+            }
+            LoadInvoicesInGrid();
+        }
+
+        public double CaltotalInvAmount()
+        {
+            SumOfSelectedInvoice = 0;
+            foreach (GridViewRow row in gvPendingInvoice.Rows)
+            {
+                CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                if (chkSelect.Checked)
+                {
+                    SumOfSelectedInvoice = SumOfSelectedInvoice + SysFunctions.CustomCDBL(row.Cells[6].Text);
+                    totOutstanding=totOutstanding+ SysFunctions.CustomCDBL(row.Cells[6].Text);
+                }
+              
+            }
+           
+            return SumOfSelectedInvoice;
+        }
+       
+        public void LoadInvoicesInGrid()
+        {
+            Session["PaymentStatus"] = "UNPAID";
+            if (RadioButtonList1.SelectedValue == "P/A Invoice Payment To Vendor")
+            {
+                dtPendingInvoice = SysFunc.PendingPaymentOutgoing( RadioButtonList1.SelectedValue.ToString(), ddlvendor.SelectedValue.ToString(), "UNPAID", ddlpayment_no.SelectedValue.ToString().Trim(), ddlpayment_no.Text, Session["DealerCode"].ToString());
+            }
+            //else
+            //{
+            //    //dtPendingInvoice = SysFuncs.PendingPaymentReceipt(Session["DealerCode"].ToString(), ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", txtReceiptNo.Text, txtInvNo.Text);
+            //    dtPendingInvoice = SysFuncs.PendingPaymentReceipt(ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, Session["DealerCode"].ToString());
+            //}
+            ViewState["DtUnPaid"] = dtPendingInvoice;
+            gvPendingInvoice.DataSource = dtPendingInvoice;
+            gvPendingInvoice.DataBind();
+        }
+
+        protected void chkSelect_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                CheckBox Chk = sender as CheckBox;
+                TableCell tc = Chk.Parent as TableCell;
+                GridViewRow gvr = tc.Parent as GridViewRow;
+                CheckBox chkSelect = (CheckBox)gvr.Cells[0].FindControl("chkSelect");
+
+                //if (chkSelect.Checked) {
+                //    if (SysFunctions.CustomCDBL(gvr.Cells[6].Text) < SysFunctions.CustomCDBL(txtAdvAmount.Text))
+                //    {
+                //        txtSelectedTotalRefAmount.Text = "0";
+                //    }
+                //    else
+                //    {
+                //        txtSelectedTotalRefAmount.Text = (Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim()) + Convert.ToDecimal(gvr.Cells[6].Text) - Convert.ToDecimal(txtAdvAmount.Text.Trim() == "" ? "0" : txtAdvAmount.Text.Trim())).ToString();
+                //   }
+
+                //    }
+                //   else
+                //txtSelectedTotalRefAmount.Text = (Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim()) + Convert.ToDecimal(gvr.Cells[6].Text)).ToString();
+                // txtins_amount.Text = txtSelectedTotalRefAmount.Text;
+                //             txttotAmount.Text = txtSelectedTotalRefAmount.Text;
+                txtInvTotal.Text = CaltotalInvAmount().ToString();
+                txttotOutStanding.Text = CaltotalInvAmount().ToString();
+            }
+            catch (Exception ex)
+            {
+                SysFunc.UserMsg(success_add_item, Color.Red, ex.Message);
+            }
+
+
+        }
+        protected void BtnRemove_Click1(object sender, ImageClickEventArgs e)
+        {
+            if (gvPendingInvoice.Rows.Count == 0)
+            {
+                createPartsDT();
+            }
+            ImageButton btn = sender as ImageButton;
+            TableCell tc = btn.Parent as TableCell;
+            GridViewRow gvr = tc.Parent as GridViewRow;
+            DataTable dt = new DataTable();
+            dt = (DataTable)ViewState["DtUnPaid"];
+
+
+            dt.Rows.RemoveAt(gvr.RowIndex);
+
+            gvPendingInvoice.DataSource = dt;
+            gvPendingInvoice.DataBind();
+         //   txtAdj.Value = "f";
+            ViewState["DtUnPaid"] = dt;
+
+        }
+        private void createPartsDT()
+        {
+            DataSet dsGVMain = new DataSet();
+            dsGVMain.Tables.Add();
+
+            dsGVMain.Tables[0].Columns.Add(new DataColumn("S NO", typeof(string)));
+            dsGVMain.Tables[0].Columns.Add(new DataColumn("RefNo", typeof(string)));
+            dsGVMain.Tables[0].Columns.Add(new DataColumn("JobCardCode", typeof(string)));
+            dsGVMain.Tables[0].Columns.Add(new DataColumn("Ref Date", typeof(string)));
+            dsGVMain.Tables[0].Columns.Add(new DataColumn("Ref Amount", typeof(string)));
+            dsGVMain.Tables[0].Columns.Add(new DataColumn("OutStanding", typeof(string)));
+            dsGVMain.Tables[0].Columns.Add(new DataColumn("Adjustment", typeof(string)));
+            dsGVMain.Tables[0].Columns.Add(new DataColumn("Remaining", typeof(string)));
+
+            //DataRow dr = dsGVMain.Tables[0].NewRow();
+            //dsGVMain.Tables[0].Rows.Add(dr);
+
+            gvPendingInvoice.DataSource = dsGVMain.Tables[0];
+            gvPendingInvoice.DataBind();
+            //Session["dsParts"] = dsGVMain;
+        }
+        protected void lnkInvoiceNo_Click(object sender, EventArgs e)
+        {
+            LinkButton btnlnk = (LinkButton)sender;
+            TableCell tc = btnlnk.Parent as TableCell;
+            GridViewRow gvr = (GridViewRow)tc.Parent as GridViewRow;
+
+            LinkButton lnk = (LinkButton)gvr.FindControl("lnkInvoiceNo");
+            string JobCardCode = gvr.Cells[4].Text;
+            //Load_CombineInvoiceRpt("", lnk.Text, JobCardCode);
+        }
+      
     }
 }

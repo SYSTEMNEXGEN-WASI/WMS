@@ -297,11 +297,12 @@ namespace DXBMS.Modules.Service
         protected void BtnAdd_Click1(object sender, ImageClickEventArgs e)
         {
             TextBox[] textBoxes = { txtLabor };
-            if (ddlJobs.SelectedItem.Text == "--Select--" && ddlTechnicianEmpCode.SelectedIndex == 0)
+            if (ddlJobs.SelectedItem.Text == "--Select--" )
             {
                 SysFunc.UserMsg(lblMsg, Color.Red, "Please select Job first !!");
                 return;
             }
+           // ddlTechnicianEmpCode.SelectedValue = "002";
             if (!MasterValidation(textBoxes)) { return; }
             else
             {
@@ -558,7 +559,7 @@ namespace DXBMS.Modules.Service
             int GVParts = gvJobCardParts.Rows.Count;
             int GVLub = gvLubParts.Rows.Count;        
 
-                if (GVJobCard > 0 | GVParts > 0 | GVLub > 0)
+                if (GVJobCard > 0 )
                 {
                     CustomerEsTimate_Entry();
                     string[] Columns = new string[] { "ScheduleCode", "ProdCode", "BrandCode" };

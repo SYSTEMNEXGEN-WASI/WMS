@@ -940,6 +940,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                     {
                         ObjTrans.CommittTransaction(ref Trans);
                         SysFunc.UserMsg(LbErr, Color.Green, "Saved Successfully Sales Invoice No. " + txtCounterNo);
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + txtCounterNo + "')", true);
                         Session["dsParts"] = null;
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);
                     }
@@ -1240,7 +1241,8 @@ namespace DXBMS.Modules.SpareParts.Forms
         private bool UpdateGSTInvoiceNO(SqlTransaction Trans)
         {
             bool Check = false;
-            
+            if (txtGSTInvoice.Text == "")
+            {
                 txtGSTInvoice.Text = SysFunc.AutoGen("UniqueSalesTaxInvoice", "SalesTaxInvNo", txtCounterDate.Text);
                 //txtGSTInvoice.Text = SysFunc.AutoGen("GSTInvoice", "GSTInvNo", txtCounterDate.Text);
 
@@ -1249,7 +1251,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                                     new SqlParameter("@GSTInvNo",SqlDbType.Char),
                                     new SqlParameter("@GSTInvDate",SqlDbType.DateTime),
                                     new SqlParameter("@RefNo",SqlDbType.Char)
-                                    
+
                                    };
 
                 param[0].Value = Session["DealerCode"].ToString();
@@ -1287,6 +1289,13 @@ namespace DXBMS.Modules.SpareParts.Forms
                         Check = false;
                     }
                 }
+
+            }
+            else
+            {
+                Check = true;
+            }
+               
                 return Check;
             
         }
@@ -1452,6 +1461,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                     {
                         ObjTrans.CommittTransaction(ref Trans);
                         SysFunc.UserMsg(LbErr, Color.Green, "Sale Inv No. "+ddlCounterNo.SelectedValue.ToString()+" Updated Successfuly ");
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + ddlCounterNo.SelectedValue.ToString() + "')", true);
                     }
                 }
             }
@@ -1846,6 +1856,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                 stream.CopyTo(outputFileStream);
             }
             stream.Dispose(); stream.Close();
+            RD.Dispose(); RD.Close();
             string URL = "../../../Download/PrintReport.aspx";
 
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";

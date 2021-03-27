@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DXBMS.Data;
 using CrystalDecisions.CrystalReports.Engine;
 using System.Data.SqlClient;
 using System.Data;
-using DXBMS;
-using CrystalDecisions.Shared;
 using System.IO;
 using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
-using System.Diagnostics;
 using System.Drawing;
 
 namespace DXBMS.Modules.SpareParts.SpareReports.Critaria
@@ -177,9 +168,10 @@ namespace DXBMS.Modules.SpareParts.SpareReports.Critaria
 
             //}
             //rder.Close();
-          
-            
 
+
+            RD.DataDefinition.FormulaFields["FromDate"].Text = "'" + sysFunc.SaveDate(txtFromDate.Text) + "'";
+            RD.DataDefinition.FormulaFields["ToDate"].Text = "'" + sysFunc.SaveDate(txtToDate.Text) + "'";
             RD.DataDefinition.FormulaFields["DealerDesc"].Text = "'" + Session["DealerDesc"].ToString() + "'";
             RD.DataDefinition.FormulaFields["DealerAddress"].Text = "'" + Session["DealerAddress"].ToString() + "'";
             RD.DataDefinition.FormulaFields["DealerPhone"].Text = "'" + Session["DealerPhone"].ToString() + "'";
@@ -214,7 +206,7 @@ namespace DXBMS.Modules.SpareParts.SpareReports.Critaria
             stream.Dispose(); stream.Close();
             string URL = "../../../../Download/PrintReport.aspx";
 
-            string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
+            string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1500,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
 
             ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
 

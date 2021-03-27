@@ -28,6 +28,16 @@
                                     </asp:RadioButtonList>
                                 </td>
                             </tr>
+                            <tr>
+                             <td align="right">Employee of</td>
+                             <td>
+                             <asp:DropDownList ID="ddlAdvisorCode" runat="server" class="WidthAt764" Width="100%" TabIndex="8">
+                            </asp:DropDownList>
+                            <ajaxToolkit:ListSearchExtender ID="ListSearchExtender7" runat="server" TargetControlID="ddlAdvisorCode"
+                                PromptText="" QueryPattern="Contains">
+                            </ajaxToolkit:ListSearchExtender>
+                             </td>
+                            </tr>
                 <tr> 
                     <td width="50%" align="right">
                     From Date

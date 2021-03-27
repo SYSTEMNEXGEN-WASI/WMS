@@ -180,6 +180,7 @@ namespace DXBMS.Modules.Service.ServiceReports
                 stream.CopyTo(outputFileStream);
             }
             stream.Dispose(); stream.Close();
+            rpt.Dispose();rpt.Close();
             Session["RDService"] = rpt;
             string embed = "<object data=\"{0}\" type=\"application/pdf\" width=\"1000px\" height=\"800px\">";
             embed += "If you are unable to view file, you can download from <a href = \"{0}\">here</a>";
@@ -202,7 +203,7 @@ namespace DXBMS.Modules.Service.ServiceReports
             //crReportDocument.SetDatabaseLogon("sa", "100372", "AZHARDELL", "BMS",true);
 
             crReportDocument.ExportToDisk(ExportFormatType.PortableDocFormat, File);
-
+            crReportDocument.Dispose();
             string URL;
             URL = "../../../../Download/OpenPdf.aspx?FileName=" + FileName;
 
@@ -258,5 +259,6 @@ namespace DXBMS.Modules.Service.ServiceReports
             rpt.ExportToHttpResponse(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat, Response, true, Request.QueryString["ReportID"].ToString());
 
         }
+        
     }
 }

@@ -292,6 +292,15 @@ namespace DXBMS.Modules.Service.Forms {
         protected global::System.Web.UI.WebControls.Button btnAutoAdj;
         
         /// <summary>
+        /// txtAdvanceBalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdvanceBalance;
+        
+        /// <summary>
         /// TabContainer2 control.
         /// </summary>
         /// <remarks>

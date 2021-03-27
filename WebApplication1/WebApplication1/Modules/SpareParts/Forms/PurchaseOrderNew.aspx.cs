@@ -541,6 +541,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                         createGrid();
                         lblMessage.ForeColor = System.Drawing.Color.Green;
                         lblMessage.Text = "New Data Inserted." + max;
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + max + "')", true);
                         lOADddl();
 
                         gv_purchaseOrder.DataSource = null;
@@ -1150,6 +1151,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                 stream.CopyTo(outputFileStream);
             }
             stream.Dispose(); stream.Close();
+            RD.Dispose(); RD.Close();
             string URL = "../../../Download/PrintReport.aspx";
 
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";

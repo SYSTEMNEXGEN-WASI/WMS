@@ -463,6 +463,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                     {
                         ObjTrans.CommittTransaction(ref Trans);
                         SysFunc.UserMsg(LbErr, Color.Green, "Saved Successfully Sales Invoice No. " + strPurInvNo);
+                        ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + strPurInvNo + "')", true);
                         btnClear_Click(BtnSave, EventArgs.Empty);
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);
                     }

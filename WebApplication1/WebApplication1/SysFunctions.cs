@@ -2456,8 +2456,10 @@ namespace DXBMS
                         " Where DealerCode = '" + DealerCode + "' " +
                         " AND CusCode = '" + CustomerCode + "' " +
                         " AND DelFlag = 'N' " +
-                        " AND Round(InvoiceAmount,2) - Round(TotReceipt,2) > 1 " +
-                        " AND PostFlag = 'Y'  ";
+                        " AND Round(InvoiceAmount,2) - Round(isnull(TotReceipt,0),2) > 1 " +
+                        " AND PostFlag = 'Y'  "
+                        
+                        ;
                 }
                 else if (PaymentReceiptType == "Insurance")
                 {
@@ -2534,6 +2536,38 @@ namespace DXBMS
                         "AND PRD.ReceiptNo = '" + ReceiptNo + "'";
 }
                 }
+
+            DataSet ds = new DataSet();
+            ds = SqlHelper.ExecuteDataset(GlobalVar.mDataConnection, CommandType.Text, sQuery);
+
+            if (ds.Tables[0].Rows.Count == 0) ds.Tables[0].Rows.Add(ds.Tables[0].NewRow());
+            return ds.Tables[0];
+        }
+        public DataTable PendingPaymentOutgoing(string PaymentReceiptType, string CustomerCode, string PaymentStatus, string ReceiptNo, string InvNo, String DealerCode)
+        {
+            string sQuery="";
+            if (PaymentStatus == "UNPAID")
+            {
+                if(PaymentReceiptType == "P/A Invoice Payment To Vendor")
+                {
+                    sQuery = "Select '' [S NO],PurInvNo [RefNo] " +
+",GRNNo as JobCardCode,CONVERT(VARCHAR(10), PurInvDate, 105)[Ref Date] " +
+",round((TotalIncTax - TotPayment), 2) OutStanding,round(TotalIncTax, 2)[Ref Amount] " +
+",'' Adjustment,'' Remaining " +
+"from PurInvMaster " +
+"Where DealerCode = '"+DealerCode+"' " +
+"AND VendorCode = '"+CustomerCode+"' " +
+"AND Round(TotalIncTax,2) -Round(isNULL(TotPayment, 0), 2) > 1  AND DelFlag = 'N' Order by PurInvDate Asc";
+                }
+               
+
+
+
+            }
+            else
+            {
+                
+            }
 
             DataSet ds = new DataSet();
             ds = SqlHelper.ExecuteDataset(GlobalVar.mDataConnection, CommandType.Text, sQuery);

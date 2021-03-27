@@ -939,7 +939,7 @@
                                         <asp:GridView ID="InsCusGVD" runat="server" AutoGenerateColumns="False" OnRowDataBound="InsCusGVD_RowDataBound"
                                             ShowHeaderWhenEmpty="True" Width="100%">
                                             <Columns>
-                                                <asp:BoundField DataField="ItemCode" HeaderText="ItemCode" Visible="false" />
+                                                <asp:BoundField DataField="ItemCode" HeaderText="ItemCode" Visible="true" />
                                                 <asp:BoundField DataField="PartNo" HeaderText="PartNo" />
                                                 <asp:BoundField DataField="ItemDesc" HeaderText="ItemDesc" />
                                                 <asp:BoundField DataField="Source" HeaderText="Source" />
@@ -949,11 +949,11 @@
                                                 <asp:BoundField DataField="Type" HeaderText="Type" />
                                                 <asp:BoundField DataField="Dep" HeaderText="Dep %" Visible="True" />
                                                 <asp:BoundField DataField="DepAmount" HeaderText="Tax Payable Amount" />
-                                                <asp:BoundField DataField="GSTPerc" HeaderText="GST Perc" Visible="false" />
+                                                <asp:BoundField DataField="GSTPerc" HeaderText="GST Perc" Visible="true" />
                                                 <asp:BoundField DataField="GSTAmount" HeaderText="GST Amount" />
-                                                <asp:BoundField DataField="FGSTPerc" HeaderText="FGST Perc" Visible="false" />
+                                                <asp:BoundField DataField="FGSTPerc" HeaderText="FGST Perc" Visible="true" />
                                                 <asp:BoundField DataField="FGSTAmount" HeaderText="FGST Amount" />
-                                                <asp:BoundField DataField="ExTaxPerc" HeaderText="Ex Tax Perc" Visible="false" />
+                                                <asp:BoundField DataField="ExTaxPerc" HeaderText="Ex Tax Perc" Visible="true" />
                                                 <asp:BoundField DataField="ExTaxAmount" HeaderText="Ex Tax Amount" />
                                             </Columns>
                                             <AlternatingRowStyle BackColor="#CCCCCC" />

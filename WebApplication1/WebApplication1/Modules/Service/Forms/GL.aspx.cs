@@ -181,6 +181,7 @@ namespace DXBMS.Modules.Service.Forms
                     Session["VoucherNo"] = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     txtVoucherDate.Enabled = false;
+                    RBLTransType.Visible = false;
                 }
 
                 ds = new DataSet();
@@ -289,6 +290,7 @@ namespace DXBMS.Modules.Service.Forms
                     Session["VoucherNo"] = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     txtVoucherDate.Enabled = false;
+                    RBLTransType.Visible = false;
                 }
 
                 ds = new DataSet();
@@ -597,8 +599,8 @@ namespace DXBMS.Modules.Service.Forms
                     RBLTransType_SelectedIndexChanged(null, null);
                 }
                 string Naration = "Payment No : " + ds0.Tables[0].Rows[0]["PaymentNo"].ToString().Trim() + " | " +
-                                 // "Order No : " + ds0.Tables[0].Rows[0]["OrderNo"].ToString().Trim() + " | " +
-                                  "Vendor : " + ds0.Tables[0].Rows[0]["VendorDesc"].ToString().Trim();
+                                  "Vendor : " + ds0.Tables[0].Rows[0]["VendorDesc"].ToString().Trim() + " | " +
+                                  "Purchase No : " + ds0.Tables[0].Rows[0]["OrderNo"].ToString().Trim();
 
                 ViewState["RecPay"] = ds0.Tables[0].Rows[0]["VendorDesc"].ToString().Trim();
 
@@ -609,6 +611,7 @@ namespace DXBMS.Modules.Service.Forms
                     Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     txtVoucherDate.Enabled = false;
+                    RBLTransType.Visible = false;
                 }
 
                 ds = new DataSet();
@@ -1298,6 +1301,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtChqNo.Text = ds0.Tables[0].Rows[0]["InsNo"].ToString();
                     txtChqDate.Text = ds0.Tables[0].Rows[0]["InsDate"].ToString();
                     RBLTransType.SelectedValue = "BR";
+                    
                     RBLTransType_SelectedIndexChanged(null, null);
                 }
                else { 
@@ -1308,8 +1312,10 @@ namespace DXBMS.Modules.Service.Forms
                 }
 
                 string Naration = "Receipt : " + ds0.Tables[0].Rows[0]["ReceiptNo"].ToString().Trim() + " | " +
-                                  //"Invoice : " + ds.Tables[0].Rows[0]["InvoiceNo"].ToString().Trim() + " | " +
-                                  "Customer : " + ds0.Tables[0].Rows[0]["CusDesc"].ToString().Trim();
+                                  "Customer : " + ds0.Tables[0].Rows[0]["CusDesc"].ToString().Trim() + " | " +
+                                  "Trans Type : " + ds0.Tables[0].Rows[0]["TransType"].ToString().Trim() + " | " +
+                                   "Inv Type : " + ds0.Tables[0].Rows[0]["InvoiceType"].ToString().Trim() + " | " +
+                                  "Invoice No : " + ds0.Tables[0].Rows[0]["InvoicesNo"].ToString().Trim();
 
                 ViewState["RecPay"] = ds0.Tables[0].Rows[0]["CusDesc"].ToString().Trim();
 
@@ -1320,6 +1326,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Enabled = false;
+                    RBLTransType.Visible = false;
                 }
 
                 ds = new DataSet();
@@ -1509,6 +1516,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Enabled = false;
+                    RBLTransType.Visible = false;
                 }
 
                 ds = new DataSet();
@@ -1588,6 +1596,7 @@ namespace DXBMS.Modules.Service.Forms
                     txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
                     Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
                     txtVoucherDate.Enabled = false;
+                    RBLTransType.Visible = false;
                 }
 
                 ds = new DataSet();

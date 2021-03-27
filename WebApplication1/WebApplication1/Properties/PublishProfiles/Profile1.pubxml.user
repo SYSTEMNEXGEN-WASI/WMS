@@ -6868,7 +6868,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/04/2019 13:21:52</publishTime>
     </File>
     <File Include="bin/DXBMS.dll">
-      <publishTime>01/08/2021 16:44:50</publishTime>
+      <publishTime>03/26/2021 11:48:53</publishTime>
     </File>
     <File Include="bin/EnvDTE.dll">
       <publishTime>10/22/2009 20:51:18</publishTime>
@@ -6889,10 +6889,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/30/2015 12:09:22</publishTime>
     </File>
     <File Include="bin/Modules/CustomerExperience/Reports/PSFReport.cs">
-      <publishTime>03/01/2020 19:46:04</publishTime>
+      <publishTime>02/12/2021 15:23:16</publishTime>
     </File>
     <File Include="bin/Modules/CustomerExperience/Reports/PSFReport.rpt">
-      <publishTime>03/01/2020 19:46:04</publishTime>
+      <publishTime>02/12/2021 15:23:15</publishTime>
     </File>
     <File Include="bin/Modules/Reports/rptStockLedgerNew.cs">
       <publishTime>10/11/2018 04:45:10</publishTime>
@@ -6973,10 +6973,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/21/2020 10:19:16</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptAfterSaleInvoice.cs">
-      <publishTime>07/13/2020 23:33:13</publishTime>
+      <publishTime>02/02/2021 17:53:14</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptAfterSaleInvoice.rpt">
-      <publishTime>07/13/2020 23:33:13</publishTime>
+      <publishTime>02/02/2021 17:53:13</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptAging.cs">
       <publishTime>11/02/2020 14:13:37</publishTime>
@@ -7069,10 +7069,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/11/2019 10:51:16</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptInsAging.cs">
-      <publishTime>12/24/2020 13:07:09</publishTime>
+      <publishTime>03/22/2021 15:04:22</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptInsAging.rpt">
-      <publishTime>12/24/2020 13:07:09</publishTime>
+      <publishTime>03/22/2021 15:04:21</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptJobCard.cs">
       <publishTime>04/09/2020 15:50:06</publishTime>
@@ -7084,7 +7084,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/01/2021 12:17:23</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptJobCardDateWise.rpt">
-      <publishTime>01/01/2021 17:24:23</publishTime>
+      <publishTime>01/28/2021 18:51:10</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptJobCardDateWiseOld.cs">
       <publishTime>10/11/2018 04:45:59</publishTime>
@@ -7093,7 +7093,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/25/2017 20:53:19</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptJobCardDetail.cs">
-      <publishTime>06/03/2020 14:00:19</publishTime>
+      <publishTime>01/22/2021 16:36:52</publishTime>
     </File>
     <File Include="bin/Modules/Service/ServiceReports/rptJobCardDetail.rpt">
       <publishTime>05/11/2019 10:50:22</publishTime>
@@ -7195,10 +7195,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/19/2018 14:39:45</publishTime>
     </File>
     <File Include="bin/Modules/SpareParts/SpareReports/partyLedgerReport.cs">
-      <publishTime>12/10/2020 11:22:22</publishTime>
+      <publishTime>03/17/2021 17:43:45</publishTime>
     </File>
     <File Include="bin/Modules/SpareParts/SpareReports/partyLedgerReport.rpt">
-      <publishTime>12/10/2020 11:22:21</publishTime>
+      <publishTime>03/17/2021 17:43:44</publishTime>
     </File>
     <File Include="bin/Modules/SpareParts/SpareReports/partyLedgerReportIns.cs">
       <publishTime>12/10/2020 11:23:10</publishTime>
@@ -7260,11 +7260,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Modules/SpareParts/SpareReports/rptGRNPrint.rpt">
       <publishTime>05/04/2020 13:49:50</publishTime>
     </File>
+    <File Include="bin/Modules/SpareParts/SpareReports/rptInvoiceRevenue.rpt">
+      <publishTime>03/15/2021 12:34:45</publishTime>
+    </File>
     <File Include="bin/Modules/SpareParts/SpareReports/rptInvoices.cs">
-      <publishTime>03/01/2020 21:25:12</publishTime>
+      <publishTime>01/28/2021 18:43:39</publishTime>
     </File>
     <File Include="bin/Modules/SpareParts/SpareReports/rptInvoices.rpt">
-      <publishTime>03/01/2020 21:25:11</publishTime>
+      <publishTime>01/28/2021 18:43:38</publishTime>
     </File>
     <File Include="bin/Modules/SpareParts/SpareReports/rptItemStockLedger.cs">
       <publishTime>03/01/2020 21:42:22</publishTime>
@@ -8011,7 +8014,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/11/2018 03:08:12</publishTime>
     </File>
     <File Include="Modules/CustomerExperience/Reports/PSFReport.rpt">
-      <publishTime>03/01/2020 19:46:04</publishTime>
+      <publishTime>02/12/2021 15:23:15</publishTime>
     </File>
     <File Include="Modules/Reports/rptStockLedgerNew.rpt">
       <publishTime>01/10/2017 22:58:17</publishTime>
@@ -8038,13 +8041,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/15/2020 14:33:32</publishTime>
     </File>
     <File Include="Modules/Service/Forms/CustomerInvoice.aspx">
-      <publishTime>12/30/2020 11:32:18</publishTime>
+      <publishTime>02/13/2021 16:34:38</publishTime>
     </File>
     <File Include="Modules/Service/Forms/CustomerInvoiceInsurance.aspx">
       <publishTime>06/06/2020 03:42:18</publishTime>
     </File>
     <File Include="Modules/Service/Forms/CustomerPaymentRec.aspx">
-      <publishTime>12/19/2020 14:32:30</publishTime>
+      <publishTime>03/20/2021 10:13:48</publishTime>
     </File>
     <File Include="Modules/Service/Forms/CustomerVehicle.aspx">
       <publishTime>08/29/2020 18:14:33</publishTime>
@@ -8080,13 +8083,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/04/2020 16:49:16</publishTime>
     </File>
     <File Include="Modules/Service/Forms/JobCardNew.aspx">
-      <publishTime>12/30/2020 10:25:43</publishTime>
+      <publishTime>03/22/2021 17:40:04</publishTime>
     </File>
     <File Include="Modules/Service/Forms/JV.aspx">
       <publishTime>10/09/2020 14:57:51</publishTime>
     </File>
     <File Include="Modules/Service/Forms/Schedule.aspx">
-      <publishTime>12/14/2020 16:03:23</publishTime>
+      <publishTime>03/03/2021 12:57:03</publishTime>
     </File>
     <File Include="Modules/Service/Forms/UpdateLossNo.aspx">
       <publishTime>11/04/2020 12:18:16</publishTime>
@@ -8124,11 +8127,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Modules/Service/ServiceReports/Critaria/InsAging.aspx">
       <publishTime>08/17/2020 02:22:06</publishTime>
     </File>
+    <File Include="Modules/Service/ServiceReports/Critaria/InvoiceDetailRevenue.aspx">
+      <publishTime>03/13/2021 12:00:20</publishTime>
+    </File>
     <File Include="Modules/Service/ServiceReports/Critaria/JobCardHistoryReport.aspx">
       <publishTime>07/13/2020 03:39:25</publishTime>
     </File>
     <File Include="Modules/Service/ServiceReports/Critaria/NewJobCardDetailReport.aspx">
-      <publishTime>07/13/2018 06:13:40</publishTime>
+      <publishTime>01/19/2021 17:15:09</publishTime>
     </File>
     <File Include="Modules/Service/ServiceReports/Critaria/UtilityAuditReport.aspx">
       <publishTime>04/02/2020 10:55:02</publishTime>
@@ -8167,7 +8173,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/21/2020 10:19:16</publishTime>
     </File>
     <File Include="Modules/Service/ServiceReports/rptAfterSaleInvoice.rpt">
-      <publishTime>07/13/2020 23:33:13</publishTime>
+      <publishTime>02/02/2021 17:53:13</publishTime>
     </File>
     <File Include="Modules/Service/ServiceReports/rptAging.rpt">
       <publishTime>11/02/2020 14:13:36</publishTime>
@@ -8215,13 +8221,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/11/2019 10:51:16</publishTime>
     </File>
     <File Include="Modules/Service/ServiceReports/rptInsAging.rpt">
-      <publishTime>12/24/2020 13:07:09</publishTime>
+      <publishTime>03/22/2021 15:04:21</publishTime>
     </File>
     <File Include="Modules/Service/ServiceReports/rptJobCard.rpt">
       <publishTime>12/30/2020 11:19:48</publishTime>
     </File>
     <File Include="Modules/Service/ServiceReports/rptJobCardDateWise.rpt">
-      <publishTime>01/01/2021 17:24:23</publishTime>
+      <publishTime>01/28/2021 18:51:10</publishTime>
     </File>
     <File Include="Modules/Service/ServiceReports/rptJobCardDateWiseOld.rpt">
       <publishTime>03/25/2017 20:53:19</publishTime>
@@ -8302,7 +8308,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/09/2020 11:16:05</publishTime>
     </File>
     <File Include="Modules/Setup/employeemaster.aspx">
-      <publishTime>10/29/2020 02:36:24</publishTime>
+      <publishTime>01/23/2021 10:42:58</publishTime>
     </File>
     <File Include="Modules/Setup/FeedBackMaster.aspx">
       <publishTime>08/10/2018 04:56:53</publishTime>
@@ -8371,7 +8377,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/04/2020 12:28:26</publishTime>
     </File>
     <File Include="Modules/SpareParts/Forms/outgoingpayments.aspx">
-      <publishTime>11/03/2020 02:35:30</publishTime>
+      <publishTime>02/13/2021 14:24:24</publishTime>
     </File>
     <File Include="Modules/SpareParts/Forms/PartLocationMaster.aspx">
       <publishTime>04/15/2020 17:01:43</publishTime>
@@ -8443,7 +8449,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/19/2018 14:39:45</publishTime>
     </File>
     <File Include="Modules/SpareParts/SpareReports/partyLedgerReport.rpt">
-      <publishTime>12/10/2020 11:22:21</publishTime>
+      <publishTime>03/17/2021 17:43:44</publishTime>
     </File>
     <File Include="Modules/SpareParts/SpareReports/partyLedgerReportIns.rpt">
       <publishTime>12/10/2020 11:23:09</publishTime>
@@ -8475,8 +8481,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Modules/SpareParts/SpareReports/rptGRNPrint.rpt">
       <publishTime>05/04/2020 13:49:50</publishTime>
     </File>
+    <File Include="Modules/SpareParts/SpareReports/rptInvoiceRevenue.rpt">
+      <publishTime>03/15/2021 12:34:45</publishTime>
+    </File>
     <File Include="Modules/SpareParts/SpareReports/rptInvoices.rpt">
-      <publishTime>03/01/2020 21:25:11</publishTime>
+      <publishTime>01/28/2021 18:43:38</publishTime>
     </File>
     <File Include="Modules/SpareParts/SpareReports/rptItemStockLedger.rpt">
       <publishTime>03/01/2020 21:42:22</publishTime>
@@ -8521,7 +8530,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2020 16:19:57</publishTime>
     </File>
     <File Include="Root.master">
-      <publishTime>12/21/2020 10:51:35</publishTime>
+      <publishTime>03/13/2021 12:37:44</publishTime>
     </File>
     <File Include="Test.aspx">
       <publishTime>06/25/2020 03:17:55</publishTime>
@@ -8539,7 +8548,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/20/2017 07:09:35</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/21/2020 10:36:38</publishTime>
+      <publishTime>03/26/2021 10:57:06</publishTime>
     </File>
     <File Include="Web1.config">
       <publishTime>07/14/2018 02:33:13</publishTime>

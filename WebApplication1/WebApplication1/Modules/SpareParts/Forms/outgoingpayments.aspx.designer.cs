@@ -184,6 +184,33 @@ namespace DXBMS.Modules.SpareParts.Forms {
         protected global::System.Web.UI.WebControls.TextBox txttotOutStanding;
         
         /// <summary>
+        /// txttotAdj control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txttotAdj;
+        
+        /// <summary>
+        /// txtInvTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtInvTotal;
+        
+        /// <summary>
+        /// txtAdj control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField txtAdj;
+        
+        /// <summary>
         /// txtVoucherNo control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,15 @@ namespace DXBMS.Modules.SpareParts.Forms {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtVoucherNo;
+        
+        /// <summary>
+        /// btnPendingInv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPendingInv;
         
         /// <summary>
         /// btn_fifo control.
@@ -202,6 +238,15 @@ namespace DXBMS.Modules.SpareParts.Forms {
         protected global::System.Web.UI.WebControls.Button btn_fifo;
         
         /// <summary>
+        /// txtSelectedTotalRefAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSelectedTotalRefAmount;
+        
+        /// <summary>
         /// TabContainer2 control.
         /// </summary>
         /// <remarks>
@@ -211,67 +256,22 @@ namespace DXBMS.Modules.SpareParts.Forms {
         protected global::AjaxControlToolkit.TabContainer TabContainer2;
         
         /// <summary>
-        /// TabPanel4 control.
+        /// TabPanel5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.TabPanel TabPanel4;
+        protected global::AjaxControlToolkit.TabPanel TabPanel5;
         
         /// <summary>
-        /// ddlinvoice_no control.
+        /// gvPendingInvoice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlinvoice_no;
-        
-        /// <summary>
-        /// ListSearchExtender8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ListSearchExtender ListSearchExtender8;
-        
-        /// <summary>
-        /// txttotal_netamt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttotal_netamt;
-        
-        /// <summary>
-        /// txtadd_adjamount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtadd_adjamount;
-        
-        /// <summary>
-        /// Ibadd_invoice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton Ibadd_invoice;
-        
-        /// <summary>
-        /// GridView_Invoice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView_Invoice;
+        protected global::System.Web.UI.WebControls.GridView gvPendingInvoice;
         
         /// <summary>
         /// TabPanel1 control.

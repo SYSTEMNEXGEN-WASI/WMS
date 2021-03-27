@@ -1952,6 +1952,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                 stream.CopyTo(outputFileStream);
             }
             stream.Dispose(); stream.Close();
+            RD.Dispose(); RD.Close();
             string URL = "../../../Download/PrintReport.aspx";
 
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";

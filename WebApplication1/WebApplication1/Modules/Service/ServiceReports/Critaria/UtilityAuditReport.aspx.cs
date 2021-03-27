@@ -194,7 +194,7 @@ namespace DXBMS.Modules.Service.ServiceReports.Critaria
                 {
                     RD.DataDefinition.FormulaFields["ReportTitle"].Text = "\"" + "Customer Invoice Report" + "\"";
                 }
-                else if (ddlUtilityAudit.SelectedValue == "CustomerInvoice")
+                else if (ddlUtilityAudit.SelectedValue == "PayRec")
                 {
                     RD.DataDefinition.FormulaFields["ReportTitle"].Text = "\"" + "Payment Receipt Report" + "\"";
                 }

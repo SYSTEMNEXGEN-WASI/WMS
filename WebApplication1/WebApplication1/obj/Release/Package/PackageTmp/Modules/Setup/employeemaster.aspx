@@ -227,7 +227,7 @@
                 <tr>
                     <td>Leaving Date</td>
                     <td>
-                        <asp:TextBox ID="txtleaving_date" ReadOnly="true" runat="server" Style="background-image: url(../../../Images/Calendar_16x16.png); background-repeat: no-repeat; padding-left: 25px;"
+                        <asp:TextBox ID="txtleaving_date"  runat="server"   Style="background-image: url(../../../Images/Calendar_16x16.png); background-repeat: no-repeat; padding-left: 25px;"
                         Width="125px" placeholder="dd/mm/yyyy"></asp:TextBox>
                        <asp:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="txtleaving_date" Format="dd-MM-yyyy" ></asp:CalendarExtender>
                     

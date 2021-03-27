@@ -627,6 +627,7 @@ namespace DXBMS.Modules.SpareParts.Forms
                     RemoveQTYFromPO(newDCNo, "+");
                     lblMessage.ForeColor = Color.Green;
                     lblMessage.Text = newDCNo + " has been saved";
+                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + newDCNo + "')", true);
                     ClearAll();
                     lOADddl();
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);

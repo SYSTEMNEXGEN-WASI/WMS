@@ -1202,6 +1202,7 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptPaymentRecPrintIns.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardIns.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPaymentRefund.rpt
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoiceRevenue.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.rpt
@@ -1342,4 +1343,3 @@ E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.GenerateRes
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll.licenses
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.pdb
-E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache

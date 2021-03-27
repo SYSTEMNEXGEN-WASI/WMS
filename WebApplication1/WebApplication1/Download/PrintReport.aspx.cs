@@ -11,7 +11,7 @@ namespace DXBMS.Download
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string embed = "<object data=\"{0}\" type=\"application/pdf\" width=\"1000px\" height=\"800px\">";
+            string embed = "<object data=\"{0}\" type=\"application/pdf\" width=\"1100px\" height=\"800px\">";
             embed += "If you are unable to view file, you can download from <a href = \"{0}\">here</a>";
             embed += " or download <a target = \"_blank\" href = \"http://get.adobe.com/reader/\">Adobe PDF Reader</a> to view the file.";
             embed += "</object>";

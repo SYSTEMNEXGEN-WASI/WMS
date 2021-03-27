@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
-
+using System.Net;
 namespace DXBMS
 {
     public class GlobalVar
     {
+
         static string _mDataConnection;
         public static string mDataConnection
         {
@@ -43,7 +44,8 @@ namespace DXBMS
             }
             set
             {
-                _mUserIPAddress = value;
+                //Dns.GetHostByName(Dns.GetHostName()).AddressList[0].ToString();
+                _mUserIPAddress = HttpContext.Current == null ? "" : HttpContext.Current.Request.UserHostAddress.ToString();
             }
         }
 

@@ -962,6 +962,7 @@ namespace DXBMS.Modules.Service
 
                         if (ObjTrans.CommittTransaction(ref Trans) == true)
                         {
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved Successfully: " + CustomerEstimateCode + "')", true);
                             IsSaved = true;
                             clearAll();
 
@@ -1002,6 +1003,7 @@ namespace DXBMS.Modules.Service
 
                         if (ObjTrans.CommittTransaction(ref Trans) == true)
                         {
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Updated Successfully: " + CustomerEstimateCode + "')", true);
                             clearAll();
                             IsSaved = true;
 

@@ -76,6 +76,18 @@ namespace DXBMS.Modules.Reports
                     imgLookup.Visible = false;
                     txtCustomerDesc.Visible = false;
                 }
+                else if (ViewState["SparePart"].ToString() == "IR")
+                {
+                    if (!sec.UserRight("2590", "001"))
+                    {
+                        Response.Redirect("~/Test.aspx");
+                    }
+                    lblHeading.Text = "Invoices Revenue Report";
+                    lblCustomer.Visible = false;
+                    txtCustomer.Visible = false;
+                    imgLookup.Visible = false;
+                    txtCustomerDesc.Visible = false;
+                }
                 else if (ViewState["SparePart"].ToString() == "DS")
                 {
                     if (!sec.UserRight("2572", "001"))
@@ -229,6 +241,16 @@ namespace DXBMS.Modules.Reports
                 sql = "exec sp2W_Spare_InvoiceDetail '" + Session["DealerCode"].ToString() + "','" + FDate + "','" + TDate + "'";
                 RD.Load(Server.MapPath("../rptInvoices.rpt"));
                 RD.DataDefinition.FormulaFields["ReportTitle"].Text = "\"" + "Invoices Detail Report" + "\"";
+            }
+            else if (ViewState["SparePart"].ToString() == "IR")
+            {
+                if (!sec.UserRight("2590", "006"))
+                {
+                    Response.Redirect("~/Test.aspx");
+                }
+                sql = "exec sp2W_Revenue_InvoiceDetail '" + Session["DealerCode"].ToString() + "','" + FDate + "','" + TDate + "'";
+                RD.Load(Server.MapPath("../rptInvoiceRevenue.rpt"));
+                RD.DataDefinition.FormulaFields["ReportTitle"].Text = "\"" + "Invoices Revenue Detail Report" + "\"";
             }
             else if (ViewState["SparePart"].ToString() == "DS")
             {
