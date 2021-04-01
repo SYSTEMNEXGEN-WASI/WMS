@@ -6759,7 +6759,9 @@ namespace DXBMS.Modules.Service
             //{
             //    ddlJobCardCode.SelectedValue = ViewState["JobCardCode"].ToString();
             //}
+          
             ViewState["JobCardCode"] = txtJobCardCode.Text.Trim();
+            txtExtno.Text = string.Empty;
             LoadMasterData();
             ShowHistory();
         }

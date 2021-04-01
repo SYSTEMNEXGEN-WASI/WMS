@@ -6,6 +6,7 @@ using Microsoft.ApplicationBlocks.Data;
 using System.Data;
 using System.Drawing;
 using CrystalDecisions.CrystalReports.Engine;
+using System.IO;
 
 namespace DXBMS.Modules.Service.Forms
 {
@@ -992,14 +993,30 @@ namespace DXBMS.Modules.Service.Forms
 
             // convert and show
             string FilePath = Server.MapPath("~") + "\\Download\\";
-            string FileName = "BillingReport" + this.Session["DealerCode"].ToString() + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
+            string FileName = "Report.pdf";
             string File = FilePath + FileName;
-            Session["RD"] = RD;
-            //RD.ExportToDisk(ExportFormatType.PortableDocFormat, File);
+
+
+
+
+            Stream stream = RD.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            DirectoryInfo info = new DirectoryInfo(FilePath);
+            if (!info.Exists)
+            {
+                info.Create();
+            }
+
+            string path = Path.Combine(FilePath, FileName);
+            using (FileStream outputFileStream = new FileStream(path, FileMode.Create))
+            {
+                stream.CopyTo(outputFileStream);
+            }
             RD.Dispose(); RD.Close();
-            string URL;
-            URL = "../../../../Download/rptViewerService.aspx?FileName=" + FileName;
-            string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1500,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
+            string URL = "../../../Download/PrintReport.aspx";
+
+            string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
+
             ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
 
         }

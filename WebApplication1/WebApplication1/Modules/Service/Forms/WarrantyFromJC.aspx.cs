@@ -1086,6 +1086,8 @@ namespace DXBMS.Modules.Service.Forms
             {
                 Response.Redirect("~/Test.aspx");
             }
+            double PST = SysFunctions.CustomCDBL(txtLabPST.Text.Replace("&nbsp;", "").Trim() == "" ? "0" : txtLabPST.Text.Replace("&nbsp;", "").Trim());
+            double GST = SysFunctions.CustomCDBL(txtGSTAmt.Text.Replace("&nbsp;", "").Trim() == "" ? "0" : txtGSTAmt.Text.Replace("&nbsp;", "").Trim());
             if (txtLabPST.Text == "")
             {
                 string script = "alert(\"PST Amount should not left blank !!!\");";
@@ -1096,10 +1098,10 @@ namespace DXBMS.Modules.Service.Forms
                 string script = "alert(\"GST Amount should not left blank !!!\");";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "ServerControlScript", script, true);
             }
-            if (PST > 0 || GST > 0)
+            if (PST > 0 )
             {
-                double PST = SysFunctions.CustomCDBL(txtLabPST.Text.Replace("&nbsp;", "").Trim() == "" ? "0" : txtLabPST.Text.Replace("&nbsp;", "").Trim());
-                double GST = SysFunctions.CustomCDBL(txtGSTAmt.Text.Replace("&nbsp;", "").Trim() == "" ? "0" : txtGSTAmt.Text.Replace("&nbsp;", "").Trim());
+               // double PST = SysFunctions.CustomCDBL(txtLabPST.Text.Replace("&nbsp;", "").Trim() == "" ? "0" : txtLabPST.Text.Replace("&nbsp;", "").Trim());
+              //  double GST = SysFunctions.CustomCDBL(txtGSTAmt.Text.Replace("&nbsp;", "").Trim() == "" ? "0" : txtGSTAmt.Text.Replace("&nbsp;", "").Trim());
                 string SSTNo,GSTNo;
                
                     if (PST > 0)
@@ -1131,7 +1133,7 @@ namespace DXBMS.Modules.Service.Forms
                                        };
 
                     param[0].Value = Session["DealerCode"].ToString();
-                    param[1].Value = ddlBillingNo.SelectedValue;
+                    param[1].Value = txtBillingNo.Text;
                     param[2].Value = SSTNo;
                     param[3].Value = DateTime.Now.ToString();
                     param[4].Value = Convert.ToDecimal(txtLabPST.Text);
