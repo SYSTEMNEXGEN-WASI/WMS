@@ -62,6 +62,10 @@ namespace DXBMS.Modules.Service.Forms
                     {
                         LoadFSBGrid(leadId);
                     }
+                    else if (type == "JEN")
+                    {
+                        LoadJENGrid(leadId);
+                    }
                     else if (type == "SR")
                     {
                         LoadSRGrid(leadId);
@@ -301,6 +305,118 @@ namespace DXBMS.Modules.Service.Forms
 
             }
         }
+
+        private void LoadJENGrid(string leadId)
+        {
+
+            SqlParameter[] dsParamInv = {
+                new SqlParameter("@DealerCode",SqlDbType.Char,5),
+                new SqlParameter("@BillNo",SqlDbType.Char,8)
+            };
+
+            dsParamInv[0].Value = Session["DealerCode"].ToString();
+            dsParamInv[1].Value = leadId;
+
+            totCredit = totDebit = 0;
+
+            DataSet dsCustomerInvoice = new DataSet();
+            dsCustomerInvoice = myFunc.FillDataSet("SP_JENBillMaster_JV", dsParamInv);
+
+            if (dsCustomerInvoice.Tables[0].Rows.Count > 0)
+            {
+                string FPBillNo = dsCustomerInvoice.Tables[0].Rows[0]["JENBillNo"].ToString();
+                string Type = dsCustomerInvoice.Tables[0].Rows[0]["VehicleCategory"].ToString();
+
+                double GSTAmount = Math.Round(Convert.ToDouble(dsCustomerInvoice.Tables[0].Rows[0]["GSTAmount"]), 2);
+                double SubTotal = Math.Round(Convert.ToDouble(dsCustomerInvoice.Tables[0].Rows[0]["SubTotal"]), 2);
+
+                double BillAmount = Math.Round(Convert.ToDouble(dsCustomerInvoice.Tables[0].Rows[0]["BillAmount"]), 2);
+                double FurAMount = Math.Round(Convert.ToDouble(dsCustomerInvoice.Tables[0].Rows[0]["FurAMount"]), 2);
+                double ExtraAmt = Math.Round(Convert.ToDouble(dsCustomerInvoice.Tables[0].Rows[0]["ExtraAmt"]), 2);
+                double SSTAmount = Math.Round(Convert.ToDouble(dsCustomerInvoice.Tables[0].Rows[0]["SSTAmount"]), 2);
+
+
+                string Naration = "Warranty Claim  Bill No : " + dsCustomerInvoice.Tables[0].Rows[0]["JENBillNo"].ToString().Trim();
+
+
+                ViewState["RecPay"] = "Bill No : " + dsCustomerInvoice.Tables[0].Rows[0]["JENBillNo"].ToString().Trim();
+
+                if (dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim() != "")
+                {
+                    lblText.Text = "Edit Mode";
+                    txtVoucherNo.Text = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
+                    Session["VoucherNo"] = dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
+                    txtVoucherDate.Text = GetVoucherDate(dsCustomerInvoice.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
+                    txtVoucherDate.Enabled = false;
+                }
+
+                ds = new DataSet();
+
+                ds.Tables.Add();
+
+                ds.Tables[0].Columns.Add(new DataColumn("AccountCode", typeof(string)));
+                ds.Tables[0].Columns.Add(new DataColumn("AccountTitle", typeof(string)));
+                ds.Tables[0].Columns.Add(new DataColumn("Debit", typeof(string)));
+                ds.Tables[0].Columns.Add(new DataColumn("Credit", typeof(string)));
+                ds.Tables[0].Columns.Add(new DataColumn("Naration", typeof(string)));
+
+                Session["JV"] = ds;
+
+                //if (InvoiceAmount > 0)
+                //{
+                //    AddCustomerDebitAmount(InvoiceAmount, AccountCode, Customer, Naration);
+                //}
+
+                if (BillAmount > 0)
+                {
+                    string code = "";
+                    if (Type == "NAP")
+                    {
+                        code = GetAccountCode("WarrantyNap");
+                    }
+                    else
+                    {
+                        code = GetAccountCode("WarrantyWap");
+                    }
+                    
+                    AddDebitAmount(BillAmount, code, Naration);
+                }
+
+                if (SubTotal > 0)
+                {
+                    string code = GetAccountCode("WarrantyLabour");
+                    AddCreditAmount(SubTotal, code, Naration);
+                }
+
+
+
+                if (GSTAmount > 0)
+                {
+                    string code = GetAccountCode("GSTAccount");
+                    AddCreditAmount(GSTAmount, code, Naration);
+                }
+
+                if (SSTAmount > 0)
+                {
+                    string code = GetAccountCode("PSTAccount");
+                    AddCreditAmount(SSTAmount, code, Naration);
+                }
+                if (FurAMount > 0)
+                {
+                    string code = GetAccountCode("FurtherAccount");
+                    AddCreditAmount(FurAMount, code, Naration);
+                }
+
+                if (ExtraAmt > 0)
+                {
+                    string code = GetAccountCode("ExtraTax");
+                    AddCreditAmount(ExtraAmt, code, Naration);
+                }
+
+
+            }
+        }
+
         private void LoadFSBGrid(string leadId)
         {
 

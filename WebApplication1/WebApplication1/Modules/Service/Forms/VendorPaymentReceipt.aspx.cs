@@ -10,12 +10,13 @@ using CrystalDecisions.Shared;
 using CConn;
 using DXBMS.Data;
 using System;
+using PdfSharp.Pdf;
+using System.IO;
 
 namespace DXBMS.Modules.Service.Forms
 {
     public partial class VendorPaymentReceipt : System.Web.UI.Page
     {
-
         DataTable TaxDetailDT, dtPendingInvoice;
         DataSet ds, dsReceiptMaster, dsReceiptTaxDetail;
         clsLookUp clslook = new clsLookUp();
@@ -24,16 +25,24 @@ namespace DXBMS.Modules.Service.Forms
         SqlTransaction Trans;
         MainBLL objMBLL = new MainBLL();
         SysFunctions SysFuncs = new SysFunctions();
+        SecurityBll sec = new SecurityBll();
         SysFunction SysFunc = new SysFunction();
         bool search_result;
         int countInvoices;
-        double totInvoice, totOutstanding, totTaxAmt, totAdjAmt, TotRefAmt;
+        double totInvoice, totOutstanding, totTaxAmt, totAdjAmt, totInsAmt, TotRefAmt, totAdvAmount;
+        double RunningTotal = 0.00;
+        double SumOfSelectedInvoice = 0.00, Count = 0.00;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (this.Session["UserName"] == null)
             {
                 Response.Redirect("~/login.aspx");
 
+            }
+            if (!sec.UserRight("2559", "001"))
+            {
+                Response.Redirect("~/Test.aspx");
             }
             if (Page.IsPostBack)
             {
@@ -59,12 +68,12 @@ namespace DXBMS.Modules.Service.Forms
                 DataTable TaxDetailDT = (DataTable)ViewState["TaxDetail"];
                 //if (TaxDetailDT.Rows.Count == 0) TaxDetailDT.Rows.Add(TaxDetailDT.NewRow());
                 //gvTaxDetail.DataSource = TaxDetailDT; gvTaxDetail.DataBind();
-                objMBLL.FillDrp_SP(ddlInsCo, "sp_InsuranceCompanies_select", "InsCompCode", "InsCompDescription", null, true, "--Select--", false, "");
+              
 
-                lblInsComp.Visible = false;
-                lblInsBr.Visible = false;
-                ddlInsBranch.Visible = false;
-                ddlInsCo.Visible = false;
+                //lblInsComp.Visible = false;
+                //lblInsBr.Visible = false;
+                //ddlInsBranch.Visible = false;
+                //ddlInsCo.Visible = false;
                 createPartsDT();
 
 
@@ -81,10 +90,18 @@ namespace DXBMS.Modules.Service.Forms
         {
             Load_ReceiptNo();
             Load_Customer();
-            if (ViewState["lookupid"].ToString() == "1")
+            if (ViewState["lookupid"].ToString() == "95")
             {
                 ddlCust.SelectedValue = item;
                 ddlCust_SelectedIndexChanged(null, null);
+                txtAdvanceBalance.Text = SysFuncs.GetStringValuesAgainstCodes("CusCode", ddlCust.SelectedValue.Trim(), "Sum(AdvanceBalanceAmount)", "PaymentReceiptMaster", "And IsAdjustAdvance='Y' And AmountPaid - AdvanceAdjustedAmount >= 1 and TransType='Advance' and CusCode='" + item + "' ", Session["DealerCode"].ToString());
+
+            }
+            else if (ViewState["lookupid"].ToString() == "1")
+            {
+                ddlCust.SelectedValue = item;
+                ddlCust_SelectedIndexChanged(null, null);
+                txtAdvanceBalance.Text = SysFuncs.GetStringValuesAgainstCodes("CusCode", ddlCust.SelectedValue.Trim(), "Sum(AdvanceBalanceAmount)", "PaymentReceiptMaster", "And IsAdjustAdvance='Y' And AmountPaid - AdvanceAdjustedAmount >= 1 and TransType='Advance' and CusCode='" + item + "' ", Session["DealerCode"].ToString());
 
             }
             else
@@ -92,6 +109,7 @@ namespace DXBMS.Modules.Service.Forms
 
                 ddlReceptNo.SelectedValue = item;
                 ddlReceptNo_SelectedIndexChanged(null, null);
+                txtAdvanceBalance.Text = SysFuncs.GetStringValuesAgainstCodes("CusCode", ddlCust.SelectedValue.Trim(), "Sum(AdvanceBalanceAmount)", "PaymentReceiptMaster", "And IsAdjustAdvance='Y' And AmountPaid - AdvanceAdjustedAmount >= 1 and TransType='Advance' and CusCode='" + txtCust.Text + "' ", Session["DealerCode"].ToString());
             }
         }
         private void createPartsDT()
@@ -138,15 +156,27 @@ namespace DXBMS.Modules.Service.Forms
             dsMasterPram[0].Value = Session["DealerCode"].ToString();
             dsMasterPram[1].Value = (ddlReceptNo.SelectedValue.ToString().Trim() == "" ? null : ddlReceptNo.SelectedValue.ToString().Trim());
             dsReceiptMaster = new DataSet();
-            dsReceiptMaster = SysFuncs.FillDataSet("sp_W2_PaymentReceiptMaster_Select", dsMasterPram);
+            dsReceiptMaster = SysFuncs.FillDataSet("sp_FFIPDI_PaymentReceiptMaster_Select", dsMasterPram);
             if (dsReceiptMaster.Tables[0].Rows.Count > 0)
             {
                 fillData();
                 Label lblTotalAmount = (Label)gvTaxDetail.FooterRow.FindControl("lblTotalAmount");
-                //txtCustomerCode.Text = dsReceiptMaster.Tables[0].Rows[0]["CusCode"].ToString();
+                ddlReceptNo.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["ReceiptNo"].ToString();
+                ddlCust.Visible = false;
+                txtCust.Visible = true;
+                txtCusDesc.Visible = true;
+                txtCust.Text = dsReceiptMaster.Tables[0].Rows[0]["CusCode"].ToString();
+                txtCusDesc.Text = SysFuncs.GetStringValuesAgainstCodes("CusCode", txtCust.Text.ToString().Trim(), "CusDesc", "Customer", "", Session["DealerCode"].ToString());
+                ddlCust.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["CusCode"].ToString();
                 txtReceiptDate.Text = dsReceiptMaster.Tables[0].Rows[0]["ReceiptDate"].ToString();
+                txtInvTotal.Text = dsReceiptMaster.Tables[0].Rows[0]["OutSTTotal"].ToString();
+                txtVoucherNo.Text = dsReceiptMaster.Tables[0].Rows[0]["VoucherNo"].ToString();
+                ddlTransType.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["TransType"].ToString();
+                ddlTransType_SelectedIndexChanged(null, null);
+                ddlReceptNo.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["ReceiptNo"].ToString();
                 ddlPaymentReceiptType.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["InvoiceType"].ToString();
                 txtRemarks.Text = dsReceiptMaster.Tables[0].Rows[0]["Remarks"].ToString();
+
                 DDLPaymentMode.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["PayModeCode"].ToString();
                 txtInstNo.Text = dsReceiptMaster.Tables[0].Rows[0]["InsNo"].ToString();
                 txtInstDate.Text = dsReceiptMaster.Tables[0].Rows[0]["InsDate"].ToString();
@@ -156,18 +186,26 @@ namespace DXBMS.Modules.Service.Forms
                 //txttotInv.Text = dsReceiptMaster.Tables[0].Rows[0]["InvTotal"].ToString();
                 txtDocNo.Text = dsReceiptMaster.Tables[0].Rows[0]["DocumentNo"].ToString();
                 txttotAdj.Text = dsReceiptMaster.Tables[0].Rows[0]["InvAdjTotal"].ToString();
+
+                string chkISADV = dsReceiptMaster.Tables[0].Rows[0]["IsAdjustAdvance"].ToString();
+                if (chkISADV == "Y")
+                {
+                    chkAdvance_CheckedChanged(null, null);
+                    //  ddlAdvance.SelectedValue= dsReceiptMaster.Tables[0].Rows[0]["AdvanceReceiptNo"].ToString();
+                }
                 txtAdvAmount.Text = dsReceiptMaster.Tables[0].Rows[0]["AdvanceAdjustedAmount"].ToString();
-                if (dsReceiptMaster.Tables[0].Rows[0]["AdvanceAdjustedAmount"].ToString() == "Y")
+               
+                if (dsReceiptMaster.Tables[0].Rows[0]["ISAdjustAdvance"].ToString() == "Y")
                 {
                     chkAdvance.Checked = true;
                 }
                 Session["PaymentStatus"] = "PAID";
-                dtPendingInvoice = SysFuncs.PendingPaymentReceipt(ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "PAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, Session["DealerCode"].ToString());
+                dtPendingInvoice = SysFuncs.PendingFFIPDIPaymentReceipt(ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "PAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, Session["DealerCode"].ToString());
                 //dtPendingInvoice = SysFuncs.PendingPaymentReceipt(Session["DealerCode"].ToString(), ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "PAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text);
                 gvPendingInvoice.DataSource = dtPendingInvoice;
                 gvPendingInvoice.DataBind();
                 Session["dtPendingInvoice"] = dtPendingInvoice;
-                if (chkAdvance.Checked)
+                if (chkAdvance.Checked & dsReceiptMaster.Tables[0].Rows[0]["TransType"].ToString() != "Advance")
                 {
                     txttotAmount.Text = (double.Parse(txtInstAmt.Text.Trim() == "" ? "0" : txtInstAmt.Text.Trim())
                                     + double.Parse(lblTotalAmount.Text.Trim() == "" ? "0" : lblTotalAmount.Text.Trim())
@@ -185,15 +223,9 @@ namespace DXBMS.Modules.Service.Forms
             {
                 fillData();
                 Session["PaymentStatus"] = "UNPAID";
-                if (InvType == "I")
-                {
-                    dtPendingInvoice = SysFuncs.PendingPaymentReceipt(Session["DealerCode"].ToString(), ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, "I", ddlInsCo.SelectedValue.ToString(), ddlInsBranch.SelectedValue.ToString());
-                }
-                else
-                {
-                    //dtPendingInvoice = SysFuncs.PendingPaymentReceipt(Session["DealerCode"].ToString(), ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", txtReceiptNo.Text, txtInvNo.Text);
-                    dtPendingInvoice = SysFuncs.PendingPaymentReceipt(ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, Session["DealerCode"].ToString());
-                }
+                  //dtPendingInvoice = SysFuncs.PendingPaymentReceipt(Session["DealerCode"].ToString(), ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", txtReceiptNo.Text, txtInvNo.Text);
+                    dtPendingInvoice = SysFuncs.PendingFFIPDIPaymentReceipt(ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, Session["DealerCode"].ToString());
+                
                 ViewState["DtUnPaid"] = dtPendingInvoice;
                 gvPendingInvoice.DataSource = dtPendingInvoice;
                 gvPendingInvoice.DataBind();
@@ -394,10 +426,12 @@ namespace DXBMS.Modules.Service.Forms
                 }
                 //txtTotTax.Text = totTaxAmt.ToString();
                 lblTotalAmount.Text = totTaxAmt.ToString();
-                txttotAmount.Text = (totTaxAmt + double.Parse(txtInstAmt.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txtInstAmt.Text.Trim())).ToString();
+                //txttotAmount.Text = (totTaxAmt + double.Parse(txtInstAmt.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txtInstAmt.Text.Trim())).ToString();
                 DropDownList ddlTaxType = (DropDownList)e.Row.FindControl("DDLFooterReceiptHead");
                 LoadTaxType(ddlTaxType);
+
             }
+            // CalSubTotal();
         }
 
         //protected void gvTaxDetail_RowCreated(object sender, GridViewRowEventArgs e)
@@ -536,92 +570,241 @@ namespace DXBMS.Modules.Service.Forms
                 SysFuncs.UserMsg(lblMsg, Color.Red, "Record already exists!");
                 return;
             }
-
-            if (chkAdvance.Checked)
+            if (SysFunctions.CustomCDBL(txttotAmount.Text) < 1 && chkAdvance.Checked == false)
             {
-                txttotAmount.Text = (double.Parse(lblTotalAmount.Text == "" ? "0" : lblTotalAmount.Text)
-                                    + double.Parse(txtInstAmt.Text == "" ? "0" : txtInstAmt.Text)
-                                    + double.Parse(txtAdvAmount.Text == "" ? "0" : txtAdvAmount.Text)).ToString();
-            }
-            else
-            {
-                txttotAmount.Text = (double.Parse(lblTotalAmount.Text == "" ? "0" : lblTotalAmount.Text)
-                                     + double.Parse(txtInstAmt.Text == "" ? "0" : txtInstAmt.Text)).ToString();
-            }
-
-            if (double.Parse(txttotAmount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txttotAmount.Text.Trim()) < 1)
-            {
-                SysFuncs.UserMsg(lblMsg, Color.Red, "Total amount should not be zero.", txttotAmount);
+                SysFuncs.UserMsg(lblMsg, Color.Red, "Receipt Amount Must be greater then Zero!");
                 return;
             }
+            if (gvPendingInvoice.Rows.Count > 0)
+            {
 
-            double RunningTotal = double.Parse(txttotAmount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txttotAmount.Text.Trim());
-            double Count = 0.00;
-            if (RunningTotal > double.Parse(gvPendingInvoice.FooterRow.Cells[5].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : gvPendingInvoice.FooterRow.Cells[5].Text.Trim()))
-            {
-                SysFuncs.UserMsg(lblMsg, Color.Red, "Adjusted amount not greater then Total Amount amount", txttotAmount);
-                return;
-            }
-            if (RunningTotal > 0)
-            {
-                double SumOfSelectedInvoice = 0.00;
+
+
+                double Receive = 0.00;
+                double Remaining = 0.00;
                 foreach (GridViewRow row in gvPendingInvoice.Rows)
                 {
                     CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
                     if (chkSelect.Checked)
                     {
-                        SumOfSelectedInvoice = SumOfSelectedInvoice + Convert.ToDouble(row.Cells[5].Text);
+                        SumOfSelectedInvoice = SysFunctions.CustomCDBL(SumOfSelectedInvoice + SysFunctions.CustomCDBL(row.Cells[6].Text));
                     }
                 }
-                if (SumOfSelectedInvoice < RunningTotal)
-                {
+                RunningTotal = SumOfSelectedInvoice;
 
-                    SysFuncs.UserMsg(lblMsg, Color.Red, "Adjusted amount not greather then Sum of selected invoice");
+                // txttotAmount.Text = SumOfSelectedInvoice.ToString();
+                Remaining = double.Parse(txtInstAmt.Text == "" ? "0" : txtInstAmt.Text);
+                if (double.Parse(txttotAmount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txttotAmount.Text.Trim()) < 1)
+                {
+                    SysFuncs.UserMsg(lblMsg, Color.Red, "Total amount should not be zero.", txttotAmount);
                     return;
                 }
-                foreach (GridViewRow row in gvPendingInvoice.Rows)
+                if (double.Parse(txttotAmount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txttotAmount.Text.Trim()) > SumOfSelectedInvoice)
                 {
-                    CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
-                    if (chkSelect.Checked)
+                    SysFuncs.UserMsg(lblMsg, Color.Red, "Total amount should not be greater then Selected Invoice.", txttotAmount);
+                    return;
+                }
+                else
+                {
+                    RunningTotal = SysFunctions.CustomCDBL(txtInstAmt.Text);
+                    AdjustAmount();
+                    if (chkAdvance.Checked)
                     {
-                        if (RunningTotal >
-                            double.Parse(row.Cells[6].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[6].Text.Trim()))
+                        AdvanceAdjustAmount();
+                    }
+                    foreach (GridViewRow row in gvPendingInvoice.Rows)
+                    {
+
+                        CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                        if ((row.Cells[7].Text.Replace("&nbsp;", "") == "" ? "0" : row.Cells[7].Text) == "0")
                         {
-                            row.Cells[7].Text = row.Cells[6].Text;
-                            row.Cells[8].Text = (double.Parse(row.Cells[6].Text) - double.Parse(row.Cells[7].Text)).ToString();
-                            RunningTotal = RunningTotal - double.Parse(row.Cells[6].Text.Trim());
-                            txttotAdj.Text = row.Cells[7].Text;
-                            txtAdj.Value = "t";
-                            Count = Count + double.Parse(row.Cells[7].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[7].Text.Trim());
-                            gvPendingInvoice.FooterRow.Cells[7].Text = Count.ToString();
+                            chkSelect.Checked = false;
                         }
 
-                        else
-                        {
-                            row.Cells[7].Text = RunningTotal.ToString();
-                            row.Cells[8].Text = (double.Parse(row.Cells[6].Text) - double.Parse(row.Cells[7].Text)).ToString();
-                            txttotAdj.Text = row.Cells[7].Text;
-                            txtAdj.Value = "t";
-                            Count = Count + double.Parse(row.Cells[7].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[7].Text.Trim());
-                            gvPendingInvoice.FooterRow.Cells[7].Text = Count.ToString();
-                            break;
-
-                        }
                     }
 
                 }
+
+
             }
         }
+        public double CaltotalInvAmount()
+        {
+            SumOfSelectedInvoice = 0;
+            foreach (GridViewRow row in gvPendingInvoice.Rows)
+            {
+                CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                if (chkSelect.Checked)
+                {
+                    SumOfSelectedInvoice = SumOfSelectedInvoice + SysFunctions.CustomCDBL(row.Cells[6].Text);
+                }
+            }
+            return SumOfSelectedInvoice;
+        }
+        public void AdjustAmount()
+        {
+            Label lblTotalAmount = (Label)gvTaxDetail.FooterRow.FindControl("lblTotalAmount");
+            RunningTotal = SysFunctions.CustomCDBL(txttotAmount.Text);
+
+            ///Adjustment 
+            ///
+            foreach (GridViewRow row in gvPendingInvoice.Rows)
+            {
+
+                CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                if (chkSelect.Checked)
+                {
+
+                    // double.Parse(row.Cells[5].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[5].Text.Trim())
+                    if (RunningTotal > SysFunctions.CustomCDBL(row.Cells[6].Text))
+                    {
+                        row.Cells[7].Text = row.Cells[6].Text;
+                        row.Cells[8].Text = (SysFunctions.CustomCDBL(row.Cells[6].Text) - SysFunctions.CustomCDBL(row.Cells[7].Text)).ToString();
+                        RunningTotal = RunningTotal - SysFunctions.CustomCDBL(row.Cells[6].Text.Trim());
+                        txttotAdj.Text = txttotAmount.Text;
+                        //(SumOfSelectedInvoice - double.Parse(lblTotalAmount.Text.Trim())).ToString();
+                        txtAdj.Value = "t";
+                        Count = Count + SysFunctions.CustomCDBL(row.Cells[6].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[6].Text.Trim());
+                        gvPendingInvoice.FooterRow.Cells[6].Text = Count.ToString();
+                    }
+                    else
+                    {
+                        row.Cells[7].Text = RunningTotal.ToString();
+                        row.Cells[8].Text = (SysFunctions.CustomCDBL(row.Cells[6].Text) - SysFunctions.CustomCDBL(row.Cells[7].Text)).ToString();
+                        txttotAdj.Text = txttotAmount.Text;
+                        //(RunningTotal - double.Parse(lblTotalAmount.Text.Trim())).ToString();
+                        txtAdj.Value = "t";
+                        Count = Count + SysFunctions.CustomCDBL(row.Cells[6].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[6].Text.Trim());
+                        gvPendingInvoice.FooterRow.Cells[6].Text = Count.ToString();
+                        return;
+
+                    }
 
 
+
+
+                }
+
+            }
+
+        }
+
+        public void AdvanceAdjustAmount()
+        {
+
+            //if (SysFunctions.CustomCDBL(txtAdvAmount.Text) > SysFunctions.CustomCDBL(txtInstAmt.Text))
+            //{
+            //    RunningTotal = SumOfSelectedInvoice;
+            //    txtAdvAmount.Text = SumOfSelectedInvoice.ToString();
+            //}
+            //else
+            //{
+            //    RunningTotal = SysFunctions.CustomCDBL(txtInstAmt.Text) + SysFunctions.CustomCDBL(txtAdvAmount.Text);
+            //}
+            RunningTotal = SysFunctions.CustomCDBL(txttotAmount.Text);
+
+
+            ///Adjustment 
+            ///
+            foreach (GridViewRow row in gvPendingInvoice.Rows)
+            {
+                CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                if (chkSelect.Checked)
+                {
+
+                    // double.Parse(row.Cells[5].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : row.Cells[5].Text.Trim())
+                    if (RunningTotal > SysFunctions.CustomCDBL(row.Cells[6].Text))
+                    {
+                        row.Cells[7].Text = row.Cells[6].Text;
+                        row.Cells[8].Text = (SysFunctions.CustomCDBL(row.Cells[6].Text) - SysFunctions.CustomCDBL(row.Cells[7].Text)).ToString();
+                        RunningTotal = RunningTotal - SysFunctions.CustomCDBL(row.Cells[6].Text.Trim());
+                    }
+                    else
+                    {
+                        row.Cells[7].Text = RunningTotal.ToString();
+                        row.Cells[8].Text = (SysFunctions.CustomCDBL(row.Cells[6].Text) - SysFunctions.CustomCDBL(row.Cells[7].Text)).ToString();
+                    }
+
+
+
+
+                }
+
+            }
+
+        }
+        public void CalSubTotal()
+        {
+            Label lblTotalAmount = (Label)gvTaxDetail.FooterRow.FindControl("lblTotalAmount");
+            totInsAmt = SysFunctions.CustomCDBL(txtInstAmt.Text);
+            totAdvAmount = SysFunctions.CustomCDBL(txtAdvAmount.Text);
+            totTaxAmt = SysFunctions.CustomCDBL(lblTotalAmount.Text);
+            txttotAmount.Text = (totInsAmt + totTaxAmt + totAdvAmount).ToString();
+            txtAdj.Value = "f";
+
+
+
+
+        }
+        public double InvAdjTotal()
+        {
+            Label lblTotalAmount = (Label)gvTaxDetail.FooterRow.FindControl("lblTotalAmount");
+            foreach (GridViewRow row in gvPendingInvoice.Rows)
+            {
+                CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                if (chkSelect.Checked)
+                {
+                    totAdjAmt = totAdjAmt + Convert.ToDouble(row.Cells[7].Text);
+                }
+            }
+            return totAdjAmt = totAdjAmt - SysFunctions.CustomCDBL(lblTotalAmount.Text);
+        }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            int strAdvBalAmt = 0;
+            if (!sec.UserRight("2559", "002"))
+            {
+                Response.Redirect("~/Test.aspx");
+            }
+            if (ddlReceptNo.SelectedIndex != 0)
+            {
+                if (!sec.UserRight("2559", "003"))
+                {
+                    Response.Redirect("~/Test.aspx");
+                }
+            }
+
+            double strAdvBalAmt = 0;
+            double strAdvAmt = SysFunctions.CustomCDBL(txtAdvAmount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txtAdvAmount.Text.Trim());
+            if (ddlCust.SelectedIndex <= 0)
+            {
+                //PaymentReceiptEntry2(2);
+                SysFuncs.UserMsg(lblMsg, Color.Red, "Please Select  the  Customer First!");
+                return;
+            }
+
             if (chkAdvance.Checked)
             {
-                strAdvBalAmt = Convert.ToInt32(SysFuncs.GetStringValuesAgainstCodes("ReceiptNo", ddlAdvance.SelectedValue.ToString().Trim(), "AdvanceBalanceAmount", "PaymentReceiptMaster", "", Session["DealerCode"].ToString()));
+                if (ddlAdvance.SelectedValue == "" || ddlAdvance.SelectedIndex == 0)
+                {
+                    SysFuncs.UserMsg(lblMsg, Color.Red, "Please Select Advance Receipt First!");
+                }
+                if (txtAdvAmount.Text == "" || SysFunctions.CustomCDBL(txtAdvAmount.Text) <= 0)
+                {
+                    SysFuncs.UserMsg(lblMsg, Color.Red, "Please Enter Advance Amount First Or It Can not be Zero !");
+                }
+                if (ddlPaymentReceiptType.SelectedValue != "Insurance")
+                {
+                    strAdvBalAmt = SysFunctions.CustomCDBL(SysFuncs.GetStringValuesAgainstCodes("ReceiptNo", ddlAdvance.SelectedValue.ToString().Trim(), "AdvanceBalanceAmount", "PaymentReceiptMaster", "", Session["DealerCode"].ToString()));
+                }
+                else
+                {
+                    strAdvBalAmt = SysFunctions.CustomCDBL(SysFuncs.GetStringValuesAgainstCodes("AdvanceID", ddlAdvance.SelectedValue.ToString().Trim(), "AdvanceBalanceAmount", "AdvancePayment", "", Session["DealerCode"].ToString()));
+                }
+
+
             }
+
             //Check rocord is already exist?
             if (ddlReceptNo.SelectedIndex != 0)
             {
@@ -629,29 +812,22 @@ namespace DXBMS.Modules.Service.Forms
                 SysFuncs.UserMsg(lblMsg, Color.Red, "Record already exists!");
                 return;
             }
-            if (chkInsRec.Checked == false)
-            {
-                if (ddlCust.SelectedIndex == 0)
-                {
-                    SysFuncs.UserMsg(lblMsg, Color.Red, "Customer code dose not left blank");
-                    return;
-                }
-            }
-            else
-            {
-                if (ddlInsCo.SelectedIndex == 0)
-                {
-                    SysFuncs.UserMsg(lblMsg, Color.Red, "Select Insurance company first.");
-                    return;
-                }
-                if (ddlInsBranch.SelectedIndex == 0)
-                {
-                    SysFuncs.UserMsg(lblMsg, Color.Red, "Select Insurance Branch.");
-                    return;
-                }
-            }
+           
+            //else
+            //{
+            //    if (ddlInsCo.SelectedIndex == 0)
+            //    {
+            //        SysFuncs.UserMsg(lblMsg, Color.Red, "Select Insurance company first.");
+            //        return;
+            //    }
+            //    if (ddlInsBranch.SelectedIndex == 0)
+            //    {
+            //        SysFuncs.UserMsg(lblMsg, Color.Red, "Select Insurance Branch.");
+            //        return;
+            //    }
+            //}
             //Check textbox null or empty
-            if (ddlPaymentReceiptType.SelectedValue.ToString() != "DirectSaleAdj")
+            if (ddlPaymentReceiptType.SelectedValue.ToString() != "Advance")
             {
                 TextBox[] textBoxes = { txttotAmount };
                 if (!MasterValidation(textBoxes)) return;
@@ -663,7 +839,13 @@ namespace DXBMS.Modules.Service.Forms
 
                 if (ddlTransType.SelectedValue != "Advance")
                 {
-                    if (double.Parse(txttotAmount.Text.Trim()) > double.Parse(gvPendingInvoice.FooterRow.Cells[5].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : gvPendingInvoice.FooterRow.Cells[5].Text.Trim()))
+                    // int strAdvAmt = Convert.ToInt32(txtAdvAmount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txtAdvAmount.Text.Trim());
+                    if (strAdvAmt > strAdvBalAmt)
+                    {
+                        SysFuncs.UserMsg(lblMsg, Color.Red, "Advance Amount can not be greater then Balance amount");
+                        return;
+                    }
+                    if (double.Parse(txttotAdj.Text == "" ? "0" : txttotAdj.Text) > double.Parse(gvPendingInvoice.FooterRow.Cells[5].Text.Trim().Replace("&nbsp;", "") == "" ? "0" : gvPendingInvoice.FooterRow.Cells[5].Text.Trim()))
                     {
                         SysFuncs.UserMsg(lblMsg, Color.Red, "Adjusted amount not greater then Total Amount amount", txttotAmount);
                         return;
@@ -683,12 +865,7 @@ namespace DXBMS.Modules.Service.Forms
                     return;
                 }
 
-                int strAdvAmt = Convert.ToInt32(txtAdvAmount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txtAdvAmount.Text.Trim());
-                if (strAdvAmt > strAdvBalAmt)
-                {
-                    SysFuncs.UserMsg(lblMsg, Color.Red, "Advance Amount can not be greater then Balance amount");
-                    return;
-                }
+
                 decimal dGridCeckedAdjAmount = 0;
                 foreach (GridViewRow row in gvPendingInvoice.Rows)
                 {
@@ -714,7 +891,7 @@ namespace DXBMS.Modules.Service.Forms
                 }
                 PaymentReceiptEntry(strAdvBalAmt);
             }
-            if (ddlPaymentReceiptType.SelectedValue.ToString() == "DirectSaleAdj")
+            if (ddlPaymentReceiptType.SelectedValue.ToString() == "Advance")
             {
                 TextBox[] textBoxes = { txtInstAmt };
                 if (!MasterValidation(textBoxes)) return;
@@ -737,7 +914,7 @@ namespace DXBMS.Modules.Service.Forms
             }
             Load_ReceiptNo();
         }
-        private bool Inert_PaymentReceiptMaster(ref string strReceiptNo, int strAdvBalAmt)
+        private bool Inert_PaymentReceiptMaster(ref string strReceiptNo, double strAdvBalAmt)
         {
             //PaymentReceiptEntry2(1);
 
@@ -766,16 +943,10 @@ namespace DXBMS.Modules.Service.Forms
             PmtRecMaster_param[2].Value = SysFuncs.SaveDate(txtReceiptDate.Text); //EstimateCode        
             PmtRecMaster_param[3].Value = ddlPaymentReceiptType.SelectedItem.Value;
             PmtRecMaster_param[4].Value = ddlCust.SelectedValue.ToString();
-            if (chkInsRec.Checked)
-            {
-                PmtRecMaster_param[5].Value = ddlInsCo.SelectedValue.ToString();
-                PmtRecMaster_param[6].Value = ddlInsBranch.SelectedValue.ToString();
-            }
-            else
-            {
+           // Insurance
                 PmtRecMaster_param[5].Value = "";
                 PmtRecMaster_param[6].Value = "";
-            }
+            
             PmtRecMaster_param[7].Value = "N";
             PmtRecMaster_param[8].Value = txtRemarks.Text.Trim().ToUpper();
             PmtRecMaster_param[9].Value = DDLPaymentMode.SelectedItem.Value;
@@ -798,7 +969,8 @@ namespace DXBMS.Modules.Service.Forms
             {
                 PmtRecMaster_param[16].Value = double.Parse(gvPendingInvoice.FooterRow.Cells[5].Text.Trim());
                 PmtRecMaster_param[17].Value = double.Parse(gvPendingInvoice.FooterRow.Cells[6].Text.Trim());
-                PmtRecMaster_param[18].Value = double.Parse(gvPendingInvoice.FooterRow.Cells[7].Text.Trim());
+                // PmtRecMaster_param[18].Value = double.Parse(gvPendingInvoice.FooterRow.Cells[7].Text.Trim());
+                PmtRecMaster_param[18].Value = txttotAdj.Text;
             }
             PmtRecMaster_param[19].Value = "N";
 
@@ -809,7 +981,7 @@ namespace DXBMS.Modules.Service.Forms
             PmtRecMaster_param[23].Value = "N";
             PmtRecMaster_param[24].Value = "0";
             PmtRecMaster_param[25].Value = ddlTransType.SelectedValue.ToString();
-            if (RBLTransType.SelectedValue == "Advance")
+            if (ddlTransType.SelectedValue == "Advance")
             {
                 PmtRecMaster_param[26].Value = "Y";
                 PmtRecMaster_param[27].Value = (object)DBNull.Value;
@@ -836,7 +1008,15 @@ namespace DXBMS.Modules.Service.Forms
             {
                 if (ObjTrans.BeginTransaction(ref Trans) == true)
                 {
-                    strReceiptNo = SysFuncs.AutoGen("PaymentReceiptMaster", "ReceiptNo", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+                    if (ddlReceptNo.SelectedIndex == 0)
+                    {
+                        strReceiptNo = SysFuncs.AutoGen("PaymentReceiptMaster", "ReceiptNo", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+                    }
+                    else
+                    {
+                        strReceiptNo = ddlReceptNo.SelectedValue;
+                    }
+
                     PmtRecMaster_param[1].Value = strReceiptNo;
                     if (SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceipt_Master_Insert]", PmtRecMaster_param, Trans))
                     {
@@ -858,7 +1038,7 @@ namespace DXBMS.Modules.Service.Forms
                 return false;
             }
         }
-        private void PaymentReceiptEntry(int strAdvBalAmt)
+        private void PaymentReceiptEntry(double strAdvBalAmt)
         {
 
             try
@@ -901,15 +1081,25 @@ namespace DXBMS.Modules.Service.Forms
                                                             /*0*/ new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                             /*1*/ new SqlParameter("@ReceiptNo",SqlDbType.Char,8),
                                                             /*2*/ new SqlParameter("@AdvanceReceiptNo",SqlDbType.Char,8),
-                                                            /*3*/ new SqlParameter("@AdvanceAdjustedAmount",SqlDbType.Float)
+                                                            /*3*/ new SqlParameter("@AdvanceAdjustedAmount",SqlDbType.Float),
+                                                            /*3*/ new SqlParameter("@AdvanceBalAmount",SqlDbType.Float)
                                                                     };
                                 UpdateAdvance_param[0].Value = Session["DealerCode"].ToString();
                                 UpdateAdvance_param[1].Value = ddlAdvance.SelectedValue.ToString();
                                 UpdateAdvance_param[2].Value = strReceiptNo;
-                                UpdateAdvance_param[3].Value = double.Parse(txtAdvAmount.Text == "" ? "0" : txtAdvAmount.Text);
-                                SysFuncs.ExecuteSP_NonQuery("[sp_PaymentReceiptMaster_UpdateOnAdvance]", UpdateAdvance_param, Trans);
+                                UpdateAdvance_param[3].Value = SysFunctions.CustomCDBL(txtAdvAmount.Text == "" ? "0" : txtAdvAmount.Text);
+                                UpdateAdvance_param[4].Value = SysFunctions.CustomCDBL(strAdvBalAmt) - SysFunctions.CustomCDBL(txtAdvAmount.Text == "" ? "0" : txtAdvAmount.Text);
+                                if (ddlPaymentReceiptType.SelectedValue != "Insurance")
+                                {
+                                    SysFuncs.ExecuteSP_NonQuery("[sp_PaymentReceiptMaster_UpdateOnAdvance]", UpdateAdvance_param, Trans);
+                                }
+                                else
+                                {
+                                    SysFuncs.ExecuteSP_NonQuery("[sp_AdvanceID_UpdateOnAdvance]", UpdateAdvance_param, Trans);
+                                }
+
                             }
-                            if (ddlPaymentReceiptType.SelectedValue == "DirectSale")
+                            if (ddlPaymentReceiptType.SelectedValue == "CountrSale")
                             {
                                 string IQuery = "Update CounterSaleMaster set TotReceipt= TotReceipt +'" + PmtRecDetail_param[7].Value + "' " +
                                      "Where DealerCode='" + Session["DealerCode"].ToString() + "' and SaleInvNo='" + PmtRecDetail_param[3].Value + "'";
@@ -930,7 +1120,7 @@ namespace DXBMS.Modules.Service.Forms
                             else
                             {
                                 string IQuery;
-                                if (chkInsRec.Checked == true)
+                                if (ddlPaymentReceiptType.SelectedValue == "Insurance")
                                 {
                                     IQuery = "Update dbo.CustomerInvoice set PaidI= PaidI +'" + PmtRecDetail_param[7].Value + "' " +
                                           "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + PmtRecDetail_param[3].Value + "'";
@@ -949,7 +1139,7 @@ namespace DXBMS.Modules.Service.Forms
                                                             /*1*/ new SqlParameter("@ReceiptNo",SqlDbType.Char,8),
                                                             /*2*/ new SqlParameter("@ReceiptHead",SqlDbType.Char,50),
                                                             /*3*/ new SqlParameter("@AccountCode",SqlDbType.Char,1),
-                                                            /*4*/ new SqlParameter("@Amount",SqlDbType.Decimal),
+                                                            /*4*/ new SqlParameter("@Amount",SqlDbType.Float),
                                                             /*5*/ new SqlParameter("@TaxID",SqlDbType.Char,2),
                                                             /*6*/ new SqlParameter("@TaxPerc",SqlDbType.Decimal),
                                                            };
@@ -966,7 +1156,7 @@ namespace DXBMS.Modules.Service.Forms
                         {
                             PmtRecTaxDetail_param[2].Value = lblRecHead.Text;
                             PmtRecTaxDetail_param[3].Value = "";
-                            PmtRecTaxDetail_param[4].Value = Convert.ToDecimal(lblAmount.Text.Trim());
+                            PmtRecTaxDetail_param[4].Value = Math.Round(Convert.ToDecimal(lblAmount.Text.Trim()), 2);
                             PmtRecTaxDetail_param[5].Value = lblTaxID.Text.Trim();
                             PmtRecTaxDetail_param[6].Value = Convert.ToDecimal(lblPercent.Text.Trim());
                             SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceipt_TaxDetail_Insert]", PmtRecTaxDetail_param, Trans);
@@ -983,7 +1173,9 @@ namespace DXBMS.Modules.Service.Forms
                 ObjTrans.CommittTransaction(ref Trans);
                 lblMsg.Visible = true;
                 SysFuncs.UserMsg(lblMsg, Color.Green, "Record Saved Successfully: " + strReceiptNo);
-                clearAll();
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved,Updated Successfully: " + strReceiptNo + "')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Savealert()", true);
+                //  clearAll();
 
             }
             catch (Exception ex)
@@ -998,13 +1190,16 @@ namespace DXBMS.Modules.Service.Forms
 
         protected void clearAll()
         {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "reloads()", true);
             //txtReceiptNo.Text = "";
             //ddlPaymentReceiptType.SelectedValue = "Service";
             SysFuncs.ClearTextBoxes(Page);
             SysFuncs.Clearddl(Page);
-
+            txtInvTotal.Text = "";
+            txtVoucherNo.Text = "";
             chkAdvance.Checked = false;
-
+            txtCust.Text = "";
+            txtCusDesc.Text = "";
             ddlPaymentReceiptType.Items.Clear();
             RBLTransType.ClearSelection();
             DDLPaymentMode.SelectedValue = "C";
@@ -1018,6 +1213,11 @@ namespace DXBMS.Modules.Service.Forms
         {
             clearAll();
             ddlCust.Enabled = true;
+            ddlCust.Visible = true;
+            txtCust.Visible = false;
+            txtCusDesc.Visible = false;
+            imgCustomerCode.Enabled = false;
+
             txtInstDate.Text = txtReceiptDate.Text = System.DateTime.Now.Date.ToString("dd-MM-yyyy");
             lblMsg.Text = string.Empty;
         }
@@ -1027,16 +1227,19 @@ namespace DXBMS.Modules.Service.Forms
         }
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-
-            if (ddlReceptNo.SelectedIndex == 0)
+            if (!sec.UserRight("2559", "006"))
             {
-                SysFuncs.UserMsg(lblMsg, Color.Red, "Please select Receipt No.");
-                return;
+                Response.Redirect("~/Test.aspx");
             }
             ReportDocument RD = new ReportDocument();
             DXBMS.Data.DSReports objDsReports = new Data.DSReports();
 
             DataTable dt = new DataTable();
+            if (ddlReceptNo.SelectedIndex == 0)
+            {
+                SysFuncs.UserMsg(lblMsg, Color.Red, "Please select Receipt No.");
+                return;
+            }
             string sql = "exec sp_PaymentReceipt_Print '" + Session["DealerCode"].ToString() + "','" + ddlReceptNo.SelectedValue.ToString().Trim() + "'";
             dt = SysFuncs.GetData(sql);
             objDsReports.sp_PaymentReceipt_Print.Load(dt.CreateDataReader());
@@ -1045,7 +1248,17 @@ namespace DXBMS.Modules.Service.Forms
             objDsReports.sp_W2_PaymentReceiptTaxDetail_Select.Load(dt.CreateDataReader());
 
             RD.PrintOptions.PaperSize = PaperSize.PaperA4;
-            RD.Load(Server.MapPath("../ServiceReports/rptPaymentRecPrint.rpt"));
+            if (ddlPaymentReceiptType.SelectedValue == "Insurance")
+            {
+
+                RD.Load(Server.MapPath("../ServiceReports/rptPaymentRecPrintIns.rpt"));
+
+            }
+            else
+            {
+                RD.Load(Server.MapPath("../ServiceReports/rptPaymentRecPrint.rpt"));
+            }
+
             RD.OpenSubreport(Server.MapPath("../ServiceReports/rptPaymentReceiptTaxDetail.rpt"));
             RD.DataDefinition.FormulaFields["DealerPhone"].Text = "'" + Session["DealerPhone"].ToString() + "'";
             RD.DataDefinition.FormulaFields["DealerEmail"].Text = "'" + Session["DealerEmail"].ToString() + "'";
@@ -1058,23 +1271,53 @@ namespace DXBMS.Modules.Service.Forms
             //RD.DataDefinition.FormulaFields["DealershipName"].Text = "'Authorised " + Session["ParentDesc"].ToString() + " Dealership'";
             //RD.DataDefinition.FormulaFields["Pic"].Text = "'C:\\Users\\u_ahm\\OneDrive\\Documents\\Visual Studio 2010\\Projects\\WebApplication1\\WebApplication1\\" + Session["Logo"] + "'";
             RD.DataDefinition.FormulaFields["Pic"].Text = "'" + Server.MapPath("~") + Session["Logo"] + "'";
-            RD.SetDataSource(objDsReports);
-            //string FilePath =Server.MapPath( "../../../Download/");
             string FilePath = Server.MapPath("~") + "\\Download\\";
-            string FileName = "PaymentRecPrint" + this.Session["DealerCode"].ToString() + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
+            string FileName = "Report.pdf";
             string File = FilePath + FileName;
-            //RD.ExportToDisk(ExportFormatType.PortableDocFormat, File);
-            Session["RD"] = RD;
+            RD.SetDataSource(objDsReports);
+            PdfDocument outputDocument = new PdfDocument();
+            Stream stream = RD.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+            stream.Seek(0, SeekOrigin.Begin);
+            DirectoryInfo info = new DirectoryInfo(FilePath);
+            if (!info.Exists)
+            {
+                info.Create();
+            }
 
+            string path = Path.Combine(FilePath, FileName);
+            using (FileStream outputFileStream = new FileStream(path, FileMode.Create))
+            {
+                stream.CopyTo(outputFileStream);
+            }
+            RD.Dispose(); RD.Close();
+            string URL = "../../../Download/PrintReport.aspx";
 
-            string URL;
-            URL = "../../../Download/rptViewerService.aspx?FileName=" + FileName;
-
-            //URL = FilePath + "OpenPdf.aspx?FileName=" + FileName;
-            //txtPartItemDesc.Text = URL;
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
-            //URL = "../../../Download/OpenPdf.aspx?FileName=" + FileName; 
+
             ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
+
+
+            // convert and show
+
+
+
+            Session["RD"] = RD;
+            //string FilePath =Server.MapPath( "../../../Download/");
+            //string FilePath = Server.MapPath("~") + "\\Download\\";
+            //string FileName = "PaymentRecPrint" + this.Session["DealerCode"].ToString() + DateTime.Now.ToString("ddMMyyyy") + ".pdf";
+            //string File = FilePath + FileName;
+            ////RD.ExportToDisk(ExportFormatType.PortableDocFormat, File);
+            //Session["RD"] = RD;
+
+
+            //string URL;
+            //URL = "../../../Download/rptViewerService.aspx?FileName=" + FileName;
+
+            ////URL = FilePath + "OpenPdf.aspx?FileName=" + FileName;
+            ////txtPartItemDesc.Text = URL;
+            //string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
+            ////URL = "../../../Download/OpenPdf.aspx?FileName=" + FileName; 
+            //ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
             /////////////////////////////////////////////////////////
             ////ReportDocument RD = new ReportDocument();
             ////DXBMS.Data.DSReports objDsReports = new Data.DSReports();
@@ -1119,11 +1362,15 @@ namespace DXBMS.Modules.Service.Forms
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
+            if (!sec.UserRight("2559", "004"))
+            {
+                Response.Redirect("~/Test.aspx");
+            }
             TextBox[] textBoxes = { txtInstAmt, txttotAmount };
 
-            if (SysFuncs.ValuesAgainstCodes("ReceiptNo", ddlReceptNo.SelectedValue, "VoucherNo", "PaymentReceiptMaster", "", Session["DealerCode"].ToString()))
+            if (SysFuncs.CheckVoucherPostFlag(Session["DealerCode"].ToString(), txtVoucherNo.Text))
             {
-                SysFuncs.UserMsg(lblMsg, Color.Red, "Voucher Exists can't delete the record.");
+                SysFuncs.UserMsg(lblMsg, Color.Red, "Can't Edit or Delete the Voucher '" + txtVoucherNo.Text + "' is already Posted");
                 return;
             }
 
@@ -1133,7 +1380,7 @@ namespace DXBMS.Modules.Service.Forms
                 //if ((SysFuncs.IsExist("ReceiptNo", txtReceiptNo.Text.Trim(), "paymentReceiptMaster",Session["DealerCode"].ToString()))
                 //    & (txtReceiptNo.Text.Trim().Length != 0))
                 //{
-
+                SysFuncs.UpdateJV(Session["DealerCode"].ToString(), txtVoucherNo.Text);
                 SqlParameter[] PmtRecMaster_param = { /*0*/ new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                         /*1*/ new SqlParameter("@ReceiptNo",SqlDbType.Char,8)
                                                     };
@@ -1142,6 +1389,14 @@ namespace DXBMS.Modules.Service.Forms
 
                 try
                 {
+                    string link;
+                    foreach (GridViewRow row in gvPendingInvoice.Rows)
+                    {
+                        LinkButton chkSelect = (LinkButton)row.FindControl("lnkInvoiceNo");
+                        link = chkSelect.Text;
+
+
+                    }
                     if (ObjTrans.BeginTransaction(ref Trans) == true)
                     {
                         if (SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceipt_Master_Delete]", PmtRecMaster_param, Trans))
@@ -1153,9 +1408,26 @@ namespace DXBMS.Modules.Service.Forms
                             PmtRecDetail_param[1].Value = ddlReceptNo.SelectedValue.ToString().Trim();
                             foreach (GridViewRow row in gvPendingInvoice.Rows)
                             {
+                                LinkButton chkSelect = (LinkButton)row.FindControl("lnkInvoiceNo");
+
                                 SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceiptDetail_Delete]", PmtRecDetail_param, Trans);
-                                string IQuery = "Update dbo.CustomerInvoice set PaidC=PaidC - '" + row.Cells[5].Text.Trim() + "' " +
-                                      "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + row.Cells[1].Text.Trim() + "'";
+                                string IQuery = "";
+                                if (ddlPaymentReceiptType.SelectedValue != "CountrSale" && ddlPaymentReceiptType.SelectedValue != "Insurance")
+                                {
+                                    IQuery = "Update dbo.CustomerInvoice set PaidC=PaidC - '" + row.Cells[7].Text.Trim() + "' " +
+                                        "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + chkSelect.Text + "'";
+                                }
+                                else if (ddlPaymentReceiptType.SelectedValue == "Insurance")
+                                {
+                                    IQuery = "Update dbo.CustomerInvoice set PaidI=PaidI - '" + row.Cells[7].Text.Trim() + "' " +
+                                        "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + chkSelect.Text + "'";
+                                }
+                                else
+                                {
+                                    IQuery = "Update dbo.CounterSaleMaster set TotReceipt=TotReceipt - '" + row.Cells[7].Text.Trim() + "' " +
+                                    "Where DealerCode='" + Session["DealerCode"].ToString() + "' and SaleInvNo='" + chkSelect.Text + "'";
+                                }
+
                                 SysFuncs.ExecuteQuery(IQuery, Trans);
                             }
 
@@ -1171,7 +1443,8 @@ namespace DXBMS.Modules.Service.Forms
                         ObjTrans.CommittTransaction(ref Trans);
 
                         SysFuncs.UserMsg(lblMsg, Color.Green, "Record Deleted Successfully : " + ddlReceptNo.SelectedValue.ToString().Trim());
-                        clearAll();
+                        //   clearAll();
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Deletealert()", true);
                     }
                 }
                 catch (Exception ex) { ObjTrans.RollBackTransaction(ref Trans); throw ex; }
@@ -1180,6 +1453,7 @@ namespace DXBMS.Modules.Service.Forms
         }
         protected void txtInstAmt_TextChanged(object sender, EventArgs e)
         {
+            CalSubTotal();
 
         }
         protected void lnkRemove_Click(object sender, EventArgs e)
@@ -1203,42 +1477,34 @@ namespace DXBMS.Modules.Service.Forms
             //ViewState["DtUnPaid"] = dt;
 
         }
-        protected void ddlPaymentReceiptType_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-        protected void ddlInsCo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SqlParameter[] param = { new SqlParameter("@InsCompCode", SqlDbType.Char, 5) };
-            param[0].Value = ddlInsCo.SelectedValue;
-            objMBLL.FillDrp_SP(ddlInsBranch, "sp_2W_Branch_select", "BranchCode", "BranchDesc", param, true, "--Select--", false, "");
-        }
+       
         protected void chkInsRec_CheckedChanged(object sender, EventArgs e)
         {
-            if (ddlPaymentReceiptType.SelectedIndex == 1 || ddlPaymentReceiptType.SelectedIndex == 2)
-            {
-                if (chkInsRec.Checked == true)
-                {
-                    lblInsComp.Visible = true;
-                    lblInsBr.Visible = true;
-                    ddlInsBranch.Visible = true;
-                    ddlInsCo.Visible = true;
-                }
-                else
-                {
-                    lblInsComp.Visible = false;
-                    lblInsBr.Visible = false;
-                    ddlInsBranch.Visible = false;
-                    ddlInsCo.Visible = false;
-                }
-            }
+            // if (ddlPaymentReceiptType.SelectedIndex == 1 || ddlPaymentReceiptType.SelectedIndex == 2)
+            //{
+            //    if (chkInsRec.Checked == true)
+            //    {
+            //        lblInsComp.Visible = true;
+            //        lblInsBr.Visible = true;
+            //        ddlInsBranch.Visible = true;
+            //        ddlInsCo.Visible = true;
+            //    }
+            //    else
+            //    {
+            //        lblInsComp.Visible = false;
+            //        lblInsBr.Visible = false;
+            //        ddlInsBranch.Visible = false;
+            //        ddlInsCo.Visible = false;
+            //    }
+            // }
         }
 
         protected void ddlInsBranch_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlPaymentReceiptType.SelectedIndex == 1)
             {
-                if (chkInsRec.Checked)
+                if (ddlPaymentReceiptType.SelectedValue == "Insurance")
                 {
                     LoadMasterData("I");
                 }
@@ -1254,6 +1520,11 @@ namespace DXBMS.Modules.Service.Forms
 
             TextBox[] textBoxes = { txtFooterTaxAmt, txtFooterTaxPerc };
             if (!MasterValidation(textBoxes)) return;
+            if (DDLFooterReceiptHead.SelectedIndex == 0)
+            {
+                SysFuncs.UserMsg(lblMsg, Color.Red, "Please Select TaxType First");
+                return;
+            }
             if (Convert.ToDecimal(txtFooterTaxAmt.Text) == 0)
             {
                 SysFuncs.UserMsg(lblMsg, Color.Red, "Tax Amount can not be zero(0)");
@@ -1278,8 +1549,7 @@ namespace DXBMS.Modules.Service.Forms
             }
 
             ViewState["TaxDetail"] = TaxDetailDT; gvTaxDetail.DataSource = TaxDetailDT; gvTaxDetail.DataBind();
-            //txttotAmount.Text = (double.Parse(txtInstAmt.Text == "" ? "0" : txtInstAmt.Text)
-            //                   + double.Parse(lblTotalAmount.Text == "" ? "0" : lblTotalAmount.Text)).ToString();
+            CalSubTotal();
             txtAdj.Value = "f";
 
         }
@@ -1344,6 +1614,7 @@ namespace DXBMS.Modules.Service.Forms
                     //LbErr.Text = "";
                     ViewState["TaxDetail"] = tdDelete;
                     TaxDetailDT = tdDelete;
+                    CalSubTotal();
                     //totalCalculation();
 
                 }
@@ -1358,7 +1629,7 @@ namespace DXBMS.Modules.Service.Forms
         {
             string WhereClause = " DealerCode = '" + Session["DealerCode"].ToString() + "'";
 
-            string[] Columns = new string[] { "cusCode", "CusDesc+' '+FatherHusName", "Address1", "isnull(phone1,isnull(phone2,CellNo))" };
+            string[] Columns = new string[] { "cusCode", "CusDesc+' '+FatherHusName", "isnull(phone1,isnull(phone2,CellNo))" };
             SysFunc.GetMultiColumnsDDL(ddlCust, Columns, "Customer ", WhereClause, "cusCode", " Order by CusCode Desc ", false, false);
 
             //            if (ddlPaymentReceiptType.SelectedValue == "DirectSale")
@@ -1452,9 +1723,16 @@ namespace DXBMS.Modules.Service.Forms
 
         protected void ddlAdvance_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            String advAmount = SysFuncs.GetStringValuesAgainstCodes("CusCode", ddlCust.SelectedValue.Trim(), "AdvanceBalanceAmount", "PaymentReceiptMaster", "And IsAdjustAdvance='Y' And AmountPaid - AdvanceAdjustedAmount >= 1", Session["DealerCode"].ToString());
+            if (ddlPaymentReceiptType.SelectedValue == "Service" || ddlPaymentReceiptType.SelectedValue == "JEN" )
+            {
+                String advAmount = SysFuncs.GetStringValuesAgainstCodes("1", "1", "AdvanceBalanceAmount", "PaymentReceiptMaster", "And IsAdjustAdvance='Y' And AmountPaid - AdvanceAdjustedAmount >= 1 and ReceiptNo='" + ddlAdvance.SelectedValue + "' ", Session["DealerCode"].ToString());
+                txtAdvAmount.Enabled = true;
+                txtAdvAmount.Text = advAmount;
 
-            txtAdvAmount.Text = advAmount;
+            }
+            
+
+            CalSubTotal();
 
         }
 
@@ -1464,7 +1742,8 @@ namespace DXBMS.Modules.Service.Forms
         {
             bool chkFlag = false;
             CheckBox chkSelectAll = (CheckBox)gvPendingInvoice.HeaderRow.FindControl("chkSelectAll");
-            if (chkSelectAll.Checked) chkFlag = true;
+            if (chkSelectAll.Checked)
+                chkFlag = true;
             txtSelectedTotalRefAmount.Text = "0.00";
             foreach (GridViewRow dr in gvPendingInvoice.Rows)
             {
@@ -1472,9 +1751,12 @@ namespace DXBMS.Modules.Service.Forms
                 chk.Checked = chkFlag;
 
 
-                if (chk.Checked) txtSelectedTotalRefAmount.Text = (Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim()) + Convert.ToDecimal(dr.Cells[5].Text)).ToString();
-                else txtSelectedTotalRefAmount.Text = "0.00";
+                // if (chk.Checked) txtSelectedTotalRefAmount.Text = (Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim()) + Convert.ToDecimal(dr.Cells[5].Text)).ToString();
+                //  else txtSelectedTotalRefAmount.Text = "0.00";
+                // txtInstAmt.Text = txtSelectedTotalRefAmount.Text;
+
             }
+            txtInvTotal.Text = CaltotalInvAmount().ToString();
         }
 
         protected void ImgPendingInv_Click(object sender, ImageClickEventArgs e)
@@ -1511,9 +1793,34 @@ namespace DXBMS.Modules.Service.Forms
 
         protected void btnGL_Click(object sender, EventArgs e)
         {
-            string URL = "GL.aspx?CusInv=" + ddlReceptNo.SelectedValue + "&Type=PR";
-            string fullURL = "window.open('" + URL + "', '_blank', 'height=600,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
-            ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
+            if (!sec.UserRight("2559", "005"))
+            {
+                Response.Redirect("~/Test.aspx");
+            }
+            //if (SysFunctions.CustomCDBL(txtAdvAmount.Text) > 0)
+            //{
+            //    double InvAdjTOtal = SysFunctions.CustomCDBL(SysFuncs.GetStringValuesAgainstCodes("ReceiptNo", ddlReceptNo.SelectedValue, "InvAdjTotal", "PaymentReceiptMaster", Session["DealerCode"].ToString()));
+            //    string AdvReceiptNo = SysFuncs.GetStringValuesAgainstCodes("ReceiptNo", ddlReceptNo.SelectedValue, "AdvanceReceiptNo", "PaymentReceiptMaster", Session["DealerCode"].ToString());
+            //    double Advanceamt = SysFunctions.CustomCDBL(SysFuncs.GetStringValuesAgainstCodes("ReceiptNo", AdvReceiptNo, "AdvanceAdjustedAmount", "PaymentReceiptMaster", Session["DealerCode"].ToString()));
+            //    if (InvAdjTOtal == Advanceamt)
+            //    {
+            //        SysFunc.UserMsg(lblMsg, Color.Red, "Voucher will not be generated,Because Advance Amount is equal to Adjustedamount");
+            //        return;
+            //    }
+            //}
+            if (SysFunctions.CustomCDBL(txtInstAmt.Text) == 0)
+            {
+                string URL = "JV.aspx?CusInv=" + ddlReceptNo.SelectedValue + "&Type=AP";
+                string fullURL = "window.open('" + URL + "', '_blank', 'height=600,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
+                ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
+            }
+            else
+            {
+                string URL = "GL.aspx?CusInv=" + ddlReceptNo.SelectedValue + "&Type=PR";
+                string fullURL = "window.open('" + URL + "', '_blank', 'height=600,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
+                ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
+            }
+
         }
 
         protected void ddlTransType_SelectedIndexChanged(object sender, EventArgs e)
@@ -1523,27 +1830,12 @@ namespace DXBMS.Modules.Service.Forms
 
                 ddlPaymentReceiptType.Visible = true;
                 ddlPaymentReceiptType.Items.Clear();
-                ddlPaymentReceiptType.Items.Add(new ListItem("Sales", "Sales"));
-                ddlPaymentReceiptType.Items.Add(new ListItem("Service", "Service"));
-                ddlPaymentReceiptType.Items.Add(new ListItem("Direct Sales", "DirectSaleAdj"));
+                imgCustomerCode.Enabled = true;
 
-            }
-            else if (ddlTransType.SelectedValue == "Customer")
-            {
+                // ddlPaymentReceiptType.Items.Add(new ListItem("Sales", "Sales"));
+                ddlPaymentReceiptType.Items.Add(new ListItem("Free Service", "Service"));
+                ddlPaymentReceiptType.Items.Add(new ListItem("Warranty", "JEN"));
 
-                ddlPaymentReceiptType.Visible = true;
-                ddlPaymentReceiptType.Items.Clear();
-                ddlPaymentReceiptType.Items.Add(new ListItem("Sales Order", "SalesOrder"));
-                ddlPaymentReceiptType.Items.Add(new ListItem("Cash Service", "Service"));
-                ddlPaymentReceiptType.Items.Add(new ListItem("Insurance", "Insurance"));
-                ddlPaymentReceiptType.Items.Add(new ListItem("Direct Sales", "DirectSale"));
-
-                //Uzair
-                string WhereQuery = "a.DealerCode = b.DealerCode and a.CusCode = b.CusCode and a.DealerCode ='" + Session["DealerCode"].ToString() + "' ";
-                //"Order by a.PRNo Desc";
-                //string[] Columns = new string[] { "b.CusCode", "b.CusDesc", "a.SaleInvNo","ROUND(a.InvoiceAmount, 0) - ROUND(a.TotReceipt, 0)" };
-                string[] Columns = new string[] { "b.CusCode", "b.CusDesc" };
-                SysFuncs.GetMultiColumnsDDL(ddlCust, Columns, "PaymentReceiptMaster a,Customer b", WhereQuery, "CusCode", "Order by b.CusCode Desc", true, false);
 
             }
             else if (ddlTransType.SelectedValue == "Principle")
@@ -1551,44 +1843,72 @@ namespace DXBMS.Modules.Service.Forms
 
                 ddlPaymentReceiptType.Visible = true;
                 ddlPaymentReceiptType.Items.Clear();
-                ddlPaymentReceiptType.Items.Add(new ListItem("Free Copon", "FreeCopon"));
-                ddlPaymentReceiptType.Items.Add(new ListItem("Warranty", "Warranty"));
-                ddlPaymentReceiptType.Items.Add(new ListItem("Insurance", "Insurance"));
-                ddlPaymentReceiptType.Items.Add(new ListItem("Adjustment", "Adjustment"));
+                ddlPaymentReceiptType.Items.Add(new ListItem("Sales Order", "SalesOrder"));
+                ddlPaymentReceiptType.Items.Add(new ListItem("Free Service", "Service"));
+                ddlPaymentReceiptType.Items.Add(new ListItem("Warranty", "JEN"));
+                //Uzair
+                string WhereQuery = "a.DealerCode = b.DealerCode and 1=1 and a.DealerCode ='" + Session["DealerCode"].ToString() + "' ";
+                //"Order by a.PRNo Desc";
+                //string[] Columns = new string[] { "b.CusCode", "b.CusDesc", "a.SaleInvNo","ROUND(a.InvoiceAmount, 0) - ROUND(a.TotReceipt, 0)" };
+                //string[] Columns = new string[] { "b.CusCode", "b.CusDesc" };
+                //SysFuncs.GetMultiColumnsDDL(ddlCust, Columns, "PaymentReceiptMaster a,Customer b", WhereQuery, "CusCode", "Order by b.CusCode Desc", true, false);
 
             }
-            else if (ddlTransType.SelectedValue == "SaleReturn")
-            {
+            ////else if (ddlTransType.SelectedValue == "Principle")
+            ////{
 
-                ddlPaymentReceiptType.Visible = true;
-                ddlPaymentReceiptType.Items.Clear();
-                ddlPaymentReceiptType.Items.Add(new ListItem("Customer Return", "CustomerReturn"));
+            ////    ddlPaymentReceiptType.Visible = true;
+            ////    ddlPaymentReceiptType.Items.Clear();
+            ////    ddlPaymentReceiptType.Items.Add(new ListItem("Free Copon", "FreeCopon"));
+            ////    ddlPaymentReceiptType.Items.Add(new ListItem("Warranty", "Warranty"));
+            ////    ddlPaymentReceiptType.Items.Add(new ListItem("Insurance", "Insurance"));
+            ////    ddlPaymentReceiptType.Items.Add(new ListItem("Adjustment", "Adjustment"));
 
-            }
+            ////}
+            //else if (ddlTransType.SelectedValue == "SaleReturn")
+            //{
+
+            //    ddlPaymentReceiptType.Visible = true;
+            //    ddlPaymentReceiptType.Items.Clear();
+            //    ddlPaymentReceiptType.Items.Add(new ListItem("Customer Return", "CustomerReturn"));
+
+            //}
             Load_ReceiptNo();
         }
 
-        //protected void ddlPaymentReceiptType_SelectedIndexChanged(object sender, EventArgs e)
-        //{
+        protected void ddlPaymentReceiptType_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-        //    Load_Customer();
-        //    if (ddlPaymentReceiptType.SelectedIndex == 0)
-        //    {
+            Load_Customer();
+            //if (ddlPaymentReceiptType.SelectedIndex == 0)
+            //{
 
-        //        chkInsRec.Checked = false;
-        //        chkInsRec.Enabled = false;
-        //        ddlInsCo.SelectedIndex = 0;
-        //        if (ddlInsBranch.Items.Count > 0) ddlInsBranch.SelectedIndex = 0;
-        //        lblInsComp.Visible = false;
-        //        lblInsBr.Visible = false;
-        //        ddlInsCo.Visible = false;
-        //        ddlInsBranch.Visible = false;
-        //    }
-        //    else
-        //    {
-        //        chkInsRec.Enabled = true;
-        //    }
-        //}
+            //    // chkInsRec.Checked = false;
+            //    //chkInsRec.Enabled = false;
+            //    ddlInsCo.SelectedIndex = 0;
+            //    if (ddlInsBranch.Items.Count > 0) ddlInsBranch.SelectedIndex = 0;
+            //    lblInsComp.Visible = false;
+            //    lblInsBr.Visible = false;
+            //    ddlInsCo.Enabled = false;
+            //    ddlInsBranch.Enabled = false;
+            //}
+            //else if (ddlPaymentReceiptType.SelectedValue == "Insurance")
+            //{
+            //    ddlInsCo.Enabled = true;
+            //    ddlInsBranch.Enabled = true;
+            //    // chkInsRec.Enabled = true;
+            //}
+            //else
+            //{
+            //    ddlInsCo.SelectedIndex = 0;
+            //    if (ddlInsBranch.Items.Count > 0) ddlInsBranch.SelectedIndex = 0;
+            //    lblInsComp.Visible = false;
+            //    lblInsBr.Visible = false;
+            //    ddlInsCo.Enabled = false;
+            //    ddlInsBranch.Enabled = false;
+            //}
+            imgCustomerCode.Enabled = true;
+        }
 
         protected void DDLPaymentMode_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1611,8 +1931,18 @@ namespace DXBMS.Modules.Service.Forms
 
         protected void imgCustomerCode_Click(object sender, ImageClickEventArgs e)
         {
-            ViewState["lookupid"] = 1;
-            clslook.LU_Get_Customer(imgCustomerCode, ViewState["lookupid"].ToString(), "DealerCode = '" + Session["DealerCode"].ToString() + "'", "../../../");
+            if (ddlTransType.SelectedValue == "Advance")
+            {
+                ViewState["lookupid"] = 1;
+                clslook.LU_Get_Customer(imgCustomerCode, ViewState["lookupid"].ToString(), "DealerCode = '" + Session["DealerCode"].ToString() + "'", "../../../");
+            }
+            //else
+            //{
+            //    ViewState["lookupid"] = 95;
+            //    clslook.LU_Get_CustomerPayRec(imgCustomerCode, ViewState["lookupid"].ToString(), "DealerCode = '" + Session["DealerCode"].ToString() + "'", ddlPaymentReceiptType.SelectedValue, ddlInsCo.SelectedValue, "../../../");
+            //}
+
+
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Close Look Up Window First')", true);
         }
@@ -1623,6 +1953,16 @@ namespace DXBMS.Modules.Service.Forms
             clslook.LU_Get_ReceiptNo(imgCustomerCode, ViewState["lookupid"].ToString(), "DealerCode = '" + Session["DealerCode"].ToString() + "'", "../../../");
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Close Look Up Window First')", true);
+        }
+
+        protected void txtAdvAmount_TextChanged(object sender, EventArgs e)
+        {
+            CalSubTotal();
+        }
+
+        protected void gvTaxDetail_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CalSubTotal();
         }
 
         protected void lnkInvoiceNo_Click(object sender, EventArgs e)
@@ -1643,20 +1983,29 @@ namespace DXBMS.Modules.Service.Forms
         }
         private void LoadTaxType(DropDownList ddl)
         {
-            objMBLL.FillDropDown(ddl, "SELECT TaxHead,TaxID FROM TaxType", "TaxHead", "TaxID", "Select");
+            objMBLL.FillDropDown(ddl, "SELECT TaxHead,TaxID FROM TaxType Where Type='Receipt'", "TaxHead", "TaxID", "Select");
         }
 
         protected void chkAdvance_CheckedChanged(object sender, EventArgs e)
         {
-            if (ddlCust.SelectedIndex != 0)
+            if (ddlPaymentReceiptType.SelectedValue == "Service" || ddlPaymentReceiptType.SelectedValue == "JEN" || ddlPaymentReceiptType.SelectedValue == "Dep")
             {
-                string WhereQuery = " DealerCode ='" + Session["DealerCode"].ToString() + "' " +
-                "And CusCode='" + ddlCust.SelectedValue.ToString().Trim() + "' " +
-                "And  IsAdjustAdvance='Y' " +
-                "And AmountPaid - AdvanceAdjustedAmount >= 1";
-                string[] Columns = new string[] { "ReceiptNo", "CONVERT(VARCHAR(10),ReceiptDate,105)", "'Paid=' + Convert(Varchar(20),amountpaid)", "'Adj=' +CONVERT(VARCHAR(10),AdvanceAdjustedAmount)", "'Bal='+CONVERT(VARCHAR(10),AdvanceBalanceAmount)" };
-                SysFuncs.GetMultiColumnsDDL(ddlAdvance, Columns, "PaymentReceiptMaster", WhereQuery, "ReceiptNo", "Order by ReceiptNo Desc", true, false);
+                if (ddlCust.SelectedIndex != 0)
+                {
+                    string WhereQuery = " DealerCode ='" + Session["DealerCode"].ToString() + "' " +
+                   // "And CusCode='" + ddlCust.SelectedValue.ToString().Trim() + "' " +
+                    "And  IsAdjustAdvance='Y' " +
+                    "And  TransType='Advance' " +
+                    "And   AdvanceBalanceAmount >= 1" +
+                    "And   DelFlag<>'Y' ";
+                    string[] Columns = new string[] { "ReceiptNo", "CONVERT(VARCHAR(10),ReceiptDate,105)", "'Paid=' + Convert(Varchar(20),amountpaid)", "'Adj=' +CONVERT(VARCHAR(10),AdvanceAdjustedAmount)", "'Bal='+CONVERT(VARCHAR(10),AdvanceBalanceAmount)" };
+                    SysFuncs.GetMultiColumnsDDL(ddlAdvance, Columns, "PaymentReceiptMaster", WhereQuery, "ReceiptNo", "Order by ReceiptNo Desc", true, false);
+                }
+
             }
+           
+
+
         }
 
         protected void DDLFooterReceiptHead_SelectedIndexChanged(object sender, EventArgs e)
@@ -1688,8 +2037,22 @@ namespace DXBMS.Modules.Service.Forms
                 GridViewRow gvr = tc.Parent as GridViewRow;
                 CheckBox chkSelect = (CheckBox)gvr.Cells[0].FindControl("chkSelect");
 
-                if (chkSelect.Checked) txtSelectedTotalRefAmount.Text = (Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim()) + Convert.ToDecimal(gvr.Cells[5].Text)).ToString();
-                else txtSelectedTotalRefAmount.Text = (Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim()) - Convert.ToDecimal(gvr.Cells[5].Text)).ToString();
+                //if (chkSelect.Checked) {
+                //    if (SysFunctions.CustomCDBL(gvr.Cells[6].Text) < SysFunctions.CustomCDBL(txtAdvAmount.Text))
+                //    {
+                //        txtSelectedTotalRefAmount.Text = "0";
+                //    }
+                //    else
+                //    {
+                //        txtSelectedTotalRefAmount.Text = (Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim()) + Convert.ToDecimal(gvr.Cells[6].Text) - Convert.ToDecimal(txtAdvAmount.Text.Trim() == "" ? "0" : txtAdvAmount.Text.Trim())).ToString();
+                //   }
+
+                //    }
+                //   else
+                //txtSelectedTotalRefAmount.Text = (Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim()) + Convert.ToDecimal(gvr.Cells[6].Text)).ToString();
+                // txtInstAmt.Text = txtSelectedTotalRefAmount.Text;
+                //             txttotAmount.Text = txtSelectedTotalRefAmount.Text;
+                txtInvTotal.Text = CaltotalInvAmount().ToString();
             }
             catch (Exception ex)
             {
@@ -1705,7 +2068,21 @@ namespace DXBMS.Modules.Service.Forms
             {
                 TextBox txtFooterTaxPerc = (TextBox)gvTaxDetail.FooterRow.FindControl("txtFooterTaxPerc");
                 //txtSelectedTotalRefAmount
-                decimal TotalInvAmount = Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim());
+                if (gvPendingInvoice.Rows.Count > 0)
+                {
+
+
+
+                    foreach (GridViewRow row in gvPendingInvoice.Rows)
+                    {
+                        CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                        if (chkSelect.Checked)
+                        {
+                            SumOfSelectedInvoice = SumOfSelectedInvoice + Convert.ToDouble(row.Cells[6].Text);
+                        }
+                    }
+                }
+                decimal TotalInvAmount = Convert.ToDecimal(SumOfSelectedInvoice == 0 ? 0 : SumOfSelectedInvoice);
                 decimal TaxPercent = Convert.ToDecimal(txtFooterTaxPerc.Text.Trim() == "" ? "0" : txtFooterTaxPerc.Text.Trim());
 
 
@@ -1725,7 +2102,21 @@ namespace DXBMS.Modules.Service.Forms
             try
             {
                 TextBox txtFooterTaxAmt = (TextBox)gvTaxDetail.FooterRow.FindControl("txtFooterTaxAmt");
-                decimal TotalInvAmount = Convert.ToDecimal(txtSelectedTotalRefAmount.Text.Trim() == "" ? "0" : txtSelectedTotalRefAmount.Text.Trim());
+                if (gvPendingInvoice.Rows.Count > 0)
+                {
+
+
+
+                    foreach (GridViewRow row in gvPendingInvoice.Rows)
+                    {
+                        CheckBox chkSelect = (CheckBox)row.FindControl("chkSelect");
+                        if (chkSelect.Checked)
+                        {
+                            SumOfSelectedInvoice = SumOfSelectedInvoice + Convert.ToDouble(row.Cells[6].Text);
+                        }
+                    }
+                }
+                decimal TotalInvAmount = Convert.ToDecimal(SumOfSelectedInvoice == 0 ? 0 : SumOfSelectedInvoice);
                 decimal DFooterTaxAmt = Convert.ToDecimal(txtFooterTaxAmt.Text.Trim() == "" ? "0" : txtFooterTaxAmt.Text.Trim());
 
                 var TotalTax = (DFooterTaxAmt / TotalInvAmount) * 100;
@@ -1741,7 +2132,15 @@ namespace DXBMS.Modules.Service.Forms
         {
             ReportDocument RD = new ReportDocument();
             Data.DSReports data = new Data.DSReports();
-            rpt = "~\\Modules\\Service\\ServiceReports\\CombineReport.rpt";
+            if (ddlPaymentReceiptType.SelectedValue == "Insurance")
+            {
+                rpt = "~\\Modules\\Service\\ServiceReports\\Ins_CombineReport.rpt";
+            }
+            else
+            {
+                rpt = "~\\Modules\\Service\\ServiceReports\\CombineReport.rpt";
+            }
+
             DataSet ds = new DataSet();
 
             string cCon = CConn.CConnection.GetConnectionString();
@@ -1750,7 +2149,7 @@ namespace DXBMS.Modules.Service.Forms
             string jobtype = SysFuncs.GetStringValuesAgainstCodes("JobCardCode='" + JobCard + "' and DealerCode='" + Session["DealerCode"].ToString() + "'", "JobCardMaster", "JobCardType");
             //   QRCodeEncoder encoder = new QRCodeEncoder();
 
-            if (jobtype == "012")
+            if (ddlPaymentReceiptType.SelectedValue == "Insurance")
             {
                 ds = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(cCon, CommandType.Text, "sp_CustomerInvoiceInfo_Select'" + this.Session["DealerCode"].ToString() + "','" + i + "'");
                 data.sp_CustomerInvoiceInfo_Select.Load(ds.CreateDataReader());
@@ -1778,7 +2177,7 @@ namespace DXBMS.Modules.Service.Forms
             ds = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(cCon, CommandType.Text, "sp_JobCardButPartsDetail_Print '" + this.Session["DealerCode"].ToString() + "','" + strJCCode + "'");
             data.sp_JobCardLubDetail_Print.Load(ds.CreateDataReader());
 
-            if (jobtype == "012")
+            if (ddlPaymentReceiptType.SelectedValue == "Insurance")
             {
                 ds = Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteDataset(cCon, CommandType.Text, "sp_DepCust_GSTInvoiceParts_Select'" + this.Session["DealerCode"].ToString() + "','" + strJCCode + "','" + InvType + "'"); //
                 data.sp_DepCust_GSTInvoiceParts_Select.Load(ds.CreateDataReader());
@@ -1828,6 +2227,7 @@ namespace DXBMS.Modules.Service.Forms
             ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
 
         }
+
 
     }
 }

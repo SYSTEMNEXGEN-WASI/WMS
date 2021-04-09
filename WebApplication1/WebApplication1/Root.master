@@ -534,7 +534,7 @@
 											<li>
 												<asp:LinkButton ID="LnkCustpayment" runat="server" CausesValidation="False" PostBackUrl="~/Modules/Service/Forms/CustomerPaymentRec.aspx">Incoming Payment</asp:LinkButton></li>
                                                 <li>
-												<asp:LinkButton ID="LinkButton24" runat="server" CausesValidation="False" Visible="false" PostBackUrl="~/Modules/Service/Forms/VendorPaymentReceipt.aspx">Vendor Incoming Payment</asp:LinkButton></li>
+												<asp:LinkButton ID="LinkButton24" runat="server" CausesValidation="False"  PostBackUrl="~/Modules/Service/Forms/VendorPaymentReceipt.aspx">Vendor Incoming Payment</asp:LinkButton></li>
 											<li>
 												<asp:LinkButton ID="lnkPaymentMaster" runat="server" CausesValidation="False" PostBackUrl="~/Modules/SpareParts/Forms/outgoingpayments.aspx">Outgoing Payment</asp:LinkButton></li>
                                                 <li>

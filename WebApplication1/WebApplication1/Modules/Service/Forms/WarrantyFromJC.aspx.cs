@@ -1025,7 +1025,34 @@ namespace DXBMS.Modules.Service.Forms
             CalculateTotal();
         }
 
+        protected void btnGL_Click(object sender, EventArgs e)
+        {
+            if (!sec.UserRight("2535", "005"))
+            {
+                Response.Redirect("~/Test.aspx");
+            }
+            if (txtBillingNo.Text == "")
+            {
+                ObjGenral.UserMsg(lblMessage, Color.Red, "Please Select Bill First !!!", null);
+                return;
+            }
+            string Post = ObjGenral.GetStringValuesAgainstCodes("DealerCode='" + Session["DealerCode"].ToString() + "' And  JENBillNo='" + txtBillingNo.Text + "'", "JENBillMaster", "PostFlag");
+            if (Post == "" || Post == "N")
 
+            {
+                ObjGenral.UserMsg(lblMessage, Color.Red, "Please  Post Bill First !!!", null);
+                return;
+            }
+
+
+
+            string URL = "JV.aspx?CusInv=" + txtBillingNo.Text + "&Type=JEN";
+
+
+            string fullURL = "window.open('" + URL + "', '_blank', 'height=600,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
+            ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
+        }
+      
         public double CalculatePST()
         {
             PST = 0;

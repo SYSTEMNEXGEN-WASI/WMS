@@ -2405,9 +2405,9 @@ namespace DXBMS
         //            itm.Text = SsetAsTextTop;
         //            Drop.Items.Add(itm); 
         //            Drop.SelectedIndex = 0;
-                    
+
         //        }
-                
+
         //        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
         //        {
         //            ListEditItem itm = new ListEditItem();
@@ -2433,8 +2433,7 @@ namespace DXBMS
         //    }
         //    catch (Exception ex) { throw ex; }
         //}
-
-        public DataTable PendingPaymentReceipt(string PaymentReceiptType, string CustomerCode, string PaymentStatus, string ReceiptNo, string InvNo,String DealerCode)
+        public DataTable PendingPaymentReceipt(string PaymentReceiptType, string CustomerCode, string PaymentStatus, string ReceiptNo, string InvNo, String DealerCode)
         {
             string sQuery;
             if (PaymentStatus == "UNPAID")
@@ -2458,7 +2457,7 @@ namespace DXBMS
                         " AND DelFlag = 'N' " +
                         " AND Round(InvoiceAmount,2) - Round(isnull(TotReceipt,0),2) > 1 " +
                         " AND PostFlag = 'Y'  "
-                        
+
                         ;
                 }
                 else if (PaymentReceiptType == "Insurance")
@@ -2511,7 +2510,7 @@ namespace DXBMS
                         "Where PRD.DealerCode = '" + DealerCode + "' " +
                         "AND PRD.ReceiptNo = '" + ReceiptNo + "' Order by PRD.InvoiceNo desc";
                 }
-              else  if (PaymentReceiptType == "Dep")
+                else if (PaymentReceiptType == "Dep")
                 {
                     sQuery = "Select '' [S NO],PRD.InvoiceNo [RefNo],CI.JobCardCode,CONVERT(VARCHAR(10),PRD.InvoiceDate,105) [Ref Date],round(PRD.InvAmount,2) [Ref Amount]," +
                         "AdjAmount Adjustment,isNull(OutstAmount,'0') OutStanding,isNull(OutstAmount,'0')-IsNull(AdjAmount,'0') as Remaining,Cast(1 as Bit) CheckVal " +
@@ -2527,17 +2526,90 @@ namespace DXBMS
                         "Where PRD.DealerCode = '" + DealerCode + "' " +
                         "AND PRD.ReceiptNo = '" + ReceiptNo + "' Order by PRD.InvoiceNo desc";
                 }
-                else {
+                else
+                {
                     sQuery = "Select ''[S NO],PRD.InvoiceNo[RefNo],CI.SaleInvNo AS 'JobCardCode',CONVERT(VARCHAR(10), PRD.InvoiceDate, 105)[Ref Date],round(PRD.InvAmount,2)[Ref Amount]," +
                         "AdjAmount Adjustment,isNull(OutstAmount,'0') OutStanding,isNull(OutstAmount,'0')-IsNull(AdjAmount,'0') as Remaining,Cast(1 as Bit) CheckVal " +
                         "from PaymentReceiptDetail PRD " +
                         "inner Join CounterSaleMaster CI on CI.SaleInvNo=PRD.InvoiceNo and CI.DealerCode=PRD.DealerCode" +
                         " Where PRD.DealerCode = '" + DealerCode + "' " +
                         "AND PRD.ReceiptNo = '" + ReceiptNo + "'";
-}
                 }
+            }
 
             DataSet ds = new DataSet();
+            ds = SqlHelper.ExecuteDataset(GlobalVar.mDataConnection, CommandType.Text, sQuery);
+
+            if (ds.Tables[0].Rows.Count == 0) ds.Tables[0].Rows.Add(ds.Tables[0].NewRow());
+            return ds.Tables[0];
+        }
+        public DataTable PendingFFIPDIPaymentReceipt(string PaymentReceiptType, string CustomerCode, string PaymentStatus, string ReceiptNo, string InvNo,String DealerCode)
+        {
+            string sQuery;
+            if (PaymentStatus == "UNPAID")
+            {
+                if (PaymentReceiptType == "Service")
+                {
+                    sQuery = "Select " +
+                              " ''[S NO],FPBillNo[RefNo],''JobCardCode,CONVERT(VARCHAR(10), BillDate, 105)[Ref Date]," +
+                              " round((BillAmount - BillRecAmount), 0) OutStanding,round(BillAmount, 0)[Ref Amount],'' Adjustment,'' Remaining" +
+                              " from FFIPDIBillMaster Where DealerCode = '" + DealerCode + "' AND Round(BillAmount,0) -Round(isNULL(BillRecAmount, 0), 0) > 0 AND DelFlag = 'N'" +
+                              " Order by FPBillNo desc";
+                }
+
+                else if (PaymentReceiptType == "JEN")
+                {
+                    sQuery =  " Select '' [S NO],JENBillNo [RefNo],'' as JobCardCode,CONVERT(VARCHAR(10),BillDate,105) [Ref Date],round(BillAmount,0) [Ref Amount], " +
+                              " round(ISNULL(BillAmount, 0) - ISNULL(BillRecAmount, 0), 0) OutStanding,'' Adjustment,'' Remaining, from JENBillMaster " +
+                              " Where DealerCode = '" + DealerCode + "' " +
+                              " AND DelFlag = 'N' " +
+                              " AND Round(BillAmount,0) -Round(BillRecAmount, 0) > 0";
+                }
+
+
+                else
+                {
+                    sQuery = "Select '' [S NO],ExpendCode [RefNo],'' as JobCardCode,CONVERT(VARCHAR(10),ExpendDate,105) [Ref Date],round(TotalCost,0) [Ref Amount], " +
+                            " round(ISNULL(TotalCost,0) - ISNULL(TotReceipt,0),0) OutStanding,'' Adjustment,'' Remaining,Cast(1 as Bit) CheckVal from ExpenditureMaster " +
+                            " Where DealerCode = '" + DealerCode + "' " +
+                            " AND CusCode = '" + CustomerCode + "' " +
+                             " AND DelFlag = 'N' " +
+                             " AND Round(TotalCost,0) - Round(TotReceipt,0) > 0 ";
+                }
+            }
+            else
+            {
+                if (PaymentReceiptType == "Service")
+                {
+                    sQuery =  " Select " +
+                              " ''[S NO],FPBillNo[RefNo],''JobCardCode,CONVERT(VARCHAR(10), BillDate, 105)[Ref Date]," +
+                              " round((BillAmount - BillRecAmount), 0) OutStanding,round(BillAmount, 0)[Ref Amount],'' Adjustment,'' Remaining" +
+                              " from FFIPDIBillMaster Where DealerCode = '" + DealerCode + "' AND Round(BillAmount,0) -Round(isNULL(BillRecAmount, 0), 0) > 0 AND DelFlag = 'N'" +
+                              " Order by FPBillNo desc";
+                }
+
+                else if (PaymentReceiptType == "JEN")
+                {
+                    sQuery =  " Select '' [S NO],JENBillNo [RefNo],'' as JobCardCode,CONVERT(VARCHAR(10),BillDate,105) [Ref Date],round(BillAmount,0) [Ref Amount], " +
+                              " round(ISNULL(BillAmount, 0) - ISNULL(BillRecAmount, 0), 0) OutStanding,'' Adjustment,'' Remaining, from JENBillMaster " +
+                              " Where DealerCode = '" + DealerCode + "' " +
+                              " AND DelFlag = 'N' " +
+                              " AND Round(BillAmount,0) -Round(BillRecAmount, 0) > 0";
+                }
+
+
+                else
+                {
+                    sQuery = "Select '' [S NO],ExpendCode [RefNo],'' as JobCardCode,CONVERT(VARCHAR(10),ExpendDate,105) [Ref Date],round(TotalCost,0) [Ref Amount], " +
+                            " round(ISNULL(TotalCost,0) - ISNULL(TotReceipt,0),0) OutStanding,'' Adjustment,'' Remaining,Cast(1 as Bit) CheckVal from ExpenditureMaster " +
+                            " Where DealerCode = '" + DealerCode + "' " +
+                            " AND CusCode = '" + CustomerCode + "' " +
+                             " AND DelFlag = 'N' " +
+                             " AND Round(TotalCost,0) - Round(TotReceipt,0) > 0 ";
+                }
+            }
+
+                DataSet ds = new DataSet();
             ds = SqlHelper.ExecuteDataset(GlobalVar.mDataConnection, CommandType.Text, sQuery);
 
             if (ds.Tables[0].Rows.Count == 0) ds.Tables[0].Rows.Add(ds.Tables[0].NewRow());

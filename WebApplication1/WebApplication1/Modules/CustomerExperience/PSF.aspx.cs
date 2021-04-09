@@ -350,13 +350,13 @@ namespace DXBMS.Modules.CustomerExperience
 
                 if (ObjTrans.BeginTransaction(ref Trans) == true)
                 {
-                   if(TransType.Text== "JobCard")
+                   if(TransType.Text== "Invoice")
                     {
                         string sql = "update CRM_Post_PostServiceFollowup set Satisfied = '" + ddlSatisfied.SelectedValue.ToString() + "', Remarks = '" + txtRemakrs.Text + "' , FollowUpDate ='" + sysFunc.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "'" +
                                               ", Complain = '" + txtComplain.Text + "' where DealerCode = '" + Session["DealerCode"].ToString() + "' and TransCode = '" + TransCode.Text + "' ";
                         myFunc.ExecuteQuery(sql, Trans);
                     }
-                   else if (TransType.Text == "Invoice")
+                   else if (TransType.Text == "JobCard")
                     {
                         string sql = "update CRM_Post_PostServiceFollowup set Satisfied = '" + ddlSatisfied.SelectedValue.ToString() + "', Remarks = '" + txtRemakrs.Text + "' , FollowUpDate ='" + sysFunc.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "'" +
                       ", Complain = '" + txtComplain.Text + "' where DealerCode = '" + Session["DealerCode"].ToString() + "' and JobCardCode = '" + JobCode.Text + "' ";
