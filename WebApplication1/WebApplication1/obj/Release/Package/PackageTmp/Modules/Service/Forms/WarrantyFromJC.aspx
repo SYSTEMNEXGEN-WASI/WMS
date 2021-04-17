@@ -282,6 +282,7 @@
                        <asp:Button ID="btnBillReport" runat="server" Text="Print Bill Report" width="124px"
                                 onclick="btnBillReport_Click" />
                           <asp:Button ID="btnPost" runat="server" Text="Post" onclick="btnPost_Click" />
+                          <asp:Button runat="server" ID="btnGL" OnClick="btnGL_Click" Text="GL" />
                         <%--<asp:Button ID="btnPost" runat="server" Visible="False" Text="Post" onclick="btnPost_Click" OnClientClick="this.disabled = true; this.value = 'Please Wait';" UseSubmitBehavior="false"/>--%>
                     </td>
                 </tr>

@@ -70,6 +70,8 @@ namespace DXBMS.Modules.Setup
                 initializeDDLs(ddlAssLubStkCKD);
                 initializeDDLs(ddlAssLubStkImport);
                 initializeDDLs(ddlAssAPTV);
+                initializeDDLs(ddlWarrantyWAP);
+                initializeDDLs(ddlWarrantyNAP);
                 // Liabalities
                 initializeDDLs(ddlLiabPST);
                 initializeDDLs(ddlLiabGST);
@@ -129,8 +131,13 @@ namespace DXBMS.Modules.Setup
             ddlAssLubStkCKD.SelectedValue = dt.Rows[0]["LubricantStock(CKD)"].ToString().Trim() == "" ? "0" : dt.Rows[0]["LubricantStock(CKD)"].ToString().Trim();
             ddlAssLubStkImport.SelectedValue = dt.Rows[0]["LubricantStock(Import)"].ToString().Trim() == "" ? "0" : dt.Rows[0]["LubricantStock(Import)"].ToString().Trim();
             ddlAssAPTV.SelectedValue = dt.Rows[0]["AdvancePaymentToVendor"].ToString().Trim() == "" ? "0" : dt.Rows[0]["AdvancePaymentToVendor"].ToString().Trim();
+            ddlWarrantyWAP.SelectedValue = dt.Rows[0]["WarrantyWap"].ToString().Trim() == "" ? "0" : dt.Rows[0]["WarrantyWap"].ToString().Trim();
+            ddlWarrantyNAP.SelectedValue = dt.Rows[0]["WarrantyNap"].ToString().Trim() == "" ? "0" : dt.Rows[0]["WarrantyNap"].ToString().Trim();
+
+
+
                 ///Liabilities
-            ddlLiabPST.SelectedValue = dt.Rows[0]["PSTAccount"].ToString().Trim() == "" ? "0" : dt.Rows[0]["PSTAccount"].ToString().Trim();
+                ddlLiabPST.SelectedValue = dt.Rows[0]["PSTAccount"].ToString().Trim() == "" ? "0" : dt.Rows[0]["PSTAccount"].ToString().Trim();
             ddlLiabGST.SelectedValue = dt.Rows[0]["GSTAccount"].ToString().Trim() == "" ? "0" : dt.Rows[0]["GSTAccount"].ToString().Trim();
             ddlLiabExtra.SelectedValue = dt.Rows[0]["ExtraTax"].ToString().Trim() == "" ? "0" : dt.Rows[0]["ExtraTax"].ToString().Trim();
             ddlLiabFur.SelectedValue = dt.Rows[0]["FurtherAccount"].ToString().Trim() == "" ? "0" : dt.Rows[0]["FurtherAccount"].ToString().Trim();
@@ -282,6 +289,8 @@ namespace DXBMS.Modules.Setup
                                         new SqlParameter("@AdvancePaymentToVendor",SqlDbType.Char),//50
                                         new SqlParameter("@AdvanceReceiptToCustomer",SqlDbType.Char),//51
                                          new SqlParameter("@AdvanceReceiptToInsurance",SqlDbType.Char),//52
+                                           new SqlParameter("@WarrantyWap",SqlDbType.Char),//53
+                                             new SqlParameter("@WarrantyNap",SqlDbType.Char),//54
                                       };
 
                 param[0].Value = Session["DealerCode"].ToString();
@@ -337,6 +346,8 @@ namespace DXBMS.Modules.Setup
                 param[50].Value = ddlAssAPTV.SelectedValue;
                 param[51].Value = ddlLiaAPR.SelectedValue;
                 param[52].Value = ddlLiaIA.SelectedValue;
+                param[53].Value = ddlWarrantyWAP.SelectedValue;
+                param[54].Value = ddlWarrantyNAP.SelectedValue;
                 SysFunc.ExecuteSP_NonQuery("SP_Insert_AccountCodeSetup", param);
                 lblMsg.Visible = true;
                 lblMsg.Text = "Account(s) Saved Successfully";

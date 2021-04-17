@@ -274,6 +274,24 @@ namespace DXBMS.Modules.Setup {
         protected global::System.Web.UI.WebControls.DropDownList ddlInWarantyLab;
         
         /// <summary>
+        /// ddlWarrantyNAP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlWarrantyNAP;
+        
+        /// <summary>
+        /// ddlWarrantyWAP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlWarrantyWAP;
+        
+        /// <summary>
         /// ddlInFSB control.
         /// </summary>
         /// <remarks>

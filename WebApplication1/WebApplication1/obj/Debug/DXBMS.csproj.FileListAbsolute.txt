@@ -1203,6 +1203,8 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardIns.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptPaymentRefund.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoiceRevenue.rpt
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentRecPrint.rpt
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentReceiptTaxDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorReport.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\PaymentToVendorTaxDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReport.rpt
@@ -1232,6 +1234,8 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateSublet.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptCustomerEctimateBoutPartsDetail.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptGatePass.cs
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentRecPrint.cs
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentReceiptTaxDetail.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardIns.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardPDI.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardStock.cs

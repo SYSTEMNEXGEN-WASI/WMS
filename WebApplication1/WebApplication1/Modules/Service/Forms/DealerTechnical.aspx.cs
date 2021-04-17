@@ -22,6 +22,7 @@ namespace DXBMS.Modules.Service.Forms
     public partial class DealerTechnical : System.Web.UI.Page
     {
         SysFunction sysfunc = new SysFunction();
+
         SysFunctions sysfuncs = new SysFunctions();
         SecurityBll sec = new SecurityBll();
         Transaction ObjTrans = new Transaction();

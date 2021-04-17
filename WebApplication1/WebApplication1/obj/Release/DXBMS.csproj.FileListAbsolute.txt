@@ -1306,3 +1306,7 @@ E:\github-WMS\WebApplication1\WebApplication1\obj\Release\DXBMS.dll.licenses
 E:\github-WMS\WebApplication1\WebApplication1\obj\Release\DXBMS.dll
 E:\github-WMS\WebApplication1\WebApplication1\obj\Release\DXBMS.pdb
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptInvoiceRevenue.rpt
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentRecPrint.rpt
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentReceiptTaxDetail.rpt
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentRecPrint.cs
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentReceiptTaxDetail.cs

@@ -284,8 +284,16 @@
                                         <td><asp:DropDownList width="100%" runat="server" ID="ddlInLabIncome"></asp:DropDownList></td>
                                     </tr>
                                     <tr>
-                                        <td>Warranty Labour</td>
-                                        <td><asp:DropDownList width="100%" runat="server" ID="ddlInWarantyLab"></asp:DropDownList></td>
+                                        <td>Warranty NAP</td>
+                                        <td>
+                                        <asp:DropDownList width="100%" runat="server" Visible="false" ID="ddlInWarantyLab"></asp:DropDownList>
+                                        <asp:DropDownList width="100%" runat="server"  ID="ddlWarrantyNAP"></asp:DropDownList>
+                                        </td>
+                                         
+                                         <td>Warranty WAP</td>
+                                        <td><asp:DropDownList width="100%" runat="server"  ID="ddlWarrantyWAP"></asp:DropDownList></td>
+                                        
+                                         
                                          <td>PDI/FS </td>
                                         <td><asp:DropDownList width="100%" runat="server" ID="ddlInFSB"></asp:DropDownList></td>
                                     </tr>

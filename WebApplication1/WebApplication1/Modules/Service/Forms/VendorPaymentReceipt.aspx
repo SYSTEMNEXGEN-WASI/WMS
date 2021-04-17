@@ -162,14 +162,14 @@
                                                 OnSelectedIndexChanged="RBLTransType_SelectedIndexChanged" RepeatDirection="Horizontal" Visible="false"
                                                 width="100%">
                                                  <asp:ListItem Value="0">Select</asp:ListItem>
-                                               <%-- <asp:ListItem Value="Advance">Advance</asp:ListItem>
-                                                <asp:ListItem Value="Customer">Customer</asp:ListItem>--%>
+                                                <asp:ListItem Value="Advance">Advance</asp:ListItem>
+                                                <asp:ListItem Value="Customer">Customer</asp:ListItem>
                                                 <asp:ListItem Value="Principle">Principle</asp:ListItem>
                                                 <%--<asp:ListItem Value="SaleReturn">Sale Return</asp:ListItem>--%>
                                             </asp:RadioButtonList>
                                             <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlTransType" OnSelectedIndexChanged="ddlTransType_SelectedIndexChanged">
                                               <asp:ListItem Value="0">Select</asp:ListItem>
-                                             <%-- <asp:ListItem Value="Advance">Advance</asp:ListItem>
+                                            <%--  <asp:ListItem Value="Advance">Advance</asp:ListItem>
                                                 <asp:ListItem Value="Customer">Customer</asp:ListItem>--%>
                                                 <asp:ListItem Value="Principle">Principle</asp:ListItem>
 
@@ -190,6 +190,18 @@
                   RepeatDirection="Horizontal" Width="100%" Visible="false">
                   </asp:RadioButtonList>--%>
                    </td>
+
+                    <td >
+               Invoice Sub Type
+                  </td>
+               <td >
+                <asp:DropDownList runat="server" ID="ddlSubInv" AutoPostBack="true" CausesValidation="false">
+               </asp:DropDownList>
+              <%--  <asp:RadioButtonList ID="RBLPaymentReceiptType" runat="server" AutoPostBack="True" 
+                   OnSelectedIndexChanged="RBLPaymentReceiptType_SelectedIndexChanged" 
+                  RepeatDirection="Horizontal" Width="100%" Visible="false">
+                  </asp:RadioButtonList>--%>
+                   </td>
                             
 
              <td>
@@ -198,20 +210,20 @@
                 <td>
               <asp:TextBox runat="server" ID="txtDocNo" Width="100%"></asp:TextBox>
                </td>
-                <td>
-                        Remarks
-                        </td>
-                <td>
-                                        <asp:TextBox ID="txtRemarks" runat="server" MaxLength="100" 
-                                            TextMode="MultiLine" Width="100%"></asp:TextBox>
-                                    </td>
+              
               
              </tr>
             
            </tr>
               <%-- Row 3 --%>
                <tr>
-             
+               <td>
+                        Remarks
+                        </td>
+                <td>
+                                        <asp:TextBox ID="txtRemarks" runat="server" MaxLength="100" 
+                                            TextMode="MultiLine" Width="100%"></asp:TextBox>
+                                    </td>
                 <td >
                  <asp:CheckBox ID="chkAdvance" runat="server" Text="Is Adv" AutoPostBack="True" 
                    oncheckedchanged="chkAdvance_CheckedChanged" />
@@ -229,19 +241,20 @@
                        <asp:TextBox ID="txtAdvAmount" runat="server" Enabled="false" Width="100%" MaxLength="10"  placeholder="Adv Amt" AutoPostBack="true"  CausesValidation="false" OnTextChanged="txtAdvAmount_TextChanged"></asp:TextBox>
                        <%-- onblur="AmtTot()" --%>
                </td>
-                <td>
+             
+                  </tr>
+              <%-- Row 4 --%>
+               <tr >
+                  <td>
                                         Total Amount
 
                                     </td>
-             <td>
+                <td>
                                         <asp:TextBox ID="txttotAmount" runat="server" Enabled="False" Style="text-align: right" Visible="true"
                                             SkinID="ROTextBox" Width="100%"></asp:TextBox>
                                         <asp:TextBox ID="txtInvNo" runat="server" Visible="false" Width="10px"></asp:TextBox>
                                         <asp:HiddenField ID="txtAdj" runat="server" Value="f" />
                                     </td>
-                  </tr>
-              <%-- Row 4 --%>
-               <tr >
                <td>
                Invoice total
                </td>
@@ -261,7 +274,10 @@
                        OnCheckedChanged="chkInsRec_CheckedChanged" Text="Insurance Receipt" />
                </td>--%>
                
-                                               <td colspan="1" align="right">
+                                          
+             </tr>
+              <tr>
+                   <td colspan="1" align="right">
                                                
                                         <asp:ImageButton ID="ImgPendingInv" runat="server" Height="50px" 
                                             ImageUrl="~/Images/InvImgBtn.png" OnClick="ImgPendingInv_Click" 
@@ -271,8 +287,6 @@
                  <asp:Button ID="btnAutoAdj" runat="server" Height="40px" 
                                                OnClick="btnAutoAdj_Click" Text="Amount Adjustment" Width="170px"/>
                                                </td>
-             </tr>
-              <tr>
                 <td>
            Advance Balance
            </td>

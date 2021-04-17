@@ -141,7 +141,7 @@ namespace DXBMS.Modules.Service.Forms
             dsTaxDetailPram[0].Value = Session["DealerCode"].ToString();
             dsTaxDetailPram[1].Value = (ddlReceptNo.SelectedValue.ToString().Trim() == "" ? null : ddlReceptNo.SelectedValue.ToString().Trim());
             dsReceiptTaxDetail = new DataSet();
-            dsReceiptTaxDetail = SysFuncs.FillDataSet("sp_W2_PaymentReceiptTaxDetail_Select", dsTaxDetailPram);
+            dsReceiptTaxDetail = SysFuncs.FillDataSet("sp_FFIPDIPaymentReceiptTaxDetail_Select", dsTaxDetailPram);
             if (dsReceiptTaxDetail.Tables[0].Rows.Count == 0) dsReceiptTaxDetail.Tables[0].Rows.Add(dsReceiptTaxDetail.Tables[0].NewRow());
             ViewState["TaxDetail"] = dsReceiptTaxDetail.Tables[0];
             gvTaxDetail.DataSource = dsReceiptTaxDetail; gvTaxDetail.DataBind();
@@ -167,14 +167,27 @@ namespace DXBMS.Modules.Service.Forms
                 txtCusDesc.Visible = true;
                 txtCust.Text = dsReceiptMaster.Tables[0].Rows[0]["CusCode"].ToString();
                 txtCusDesc.Text = SysFuncs.GetStringValuesAgainstCodes("CusCode", txtCust.Text.ToString().Trim(), "CusDesc", "Customer", "", Session["DealerCode"].ToString());
-                ddlCust.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["CusCode"].ToString();
+                //ddlCust.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["CusCode"].ToString();
                 txtReceiptDate.Text = dsReceiptMaster.Tables[0].Rows[0]["ReceiptDate"].ToString();
                 txtInvTotal.Text = dsReceiptMaster.Tables[0].Rows[0]["OutSTTotal"].ToString();
                 txtVoucherNo.Text = dsReceiptMaster.Tables[0].Rows[0]["VoucherNo"].ToString();
                 ddlTransType.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["TransType"].ToString();
                 ddlTransType_SelectedIndexChanged(null, null);
                 ddlReceptNo.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["ReceiptNo"].ToString();
-                ddlPaymentReceiptType.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["InvoiceType"].ToString();
+                if (dsReceiptMaster.Tables[0].Rows[0]["InvoiceType"].ToString() != "")
+                {
+                    ddlPaymentReceiptType.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["InvoiceType"].ToString();
+                }
+                if (dsReceiptMaster.Tables[0].Rows[0]["InvoiceType"].ToString() != "0")
+                {
+                    ddlPaymentReceiptType.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["InvoiceType"].ToString();
+                    ddlPaymentReceiptType_SelectedIndexChanged(null, null);
+                    if (dsReceiptMaster.Tables[0].Rows[0]["SubInvoiceType"].ToString() != "0" || dsReceiptMaster.Tables[0].Rows[0]["SubInvoiceType"].ToString() != "")
+                    {
+                        ddlSubInv.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["SubInvoiceType"].ToString();
+                    }
+                   
+                }
                 txtRemarks.Text = dsReceiptMaster.Tables[0].Rows[0]["Remarks"].ToString();
 
                 DDLPaymentMode.SelectedValue = dsReceiptMaster.Tables[0].Rows[0]["PayModeCode"].ToString();
@@ -200,7 +213,7 @@ namespace DXBMS.Modules.Service.Forms
                     chkAdvance.Checked = true;
                 }
                 Session["PaymentStatus"] = "PAID";
-                dtPendingInvoice = SysFuncs.PendingFFIPDIPaymentReceipt(ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "PAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, Session["DealerCode"].ToString());
+                dtPendingInvoice = SysFuncs.PendingFFIPDIPaymentReceipt(ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "PAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, Session["DealerCode"].ToString(),ddlSubInv.SelectedValue);
                 //dtPendingInvoice = SysFuncs.PendingPaymentReceipt(Session["DealerCode"].ToString(), ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "PAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text);
                 gvPendingInvoice.DataSource = dtPendingInvoice;
                 gvPendingInvoice.DataBind();
@@ -224,7 +237,7 @@ namespace DXBMS.Modules.Service.Forms
                 fillData();
                 Session["PaymentStatus"] = "UNPAID";
                   //dtPendingInvoice = SysFuncs.PendingPaymentReceipt(Session["DealerCode"].ToString(), ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", txtReceiptNo.Text, txtInvNo.Text);
-                    dtPendingInvoice = SysFuncs.PendingFFIPDIPaymentReceipt(ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, Session["DealerCode"].ToString());
+                    dtPendingInvoice = SysFuncs.PendingFFIPDIPaymentReceipt(ddlPaymentReceiptType.SelectedValue.ToString(), ddlCust.SelectedValue.ToString(), "UNPAID", ddlReceptNo.SelectedValue.ToString().Trim(), txtInvNo.Text, Session["DealerCode"].ToString(),ddlSubInv.SelectedValue);
                 
                 ViewState["DtUnPaid"] = dtPendingInvoice;
                 gvPendingInvoice.DataSource = dtPendingInvoice;
@@ -776,12 +789,12 @@ namespace DXBMS.Modules.Service.Forms
 
             double strAdvBalAmt = 0;
             double strAdvAmt = SysFunctions.CustomCDBL(txtAdvAmount.Text.Trim().Replace("&nbsp;", "") == "" ? "0" : txtAdvAmount.Text.Trim());
-            if (ddlCust.SelectedIndex <= 0)
-            {
-                //PaymentReceiptEntry2(2);
-                SysFuncs.UserMsg(lblMsg, Color.Red, "Please Select  the  Customer First!");
-                return;
-            }
+            //if (ddlCust.SelectedIndex <= 0)
+            //{
+            //    //PaymentReceiptEntry2(2);
+            //    SysFuncs.UserMsg(lblMsg, Color.Red, "Please Select  the  Customer First!");
+            //    return;
+            //}
 
             if (chkAdvance.Checked)
             {
@@ -793,14 +806,7 @@ namespace DXBMS.Modules.Service.Forms
                 {
                     SysFuncs.UserMsg(lblMsg, Color.Red, "Please Enter Advance Amount First Or It Can not be Zero !");
                 }
-                if (ddlPaymentReceiptType.SelectedValue != "Insurance")
-                {
-                    strAdvBalAmt = SysFunctions.CustomCDBL(SysFuncs.GetStringValuesAgainstCodes("ReceiptNo", ddlAdvance.SelectedValue.ToString().Trim(), "AdvanceBalanceAmount", "PaymentReceiptMaster", "", Session["DealerCode"].ToString()));
-                }
-                else
-                {
-                    strAdvBalAmt = SysFunctions.CustomCDBL(SysFuncs.GetStringValuesAgainstCodes("AdvanceID", ddlAdvance.SelectedValue.ToString().Trim(), "AdvanceBalanceAmount", "AdvancePayment", "", Session["DealerCode"].ToString()));
-                }
+               
 
 
             }
@@ -944,7 +950,7 @@ namespace DXBMS.Modules.Service.Forms
             PmtRecMaster_param[3].Value = ddlPaymentReceiptType.SelectedItem.Value;
             PmtRecMaster_param[4].Value = ddlCust.SelectedValue.ToString();
            // Insurance
-                PmtRecMaster_param[5].Value = "";
+                PmtRecMaster_param[5].Value =ddlSubInv.SelectedValue;
                 PmtRecMaster_param[6].Value = "";
             
             PmtRecMaster_param[7].Value = "N";
@@ -1010,7 +1016,7 @@ namespace DXBMS.Modules.Service.Forms
                 {
                     if (ddlReceptNo.SelectedIndex == 0)
                     {
-                        strReceiptNo = SysFuncs.AutoGen("PaymentReceiptMaster", "ReceiptNo", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+                        strReceiptNo = SysFuncs.AutoGen("FFIPDIPaymentReceiptMaster", "ReceiptNo", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
                     }
                     else
                     {
@@ -1018,7 +1024,7 @@ namespace DXBMS.Modules.Service.Forms
                     }
 
                     PmtRecMaster_param[1].Value = strReceiptNo;
-                    if (SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceipt_Master_Insert]", PmtRecMaster_param, Trans))
+                    if (SysFuncs.ExecuteSP_NonQuery("[sp__FFIPaymentReceipt_Master_Insert]", PmtRecMaster_param, Trans))
                     {
                         return true;
                     }
@@ -1073,7 +1079,7 @@ namespace DXBMS.Modules.Service.Forms
                             PmtRecDetail_param[6].Value = row.Cells[6].Text.Trim();
                             if (row.Cells[7].Text.Trim() == "&nbsp;") PmtRecDetail_param[7].Value = "0";
                             else PmtRecDetail_param[7].Value = row.Cells[7].Text.Trim();
-                            SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceipt_Detail_Insert]", PmtRecDetail_param, Trans);
+                            SysFuncs.ExecuteSP_NonQuery("[sp_FFIPDIPaymentReceipt_Detail_Insert]", PmtRecDetail_param, Trans);
                             //Updation Of invoice
                             if (chkAdvance.Checked)
                             {
@@ -1091,7 +1097,7 @@ namespace DXBMS.Modules.Service.Forms
                                 UpdateAdvance_param[4].Value = SysFunctions.CustomCDBL(strAdvBalAmt) - SysFunctions.CustomCDBL(txtAdvAmount.Text == "" ? "0" : txtAdvAmount.Text);
                                 if (ddlPaymentReceiptType.SelectedValue != "Insurance")
                                 {
-                                    SysFuncs.ExecuteSP_NonQuery("[sp_PaymentReceiptMaster_UpdateOnAdvance]", UpdateAdvance_param, Trans);
+                                    SysFuncs.ExecuteSP_NonQuery("[sp_FFIPDIPaymentReceiptMaster_UpdateOnAdvance]", UpdateAdvance_param, Trans);
                                 }
                                 else
                                 {
@@ -1099,39 +1105,25 @@ namespace DXBMS.Modules.Service.Forms
                                 }
 
                             }
-                            if (ddlPaymentReceiptType.SelectedValue == "CountrSale")
+                            if (ddlPaymentReceiptType.SelectedValue == "JEN")
                             {
-                                string IQuery = "Update CounterSaleMaster set TotReceipt= TotReceipt +'" + PmtRecDetail_param[7].Value + "' " +
-                                     "Where DealerCode='" + Session["DealerCode"].ToString() + "' and SaleInvNo='" + PmtRecDetail_param[3].Value + "'";
+                                string IQuery = "Update JENBillMaster set BillRecAmount= BillRecAmount +'" + PmtRecDetail_param[7].Value + "' " +
+                                     "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JENBillNo='" + PmtRecDetail_param[3].Value + "'";
                                 SysFuncs.ExecuteQuery(IQuery, Trans);
                             }
-                            else if (ddlPaymentReceiptType.SelectedValue == "Sales")
+                            //else if (ddlPaymentReceiptType.SelectedValue == "")
+                            //{
+                            //    string IQuery = "Update ExpenditureMaster set TotReceipt= TotReceipt +'" + PmtRecDetail_param[7].Value + "' " +
+                            //         "Where DealerCode='" + Session["DealerCode"].ToString() + "' and ExpendCode='" + PmtRecDetail_param[3].Value + "'";
+                            //    SysFuncs.ExecuteQuery(IQuery, Trans);
+                            //}
+                            else if (ddlPaymentReceiptType.SelectedValue == "Service")
                             {
-                                string IQuery = "Update ExpenditureMaster set TotReceipt= TotReceipt +'" + PmtRecDetail_param[7].Value + "' " +
-                                     "Where DealerCode='" + Session["DealerCode"].ToString() + "' and ExpendCode='" + PmtRecDetail_param[3].Value + "'";
+                                string IQuery = "Update FFIPDIBillMaster set BillRecAmount= BillRecAmount +'" + PmtRecDetail_param[7].Value + "' " +
+                                          "Where DealerCode='" + Session["DealerCode"].ToString() + "' and FPBillNo='" + PmtRecDetail_param[3].Value + "'";
                                 SysFuncs.ExecuteQuery(IQuery, Trans);
                             }
-                            else if (ddlPaymentReceiptType.SelectedValue == "Insurance")
-                            {
-                                string IQuery = "Update dbo.CustomerInvoice set PaidI= PaidI +'" + PmtRecDetail_param[7].Value + "' " +
-                                          "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + PmtRecDetail_param[3].Value + "'";
-                                SysFuncs.ExecuteQuery(IQuery, Trans);
-                            }
-                            else
-                            {
-                                string IQuery;
-                                if (ddlPaymentReceiptType.SelectedValue == "Insurance")
-                                {
-                                    IQuery = "Update dbo.CustomerInvoice set PaidI= PaidI +'" + PmtRecDetail_param[7].Value + "' " +
-                                          "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + PmtRecDetail_param[3].Value + "'";
-                                }
-                                else
-                                {
-                                    IQuery = "Update dbo.CustomerInvoice set PaidC= paidC +'" + PmtRecDetail_param[7].Value + "' " +
-                                          "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + PmtRecDetail_param[3].Value + "'";
-                                }
-                                SysFuncs.ExecuteQuery(IQuery, Trans);
-                            }
+                          
                         }
                     }
                     SqlParameter[] PmtRecTaxDetail_param = {                                            
@@ -1240,26 +1232,19 @@ namespace DXBMS.Modules.Service.Forms
                 SysFuncs.UserMsg(lblMsg, Color.Red, "Please select Receipt No.");
                 return;
             }
-            string sql = "exec sp_PaymentReceipt_Print '" + Session["DealerCode"].ToString() + "','" + ddlReceptNo.SelectedValue.ToString().Trim() + "'";
+            string sql = "exec sp_FFIPDIPaymentReceipt_Print '" + Session["DealerCode"].ToString() + "','" + ddlReceptNo.SelectedValue.ToString().Trim() + "'";
             dt = SysFuncs.GetData(sql);
             objDsReports.sp_PaymentReceipt_Print.Load(dt.CreateDataReader());
-            sql = "exec sp_W2_PaymentReceiptTaxDetail_Select '" + Session["DealerCode"].ToString() + "','" + ddlReceptNo.SelectedValue.ToString().Trim() + "'";
+            sql = "exec sp_FFIPDIPaymentReceiptTaxDetail_Select '" + Session["DealerCode"].ToString() + "','" + ddlReceptNo.SelectedValue.ToString().Trim() + "'";
             dt = SysFuncs.GetData(sql);
             objDsReports.sp_W2_PaymentReceiptTaxDetail_Select.Load(dt.CreateDataReader());
 
             RD.PrintOptions.PaperSize = PaperSize.PaperA4;
-            if (ddlPaymentReceiptType.SelectedValue == "Insurance")
-            {
+            
+                RD.Load(Server.MapPath("../ServiceReports/rptFFIPDIPaymentRecPrint.rpt"));
+            
 
-                RD.Load(Server.MapPath("../ServiceReports/rptPaymentRecPrintIns.rpt"));
-
-            }
-            else
-            {
-                RD.Load(Server.MapPath("../ServiceReports/rptPaymentRecPrint.rpt"));
-            }
-
-            RD.OpenSubreport(Server.MapPath("../ServiceReports/rptPaymentReceiptTaxDetail.rpt"));
+            RD.OpenSubreport(Server.MapPath("../ServiceReports/rptFFIPDIPaymentReceiptTaxDetail.rpt"));
             RD.DataDefinition.FormulaFields["DealerPhone"].Text = "'" + Session["DealerPhone"].ToString() + "'";
             RD.DataDefinition.FormulaFields["DealerEmail"].Text = "'" + Session["DealerEmail"].ToString() + "'";
             RD.DataDefinition.FormulaFields["DealerFax"].Text = "'" + Session["DealerFax"].ToString() + "'";
@@ -1399,7 +1384,7 @@ namespace DXBMS.Modules.Service.Forms
                     }
                     if (ObjTrans.BeginTransaction(ref Trans) == true)
                     {
-                        if (SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceipt_Master_Delete]", PmtRecMaster_param, Trans))
+                        if (SysFuncs.ExecuteSP_NonQuery("[sp_FFIPDIPaymentReceipt_Master_Delete]", PmtRecMaster_param, Trans))
                         {
                             SqlParameter[] PmtRecDetail_param = {   /*0*/ new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                     /*1*/ new SqlParameter("@ReceiptNo",SqlDbType.Char,8), };
@@ -1410,23 +1395,19 @@ namespace DXBMS.Modules.Service.Forms
                             {
                                 LinkButton chkSelect = (LinkButton)row.FindControl("lnkInvoiceNo");
 
-                                SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceiptDetail_Delete]", PmtRecDetail_param, Trans);
+                                SysFuncs.ExecuteSP_NonQuery("[sp_FFIPDIPaymentReceiptDetail_Delete]", PmtRecDetail_param, Trans);
                                 string IQuery = "";
-                                if (ddlPaymentReceiptType.SelectedValue != "CountrSale" && ddlPaymentReceiptType.SelectedValue != "Insurance")
+                                if (ddlPaymentReceiptType.SelectedValue == "Service")
                                 {
-                                    IQuery = "Update dbo.CustomerInvoice set PaidC=PaidC - '" + row.Cells[7].Text.Trim() + "' " +
-                                        "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + chkSelect.Text + "'";
+                                    IQuery = "Update FFIPDIBillMaster set BillRecAmount=BillRecAmount - '" + row.Cells[7].Text.Trim() + "' " +
+                                        "Where DealerCode='" + Session["DealerCode"].ToString() + "' and FPBillNo='" + chkSelect.Text + "'";
                                 }
-                                else if (ddlPaymentReceiptType.SelectedValue == "Insurance")
+                                else if (ddlPaymentReceiptType.SelectedValue == "JEN")
                                 {
-                                    IQuery = "Update dbo.CustomerInvoice set PaidI=PaidI - '" + row.Cells[7].Text.Trim() + "' " +
-                                        "Where DealerCode='" + Session["DealerCode"].ToString() + "' and InvoiceNo='" + chkSelect.Text + "'";
+                                    IQuery = "Update dbo.JENBillMaster set BillRecAmount=BillRecAmount - '" + row.Cells[7].Text.Trim() + "' " +
+                                        "Where DealerCode='" + Session["DealerCode"].ToString() + "' and JENBillNo='" + chkSelect.Text + "'";
                                 }
-                                else
-                                {
-                                    IQuery = "Update dbo.CounterSaleMaster set TotReceipt=TotReceipt - '" + row.Cells[7].Text.Trim() + "' " +
-                                    "Where DealerCode='" + Session["DealerCode"].ToString() + "' and SaleInvNo='" + chkSelect.Text + "'";
-                                }
+                               
 
                                 SysFuncs.ExecuteQuery(IQuery, Trans);
                             }
@@ -1436,7 +1417,7 @@ namespace DXBMS.Modules.Service.Forms
 
                             PmtRecTaxDetail_param[0].Value = Session["DealerCode"].ToString();
                             PmtRecTaxDetail_param[1].Value = ddlReceptNo.SelectedValue.ToString().Trim();
-                            SysFuncs.ExecuteSP_NonQuery("[sp_W2_PaymentReceiptTaxDetail_Delete]", PmtRecTaxDetail_param, Trans);
+                            SysFuncs.ExecuteSP_NonQuery("[sp_FFIPDIPaymentReceiptTaxDetail_Delete]", PmtRecTaxDetail_param, Trans);
 
                         }
                         else { SysFuncs.UserMsg(lblMsg, Color.Red, "Operation Failed! Record Not Deleted."); }
@@ -1695,11 +1676,11 @@ namespace DXBMS.Modules.Service.Forms
         {
 
             string WhereQuery = "A.DealerCode ='" + Session["DealerCode"] + "' " +
-        "AND a.DelFlag = 'N' AND a.DealerCode = b.DealerCode " +
+        "AND a.DelFlag = 'N'  ";
         // "And TransType='"+RBLTransType.SelectedValue.ToString()+"'" +
-        "AND a.CusCode = b.CusCode ";
-            string[] Columns = new string[] { "a.ReceiptNo", "Convert(Varchar(10),a.ReceiptDate,105)", "b.CusDesc" };
-            SysFuncs.GetMultiColumnsDDL(ddlReceptNo, Columns, "PaymentReceiptMaster a,Customer b", WhereQuery, "ReceiptNo", "Order by a.ReceiptNo Desc", false, false);
+       
+            string[] Columns = new string[] { "a.ReceiptNo", "Convert(Varchar(10),a.ReceiptDate,105)" };
+            SysFuncs.GetMultiColumnsDDL(ddlReceptNo, Columns, "PaymentReceiptMaster a", WhereQuery, "ReceiptNo", "Order by a.ReceiptNo Desc", false, false);
 
 
         }
@@ -1797,29 +1778,11 @@ namespace DXBMS.Modules.Service.Forms
             {
                 Response.Redirect("~/Test.aspx");
             }
-            //if (SysFunctions.CustomCDBL(txtAdvAmount.Text) > 0)
-            //{
-            //    double InvAdjTOtal = SysFunctions.CustomCDBL(SysFuncs.GetStringValuesAgainstCodes("ReceiptNo", ddlReceptNo.SelectedValue, "InvAdjTotal", "PaymentReceiptMaster", Session["DealerCode"].ToString()));
-            //    string AdvReceiptNo = SysFuncs.GetStringValuesAgainstCodes("ReceiptNo", ddlReceptNo.SelectedValue, "AdvanceReceiptNo", "PaymentReceiptMaster", Session["DealerCode"].ToString());
-            //    double Advanceamt = SysFunctions.CustomCDBL(SysFuncs.GetStringValuesAgainstCodes("ReceiptNo", AdvReceiptNo, "AdvanceAdjustedAmount", "PaymentReceiptMaster", Session["DealerCode"].ToString()));
-            //    if (InvAdjTOtal == Advanceamt)
-            //    {
-            //        SysFunc.UserMsg(lblMsg, Color.Red, "Voucher will not be generated,Because Advance Amount is equal to Adjustedamount");
-            //        return;
-            //    }
-            //}
-            if (SysFunctions.CustomCDBL(txtInstAmt.Text) == 0)
-            {
-                string URL = "JV.aspx?CusInv=" + ddlReceptNo.SelectedValue + "&Type=AP";
+           
+              string URL = "GL.aspx?CusInv=" + ddlReceptNo.SelectedValue + "&Type=PRFFI";
                 string fullURL = "window.open('" + URL + "', '_blank', 'height=600,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
                 ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
-            }
-            else
-            {
-                string URL = "GL.aspx?CusInv=" + ddlReceptNo.SelectedValue + "&Type=PR";
-                string fullURL = "window.open('" + URL + "', '_blank', 'height=600,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
-                ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
-            }
+            
 
         }
 
@@ -1879,35 +1842,23 @@ namespace DXBMS.Modules.Service.Forms
         protected void ddlPaymentReceiptType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            Load_Customer();
-            //if (ddlPaymentReceiptType.SelectedIndex == 0)
-            //{
+           
+            if (ddlPaymentReceiptType.SelectedValue == "JEN")
+            {
 
-            //    // chkInsRec.Checked = false;
-            //    //chkInsRec.Enabled = false;
-            //    ddlInsCo.SelectedIndex = 0;
-            //    if (ddlInsBranch.Items.Count > 0) ddlInsBranch.SelectedIndex = 0;
-            //    lblInsComp.Visible = false;
-            //    lblInsBr.Visible = false;
-            //    ddlInsCo.Enabled = false;
-            //    ddlInsBranch.Enabled = false;
-            //}
-            //else if (ddlPaymentReceiptType.SelectedValue == "Insurance")
-            //{
-            //    ddlInsCo.Enabled = true;
-            //    ddlInsBranch.Enabled = true;
-            //    // chkInsRec.Enabled = true;
-            //}
-            //else
-            //{
-            //    ddlInsCo.SelectedIndex = 0;
-            //    if (ddlInsBranch.Items.Count > 0) ddlInsBranch.SelectedIndex = 0;
-            //    lblInsComp.Visible = false;
-            //    lblInsBr.Visible = false;
-            //    ddlInsCo.Enabled = false;
-            //    ddlInsBranch.Enabled = false;
-            //}
-            imgCustomerCode.Enabled = true;
+              
+                ddlSubInv.Items.Clear();
+                ddlSubInv.Items.Add(new ListItem("NAP", "NAP"));
+                ddlSubInv.Items.Add(new ListItem("WAP", "WAP"));
+              
+               
+            }
+            else
+            {
+                ddlSubInv.Items.Add(new ListItem("Select", "0"));
+            }
+          
+           
         }
 
         protected void DDLPaymentMode_SelectedIndexChanged(object sender, EventArgs e)
@@ -1950,7 +1901,7 @@ namespace DXBMS.Modules.Service.Forms
         protected void imgReceiptNo_Click(object sender, ImageClickEventArgs e)
         {
             ViewState["lookupid"] = 91;
-            clslook.LU_Get_ReceiptNo(imgCustomerCode, ViewState["lookupid"].ToString(), "DealerCode = '" + Session["DealerCode"].ToString() + "'", "../../../");
+            clslook.LU_Get_FFIPDIReceiptNo(imgCustomerCode, ViewState["lookupid"].ToString(), "DealerCode = '" + Session["DealerCode"].ToString() + "'", "../../../");
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Close Look Up Window First')", true);
         }

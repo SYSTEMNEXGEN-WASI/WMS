@@ -2000,6 +2000,7 @@ namespace DXBMS.Modules.Service
                     DataRow[] drParts = PartsDT.Select();
                     for (int i = 0; i < drParts.Length; i++)
                     {
+                       
                         if (PartsDT.Rows[i]["ItemCode"].ToString() != "")
                         {
                             SIRDetail_Insert_param[0].Value = Session["DealerCode"].ToString();
@@ -2021,6 +2022,34 @@ namespace DXBMS.Modules.Service
                             flag = true;
                         }
                     }
+                    ///------------------------Consumable Part
+                    ///
+                    DataRow[] drConParts = ConPartsDT.Select();
+                    for (int i = 0; i < drConParts.Length; i++)
+                    {
+                     
+                        if (ConPartsDT.Rows[i]["ItemCode"].ToString() != "")
+                        {
+                            SIRDetail_Insert_param[0].Value = Session["DealerCode"].ToString();
+                            if (strSIRNo.Trim() == "")
+                            {
+                                SIRDetail_Insert_param[1].Value = SirNo;
+                            }
+                            else
+                            {
+                                SIRDetail_Insert_param[1].Value = strSIRNo;
+                            }
+                            SIRDetail_Insert_param[2].Value = ConPartsDT.Rows[i]["ItemCode"].ToString();
+                            SIRDetail_Insert_param[3].Value = float.Parse(ConPartsDT.Rows[i]["Qty"].ToString());
+                            //SIRDetail_Insert_param[4].Value = txtRemarks.Text;  // 101
+                            SIRDetail_Insert_param[4].Value = "";  // 101
+                            SIRDetail_Insert_param[5].Value = float.Parse(ConPartsDT.Rows[i]["RecQty"].ToString());
+                            SIRDetail_Insert_param[6].Value = 'P';
+                            myFunc.ExecuteSP_NonQuery("sp_W2_SIRDetail_Insert", SIRDetail_Insert_param, Trans);
+                            flag = true;
+                        }
+                    }
+
 
                     //-------------------------------------Lubricants Item for SIR Detail
 

@@ -8,6 +8,44 @@
         <script src="../../../js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../../../js/chosen.jquery.js" type="text/javascript"></script>
         <script src="../../../js/chosen.jquery.min.js" type="text/javascript"></script>
+          <script src="../../Data/sweetalert.js" type="text/javascript"></script>  
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+     <script type="text/javascript">
+           function Savealert() {
+               Swal.fire({
+                   position: 'Centered',
+                   icon: 'success',
+                   title: 'Your record has been saved',
+                   showConfirmButton: false,
+                   timer: 6000
+               })
+               window.location.href = "VendorPaymentReceipt.aspx";
+           }
+           function Updatealert() {
+               Swal.fire({
+                   position: 'Centered',
+                   icon: 'success',
+                   title: 'Your record has been update',
+                   showConfirmButton: false,
+                   timer: 6000
+               })
+               window.location.href = "VendorPaymentReceipt.aspx";
+           }
+           function Deletealert() {
+            Swal.fire({
+                   position: 'Centered',
+                   icon: 'success',
+                   title: 'Your record has been delete',
+                   showConfirmButton: false,
+                   timer: 6000
+                    })
+            window.location.href = "VendorPaymentReceipt.aspx";
+           }
+           function reloads() {
+               window.location.href = "VendorPaymentReceipt.aspx";
+           }
+
+       </script>
     <script language="javascript" type="text/javascript">
         function AmtTot() {
             var TotalInsAmt = document.getElementById('<%=txtInstAmt.ClientID%>').value;
@@ -19,9 +57,9 @@
                 TotalAdvAmt = 0;
             }
 
-            document.getElementById('<%=txttotAmount.ClientID %>').value = parseFloat( TotalAdvAmt) + parseFloat( TotalInsAmt);
+            document.getElementById('<%=txttotAmount.ClientID %>').value = parseFloat( TotalAdvAmt) ;
             document.getElementById('<%=txtAdj.ClientID %>').value = 'f';
-//            var totIns = document.getElementById('<%=txtInstAmt.ClientID%>').value;
+            //            var totIns    + parseFloat( TotalInsAmt) = document.getElementById('<%=txtInstAmt.ClientID%>').value;
 //            document.getElementById('<%=txttotAmount.ClientID %>').value = totIns;
 //            document.getElementById('<%=txtAdj.ClientID %>').value = 'f';
         }
@@ -80,9 +118,11 @@
             <script type="text/javascript">
             Sys.Application.add_load(MaxTxtLen);
             </script>
-            
+              <span class="fa-arrow-left fa"></span>
+                        <asp:LinkButton ID="lnkBack" ForeColor="Black" runat="server" PostBackUrl="~/" Text="Back"></asp:LinkButton>
+                         
             <div class="Heading">
-                Dealer Payment Receipt
+                Vendor Payment Receipt
             </div>
            
           <table width="100%" style="border-collapse:separate; border-spacing:5px;" class="table table-condensed table-bordered table-hover">
@@ -94,7 +134,7 @@
                     </td>
                     <td>
                                     <asp:DropDownList ID="ddlReceptNo" runat="server" AutoPostBack="True" 
-                                        OnSelectedIndexChanged="ddlReceptNo_SelectedIndexChanged" Width="100%">
+                                        OnSelectedIndexChanged="ddlReceptNo_SelectedIndexChanged" Width="100%" CausesValidation="false">
                                     </asp:DropDownList>
                                 </td>
                     <td >
@@ -102,15 +142,17 @@
 
                              </td>
                     <td>
-                                        <asp:TextBox ID="txtReceiptDate" runat="server" Enabled="false" 
+                                        <asp:TextBox ID="txtReceiptDate" runat="server" 
                                             Style="background-image: url(../../../Images/Calendar_16x16.png); background-repeat: no-repeat; padding-left: 25px;" 
                                            Width="100%"></asp:TextBox>
-                                        <asp:MaskedEditExtender ID="txtReceiptDate_MaskedEditExtender" runat="server" 
-                                            ClearMaskOnLostFocus="False" CultureAMPMPlaceholder="" 
-                                            CultureCurrencySymbolPlaceholder="" CultureDateFormat="" 
-                                            CultureDatePlaceholder="" CultureDecimalPlaceholder="" 
-                                            CultureThousandsPlaceholder="" CultureTimePlaceholder="" Enabled="True" 
-                                            Mask="99-99-9999" TargetControlID="txtReceiptDate" />
+                                            <ajaxToolkit:MaskedEditExtender ID="txtPromisedDate_MaskedEditExtender" runat="server"
+                                                ClearMaskOnLostFocus="False" CultureAMPMPlaceholder="" CultureCurrencySymbolPlaceholder=""
+                                                CultureDateFormat="" CultureDatePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder=""
+                                                CultureTimePlaceholder="" Enabled="true" Mask="99-99-9999" TargetControlID="txtReceiptDate"
+                                                UserDateFormat="DayMonthYear" />
+                                            <ajaxToolkit:CalendarExtender ID="txtPromisedDate_CalendarExtender" runat="server"
+                                                Enabled="true" Format="dd-MM-yyyy" TargetControlID="txtReceiptDate" />
+                                       
                                     </td>
                     <td>
                Transaction Type
@@ -119,13 +161,15 @@
                                             <asp:RadioButtonList ID="RBLTransType" runat="server" AutoPostBack="True" Font-Bold="true"
                                                 OnSelectedIndexChanged="RBLTransType_SelectedIndexChanged" RepeatDirection="Horizontal" Visible="false"
                                                 width="100%">
+                                                 <asp:ListItem Value="0">Select</asp:ListItem>
                                                 <asp:ListItem Value="Advance">Advance</asp:ListItem>
                                                 <asp:ListItem Value="Customer">Customer</asp:ListItem>
                                                 <asp:ListItem Value="Principle">Principle</asp:ListItem>
                                                 <%--<asp:ListItem Value="SaleReturn">Sale Return</asp:ListItem>--%>
                                             </asp:RadioButtonList>
                                             <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlTransType" OnSelectedIndexChanged="ddlTransType_SelectedIndexChanged">
-                                             <%-- <asp:ListItem Value="Advance">Advance</asp:ListItem>
+                                              <asp:ListItem Value="0">Select</asp:ListItem>
+                                            <%--  <asp:ListItem Value="Advance">Advance</asp:ListItem>
                                                 <asp:ListItem Value="Customer">Customer</asp:ListItem>--%>
                                                 <asp:ListItem Value="Principle">Principle</asp:ListItem>
 
@@ -139,34 +183,41 @@
                Invoice Types 
                   </td>
                <td >
-                <asp:DropDownList runat="server" ID="ddlPaymentReceiptType" OnSelectedIndexChanged="ddlPaymentReceiptType_SelectedIndexChanged">
+                <asp:DropDownList runat="server" ID="ddlPaymentReceiptType" OnSelectedIndexChanged="ddlPaymentReceiptType_SelectedIndexChanged" AutoPostBack="true" CausesValidation="false">
                </asp:DropDownList>
               <%--  <asp:RadioButtonList ID="RBLPaymentReceiptType" runat="server" AutoPostBack="True" 
                    OnSelectedIndexChanged="RBLPaymentReceiptType_SelectedIndexChanged" 
                   RepeatDirection="Horizontal" Width="100%" Visible="false">
                   </asp:RadioButtonList>--%>
                    </td>
+
+                    <td >
+               Invoice Sub Type
+                  </td>
                <td >
-                 Customer<asp:ImageButton runat="server" ID="imgCustomerCode" CausesValidation="false" ImageUrl="~/Images/LookupNew.png" OnClick="imgCustomerCode_Click" /><span  style="font-size:large; color:red;" >*</span>
-                </td>
-               <td>
-                                        <asp:DropDownList ID="ddlCust" runat="server" AutoPostBack="True" Enabled="false"
-                                            Font-Names="monospace" OnSelectedIndexChanged="ddlCust_SelectedIndexChanged" 
-                                            Width="100%">
-                                        </asp:DropDownList>
-                                        <asp:TextBox ID="txtCust" runat="server" Visible="false"></asp:TextBox>
-                                    </td>
-               <td>
+                <asp:DropDownList runat="server" ID="ddlSubInv" AutoPostBack="true" CausesValidation="false">
+               </asp:DropDownList>
+              <%--  <asp:RadioButtonList ID="RBLPaymentReceiptType" runat="server" AutoPostBack="True" 
+                   OnSelectedIndexChanged="RBLPaymentReceiptType_SelectedIndexChanged" 
+                  RepeatDirection="Horizontal" Width="100%" Visible="false">
+                  </asp:RadioButtonList>--%>
+                   </td>
+                            
+
+             <td>
                Document No
                </td>
-               <td>
+                <td>
               <asp:TextBox runat="server" ID="txtDocNo" Width="100%"></asp:TextBox>
                </td>
               
+              
              </tr>
+            
+           </tr>
               <%-- Row 3 --%>
                <tr>
-                <td>
+               <td>
                         Remarks
                         </td>
                 <td>
@@ -183,31 +234,91 @@
                       </asp:DropDownList>
                       </td>   
                 <td>
-              Advance Amount
+           Adjusted Advance Amount
               </td>
                 <td>
-                       <asp:TextBox ID="txtAdvAmount" runat="server" Width="100%" MaxLength="6" onblur="AmtTot()" placeholder="Adv Amt"></asp:TextBox>
+                
+                       <asp:TextBox ID="txtAdvAmount" runat="server" Enabled="false" Width="100%" MaxLength="10"  placeholder="Adv Amt" AutoPostBack="true"  CausesValidation="false" OnTextChanged="txtAdvAmount_TextChanged"></asp:TextBox>
+                       <%-- onblur="AmtTot()" --%>
                </td>
+             
                   </tr>
               <%-- Row 4 --%>
                <tr >
-             <td>
+                  <td>
                                         Total Amount
 
                                     </td>
-            <td>
+                <td>
                                         <asp:TextBox ID="txttotAmount" runat="server" Enabled="False" Style="text-align: right" Visible="true"
                                             SkinID="ROTextBox" Width="100%"></asp:TextBox>
                                         <asp:TextBox ID="txtInvNo" runat="server" Visible="false" Width="10px"></asp:TextBox>
                                         <asp:HiddenField ID="txtAdj" runat="server" Value="f" />
                                     </td>
-                <td colspan="4" align="right">
+               <td>
+               Invoice total
+               </td>
+               
+           <td> <asp:TextBox ID="txttotAdj" runat="server" ReadOnly="True" SkinID="ROTextBox" 
+                            Visible="False" Width="80px"></asp:TextBox> 
+                            <asp:TextBox runat="server" ReadOnly="true" SkinID="ROTextBox" Width="100%" ID="txtInvTotal"></asp:TextBox>
+           </td>
+           <td>
+           Voucher No
+           </td>
+           <td>
+          <asp:TextBox ID="txtVoucherNo" runat="server" ReadOnly="true" SkinID="ROTextBox" Width="100%"></asp:TextBox>
+           </td>
+            <%-- <td >
+                   <asp:CheckBox ID="chkInsRec" runat="server" AutoPostBack="True" 
+                       OnCheckedChanged="chkInsRec_CheckedChanged" Text="Insurance Receipt" />
+               </td>--%>
+               
+                                          
+             </tr>
+              <tr>
+                   <td colspan="1" align="right">
+                                               
                                         <asp:ImageButton ID="ImgPendingInv" runat="server" Height="50px" 
                                             ImageUrl="~/Images/InvImgBtn.png" OnClick="ImgPendingInv_Click" 
                                             ToolTip="View Pending Invoice" Width="60px" /></td> 
-             </tr>
-              
-              
+
+                                             <td colspan="1" align="right">
+                 <asp:Button ID="btnAutoAdj" runat="server" Height="40px" 
+                                               OnClick="btnAutoAdj_Click" Text="Amount Adjustment" Width="170px"/>
+                                               </td>
+                <td>
+           Advance Balance
+           </td>
+           <td>
+          <asp:TextBox ID="txtAdvanceBalance" runat="server" ReadOnly="true" SkinID="ROTextBox" Width="100%"></asp:TextBox>
+           </td>
+
+
+              </tr>
+              <tr style="display:none">
+                <td style="display:none">
+                                        <asp:Label ID="lblInsBr" runat="server" Text="Ins Branch."></asp:Label>
+                                    </td>
+            <td style="display:none">
+                                        <asp:DropDownList ID="ddlInsBranch" runat="server" AutoPostBack="True" Enabled="false"
+                                            OnSelectedIndexChanged="ddlInsBranch_SelectedIndexChanged">
+                                        </asp:DropDownList>
+                                    </td>
+                 <td style="display:none">
+                 Customer<asp:ImageButton runat="server" ID="imgCustomerCode" Enabled="false" CausesValidation="false" ImageUrl="~/Images/LookupNew.png" OnClick="imgCustomerCode_Click" /><span  style="font-size:large; color:red;" >*</span>
+                </td>
+              <td style="display:none">
+                                        <asp:DropDownList ID="ddlCust" runat="server" AutoPostBack="True" Enabled="false"
+                                            Font-Names="monospace" OnSelectedIndexChanged="ddlCust_SelectedIndexChanged" 
+                                            Width="100%">
+                                        </asp:DropDownList>
+
+                                        <asp:TextBox ID="txtCust" runat="server" Visible="false" Width="25%"></asp:TextBox>
+                                          <asp:TextBox ID="txtCusDesc" runat="server" Visible="false" Width="65%"></asp:TextBox>
+                                    </td>
+            
+              </tr>
               </table>
             
             <asp:TabContainer ID="TabContainer2" runat="server" ActiveTabIndex="0" Width="100%"
@@ -221,8 +332,7 @@
             <table width="100%" style="border-collapse:separate; border-spacing:5px;" class="table table-condensed table-bordered table-hover">
             <tr>
             <td>
-              <asp:TextBox ID="txttotAdj" runat="server" ReadOnly="True" SkinID="ROTextBox" 
-                            Visible="False" Width="80px"></asp:TextBox>
+              
              <asp:GridView ID="gvPendingInvoice" runat="server" AutoGenerateColumns="false" 
                             OnRowCreated="gvPendingInvoice_RowCreated" 
                             OnRowDataBound="gvPendingInvoice_RowDataBound" ShowFooter="true" 
@@ -230,14 +340,16 @@
                             <HeaderStyle CssClass="GridHeader" />
                             <FooterStyle CssClass="GridFooter" />
                             <Columns>
+                            <%--   --%>
                                 <asp:TemplateField>
                                     <HeaderTemplate>
-                                        <asp:CheckBox ID="chkSelectAll" runat="server" AutoPostBack="True" 
-                                            OnCheckedChanged="chkSelectAll_CheckedChanged" Text="Select All" />
+                                        <asp:CheckBox ID="chkSelectAll" runat="server" AutoPostBack="True" OnCheckedChanged="chkSelectAll_CheckedChanged"
+                                            Text="Select All" />
                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="chkSelect" runat="server" AutoPostBack="true" 
-                                            oncheckedchanged="chkSelect_CheckedChanged" />
+                                    <%--   oncheckedchanged="chkSelect_CheckedChanged" /> --%>
+                                        <asp:CheckBox ID="chkSelect" runat="server" AutoPostBack="true"  oncheckedchanged="chkSelect_CheckedChanged" />
+                                          
                                         <asp:ImageButton ID="BtnRemove" runat="server" 
                                             ImageUrl="~/Images/Delete_16x16.png" OnClick="BtnRemove_Click1" 
                                             ToolTip="Remove" Visible="false" />
@@ -253,9 +365,9 @@
                                <%-- <asp:BoundField DataField="Ref No" HeaderText="Invoice No" HeaderStyle-Width ="50px" />--%>
                                  <asp:BoundField DataField="JobCardCode" HeaderText="JobCard No" HeaderStyle-Width ="50px" />
                                 <asp:BoundField DataField="Ref Date" HeaderText="Ref Date" />
-                                <asp:BoundField DataField="Ref Amount" HeaderText="Ref Amount" />
-                                <asp:BoundField DataField="OutStanding" HeaderText="Pending Dues" />
-                                <asp:BoundField DataField="Adjustment" HeaderText="Received" />
+                                <asp:BoundField DataField="Ref Amount" HeaderText="Inv Amount" />
+                                <asp:BoundField DataField="OutStanding" HeaderText="OutStanding" />
+                                <asp:BoundField DataField="Adjustment" HeaderText="Adjusted" />
                                 <asp:BoundField DataField="Remaining" HeaderText="Balance" />
                                 <%--<asp:TemplateField>
                                             <ItemTemplate>
@@ -269,7 +381,9 @@
             </table>
            </ContentTemplate>
             </asp:TabPanel>
-              <%-- Tab Of Payment Detail   --%>
+           
+         
+               <%-- Tab Of Payment Detail   --%>
             <asp:TabPanel class="TabPanel" ID="TabPanel2" runat="server" HeaderText="Sele Person Information">
           <HeaderTemplate>
           Payment Information
@@ -322,12 +436,14 @@
                  Receipt Amt
                </td>
                <td>
-                                        <asp:TextBox ID="txtInstAmt" runat="server" MaxLength="6" onblur="AmtTot()" 
+                                        <asp:TextBox ID="txtInstAmt" runat="server" MaxLength="10" AutoPostBack="true" CausesValidation="false"
                                             OnTextChanged="txtInstAmt_TextChanged" Placeholder="0.00" 
                                             Style="text-align: right" Width="100%"></asp:TextBox>
+
+                                            <%--   --%>
                                         <asp:FilteredTextBoxExtender ID="txtInstAmt_FilteredTextBoxExtender" 
-                                            runat="server" Enabled="True" FilterType="Numbers" TargetControlID="txtInstAmt" 
-                                            ValidChars="." />
+                                            runat="server" Enabled="True" FilterType="Custom" TargetControlID="txtInstAmt" 
+                                            ValidChars=".0123456789" />
                                     </td>
                                 
             <td >
@@ -353,14 +469,12 @@
                                     
                                         <asp:TextBox ID="txtSelectedTotalRefAmount" runat="server" Width ="80px" Visible="false"></asp:TextBox>
                                     </td>                                  
-            <td >
-                                         <asp:Button ID="btnAutoAdj" runat="server" Height="40px" 
-                                               OnClick="btnAutoAdj_Click" Text="Amount Adjustment" Width="170px" style="float:right;"  /></td>
+           
             </tr>
             </table>
            </ContentTemplate>
             </asp:TabPanel>
-             <%-- Tab Of Payment Tax  Detail   --%>
+                <%-- Tab Of Payment Tax  Detail   --%>
             <asp:TabPanel class="TabPanel" ID="TabPanel3" runat="server" HeaderText="Sele Person Information">
           <HeaderTemplate>
            Discount and Tax charges
@@ -370,7 +484,7 @@
            <tr>
            <td>
             <asp:GridView ID="gvTaxDetail" runat="server" Width="100%" ShowFooter="true" ShowHeaderWhenEmpty="true"
-                                OnRowDataBound="gvTaxDetail_RowDataBound" AutoGenerateColumns="false">
+                                OnRowDataBound="gvTaxDetail_RowDataBound" AutoGenerateColumns="false" OnSelectedIndexChanged="gvTaxDetail_SelectedIndexChanged">
                                 <HeaderStyle CssClass="GridHeader" />
                                 <FooterStyle CssClass="GridFooter" />
                                 <Columns>
@@ -380,14 +494,15 @@
                                             <asp:Label ID="lblTaxID" runat="server" Text='<%# Bind("TaxID") %>' Visible="false"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
+                                        
                                             <table>
                                                 <tr>
-                                                    <td>
+                                                    <td >
                                                         <asp:ImageButton ID="BtnAdd" runat="server" Height="30px" ImageUrl="~/Images/Export.png"
                                                             Width="30px" OnClick="BtnAdd_Click1" />
                                                     </td>
-                                                    <td align="center" style="margin-left:15px;">
-                                                        <asp:DropDownList ID="DDLFooterReceiptHead" runat="server" Width="200px" ToolTip="List of Taxes" 
+                                                    <td align="center" style="width:90%" >
+                                                        <asp:DropDownList ID="DDLFooterReceiptHead" runat="server"   ToolTip="List of Taxes" Width="300px"
                                                             onselectedindexchanged="DDLFooterReceiptHead_SelectedIndexChanged" AutoPostBack="True" >
                                                         </asp:DropDownList>
                                                     </td>
@@ -438,38 +553,16 @@
             </table>
            </ContentTemplate>
             </asp:TabPanel>
-             <asp:TabPanel class="TabPanel" ID="TabPanel4" runat="server" HeaderText="Sele Person Information">
+             <%--<asp:TabPanel class="TabPanel" ID="TabPanel4" runat="server" HeaderText="Sele Person Information">
           <HeaderTemplate>
           Insurance
            </HeaderTemplate>
            <ContentTemplate>
             <table width="100%" style="border-collapse:separate; border-spacing:5px;" class="table table-condensed table-bordered table-hover">
-           <tr>
-             <td >
-                   <asp:CheckBox ID="chkInsRec" runat="server" AutoPostBack="True" 
-                       OnCheckedChanged="chkInsRec_CheckedChanged" Text="Insurance Receipt" />
-               </td>
-             <td >
-                                        <asp:Label ID="lblInsComp" runat="server" Text="Ins Comp."></asp:Label>
-                                    </td>
-             <td>
-                                        <asp:DropDownList ID="ddlInsCo" runat="server" AutoPostBack="True" 
-                                            OnSelectedIndexChanged="ddlInsCo_SelectedIndexChanged">
-                                        </asp:DropDownList>
-                                    </td>
-             <td >
-                                        <asp:Label ID="lblInsBr" runat="server" Text="Ins Branch."></asp:Label>
-                                    </td>
-             <td>
-                                        <asp:DropDownList ID="ddlInsBranch" runat="server" AutoPostBack="True" 
-                                            OnSelectedIndexChanged="ddlInsBranch_SelectedIndexChanged">
-                                        </asp:DropDownList>
-                                    </td>
            
-           </tr>
             </table>
            </ContentTemplate>
-            </asp:TabPanel>
+            </asp:TabPanel>--%>
             </asp:TabContainer>
            
           
@@ -486,7 +579,7 @@
                             OnClick="btnDelete_Click" />
                         <asp:Button ID="btnClear" runat="server" Width="100px" Text="Clear" OnClick="btnClear_Click" />
                         <asp:Button ID="btnPrint" runat="server" Width="100px" Text="Print" OnClick="btnPrint_Click" />
-                        <asp:Button ID="btnGL" runat="server" Width="100px" Text="GL" OnClick="btnGL_Click"/>
+                        <asp:Button ID="btnGL" runat="server" Width="100px" Text="GL" OnClick="btnGL_Click" UseSubmitBehavior="false" />
                     </td>
                 </tr>
             </table>

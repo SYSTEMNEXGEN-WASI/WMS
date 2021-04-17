@@ -23,14 +23,14 @@ namespace DXBMS.Modules.CustomerExperience
             }
             if (!IsPostBack)
             {
-
+                txtVisitDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 createGrid();
                 lOADddl();
                 LoadGRN_DDL();
             }
 
-            txtVisitDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            
         }
 
         private void LoadGRN_DDL()
@@ -73,7 +73,7 @@ namespace DXBMS.Modules.CustomerExperience
         public void addVisitor(object sender, EventArgs e)
         {
             string autoCode = string.Empty;
-
+            SysFunctions sysfuncs = new SysFunctions();
             try
             {
                 //  if(ddlRegNo.SelectedIndex == 0)
@@ -94,24 +94,35 @@ namespace DXBMS.Modules.CustomerExperience
                 new SqlParameter("@Purpose",SqlDbType.VarChar), //6
                 new SqlParameter("@Priority",SqlDbType.VarChar),//7
                 new SqlParameter("@VehicleModel",SqlDbType.VarChar), //8
-                new SqlParameter("@Date",SqlDbType.DateTime) //9
+                new SqlParameter("@Date",SqlDbType.DateTime) ,//9
+               new SqlParameter("@TransCode",SqlDbType.Char) //9
 
             };
 
-                DateTime visitDate = DateTime.ParseExact(txtVisitDate.Text, "dd-MM-yyyy", null);
-                DateTime Date = DateTime.ParseExact(txtDate.Text, "dd-MM-yyyy", null);
+                //   DateTime visitDate = DateTime.ParseExact(txtVisitDate.Text, "dd-MM-yyyy", null);
+                // DateTime Date = DateTime.ParseExact(txtDate.Text, "dd-MM-yyyy", null);
 
+                string AutoCode = hdnTransCode.Value;
+                if (AutoCode == "")
+                {
+                    AutoCode = sysfuncs.AutoGen("CustomerVisit", "TransCode", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
+                }
+                else
+                {
+                    AutoCode = hdnTransCode.Value;
+                }
+                    
                 param[0].Value = Session["DealerCode"].ToString();
                 param[1].Value = txtRegNo.Text;
-                param[2].Value = visitDate;
+                param[2].Value = sysFunc.SaveDate(txtVisitDate.Text);
                 param[3].Value = txtCustName.Text;
                 param[4].Value = txtContactNo.Text;
                 param[5].Value = ddlTimeSlot.Text;
                 param[6].Value = ddlpurpose.Text;
                 param[7].Value = ddlPriority.Text;
                 param[8].Value = ddlVehicleModel.Text;
-                param[9].Value = Date;
-
+                param[9].Value = sysFunc.SaveDate(txtDate.Text);
+                param[10].Value = AutoCode;
                 sysFunc.ExecuteSP_NonQuery("Sp_Insert_CustomerVisit", param);
                 clearData();
                 LoadGRN_DDL();
@@ -210,6 +221,7 @@ namespace DXBMS.Modules.CustomerExperience
                 ddlTimeSlot.SelectedValue = dt.Rows[0]["TimeSlot"].ToString();
                 ddlpurpose.SelectedValue = dt.Rows[0]["Purpose"].ToString();
                 ddlPriority.SelectedValue = dt.Rows[0]["Priority"].ToString();
+                hdnTransCode.Value = dt.Rows[0]["TransCode"].ToString();
 
             }
             catch (Exception ex)
@@ -315,7 +327,7 @@ namespace DXBMS.Modules.CustomerExperience
             lblMessage.Text = Calendar1.SelectedDate.ToString("dd-MM-yyyy");
             DateTime date = DateTime.ParseExact(lblMessage.Text, "dd-MM-yyyy", null);
 
-            String sql = "select App_Id,convert(Varchar(10),VisitDate,105) as VisitDate,RegNo,VehicleModel,CustName,Contact,TimeSlot,Purpose,[Priority] from CustomerVisit where VisitDate = '" + date + "'";
+            String sql = "select TransCode,App_Id,convert(Varchar(10),VisitDate,105) as VisitDate,RegNo,VehicleModel,CustName,Contact,TimeSlot,Purpose,[Priority] from CustomerVisit where VisitDate = '" + sysFunc.SaveDate(lblMessage.Text) + "'";
 
             DataTable dt = new DataTable();
 

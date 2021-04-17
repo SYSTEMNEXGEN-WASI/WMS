@@ -27,8 +27,9 @@
 
                                     <td width="15%" style="padding-left:10px;">Visit Date   <font color="red"><b>*</b></font></td>
                                     <td >
+                                  
                                          <asp:TextBox ID="txtVisitDate"  runat="server" Style="background-image: url(/Images/Calendar_16x16.png);
-                                                   background-repeat:no-repeat; padding-left:20px;" MaxLength="10"></asp:TextBox>
+                                                   background-repeat:no-repeat; padding-left:20px;" MaxLength="10" CausesValidation="false"></asp:TextBox>
                                         <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtVisitDate" Format="dd-MM-yyyy"></asp:CalendarExtender>
                                        <%-- <asp:Button ID="btnView" runat="server" Text="View" OnClick="btnView_Click" width=" 66px"/>--%>
                                         <%--<asp:Button ID="btnPrint" runat="server" Text="Print" OnClick="btnPrint_Click" width="66px"/>--%>
@@ -36,7 +37,7 @@
                                     <td style="padding-left:10px;">Date</td>
                                     <td>
                                         <asp:TextBox ID="txtDate" runat="server" Width="145px" Style="margin-top: 6px; background-image: url(/Images/Calendar_16x16.png);
-                                                   background-repeat:no-repeat; padding-left:20px;" MaxLength="10"></asp:TextBox>
+                                                   background-repeat:no-repeat; padding-left:20px;" MaxLength="10" CausesValidation="false"></asp:TextBox>
                                         <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDate" Format="dd-MM-yyyy"></asp:CalendarExtender>
                                     </td>
                                     <%--<td style="padding-left:10px;">ID</td>
@@ -91,7 +92,7 @@
                                         <asp:DropDownList ID="ddlpurpose" runat="server" Width="147px"></asp:DropDownList>
                       
                                     </td>
-                                                    
+                                        <td><asp:HiddenField ID="hdnTransCode" runat="server" /></td>            
                                </tr>             
                              </table>
                             </div>
@@ -117,7 +118,7 @@
 
                                   <asp:TemplateField HeaderText="ID" ItemStyle-HorizontalAlign="left">
                                       <ItemTemplate>
-                                          <asp:Label ID="Label1" runat="server" Text='<%# Bind("App_Id") %>'></asp:Label>
+                                          <asp:Label ID="Label1" runat="server" Text='<%# Bind("TransCode") %>'></asp:Label>
                                       </ItemTemplate>
                                       <EditItemTemplate>
                                             <asp:TextBox ID="TextBox1"  runat="server"></asp:TextBox>
@@ -223,7 +224,7 @@
                                 <asp:Label ID="lblMessage" runat="server"></asp:Label>
                             </td>
                             <td style="text-align:center;padding-top:5px;">
-                            <asp:Button  CssClass="btn btn-primary" ID="btnAdd"  runat="server" Text="Book Appointment" OnClick="addVisitor" Width="140px"></asp:Button>
+                            <asp:Button  CssClass="btn btn-primary" ID="btnAdd"  runat="server" Text="Book Appointment" OnClick="addVisitor" CausesValidation="false" Width="140px"></asp:Button>
                             <asp:Button ID="btnClear" CssClass="btn btn-default" runat="server" Text="Clear" OnClick="clearFields"></asp:Button>
                             <%--<asp:Button ID="test"  runat="server" Text="Test" OnClick="Test"></asp:Button>--%>
                             </td>

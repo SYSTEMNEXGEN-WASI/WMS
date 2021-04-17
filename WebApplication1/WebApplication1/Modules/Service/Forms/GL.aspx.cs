@@ -51,6 +51,11 @@ namespace DXBMS.Modules.Service.Forms
                     {
                         LoadPRGrid(leadId);
                     }
+                    else if (type == "PRFFI")
+                    {
+                        LoadPRFFIGrid(leadId);
+                    }
+                    
                     else if (type == "IA")
                     {
                         LoadIAGrid(leadId);
@@ -1546,7 +1551,217 @@ namespace DXBMS.Modules.Service.Forms
                
             }
         }
+        private void LoadPRFFIGrid(string CusInv)
+        {
+            SqlParameter[] dsParamInv = {
+                new SqlParameter("@DealerCode",SqlDbType.Char,5),
+                new SqlParameter("@ReceiptNo",SqlDbType.Char,8)
+            };
 
+            dsParamInv[0].Value = Session["DealerCode"].ToString();
+            dsParamInv[1].Value = CusInv;
+
+            totCredit = totDebit = 0;
+            string[] itemsToDisable = { "CP", "BP" };
+            foreach (string item in itemsToDisable)
+            {
+                var listItem = RBLTransType.Items.FindByValue(item);
+                if (listItem != null)
+                    listItem.Enabled = false;
+            }
+            DataSet ds0 = new DataSet();
+            ds0 = myFunc.FillDataSet("sp_PaymentReceiptFFIPDI_GL", dsParamInv);
+
+            if (ds0.Tables[0].Rows.Count > 0)
+            {
+
+             //   string AccountCode = ds0.Tables[0].Rows[0]["AccountCode"].ToString();
+                string IsAdvAdj = ds0.Tables[0].Rows[0]["IsAdjustAdvance"].ToString();
+                double AmountPaid = Convert.ToDouble(ds0.Tables[0].Rows[0]["AmountPaid"]);
+                double TotalAmtCustomer = Convert.ToDouble(ds0.Tables[0].Rows[0]["NetAmountCustomer"]);
+                double AdvanceAmount = Convert.ToDouble(ds0.Tables[0].Rows[0]["AdvanceAmount"]);
+                double AdvanceAdjustedAmount = Convert.ToDouble(ds0.Tables[0].Rows[0]["AdvanceAdjustedAmount"]);
+                double cashDiscount = Math.Round(Convert.ToDouble(ds0.Tables[0].Rows[0]["CashDiscount"]), 2);
+                double ServiceCharges = Math.Round(Convert.ToDouble(ds0.Tables[0].Rows[0]["ServiceCharges"]), 2);
+                double INCOMETAX10 = Math.Round(Convert.ToDouble(ds0.Tables[0].Rows[0]["INCOMETAX10%"]), 2);
+                double INCOMETAX4 = Math.Round(Convert.ToDouble(ds0.Tables[0].Rows[0]["INCOMETAX4.50%"]), 2);
+                double WHT20 = Math.Round(Convert.ToDouble(ds0.Tables[0].Rows[0]["WHT20%"]), 2);
+                double OtherCharges = Math.Round(Convert.ToDouble(ds0.Tables[0].Rows[0]["OtherCharges"]), 2);
+                double WHT3 = Math.Round(Convert.ToDouble(ds0.Tables[0].Rows[0]["WHT3.5%"]), 2);
+                string InvType = ds0.Tables[0].Rows[0]["InvoiceType"].ToString().Trim();
+                string SubInvType = ds0.Tables[0].Rows[0]["SubInvType"].ToString().Trim();
+                string TransType = ds0.Tables[0].Rows[0]["TransType"].ToString().Trim();
+                if (ds0.Tables[0].Rows[0]["PayModeCode"].ToString() != "C")
+                {
+                    txtChqNo.Text = ds0.Tables[0].Rows[0]["InsNo"].ToString();
+                    txtChqDate.Text = ds0.Tables[0].Rows[0]["InsDate"].ToString();
+                    RBLTransType.SelectedValue = "BR";
+
+                    RBLTransType_SelectedIndexChanged(null, null);
+                }
+                else
+                {
+                    // txtChqNo.Text = ds.Tables[0].Rows[0]["InsNo"].ToString();
+                    //txtChqDate.Text = ds.Tables[0].Rows[0]["InsDate"].ToString();
+                    RBLTransType.SelectedValue = "CR";
+                    RBLTransType_SelectedIndexChanged(null, null);
+                }
+
+                string Naration = "Receipt : " + ds0.Tables[0].Rows[0]["ReceiptNo"].ToString().Trim() + " | " +
+                                 
+                                  "Trans Type : " + ds0.Tables[0].Rows[0]["TransType"].ToString().Trim() + " | " +
+                                   "Inv Type : " + ds0.Tables[0].Rows[0]["InvoiceType"].ToString().Trim() + " | " +
+                                  "Invoice No : " + ds0.Tables[0].Rows[0]["InvoicesNo"].ToString().Trim();
+
+                ViewState["RecPay"] = "Vendor Payment";
+                    //ds0.Tables[0].Rows[0]["CusDesc"].ToString().Trim();
+
+                if (ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim() != "")
+                {
+                    lblText.Text = "Edit Mode";
+                    txtVoucherNo.Text = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
+                    txtVoucherDate.Text = GetVoucherDate(ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim());
+                    Session["VoucherNo"] = ds0.Tables[0].Rows[0]["VoucherNo"].ToString().Trim();
+                    txtVoucherDate.Enabled = false;
+                    RBLTransType.Visible = false;
+                }
+
+                ds = new DataSet();
+
+                ds.Tables.Add();
+
+                ds.Tables[0].Columns.Add(new DataColumn("AccountCode", typeof(string)));
+                ds.Tables[0].Columns.Add(new DataColumn("AccountTitle", typeof(string)));
+                ds.Tables[0].Columns.Add(new DataColumn("Debit", typeof(string)));
+                ds.Tables[0].Columns.Add(new DataColumn("Credit", typeof(string)));
+                ds.Tables[0].Columns.Add(new DataColumn("Naration", typeof(string)));
+
+                Session["JV"] = ds;
+
+
+             if (AmountPaid > 0)
+                    {
+                        AddDebitAmount(AmountPaid, "", Naration);
+                    }
+
+              
+                if (ds0.Tables[0].Rows.Count > 0)
+                {
+
+                    if (CustomCDBL(ds0.Tables[0].Rows[0]["AdvReceiptCount"].ToString()) > 0)
+                    {
+                        for (int i = 0; i < ds0.Tables[0].Rows.Count; i++)
+                        {
+                            AddDebitAmount(CustomCDBL(ds0.Tables[0].Rows[i]["Amount"].ToString()), ds0.Tables[0].Rows[i]["ReceiptAcc"].ToString(), Naration);
+
+                        }
+
+                        ///OEM Account
+                        ///
+                       
+                        if (InvType == "Service")
+                        {
+                            string code = GetAccountCode("PDIFFIAccount");
+                            if (TotalAmtCustomer > 0)
+                            {
+
+                                AddCreditAmount(TotalAmtCustomer, code, Naration);
+                            }
+                        }
+                        else
+                        {
+                            string code = "";
+                            if (SubInvType == "NAP")
+                            {
+                                code = GetAccountCode("WarrantyNap");
+                            }else
+                            {
+                                code = GetAccountCode("WarrantyWap");
+                            }
+                               
+                            if (TotalAmtCustomer > 0)
+                            {
+
+                                AddCreditAmount(TotalAmtCustomer, code, Naration);
+                            }
+                        }
+                        
+
+                    }
+                    else
+                    {
+
+
+                        if (InvType == "Service")
+                        {
+                            string code = GetAccountCode("PDIFFIAccount");
+                            if (TotalAmtCustomer > 0)
+                            {
+
+                                AddCreditAmount(TotalAmtCustomer, code, Naration);
+                            }
+                        }
+                        else
+                        {
+                            string code = "";
+                            if (SubInvType == "NAP")
+                            {
+                                code = GetAccountCode("WarrantyNap");
+                            }
+                            else
+                            {
+                                code = GetAccountCode("WarrantyWap");
+                            }
+
+                            if (TotalAmtCustomer > 0)
+                            {
+
+                                AddCreditAmount(TotalAmtCustomer, code, Naration);
+                            }
+                        }
+                    }
+
+                }
+
+                #region
+                //if (cashDiscount > 0)
+                //{
+                //    AddDebitAmount(cashDiscount, "DiscountAccount", Naration);
+                //}
+
+                //if (ServiceCharges > 0)
+                //{
+                //    AddDebitAmount(ServiceCharges, "OtherTax", Naration);
+                //}
+
+                //if (INCOMETAX10 > 0)
+                //{
+                //    AddDebitAmount(INCOMETAX10, "", Naration);
+                //}
+                //if (INCOMETAX4 > 0)
+                //{
+                //    AddDebitAmount(INCOMETAX4, "", Naration);
+                //}
+                //if (OtherCharges > 0)
+                //{
+                //    AddDebitAmount(OtherCharges, "OtherChargesAccount", Naration);
+                //}
+
+                //if (WHT20 > 0)
+                //{
+                //    AddDebitAmount(WHT20, "", Naration);
+                //}
+                //if (WHT3 > 0)
+                //{
+                //    AddDebitAmount(WHT3, "", Naration);
+                //}
+                #endregion
+
+
+
+
+            }
+        }
         private void LoadIAGrid(string CusInv)
         {
             SqlParameter[] dsParamInv = {

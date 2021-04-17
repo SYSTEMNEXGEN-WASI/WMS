@@ -740,7 +740,7 @@ AppendInWhere = " A.DealerCode in('"+ Session["DealerCode"].ToString() + "','COM
                         "    IsNull(Sum(B.RecQty) + Sum(B.RetQty) + Sum(B.INQty) - Sum(B.IssQty) - Sum(B.ChargeOutQty) - Sum(B.PurRetQty), 0) As [Quantity]    " +
                         "    From  Item A  Left outer Join  ItemStock B  " +
                         "    On A.ItemCode = B.ItemCode " +
-                        "    And A.DealerCode = B.DealerCode in( '" + Session["DealerCode"].ToString() + "' ,'COMON') ";
+                        "    And A.DealerCode = B.DealerCode  ";
         //Append in where clause
         AppendInWhere = "   A.Source not in ('C.K.D.' , 'LOCAL')" +
                         "   And A.DealerCode in( '" + Session["DealerCode"].ToString() + "' ,'COMON')";
@@ -2062,6 +2062,25 @@ AppendInWhere = " A.DealerCode in('"+ Session["DealerCode"].ToString() + "','COM
               "from PaymentReceiptMaster R " +
               "inner join Customer C on C.CusCode = R.CusCode and C.DealerCode = R.DealerCode";
         AppendInWhere = " R.DealerCode IN ('" + Session["DealerCode"].ToString() + "') and R.DelFlag='N' and R.InvoiceType in ('Insurance','CountrSale','Service','Dep') ";
+        AppendOrderby = "order by ReceiptNo desc";
+        HttpContext.Current.Session["AppendInWhere"] = AppendInWhere;
+        HttpContext.Current.Session["AppendOrderby"] = AppendOrderby;
+        ShowLookUp(obj, lookupid, RootURL);
+    }
+    public void LU_Get_FFIPDIReceiptNo(Control obj, string lookupid, string AppendInWhere, string RootURL)
+    {
+        //AA//Get Customer Lookup
+        Session["AppendOrderby"] = string.Empty;
+        string AppendOrderby;
+        HttpContext.Current.Session["ColumnsName"] = "Select " +
+              "R.ReceiptNo," +
+              "Format(R.ReceiptDate, 'dd-MM-yyyy')ReceiptDate," +
+              "R.TransType," +
+              "R.InvoiceType," +
+              "Case when R.TransType='Advance' then R.AdvanceAmount else R.InvAdjTotal end as 'Total Amount' " +
+              "from FFIPDIPaymentReceiptMaster R ";
+             
+        AppendInWhere = " R.DealerCode IN ('" + Session["DealerCode"].ToString() + "') and R.DelFlag='N' and R.InvoiceType in ('JEN','Service') ";
         AppendOrderby = "order by ReceiptNo desc";
         HttpContext.Current.Session["AppendInWhere"] = AppendInWhere;
         HttpContext.Current.Session["AppendOrderby"] = AppendOrderby;
