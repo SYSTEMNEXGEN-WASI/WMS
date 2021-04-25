@@ -1,0 +1,1246 @@
+﻿
+@{
+    ViewBag.Title = "Main";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+<style>
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .icheckbox_minimal-blue {
+        top: 10px;
+    }
+</style>
+
+<link href="../assets/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../assets/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+
+<section class="wrapper main-wrapper row" style=''>
+
+    <div class="clearfix"></div>
+
+    @* Main Body Starts *@
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Vehicle Receipt</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                        @*<a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>*@
+                    </div>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Receipt No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info"></i></span>                                
+                                @Html.DropDownList("ddlRecNo", new SelectList((IEnumerable<SelectListItem>)ViewBag.RecNo, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlRecNo" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Receipt Date</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" id="txtRecDate" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Vehicle Type</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                @Html.DropDownList("ddlVehType", new SelectList((IEnumerable<SelectListItem>)ViewBag.VehType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlVehType" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Receipt Type</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                @Html.DropDownList("ddlReceipt", new SelectList((IEnumerable<SelectListItem>)ViewBag.RecType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlReceipt" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Vendor</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                @Html.DropDownList("ddlVendor", new SelectList((IEnumerable<SelectListItem>)ViewBag.Vendor, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlVendor" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Segment</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                <select class="form-control m-bot15" id="ddlSegment">
+                                    <option value="0">Select</option>
+                                    <option value="2 weeks">2 wheels</option>
+                                    <option value="4 weeks">4 wheels</option>
+                                    <option value="6 weeks">6 wheels</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Category</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                <select class="form-control m-bot15" id="ddlCategory">
+                                    <option value="0">Select</option>
+                                    <option value="Local">Local </option>
+                                    <option value="Imported">Imported</option>                                    
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label >Document No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-file"></i>
+                                </span>
+                                <input type="text" required class="form-control" id="txtDocNo" maxlength="10">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Usage</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <select class="form-control m-bot15" id="ddlUsage">
+                                    <option value="0">Select</option>
+                                    <option value="New">New</option>
+                                    <option value="Used">Used</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                    </div>
+                    <!--copy paste till this-->
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <ul class="nav nav-tabs nav-justified primary">
+                                <li class="active">
+                                    <a href="#home-7" data-toggle="tab">
+                                        <i class="fa fa-car"></i> Vehicle Type
+                                    </a>
+                                </li>
+                                @*<li>
+                                    <a href="#profile-7" data-toggle="tab">
+                                        <i class="fa fa-car"></i> Vehicle Receipt Type
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#messages-7" data-toggle="tab">
+                                        <i class="fa fa-event"></i> Document Check List
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#settings-7" data-toggle="tab">
+                                        <i class="fa fa-car"></i> Vehicle Location
+                                    </a>
+                                </li>*@
+                            </ul>
+
+                            <div class="tab-content primary">
+                                <div class="tab-pane fade in active" id="home-7">
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Brand</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                @Html.DropDownList("ddlBrandCode", new SelectList((IEnumerable<SelectListItem>)ViewBag.BrandCode, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlBrandCode" })
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Product</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                @Html.DropDownList("ddlProdCode", new SelectList((IEnumerable<SelectListItem>)ViewBag.ProdCode, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlProdCode" })
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Version</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                <input type="text" class="form-control" id="txtVersionCode" maxlength="3" />
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Invoice No.</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                                <input type="text" class="form-control" id="txtInvNo" maxlength="15" />
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Invoice Date</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control datepicker" id="txtInvDate" readonly>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Reg No.</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                                <input type="text" class="form-control" id="txtRegNo" maxlength="15" />
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Reg Date</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                <input type="text" class="form-control datepicker" id="txtRegDate" readonly>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">VIN / Chassis</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                <input type="text" class="form-control" id="txtChassisNo" maxlength="25" />
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Engine</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                <input type="text" class="form-control" id="txtEngineNo" maxlength="25" />
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Color</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-pie-chart"></i></span>
+                                                @Html.DropDownList("ddlColor", new SelectList((IEnumerable<SelectListItem>)ViewBag.Color, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlColor" })
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Stock Type</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-th-list"></i></span>
+                                                <select class="form-control m-bot15" id="ddlStkType">
+                                                    <option value="Open">Open</option>
+                                                    <option value="On Order">On Order</option>
+                                                    <option value="Exchange">Exchange</option>
+                                                </select>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <label class="form-label">Milage</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-dashboard"></i></span>
+                                                <input type="text" autocomplete="on" class="form-control" id="txtMilage" maxlength="6" onkeypress="return isNumberKey(event)" />
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        
+                                        <div class="col-md-4">
+                                            <label>Customer</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                @Html.DropDownList("ddlCustomers", new SelectList((IEnumerable<SelectListItem>)ViewBag.Customers, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCustomers" })
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Order No</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="arrow"></span>
+                                                    <i class="fa fa-file"></i>
+                                                </span>
+                                                <input type="text" required class="form-control" id="txtOrderNo" maxlength="10">
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Vehicle Location</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                                @Html.DropDownList("ddlVehLoc", new SelectList((IEnumerable<SelectListItem>)ViewBag.VehLoc, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlVehLoc" })
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Insurance</label>
+                                            <div class="input-group">
+                                                <input type="checkbox" id="chkIns" class="chkBank icheckbox_minimal-blue">
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="input-group" style="width:8%;float: right;">
+                                                <button class="btn btn-success btn-sm" type="button" style="width: 100%;padding: 8px;" onclick="AddProduct(this)">
+                                                    <i class="fa fa-plus fa-2x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped" id="productDetail" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Brand </th>
+                                                            <th>Product | Model</th>                                                            
+                                                            <th>Color</th>
+                                                            <th>Chassis No</th>
+                                                            <th>Engine No</th>                                                            
+                                                            <th>Reg No</th>
+                                                            <th>Reg Date</th>
+                                                            <th>Stock Type</th>
+                                                            <th>Milage</th>
+                                                            <th>Location</th>
+                                                            <th>Invoice</th>
+                                                            <th>Inv Date</th>
+                                                            <th>Insurance</th>
+                                                            <th>Customer</th>
+                                                            <th>Order No</th>
+                                                            <th>Action</th>
+                                                            
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr id="fixedRow1" data-tr-count="0"></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--copy till this-->
+                                </div>
+                                <div class="tab-pane fade" id="profile-7">
+
+
+                                </div>
+                                <div class="tab-pane fade" id="messages-7">
+
+    
+
+                                </div>
+                                <div class="tab-pane fade" id="settings-7">
+                       
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="pull-right">
+                                <button type="reset" class="btn btn-default" id="btnCancel" style="margin-top:25px;">Cancel</button>
+                                <button type="button" class="btn btn-primary" id="btnSave" style="margin-top:25px;">Save</button>
+                                <button type="button" class="btn btn-danger" id="btnDelete" style="margin-top:25px;" disabled>Delete</button>
+                                <a class="btn btn-primary" id="btnPrint" style="margin-top:25px;" href="#">Print</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveEnquiry()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <div class="modal" id="section-confirm-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to Delete ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-danger" type="button" onclick="DeleteEnquiry()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+</section>
+
+<link href='@Url.Content("~/assets/plugins/select2/select2.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/select2/select2.min.js")' type="text/javascript"></script>
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        $("#txtRecDate").val(today);
+        $("#txtRecDate").attr('max', today);
+        $("#txtRegDate").val(today);
+        $("#txtRegDate").attr('max', today);
+        $("#txtInvDate").val(today);
+        $("#txtInvDate").attr('max', today);
+    })
+
+    $("#btnPrint").click(function () {
+
+        var baseurl = '@Url.Action("Export")';
+        var url = baseurl + '?EnquiryId=' + $('#ddlRecNo').val() + '&DealerCode=@Session["DealerCode"].ToString()';
+        //window.location.href = url;
+        window.open(url, '_blank');
+
+    })
+
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    var rowCount = 1;
+    var dataCount = 1;
+    var SNo = 1;
+
+    function ValidateProRecDetails() {
+        debugger
+
+        var check = false;
+        var brandCode = $("#ddlBrandCode").val();
+        var prodCode = $("#ddlProdCode").val();
+        var color = $("#ddlColor").val();
+        var VersionCode = $("#txtVersionCode").val();
+        var InvNo = $("#txtInvNo").val();
+        var InvDate = $("#txtInvDate").val();
+        var regNo = $("#txtRegNo").val();
+        var regDate = $("#txtRegDate").val();
+        var chassisNo = $("#txtChassisNo").val();
+        var engineNo = $("#txtEngineNo").val();
+        var stkType = $("#ddlStkType").val();
+        var milage = $("#txtMilage").val();
+
+        if (brandCode == "0") {
+            $("#ddlBrandCode").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlBrandCode").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlBrandCode").css("border-color", "#ccc");
+        }
+
+
+        if (prodCode == "0") {
+            $("#ddlProdCode").css("border-color", "red");
+            return check;
+        }
+        else {
+            $("#ddlProdCode").css("border-color", "#ccc");
+        }
+
+        if (color == "0") {
+            $("#ddlColor").css("border-color", "red");
+            return check;
+        } else {
+            $("#ddlColor").css("border-color", "#ccc");
+        }
+
+        if (stkType == "0") {
+            $("#ddlStkType").css("border-color", "red");
+            return check;
+        } else {
+            $("#ddlStkType").css("border-color", "#ccc");
+        }
+
+        if (milage == "" || milage == undefined) {
+            $("#txtMilage").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtMilage").css("border-color", "#ccc");
+        }
+
+        if (VersionCode == "" || VersionCode == undefined) {
+            $("#txtVersionCode").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtVersionCode").css("border-color", "#ccc");
+        }
+
+        if (chassisNo == "" || chassisNo == undefined) {
+            $("#txtChassisNo").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtChassisNo").css("border-color", "#ccc")
+        }
+
+        if (engineNo == "" || engineNo == undefined) {
+            $("#txtEngineNo").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtEngineNo").css("border-color", "#ccc")
+        }
+
+        if (InvNo == "" || InvNo == undefined) {
+            $("#txtInvNo").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtInvNo").css("border-color", "#ccc")
+        }        
+
+        if (InvDate == "" || InvDate == undefined) {
+            $("#txtInvDate").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtInvDate").css("border-color", "#ccc")
+        }
+
+        if (regDate == "" || regDate == undefined) {
+            $("#txtRegDate").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtRegDate").css("border-color", "#ccc")
+        }
+
+        if (regNo == "" || regNo == undefined) {
+            $("#txtRegNo").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtRegNo").css("border-color", "#ccc")
+        }
+        check = true;
+        return check;
+    }
+
+    function AddProduct(value) {
+        var check = ValidateProRecDetails();
+        debugger
+        if (check == true) {
+            var brandCode = $("#ddlBrandCode :selected").text();
+            var hdnbrandCode = $("#ddlBrandCode").val();
+            $("#ddlBrandCode").css("border-color", "#ccc");
+
+            var prodCode = $("#ddlProdCode :selected").text();
+            var hdnprodCode = $("#ddlProdCode").val();
+            $("#ddlProdCode").css("border-color", "#ccc");
+
+            var version = $("#txtVersionCode").val(); $("#txtVersionCode").css("border-color", "#ccc")
+
+            var color = $("#ddlColor :selected").text();
+            var hdnColorCode = $("#ddlColor").val();
+            $("#ddlColor").css("border-color", "#ccc");
+
+            var vehLoc = $("#ddlVehLoc :selected").text();
+            var hdnVehLoc = $("#ddlVehLoc").val();
+            $("#ddlVehLoc").css("border-color", "#ccc");
+
+            var invNo = $("#txtInvNo").val(); $("#txtInvNo").css("border-color", "#ccc");
+            var regNo = $("#txtRegNo").val(); $("#txtRegNo").css("border-color", "#ccc");
+            var stockType = $("#ddlStkType :selected").text(); $("#ddlStkType").css("border-color", "#ccc");
+            var milage = $("#txtMilage").val(); $("#txtMilage").css("border-color", "#ccc");
+            var regDate = $("#txtRegDate").val(); $("#txtRegDate").css("border-color", "#ccc");
+            var invDate = $("#txtInvDate").val(); $("#txtInvDate").css("border-color", "#ccc");
+            var chassisNo = $("#txtChassisNo").val(); $("#txtChassisNo").css("border-color", "#ccc");
+            var engineNo = $("#txtEngineNo").val(); $("#txtEngineNo").css("border-color", "#ccc");
+            var ischecked = $("#chkIns").is(":checked");
+            var insurance = "";
+            if (ischecked) {
+                insurance = "Y";
+            } else
+                insurance = "N";
+            var customer = $("#ddlCustomers :selected").text();
+            var hdnCusCode = $("#ddlCustomers").val();
+            var orderNo = $("#txtOrderNo").val();
+
+
+            var row = $(value).parent().parent().html();
+            var dt = $("#productDetail tbody").append('<tr id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                        '<td>' + SNo++ + '</td>' +
+                                                        '<td> <label id="lblBrandCode">' + brandCode + ' </label><input type="hidden" id="hdnBrandCode" value="' + hdnbrandCode + '"/></td>' +
+                                                        '<td> <label id="lblProdCode">' + prodCode + ' </label><input type="hidden" id="hdnProdCode" value="' + hdnprodCode + '"/> <input type="hidden" id="hdnVersionCode" value="' + version + '"/></td>' +
+                                                        //'<td> <label id="lblPriority">' + version + ' </label></td>' +
+                                                        '<td> <label id="lblColor">' + color + ' </label><input type="hidden" id="hdnColorCode" value="' + hdnColorCode + '"/></td>' +
+                                                        '<td> <label id="lblChassisNo">' + chassisNo + ' </label><input type="text" style="display:none;" class="form-control" id="txtChassistbl"/></td>' +
+                                                        '<td> <label id="lblEngineNo">' + engineNo + ' </label><input type="text" style="display:none;" class="form-control" id="txtEnginetbl"/></td>' +
+                                                        '<td> <label id="lblRegNo">' + regNo + ' </label><input type="text" style="display:none;" class="form-control" id="txtRegNotbl"/></td>' +
+                                                        '<td> <label id="lblRegDate">' + regDate + ' </label></td>' +
+                                                        '<td> <label id="lblStockType">' + stockType + ' </label></td>' +
+                                                        '<td> <label id="lblmilage">' + milage + ' </label></td>' +
+                                                        '<td> <label id="lblVehLoc">' + vehLoc + ' </label><input type="hidden" id="hdnVehLoc" value="' + hdnVehLoc + '"/></td>' +
+                                                        '<td> <label id="lblInvNo">' + invNo + ' </label><input type="text" style="display:none;" class="form-control" id="txtInvNotbl"/></td>' +
+                                                        '<td> <label id="lblInvDate">' + invDate + ' </label></td>' +
+                                                        '<td> <label id="lblInsurance">' + insurance + ' </label></td>' +
+                                                        '<td> <label id="lblCustomer">' + customer + ' </label><input type="hidden" id="hdnCusCode" value="' + hdnCusCode + '"/></td>' +
+                                                        '<td> <label id="lblOrderNo">' + orderNo + ' </label><input type="text" style="display:none;" class="form-control" id="txtOrderNotbl"/></td>' +
+                                                        '<td style="text-align:center;">' +
+                                                            '<button type="button" class="btn btn-primary btn-xs" id="btnEdit" onclick="EditProdRecDetail(this)"><i class="fa fa-plus fa-lg"></i></button>' +                                                            
+                                                            '<button class="btn btn-danger btn-xs" id="btnRemove" onclick="removeRow(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                        '</tr>');
+
+            clearFeilds();
+
+        }
+        else {
+
+        }
+    }
+
+
+    function EditProdRecDetail(value) {
+
+        debugger
+        var lblBrandCode = $(value).closest('tr').find("#hdnBrandCode").val();  $("#ddlBrandCode").val(lblBrandCode);
+        var lblProdCode = $(value).closest('tr').find("#hdnProdCode").val(); $("#ddlProdCode").val(lblProdCode);
+        var lblVersionCode = $(value).closest('tr').find("#hdnVersionCode").val(); $("#txtVersionCode").val(lblVersionCode);
+        var lblColor = $(value).closest('tr').find("#hdnColorCode").val();      $("#ddlColor").val(lblColor);
+        var lblChassisNo = $(value).closest('tr').find("#lblChassisNo").text().trim();  $("#txtChassisNo").val(lblChassisNo);
+        var lblEngineNo = $(value).closest('tr').find("#lblEngineNo").text().trim();    $("#txtEngineNo").val(lblEngineNo);
+        var lblRegNo = $(value).closest('tr').find("#lblRegNo").text().trim();          $("#txtRegNo").val(lblRegNo);
+        var lblRegDate = $(value).closest('tr').find("#lblRegDate").text().trim();      $("#txtRegDate").val(lblRegDate);
+        var lblInvNo = $(value).closest('tr').find("#lblInvNo").text().trim();          $("#txtInvNo").val(lblInvNo);
+        var lblInvDate = $(value).closest('tr').find("#lblInvDate").text().trim();      $("#txtInvDate").val(lblInvDate);
+        var lblStockType = $(value).closest('tr').find("#lblStockType").text().trim();  $("#ddlStkType").val(lblStockType);
+        var lblmilage = $(value).closest('tr').find("#lblmilage").text().trim();        $("#txtMilage").val(lblmilage);
+        var VehLoc = $(value).closest('tr').find("#hdnVehLoc").val();           $("#ddlVehLoc").val(VehLoc);
+        var CusCode = $(value).closest('tr').find("#hdnCusCode").val(); $("#ddlCustomers").val(CusCode);
+        var lblOrderNo = $(value).closest('tr').find("#lblOrderNo").text().trim(); $("#txtOrderNo").val(lblOrderNo);
+        var lblIns = $(value).closest('tr').find("#lblInsurance").text().trim();
+        if(lblIns == 'Y')
+            $('#chkIns').prop('checked', true);
+        else
+            $('#chkIns').prop('checked', false);
+
+        removeRow(value);
+    }
+
+    function removeRow(value) {
+        debugger
+        var leadId = $("#ddlRecNo").val();
+        var dealerCode = "00166";
+        if (leadId != 0) {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'POST',
+                url: '@Url.Content("~/VehicleReceipt/Delete_ProdRecDetail")',
+                data: { 'EnquiryId': leadId, 'DealerCode': dealerCode },
+                success: function (data) {
+                    if (data) {
+                        if (data.success == true) {
+                            $("#section-confirm-Delete").modal("hide")
+                            $("#modalMessage").css("background-color", "#64c344");
+                            $("#lblMessage").text(data.Message)
+                            $("#section-message").modal('show');
+                            setTimeout(function () {
+                                $('#section-message').modal('hide')
+                            }, 4000);
+                        } else {
+                            $("#section-confirm-Delete").modal("hide")
+                            $("#modalMessage").css("background-color", "#e46457");
+                            $("#lblMessage").text(data.Message)
+                            $("#section-message").modal('show');
+                            setTimeout(function () {
+                                $('#section-message').modal('hide')
+                            }, 4000);
+
+                        }
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+        } else {
+            var tempRow = "fixedRow" + (parseInt($(value).parent().parent().attr("data-tr-count")) - 1);
+
+            $("#" + tempRow).find('.remove').show();
+            $(value).parent().parent().remove();
+
+            dataCount--;
+            rowCount--;
+            SNo--;
+
+        }
+
+        
+    }
+
+    function clearFeilds() {
+
+        
+        $("#ddlBrandCode").val("0");
+        $("#ddlProdCode").val("0");
+        $("#txtVersionCode").val("");
+        $("#ddlColor").val("0");
+        $("#txtInvNo").val("");
+        $("#txtRegNo").val(""); 
+        $("#ddlStkType").val('0'); 
+        $("#txtMilage").val(""); 
+        $("#txtRegDate").val("");
+        $("#txtInvDate").val(""); 
+        $("#txtChassisNo").val(""); 
+        $("#txtEngineNo").val(""); 
+        $("#chkIns").attr('checked', false); 
+        $("#ddlCustomers :selected").val("0");
+        $("#ddlCustomers").val("0");
+        $("#txtOrderNo").val("");
+        $("#ddlVehLoc").val("0");
+        
+
+    }
+
+    function ProdRecMaster() {
+
+        var check = false;
+
+        var vehType = $("#ddlVehType").val();
+        var RecType = $("#ddlReceipt").val();
+        var vendor = $("#ddlVendor").val();
+        var segment = $("#ddlSegment").val();
+        var category = $("#ddlCategory").val();
+        var usage = $("#ddlUsage").val();
+        var docNo = $("#txtDocNo").val();
+
+        if (vehType == "0") {
+            $("#ddlVehType").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlVehType").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlVehType").css("border-color", "#ccc");
+        }
+
+        if (RecType == "0") {
+            $("#ddlReceipt").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlReceipt").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlReceipt").css("border-color", "#ccc");
+        }
+        if (vendor == "0") {
+            $("#ddlVendor").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlVendor").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlVendor").css("border-color", "#ccc");
+        }
+
+        if (segment == "0") {
+            $("#ddlSegment").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlSegment").scrollTop(500)
+            }, 800);
+            return check;
+            
+        }
+        else {
+            $("#ddlSegment").css("border-color", "#ccc");
+        }
+
+        if (category == "0") {
+            $("#ddlCategory").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlCategory").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlCategory").css("border-color", "#ccc");
+        }
+        if (usage == "0") {
+            $("#ddlUsage").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlUsage").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlUsage").css("border-color", "#ccc");
+        }
+        if (docNo == "0") {
+            $("#txtDocNo").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtDocNo").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#txtDocNo").css("border-color", "#ccc");
+        }
+
+        debugger
+
+        var rowCount = $('#productDetail >tbody  >tr').length;
+        if (rowCount == 1) {
+            $("#productDetail").css("border-color", "red");
+            return check;
+        }
+
+        check = true;
+        return check;
+    }
+
+    $("#btnSave").click(function () {
+
+        var check = ProdRecMaster();       
+        if (check == true) {
+            $("#section-confirm").modal("show");
+        }
+    })
+
+    $("#btnDelete").click(function () {
+        $("#section-confirm-Delete").modal("show");
+    })
+
+    $("#btnCancel").click(function () {
+        $("#productDetail tbody tr").remove();
+    })
+
+
+    $("#ddlBrandCode").change(function () {
+        var brandCode = $("#ddlBrandCode").val();
+        if (brandCode == "0") {
+            location.reload();
+        } else {
+            getProduct(brandCode);
+            
+        }
+    });
+
+    $("#ddlRecNo").change(function () {
+        var leadId = $("#ddlRecNo").val();
+        if (leadId == "0") {
+            location.reload();
+        }
+        else {
+            getData(leadId);
+            document.getElementById("btnDelete").disabled = false;
+        }
+
+    });
+
+    function getData(id) {
+        var leadId = id;
+        var dealerCode = "00166";
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/VehicleReceipt/Select_VehicleReceipt")',
+                data: { 'EnquiryId': leadId},
+                success: function (data) {
+                    debugger;
+                    if (data.Success == true) {
+                        var item = JSON.parse(data.Response)
+
+                        //Event Information
+
+                        $("#txtRecDate").val(item[0].RecDate);
+                        $("#txtDocNo").val(item[0].DocumentNo);
+                        $("#ddlVehType").val(item[0].VehTypeCode);
+                        $("#ddlReceipt").val(item[0].VehRecCode);
+                        $("#ddlSegment").val(item[0].Segment);
+                        $("#ddlCategory").val(item[0].Category.trim());
+                        $("#ddlUsage").val(item[0].Usage.trim());
+                        $("#ddlVendor").val(item[0].VendorCode);
+
+                        getVehicleReceiptDetail(id);
+
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+    }
+
+    function getVehicleReceiptDetail(id) {
+
+        var dealerCode = "00166";
+        var leadId = id;
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/VehicleReceipt/Select_VehicleReceiptDetail")',
+                data: { 'EnquiryId': leadId, 'DealerCode': dealerCode },
+                success: function (data) {
+                    debugger;
+                    if (data.Success == true) {
+                        var item = JSON.parse(data.Response)
+                        $("#productDetail tbody tr").remove()
+                        //ProductDetail
+                        if (item.length > 0) {
+                            $.each(item, function (value, item) {
+                                debugger
+                                $("#productDetail tbody").append('<tr id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                        '<td>' + SNo++ + '</td>' +
+                                                        '<td> <label id="lblBrandCode">' + item.BrandDesc.trim() + ' </label><input type="hidden" id="hdnBrandCode" value="' + item.BrandCode.trim() + '"/></td>' +
+                                                        '<td> <label id="lblProdCode">' + item.ProdCode.trim() + ' | ' + item.VersionCode.trim() + ' </label><input type="hidden" id="hdnProdCode" value="' + item.ProdCode.trim() + '"/><input type="hidden" id="hdnVersionCode" value="' + item.VersionCode.trim() + '"/></td>' +
+                                                        //'<td> <label id="lblPriority">' + version + ' </label></td>' +
+                                                        '<td> <label id="lblColor">' + item.ColorDesc.trim() + ' </label><input type="hidden" id="hdnColorCode" value="' + item.ColorCode.trim() + '"/></td>' +
+                                                        '<td> <label id="lblChassisNo">' + item.ChasisNo + ' </label></td>' +
+                                                        '<td> <label id="lblEngineNo">' + item.EngineNo + ' </label></td>' +                                                        
+                                                        '<td> <label id="lblRegNo">' + item.RegNo + ' </label></td>' +
+                                                        '<td> <label id="lblRegDate">' + item.RegDate + ' </label></td>' +
+                                                        '<td> <label id="lblStockType">' + item.StockType + ' </label></td>' +
+                                                        '<td> <label id="lblmilage">' + item.Milage + ' </label></td>' +
+                                                        '<td> <label id="lblVehCode">' + item.LocDesc + '</label><input type="hidden" id="hdnVehLoc" value="' + item.LocCode.trim() + '"/></td>' +
+                                                        '<td> <label id="lblInvNo">' + item.InvoiceNo + ' </label></td>' +
+                                                        '<td> <label id="lblInvDate">' + item.InvoiceDate + ' </label></td>' +
+                                                        '<td> <label id="lblInsurance">' + item.Insurance + ' </label></td>' +
+                                                        '<td> <label id="lblCustomer">' + item.CusDesc + ' </label><input type="hidden" id="hdnCusCode" value="' + item.CusCode.trim() + '"/></td>' +
+                                                        '<td> <label id="lblOrderNo">' + item.BookingNo + ' </label></td>' +
+                                                        '<td style="text-align:center;">' +
+                                                            '<button type="button" class="btn btn-primary btn-xs" id="btnEdit" onclick="EditProdRecDetail(this)"><i class="fa fa-plus fa-lg"></i></button>' +
+                                                            '<button class="btn btn-danger btn-xs" id="btnRemove" onclick="removeRow(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                        '</td>' +
+                                                        '</tr>');
+
+                            });
+
+                        }
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+    }
+
+    function getProduct(id) {
+        var leadId = id;
+        var dealerCode = "00001";
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/Event/Select_BrandProduct")',
+                data: { 'EnquiryId': leadId, 'DealerCode': dealerCode },
+                success: function (data) {
+
+                    if (data.Success == true) {
+                        //var items = JSON.parse(data.Response)
+
+                        //$("#ddlProdCode").val(item[0].ProdCode.trim());
+                        $("#ddlProdCode").find('option').remove();
+
+                        // next iterate thru your object adding each option to the drop down\
+                        $(data.Response).each(function (index, item) { // GETTING ERROR HERE
+                            $("#ddlProdCode").append($('<option value=' + item.Value + ' >' + item.Text + '</option>'));
+                        });
+
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+    }
+
+
+    $("#ddlProdCode").change(function () {
+
+        var skillsSelect = document.getElementById("ddlProdCode");
+        var selectedText = skillsSelect.options[skillsSelect.selectedIndex].text;
+
+        var prodCode = $("#ddlProdCode").val();
+
+        var version = selectedText.split('|', selectedText.length);
+
+        $("#txtVersionCode").val(version[1]);
+
+
+        //if (prodCode == "0") {
+        //    location.reload();
+        //} else {
+        //    getVersion(prodCode);
+        //}
+    });
+
+    function DeleteEnquiry() {
+        var leadId = $("#ddlRecNo").val();
+        var dealerCode = "00166";
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'POST',
+            url: '@Url.Content("~/VehicleReceipt/Delete_ProdRecMaster")',
+            data: { 'EnquiryId': leadId, 'DealerCode': dealerCode },
+            success: function (data) {
+                if (data) {
+                    if (data.success == true) {
+                        $("#section-confirm-Delete").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                        setTimeout(function () {
+                            $('#section-message').modal('hide')
+                        }, 4000);
+                    } else {
+                        $("#section-confirm-Delete").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                        setTimeout(function () {
+                            $('#section-message').modal('hide')
+                        }, 4000);
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+
+    }
+
+    function SaveEnquiry() {
+
+        var dto = {};
+
+
+        dto.DealerCode = "00166";
+        dto.RecNo = $("#ddlRecNo").val();
+        dto.RecDate = $("#txtRecDate").val();
+        dto.DocumentNo = $("#txtDocNo").val();
+        dto.VehTypeCode = $("#ddlVehType").val();
+        dto.VehRecCode = $("#ddlReceipt").val();
+        dto.Segment = $("#ddlSegment").val();
+        dto.Category = $("#ddlCategory").val();
+        dto.Usage = $("#ddlUsage").val();
+        dto.VendorCode = $("#ddlVendor").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/VehicleReceipt/Insert_ProdRecMaster")',
+            data: dto,
+            success: function (data) {
+                debugger
+                if (data) {
+                    if (data.Success == true) {
+                        saveProdRecDetail();
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+    }
+
+    function insertRecord() {
+        var obj = [];
+
+        $("#productDetail tbody tr").each(function () {
+
+            debugger
+            var dto = {};
+
+            dto.DealerCode = "00166";
+            dto.RecNo = $("#ddlRecNo").val();
+            dto.BrandCode = $(this).closest('tr').find('#hdnBrandCode').val();
+            dto.ProdCode = $(this).closest('tr').find('#hdnProdCode').val();
+            dto.VersionCode = $(this).closest('tr').find('#hdnVersionCode').val();
+            dto.InvoiceNo = $(this).closest('tr').find('#lblInvNo').text().trim();
+            dto.InvoiceDate = $(this).closest('tr').find('#lblInvDate').text().trim();
+            dto.RegNo = $(this).closest('tr').find('#lblRegNo').text().trim();
+            dto.RegDate = $(this).closest('tr').find('#lblRegDate').text().trim();
+            dto.ChasisNo = $(this).closest('tr').find('#lblChassisNo').text().trim();
+            dto.EngineNo = $(this).closest('tr').find('#lblEngineNo').text().trim();
+            dto.ColorCode = $(this).closest('tr').find('#hdnColorCode').val();
+            dto.LocCode = $(this).closest('tr').find('#hdnVehLoc').val();
+            dto.StockType = $(this).closest('tr').find('#lblStockType').text().trim();
+
+            var ischecked = $("#chkIns").is(":checked");
+            if (ischecked) {
+                dto.Insurance = "Y";
+            } else
+                dto.Insurance = "N";
+            dto.Milage = $(this).closest('tr').find('#lblmilage').text().trim();
+            dto.CusCode = $(this).closest('tr').find('#hdnCusCode').val();
+            dto.BookingNo = $(this).closest('tr').find('#lblOrderNo').text().trim();
+
+            obj.push(dto);
+        });
+
+        return obj;
+    }
+
+    function saveProdRecDetail() {
+
+        var objects = [];
+
+        objects = JSON.stringify({ 'objects' : insertRecord()});
+
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            //async: true,
+            type: 'POST',
+            url: '@Url.Content("~/VehicleReceipt/Insert_ProdRecDetail")',
+            data: objects ,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+
+        });
+    }
+</script>
+

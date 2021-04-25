@@ -1,0 +1,765 @@
+﻿@{
+    ViewBag.Title = "JoCategory";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+
+
+<link href='@Url.Content("~/assets/plugins/select2/select2.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/select2/select2.min.js")' type="text/javascript"></script>
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<script src="~/assets/js/scrollablegridplugin_asp.netajax_2.0.js"></script>
+
+<h2>Labour Master</h2>
+
+
+<!--New Task-->
+
+
+
+<section class="wrapper main-wrapper row">
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">LABOUR DETAILS</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+
+                </header>
+                <div class="content-body">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Job Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('Jobs')" style="color:red;"></i></span>
+                                <input type="text" class="form-control" id="txtJobCode" maxlength="3" readonly="readonly">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Category Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('JobCategory')" style="color:red;"></i></span>
+                                <input type="text" class="form-control" style="width:25%" id="txtJobCatCode" readonly maxlength="5">
+                                <input type="text" class="form-control" style="width:65%" id="txtJobCatCodeDesc" readonly maxlength="150">
+
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Job Discription</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                                <input type="text" class="form-control" id="txtJobDesc" maxlength="3" readonly="readonly">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <!--next-->
+                        <div class="col-md-4">
+                            <label>Labour A/C</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-male"></i></span>
+                                <input type="text" class="form-control" id="txtJobLabour" maxlength="150">
+
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="nav nav-tabs primary" style="border-radius:0px; border-bottom: 0px; padding-top:10px;">
+                                <li class="active">
+                                    <a href="#home-7" data-toggle="tab">
+                                        <i></i> Product
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                            <div class="tab-content primary">
+                                <div class="tab-pane fade in active" id="home-7">
+                                    <div class="row">
+                                        <div class="col-md-2" hidden>
+                                            <label class="form-label">Brand</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                                                <input type="text" class="form-control" id="txtJobBrand" maxlength="3" readonly="readonly">
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Brand</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                                @Html.DropDownList("ddlBrand", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlBrand, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlBrand" })
+
+
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Product</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                                @Html.DropDownList("ddlproduct", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlproduct, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlproduct" })
+
+
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Version</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                                @Html.DropDownList("ddlversion", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlversion, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlversion" })
+
+
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label class="form-label">Service Tax</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                                                <input type="text" class="form-control" id="txtServiceTax" maxlength="3" readonly="readonly">
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Amount</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                                                <input type="text" class="form-control" id="txtAmount" maxlength="10">
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Standard Time</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                                <input type="text" class="form-control" id="txtStandardTime" maxlength="3">
+                                            </div>
+
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Vehicle Category</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                <select class="form-control m-bot15" id="ddlVehicle">
+                                                    <option value="0">Select</option>
+                                                    <option value="LCV">LCV</option>
+                                                    <option value="HCV">HCV</option>
+                                                </select>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <!--Check Box-->
+                                        <div class="col-md-7" style="margin-top:20px">
+                                            <div class="box" style="border: 1px solid #e0e0e0; padding:2px 5px 2px 20px">
+                                                <div class="input-group row">
+                                                    <label class="col-md-4">
+                                                        <input type="radio" class="chkCurrentUser" name="ReceiptType" id="chkCU" value="ARC">
+                                                        <label id="lblcu" value="@Session["DealerCode"].ToString()">Current User</label>
+                                                    </label>
+                                                    <label class="col-md-3">
+                                                        <input type="radio" class="chkForAll" name="ReceiptType" checked id="chkForAll" value="IRC">
+                                                        <label id="lblForAll" value="COMON">For All</label>
+                                                    </label>
+                                                    <label class="col-md-4">
+                                                        <input type="radio" class="chkDealer" name="ReceiptType" id="chkDealer" value="RCWOI">
+                                                        <label id="lblDealer" value="Dealer"> Dealer </label>
+                                                        @Html.DropDownList("ddlAllDealer", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlAllDealer, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlAllDealer" })
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!--SAVE BUTTONS-->
+                                        <div class="col-md-4 pull-right" style="margin-top:27px;">
+                                            @*onclick="SaveMasterEnquiry()"*@
+                                            <button type="button" class="btn btn-success" id="btnSave" style="margin-right:23px;">
+                                                Save
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="btnclr" onclick="ClearDesc()" style="margin-right: 23px;">
+                                                Clear
+                                            </button>
+
+                                            <a class="btn btn-default" id="btnPrint" href="#">Print</a>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" style="margin-top:1rem;">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped" id="JobGridTable" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S.No</th>
+                                                            <th>Job Code</th>
+                                                            <th>Job Category Code</th>
+                                                            <th>Job Description</th>
+                                                            <th>Brand</th>
+                                                            <th> Product Code</th>
+                                                            <th>Product</th>
+                                                            <th>Version</th>
+                                                            <th>Service Tax</th>
+                                                            <th>Amount</th>
+                                                            <th>Standard Time</th>
+                                                            <th>Edit</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr id="fixedRowSub" data-tr-count="0"></tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </form>
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveMasterEnquiry()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <div class="modal" id="section-confirm-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to Delete ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-danger" type="button" onclick="DeleteEnquiry()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+
+    <div class="modal" tabindex="-1" id="JobModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Jobs</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="EnquirySearch" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive" style="height:300px;">
+                            <table id="JobTable" class="table table-striped table-hover responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>Job No</th>
+                                        <th>Job Desc</th>
+                                        <th>Job Category  No</th>
+                                        <th>Job Category  Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    @*JobCategory Modal*@
+
+    <div class="modal" tabindex="-1" id="JobCatModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Job Category</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="EnquirySearch1" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive" style="height:300px;">
+                            <table id="JobCatTable" class="table table-striped table-hover responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>Job Category  No</th>
+                                        <th>Job Category  Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</section>
+
+
+<script>
+    $(document).ready(function () {
+        Get_JobData();
+        Get_JobCategory();
+    });
+
+
+    function ShowModal(type) {
+        if (type == 'Jobs') {
+            $('#JobModal').modal("show");
+        } else
+            if (type == 'AccountOf') {
+                $('#AccountOfModal').modal("show");
+            } else if (type == 'BookRefNo') {
+                $('#BookRefNoModal').modal("show");
+            }
+            else if (type == 'JobCategory') {
+                $('#JobCatModal').modal("show");
+            }
+            else {
+                $('#EnquiryNoModal').modal("show");
+            }
+    }
+
+    function Get_JobData() {
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/OEM/Select_JobDetails")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#JobTable tbody tr").remove()
+                    //ProductDetail
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#JobTable tbody").append('<tr onclick="Get_LabourDetail(this);" id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblJobCode">' + item.JobCode.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblJobDesc">' + item.JobDesc.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblJobCatCode">' + item.JobCatCode.trim() + ' </label></td>' +
+                                                                '<td> <label id="lblJobCatDesc">' + item.JobCatDesc.trim() + ' </label></td>' +
+                                                                '<td><button type="button" class="btn btn-primary btn-xs" id="btnRemove" onclick="RemoveCategory(this)" style="background-color:red;"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                            '</tr>');
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+
+    function Get_LabourDetail(value) {
+
+        var dealerCode ="@Session["DealerCode"].ToString()";
+        var FIRCode = $(value).closest('tr').find("#lblJobCode").text().trim();
+        var JobDesc = $(value).closest('tr').find("#lblJobDesc").text().trim();
+        var JobCatCode = $(value).closest('tr').find("#lblJobCatCode").text().trim();
+        var JobCatDesc = $(value).closest('tr').find("#lblJobCatDesc").text().trim();
+
+        $("#txtJobCode").val(FIRCode);
+        $("#txtJobDesc").val(JobDesc);
+        $("#txtJobCatCode").val(JobCatCode);
+        $("#txtJobCatCodeDesc").val(JobCatDesc);
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+
+
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'value1': dealerCode, 'value2': FIRCode },
+            url: '@Url.Content("~/OEM/Select_DTRDetailHCV")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#JobGridTable tbody tr").remove();
+                    //ProductDetail
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#JobGridTable tbody").append('<tr  id="fixedRowSub' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td> <label id="lblDefJobCode">' + item.DefJobCode + ' </label></td>' +
+                                                                '<td> <label id="lblDefJobDesc>' + item.DefJobDesc + ' </label></td>' +
+                                                                '<td> <label id="lblJobCatCode">' + item.JobCatCode + ' </label></td>' +
+                                                                '<td> <label id="lblJobCatDesc">' + item.JobCatDesc+ ' </label></td>' +
+                                                                '<td> <label id="lblBrandDesc">' + item.BrandDesc + ' </label></td>' +
+                                                                 '<td> <label id="lblProdCode">' + item.ProdCode + ' </label></td>' +
+                                                                 '<td> <label id="lblProdDesc">' + item.ProdDesc + ' </label></td>' +
+                                                                '<td> <label id="lblVersionDesc">' + item.VersionDesc + ' </label></td>' +
+                                                                '<td> <label id="lblServiceTax">' + item.ServiceTax+ ' </label></td>' +
+                                                                '<td> <label id="lblAmount">' + item.Amount + ' </label></td>' +
+                                                                '<td> <label id="lblStandardTime">' + item.StandardTime+ ' </label></td>' +
+
+                                                                '<td style="text-align:center;">' +
+                                                                '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                                                '<button type="button" class="btn btn-success btn-xs" id="btnUpdate" style="display:none;" onclick="UpdateData(this)"><i class="fa fa-check fa-lg"></i></button>' +
+                                                                '<button type="button" class="btn btn-danger btn-xs" id="btnCancel" style="display:none;margin-left:5px;" onclick="CancelEvent(this)" ><i class="fa fa-close fa-lg"></i></button>' +
+                                                                '</td>' +
+                                                                '<td><button type="button" class="btn btn-primary btn-xs" id="btnRemove" onclick="RemoveDealer(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                                '</tr>');
+
+
+
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+    //For Category Code
+    function Get_JobCategory() {
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/OEM/JobCategory")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#JobCatTable tbody tr").remove()
+                    //ProductDetail
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#JobCatTable tbody").append('<tr onclick="JobCatCodeSelection(this);" id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblJobCatCode">' + item.JobCatCode.trim() + ' </label></td>' +
+                                                                '<td> <label id="lblJobCatDesc">' + item.JobCatDesc.trim() + ' </label></td>' +
+                                                                '<td><button type="button" class="btn btn-primary btn-xs" id="btnRemove" onclick="RemoveCategory(this)" style="background-color:red;"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                            '</tr>');
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+    //data selection to grid /edit
+    function JobCatCodeSelection(value) {
+        debugger;
+        var valjobCode = $(value).closest('tr').find("#lblJobCatCode").text();
+        var valjobDes = $(value).closest('tr').find("#lblJobCatDesc").text();
+        $("#txtJobCatCode").val(valjobCode);
+
+        $("#txtJobCatCodeDesc").val(valjobDes);
+    }
+    $("#btnSave").click(function () {
+        var exitflag = false;
+        var row = $("#JobGridTable tbody tr").length;
+        var jcode = $("#txtJobCode").val();
+        var jccode = $("#txtJobCatCode").val();
+        var jccdesc = $("#txtJobCatCodeDesc").val();
+        var jdes = $("#txtJobDesc").val();
+        var prod = $("#ddlproduct").val();
+        var ver = $("#ddlversion").val();
+        var amo = $("#txtAmount").val();
+        var st = $("#txtStandardTime").val();
+        var vc = $("#ddlVehicle").val();
+        if (jdes == "" || jdes == null) {
+            $("#warning").text("Description Should Not Be Left Blank");
+
+        }
+        else {
+            $("#JobGridTable tbody tr").each(function () {
+                var tem = $(this).closest('tr').find('#lblDefJobDesc').text().trim();
+
+                if (jdes == tem) {
+                    $("#warning").text("Description Already Exist");
+                    exitflag = true;
+                }
+            });
+        }
+        if (exitflag) return false;
+        $("#txtJobCatCode").css("border-color", "#ccc");
+        $("#txtJobCatDesc").css("border-color", "#ccc");
+        var JobCatCode = $("#txtJobCatCode").val();
+        var JobCatDesc = $("#txtJobCatDesc").val();
+
+
+        if (JobCatDesc == "" || JobCatDesc == "") {
+            $("#txtJobCatDesc").css("border-color", "red");
+            return;
+        }
+
+        $("#section-confirm").modal("show");
+    })
+    function SaveMasterEnquiry() {
+        var chkCurrentUser = $('input.chkCU').is(':checked');
+        debugger;
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+            cu = "";
+        }
+
+        var chkForAll = $('input.chkForAll').is(':checked');
+
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+            cu = "";
+        }
+
+        var chkDealer = $('input.chkDealer').is(':checked');
+
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+            cu = "";
+        }
+        var dto = {};
+
+
+        dto.DealerCode =cu;
+        dto.DefJobCode = $("#txtJobCode").val();
+        dto.BrandCode = $("#ddlBrand").val();
+        dto.ProdCode = $("#ddlproduct").val();
+        dto.VersionCode = $("#ddlversion").val();
+        dto.Amount = $("#txtAmount").val();
+        dto.ServiceTax = $("#txtServiceTax").val();
+        dto.StandardTime = $("#txtStandardTime").val();
+
+
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/OEM/Insert_LaborDetail")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+
+    }
+    function RemoveDealer(value) {
+
+        var value = $(value).closest('tr').find("#lblDefJobCode").text().trim();
+        var ProdCode = $(value).closest('tr').find("#lblProdCode").text().trim();
+        var DealerCode = "COMON";
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/OEM/Delete_LaborDetails")',
+            data: { 'value': value,'ProdCode':ProdCode,'DealerCode':DealerCode },
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                        setTimeout(function () {
+                            $('#section-message').modal('hide')
+                        }, 4000);
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                        setTimeout(function () {
+                            $('#section-message').modal('hide')
+                        }, 4000);
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+    }
+    function ClearDesc(value) {
+
+        $("#txtJobCatDesc").val("")
+    }
+
+    function PDealerLookup() {
+        $("#section-confirm3").modal("show");
+    }
+    function DealerCodeModal() {
+        $("#section-confirm4").modal("show");
+    }
+
+
+    //
+
+    $("#btnPrint").click(function () {
+
+        var baseurl = '@Url.Action("Export")';
+        var url = baseurl;
+        //window.location.href = url;
+        window.open(url, '_blank');
+
+    })
+
+
+
+    //Radio Button Validation
+
+
+
+
+</script>

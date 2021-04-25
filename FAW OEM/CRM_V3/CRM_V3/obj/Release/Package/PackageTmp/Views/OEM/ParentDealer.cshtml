@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "ParentDealer";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+<section class="wrapper main-wrapper row">
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Parent dealer</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="form-label">Parent Dealer Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                <input type="text" class="form-control" id="txtSoDate">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Parent Dealer Description</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control" id="txtSoDate">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:1rem;">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped" id="productDetail" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Parent Dealer Code</th>
+                                            <th>Parent Dealer Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr id="fixedRow1" data-tr-count="0"></tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:1rem;">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-8">
+                            <button type="submit" class="btn btn-info btn-sm" id="btnSave">Save</button>
+                            <button type="submit" class="btn btn-info btn-sm" id="">Delete</button>
+                            <button type="submit" class="btn btn-info btn-sm" id="">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+</section>

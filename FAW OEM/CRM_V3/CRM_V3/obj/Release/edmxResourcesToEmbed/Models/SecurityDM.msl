@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="SDBContext">
+    <EntitySetMapping Name="SecurityUsers">
+      <EntityTypeMapping TypeName="Models.SecurityUser">
+        <MappingFragment StoreEntitySet="SecurityUser">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="CompCode" ColumnName="CompCode" />
+          <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmployeeCode" ColumnName="EmployeeCode" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SecurityUserAccesses">
+      <EntityTypeMapping TypeName="Models.SecurityUserAccess">
+        <MappingFragment StoreEntitySet="SecurityUserAccess">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="ApplicationCode" ColumnName="ApplicationCode" />
+          <ScalarProperty Name="FormCode" ColumnName="FormCode" />
+          <ScalarProperty Name="FormActionCode" ColumnName="FormActionCode" />
+          <ScalarProperty Name="ActionValue" ColumnName="ActionValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompanyApplications">
+      <EntityTypeMapping TypeName="Models.CompanyApplication">
+        <MappingFragment StoreEntitySet="CompanyApplication">
+          <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ApplicationCode" ColumnName="ApplicationCode" />
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SecurityUserApplications">
+      <EntityTypeMapping TypeName="Models.SecurityUserApplication">
+        <MappingFragment StoreEntitySet="SecurityUserApplication">
+          <ScalarProperty Name="AllowFlag" ColumnName="AllowFlag" />
+          <ScalarProperty Name="ApplicationCode" ColumnName="ApplicationCode" />
+          <ScalarProperty Name="UserCode" ColumnName="UserCode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

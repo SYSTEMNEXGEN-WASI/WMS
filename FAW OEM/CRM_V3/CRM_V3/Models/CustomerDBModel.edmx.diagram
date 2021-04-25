@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="007787268fec47708d3606d8a9e58eb6" Name="Diagram1">
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Accompany" Width="1.5" PointX="3.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Activity" Width="1.5" PointX="5.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.AdjustedVehicle" Width="1.5" PointX="5.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.AdvancePayment" Width="1.5" PointX="13.75" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.AllocLetter" Width="1.5" PointX="8.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Bank" Width="1.5" PointX="16.75" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Bay" Width="1.5" PointX="15.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookChkList" Width="1.5" PointX="10.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookingFormParam" Width="1.5" PointX="17.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookingReceipt" Width="1.5" PointX="13.75" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookingReceiptBookingOrderDetail" Width="1.5" PointX="16" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookingReceiptInstrumentDetail" Width="1.5" PointX="16" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookingType" Width="1.5" PointX="10.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookOrdChklist" Width="1.5" PointX="7.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookOrdInsDetail" Width="1.5" PointX="19" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookOrdMaster" Width="1.5" PointX="21" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookOrdVehDetail" Width="1.5" PointX="23.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Branch" Width="1.5" PointX="30.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Brand" Width="1.5" PointX="8.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BrandUC" Width="1.5" PointX="30.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ChangePartNo" Width="1.5" PointX="30.75" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ChangeVehicleCu" Width="1.5" PointX="32.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ChargeOutMaster" Width="1.5" PointX="6" PointY="57.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.City" Width="1.5" PointX="16.75" PointY="37.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ClaimRequestType" Width="1.5" PointX="32.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Color1" Width="1.5" PointX="21" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ComplainCategory" Width="1.5" PointX="32.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ComplainType" Width="1.5" PointX="33" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CounterMeasure" Width="1.5" PointX="12.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CounterSaleDetail" Width="1.5" PointX="5.25" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CounterSaleMaster" Width="1.5" PointX="3" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Country" Width="1.5" PointX="15.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_EnquiryDetail" Width="1.5" PointX="33.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_EnquiryMaster" Width="1.5" PointX="32.75" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_EnquiryMode" Width="1.5" PointX="17.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_EnquirySource" Width="1.5" PointX="25.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_FollowUpDetail" Width="1.5" PointX="33.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_Post_PostServiceFollowup" Width="1.5" PointX="34.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_Prospect" Width="1.5" PointX="34.75" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_ProspectType" Width="1.5" PointX="34.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_Status" Width="1.5" PointX="35.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_Subjects" Width="1.5" PointX="35.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_TaskType" Width="1.5" PointX="35.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CusEmployee" Width="1.5" PointX="3" PointY="67.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CusSatCategory" Width="1.5" PointX="23.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CusSatChkList" Width="1.5" PointX="26" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CusSatDetail" Width="1.5" PointX="28.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CusSatMaster" Width="1.5" PointX="26" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Customer" Width="1.5" PointX="0.75" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerEstimateMaster" Width="1.5" PointX="35.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerInvoice" Width="1.5" PointX="20.75" PointY="38.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerQuotDetail" Width="1.5" PointX="35.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerQuotMaster" Width="1.5" PointX="22.75" PointY="38.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerVehicle" Width="1.5" PointX="24.75" PointY="38.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerVisit" Width="1.5" PointX="10.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DCDetail" Width="1.5" PointX="8.25" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DCMaster" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Dealer" Width="1.5" PointX="36.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DealerContPerson" Width="1.5" PointX="26.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DealerEmp" Width="1.5" PointX="28.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DealerFacility" Width="1.5" PointX="33" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Defect" Width="1.5" PointX="36.75" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DefectCategory" Width="1.5" PointX="36.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DelChkList" Width="1.5" PointX="25.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Department" Width="1.5" PointX="37.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Designation" Width="1.5" PointX="37.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DocumentCheckList" Width="1.5" PointX="37.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DOReason" Width="1.5" PointX="36.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Event" Width="1.5" PointX="12.75" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.EventLog" Width="1.5" PointX="37.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.EWMaster" Width="1.5" PointX="14.75" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ExpenditureDetail" Width="1.5" PointX="21" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ExpenditureMaster" Width="1.5" PointX="18.75" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Facility" Width="1.5" PointX="30.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FCCCategory" Width="1.5" PointX="38.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FCCDetail" Width="1.5" PointX="16.75" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FCCJob" Width="1.5" PointX="37.75" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FCCMaster" Width="1.5" PointX="38.75" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FICCategory" Width="1.5" PointX="38.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FICDetail" Width="1.5" PointX="38.75" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FICJobCardDetail" Width="1.5" PointX="38.75" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FICJob" Width="1.5" PointX="39.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FICMaster" Width="1.5" PointX="39.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FIRJobCategory" Width="1.5" PointX="39.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FIRJob" Width="1.5" PointX="39.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FollowDetail" Width="1.5" PointX="7.75" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FollowMaster" Width="1.5" PointX="40.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.GatePassTemp" Width="1.5" PointX="40.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.GRNDetail" Width="1.5" PointX="5.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.GRNMaster" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.GSTInvoice" Width="1.5" PointX="40.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Guarantor" Width="1.5" PointX="40.75" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.InquiryMode" Width="1.5" PointX="34.75" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.InsuranceCompany" Width="1.5" PointX="40.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.InterRepJobMaster" Width="1.5" PointX="41.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.InvoiceSubType" Width="1.5" PointX="41.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.InvoiceType" Width="1.5" PointX="9.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Item" Width="1.5" PointX="3" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ItemCategory" Width="1.5" PointX="0.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ItemStatu" Width="1.5" PointX="41.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ItemStock" Width="1.5" PointX="5.25" PointY="45.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JENDetail" Width="1.5" PointX="36.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JENMaster" Width="1.5" PointX="16.75" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JENPartsDetail" Width="1.5" PointX="42.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobApprovalMaster" Width="1.5" PointX="42.75" PointY="22.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardConDetail" Width="1.5" PointX="22.75" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardLubricateDetail" Width="1.5" PointX="42.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardMaster" Width="1.5" PointX="24.75" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardPartsDetail" Width="1.5" PointX="26.75" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardSupPartsDetail" Width="1.5" PointX="42.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCategory" Width="1.5" PointX="30.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobTypeMaster" Width="1.5" PointX="28.75" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.LaborDetail" Width="1.5" PointX="42.75" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.LeaseBank" Width="1.5" PointX="42.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Location" Width="1.5" PointX="38.75" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.LookUpDetail" Width="1.5" PointX="42.75" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.LookUpMaster" Width="1.5" PointX="43.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.MaintainenceSchedule" Width="1.5" PointX="43.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.OutgoingPaymentDetail" Width="1.5" PointX="11.75" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.OutgoingPaymentMaster" Width="1.5" PointX="40.75" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PartsDeliveryType" Width="1.5" PointX="43.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PartsLocation" Width="1.5" PointX="1.5" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PartsLocTransMaster" Width="1.5" PointX="42.75" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PartsSubLocation" Width="1.5" PointX="0.75" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PartsTransLocation" Width="1.5" PointX="3" PointY="40.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PartsWarrantyDetail" Width="1.5" PointX="8.25" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PartWarrantyMaster" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PaymentMode" Width="1.5" PointX="13.75" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PaymentReceiptMaster" Width="1.5" PointX="44.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PaymentVendorDetail" Width="1.5" PointX="44.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PaymentVendorMaster" Width="1.5" PointX="44.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PDICheckSheetJobCategory" Width="1.5" PointX="44.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PDICheckSheetJob" Width="1.5" PointX="44.75" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PNL_ItemDetails" Width="1.5" PointX="44.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PODetail" Width="1.5" PointX="5.25" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.POMaster" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.POTempDetail" Width="1.5" PointX="44.75" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.POTempMaster" Width="1.5" PointX="44.75" PointY="47.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PPRDetail" Width="1.5" PointX="45.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PriceType" Width="1.5" PointX="7.75" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ProdRecAccompany" Width="1.5" PointX="45.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ProdRecDetail" Width="1.5" PointX="28" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ProdRecMaster" Width="1.5" PointX="25.75" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Profession" Width="1.5" PointX="18.75" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PSTInvoice" Width="1.5" PointX="34.75" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PurInvMaster" Width="1.5" PointX="46.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.QuotDetail" Width="1.5" PointX="8.25" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.QuotMaster" Width="1.5" PointX="6.75" PointY="52.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.QuotRespDetail" Width="1.5" PointX="11.25" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.QuotRespMaster" Width="1.5" PointX="9" PointY="51.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ReasonCounterMeasure" Width="1.5" PointX="46.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Reason" Width="1.5" PointX="20.75" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ReasonsForRepeatedJob" Width="1.5" PointX="46.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ReceiptHead" Width="1.5" PointX="46.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Receiver" Width="1.5" PointX="26.75" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ReceivingChkList" Width="1.5" PointX="46.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.RepeatJobCardMappingMaster" Width="1.5" PointX="28.75" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.RequisitionDetail" Width="1.5" PointX="31" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.RequisitionMaster" Width="1.5" PointX="28.75" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.RGRDetail" Width="1.5" PointX="11.25" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.RGRMaster" Width="1.5" PointX="9" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityApplication" Width="1.5" PointX="11.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityCompany" Width="1.5" PointX="28.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityForm" Width="1.5" PointX="14" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityGroup" Width="1.5" PointX="14" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityGroupAccess" Width="1.5" PointX="16.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityObject" Width="1.5" PointX="28.75" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityObjectRight" Width="1.5" PointX="31" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityRoleAccess" Width="1.5" PointX="30.75" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityUser" Width="1.5" PointX="31" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityUserAccess" Width="1.5" PointX="16.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityUserAccessCRM" Width="1.5" PointX="46.75" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SecurityUserGroup" Width="1.5" PointX="16.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ServiceSchedule" Width="1.5" PointX="36.75" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Shop" Width="1.5" PointX="46.75" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SIMaster" Width="1.5" PointX="1.5" PointY="59.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SIRDetail" Width="1.5" PointX="11.25" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SIRMaster" Width="1.5" PointX="3.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SODetail" Width="1.5" PointX="21" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SOMaster" Width="1.5" PointX="18.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.StockIssue" Width="1.5" PointX="6" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.StockIssueDetail" Width="1.5" PointX="8.25" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.StockReturn" Width="1.5" PointX="46.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.StockReturnDetail" Width="1.5" PointX="46.75" PointY="49.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.StockSalesTarget" Width="1.5" PointX="47.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Table1" Width="1.5" PointX="7.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.TransferBooking" Width="1.5" PointX="11.75" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Unit" Width="1.5" PointX="0.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehExpHead" Width="1.5" PointX="47.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Vehicle1" Width="1.5" PointX="11" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleColor" Width="1.5" PointX="13.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleDelChkList" Width="1.5" PointX="28" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleDeliveryDetail" Width="1.5" PointX="26" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleDeliveryMaster" Width="1.5" PointX="23.75" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleLocation" Width="1.5" PointX="48.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleLocTransMaster" Width="1.5" PointX="23.75" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleOther" Width="1.5" PointX="48.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleReceiptType" Width="1.5" PointX="48.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleReturnMaster" Width="1.5" PointX="48.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleSalesTarget" Width="1.5" PointX="48.75" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleSpec" Width="1.5" PointX="13.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleSpecChkList" Width="1.5" PointX="48.75" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleStock" Width="1.5" PointX="32.75" PointY="51.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleTaxDetail" Width="1.5" PointX="48.75" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleType" Width="1.5" PointX="48.75" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Vendor" Width="1.5" PointX="1.5" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VersionMapping" Width="1.5" PointX="48.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VersionMappingWithColor" Width="1.5" PointX="48.75" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.WarrantyFlatRate" Width="1.5" PointX="49.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.WarrentyClaimRequest" Width="1.5" PointX="49.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.WithOutWarrantyRate" Width="1.5" PointX="16.75" PointY="52.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DealerCategory" Width="1.5" PointX="42.75" PointY="52.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DealershipType" Width="1.5" PointX="50.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.C_ItemStockLocWise" Width="1.5" PointX="50.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.C_Stock_ChargeOut" Width="1.5" PointX="50.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.C_Stock_GRN" Width="1.5" PointX="50.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ACBackupItemTable" Width="1.5" PointX="18.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.AgingDay" Width="1.5" PointX="20.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.AuditMasterTable" Width="1.5" PointX="50.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BackItemTable3" Width="1.5" PointX="50.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BackupItemTable" Width="1.5" PointX="50.75" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BackupItemTable2" Width="1.5" PointX="34.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BackupItemTable3" Width="1.5" PointX="36.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BaseRate" Width="1.5" PointX="50.75" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ChargeOutDetail" Width="1.5" PointX="8.25" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Color" Width="1.5" PointX="50.75" PointY="47.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_LeadSource" Width="1.5" PointX="44.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_PostSales_NextDueMaintenance" Width="1.5" PointX="46.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_PreSales_ActionPlan" Width="1.5" PointX="50.75" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_Reasons" Width="1.5" PointX="48.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_StatusType" Width="1.5" PointX="50.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CRM_TaskMaster" Width="1.5" PointX="26.75" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerEstimateDetail" Width="1.5" PointX="51.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerEstimateLubricate" Width="1.5" PointX="51.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerEstimatePart" Width="1.5" PointX="28.75" PointY="54.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.CustomerType" Width="1.5" PointX="52.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.DefaultJob" Width="1.5" PointX="52.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FCCAction" Width="1.5" PointX="52.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FeedBackDetail" Width="1.5" PointX="52.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FeedBackMaster" Width="1.5" PointX="52.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FeedBackQuestion" Width="1.5" PointX="52.75" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FeedBackSubDetail" Width="1.5" PointX="52.75" PointY="33.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FeedBackSubQuestion" Width="1.5" PointX="52.75" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FFIPDIBillDetail" Width="1.5" PointX="52.75" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FFIPDIBillMaster" Width="1.5" PointX="38.75" PointY="55.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FFIPDIPaymentReceiptMaster" Width="1.5" PointX="52.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FFIPDIPaymentReceiptTaxDetail" Width="1.5" PointX="52.75" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FIRDetail" Width="1.5" PointX="52.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FIRMaster" Width="1.5" PointX="11.75" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.FlatRateDetail" Width="1.5" PointX="13.75" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.InterRepJobDetail" Width="1.5" PointX="53.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ItemBkp17052017" Width="1.5" PointX="15.75" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.itemold" Width="1.5" PointX="22.75" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ItemsTaxTrx" Width="1.5" PointX="40.75" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ItemStockbak" Width="1.5" PointX="42.75" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ItemStockLedger" Width="1.5" PointX="48.75" PointY="56.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ItemStockPosition" Width="1.5" PointX="54.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JENBillDetail" Width="1.5" PointX="54.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JENBillMaster" Width="1.5" PointX="54.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JENWarrantyJob" Width="1.5" PointX="54.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobApprovalDetail" Width="1.5" PointX="54.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobApprovalPartsDetail" Width="1.5" PointX="54.75" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobApprovalSupDetail" Width="1.5" PointX="54.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobApprovalSupPart" Width="1.5" PointX="54.75" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardDetail" Width="1.5" PointX="54.75" PointY="38.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardRecChkList" Width="1.5" PointX="54.75" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardReqDetail" Width="1.5" PointX="54.75" PointY="45.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardRetChkList" Width="1.5" PointX="54.75" PointY="48.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardSublet" Width="1.5" PointX="54.75" PointY="51.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardTech" Width="1.5" PointX="50.75" PointY="57.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobCardWarrantyLabor" Width="1.5" PointX="54.75" PointY="55.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobEstimateDetail" Width="1.5" PointX="55.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobEstimateMaster" Width="1.5" PointX="8.75" PointY="58.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobEstimatePartsDetail" Width="1.5" PointX="28.75" PointY="58.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JobTypeDetail" Width="1.5" PointX="52.75" PointY="58.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.MasterLedger" Width="1.5" PointX="54.75" PointY="58.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.OutgoingPaymentTaxDetail" Width="1.5" PointX="56.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PartVendorDetail" Width="1.5" PointX="56.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PaymentReceiptDetail" Width="1.5" PointX="56.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PaymentReceiptTaxDetail" Width="1.5" PointX="56.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PNL_UpdateAppDetail" Width="1.5" PointX="56.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PPRAuditTrail" Width="1.5" PointX="56.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PPRMaster" Width="1.5" PointX="56.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PPRSubletLabor" Width="1.5" PointX="56.75" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PPRWarrantyJob" Width="1.5" PointX="56.75" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PRDetail" Width="1.5" PointX="56.75" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PRMaster" Width="1.5" PointX="56.75" PointY="51.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ProdCodeConversion" Width="1.5" PointX="56.75" PointY="57.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PurchaseTarget" Width="1.5" PointX="17.75" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PurInvDetail" Width="1.5" PointX="19.75" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.RefundPayment" Width="1.5" PointX="34.75" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Reminder" Width="1.5" PointX="48.75" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.RepeatJobCardMappingDetail" Width="1.5" PointX="56.75" PointY="60.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ScheduleJobsDetail" Width="1.5" PointX="58.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ScheduleLubsDetail" Width="1.5" PointX="58.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SchedulePartsDetail" Width="1.5" PointX="58.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SOS_COMM_PSF_SummaryMonthWise" Width="1.5" PointX="58.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SRDetail" Width="1.5" PointX="58.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SRMaster" Width="1.5" PointX="58.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.TaxPaymentReceiptHead" Width="1.5" PointX="58.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.TempTable" Width="1.5" PointX="58.75" PointY="34.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Tempwarrantylabor" Width="1.5" PointX="58.75" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.TmpInvoice" Width="1.5" PointX="58.75" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Vehicle" Width="1.5" PointX="58.75" PointY="43.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Vehicle_Coy" Width="1.5" PointX="58.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleDelivery" Width="1.5" PointX="50.75" PointY="61.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleDelivery_Backup" Width="1.5" PointX="58.75" PointY="61.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleLocTransDetail" Width="1.5" PointX="26" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehiclePriceCategory" Width="1.5" PointX="24.75" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehiclePriceCategory_Copy" Width="1.5" PointX="26.75" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VehicleReturnDetail" Width="1.5" PointX="28.75" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.WarrantyLabor" Width="1.5" PointX="30.75" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.warrantylabor1" Width="1.5" PointX="36.75" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.WarrantyLaborBackUp" Width="1.5" PointX="38.75" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ParentDealer" Width="1.5" PointX="40.75" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ApprovalEstimateJob" Width="1.5" PointX="42.75" PointY="62.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.ApprovalEstimateSupJob" Width="1.5" PointX="60.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.BookingOrder_Dashboard" Width="1.5" PointX="60.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.JENBillDetailDistinct" Width="1.5" PointX="60.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PendingServiceInvoice" Width="1.5" PointX="60.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.PSTUniqueSalesTaxInvoice" Width="1.5" PointX="60.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.SalesCustomerNotComeInLast6Months" Width="1.5" PointX="60.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.UniqueInvoiceNO" Width="1.5" PointX="60.75" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.UniqueSalesTaxInvoice" Width="1.5" PointX="60.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VIEW2" Width="1.5" PointX="60.75" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_2W_Service_GetPPRSubReport" Width="1.5" PointX="60.75" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_AccCodeCheck" Width="1.5" PointX="60.75" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_Advance_Refund_Detail" Width="1.5" PointX="60.75" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_AfterSaleInvoiceDetail" Width="1.5" PointX="44.75" PointY="63.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_Aging" Width="1.5" PointX="60.75" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_AllPendingServiceJV" Width="1.5" PointX="60.75" PointY="55.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_DailyCollection_Service" Width="1.5" PointX="52.75" PointY="63.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_EmployeeJobsDetail" Width="1.5" PointX="60.75" PointY="59.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_FICSDetail" Width="1.5" PointX="5.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_ItemStockPositionLastTR" Width="1.5" PointX="7.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_JENApproveDetail" Width="1.5" PointX="9.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_LastBookingsOfCustomers" Width="1.5" PointX="11.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_MaintenanceSchedule" Width="1.5" PointX="17.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_MaintenanceScheduleJobCards" Width="1.5" PointX="19.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_MonthlyActivity_JobCard_Indviual_Detail" Width="1.5" PointX="46.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_PartSaleReturnDetail" Width="1.5" PointX="54.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_PartsStockSourceWiseNew" Width="1.5" PointX="60.75" PointY="64.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_PartStockLocationWise" Width="1.5" PointX="62.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_PendingPayments" Width="1.5" PointX="62.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_PurchaseRegister" Width="1.5" PointX="62.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_SalesAging" Width="1.5" PointX="62.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Vw_ServiceHistoryMaster" Width="1.5" PointX="62.75" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.Vw_ServiceHistoryMaster_New" Width="1.5" PointX="62.75" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_SOS_DeliveryDelayAnalysisDailyWise" Width="1.5" PointX="62.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_SOS_PostSalesFollowup" Width="1.5" PointX="30.75" PointY="65.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_SOS_PromiseTime" Width="1.5" PointX="62.75" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_StockSalesTarget_Sorted" Width="1.5" PointX="36.75" PointY="65.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_SupPartsLube" Width="1.5" PointX="38.75" PointY="65.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_TemporaryGatePass" Width="1.5" PointX="62.75" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_TemporaryGatePassDetail" Width="1.5" PointX="40.75" PointY="65.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.VW_VehicleDeliveryMasterDetail" Width="1.5" PointX="62.75" PointY="50.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vw_VehicleDeliveryNew" Width="1.5" PointX="62.75" PointY="53.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sngonclo_BMSModel.vwTaxDeduction" Width="1.5" PointX="62.75" PointY="58.125" IsExpanded="true" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookOrdInsDetail_Bank" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookingReciptBookingOrderDetail_BookingRecipt" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookingReciptInstrumentDetail_BookingRecipt" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookingReceiptInstrumentDetail_PaymentMode" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookOrdInsDetail_City" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookOrdInsDetail_PaymentMode" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookOrdMaster_SOMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookOrdVehDetail_BookOrdMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookOrdVehDetail_Color" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_BookOrdVehDetail_Color1" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_Vehicle_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_ChargeOutDetail_ChargeOutMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_ComplainType_JobCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_CounterSaleDetail_ConterSaleMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_CounterSaleDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_ConterSaleMaster_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_CusEmployee_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_CusSatChkList_CusSatCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_CusSatDetail_CusSatChkList" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_CusSatDetail_CusSatMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_Customer_SIMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_DCDetail_DCMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_DCDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_DCMaster_POMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_DCMaster_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_GRNMaster_DCMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_DealerFacility_Facility" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_VehicleDelChkList_DelChkList" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_ExpenditureDetail_ExpenditureMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_GRNDetail_GRNMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_GRNDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_GRNDetail_PartsTransLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_RGRMaster_GRNMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_ChargeOutDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_Item_ItemCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_Item_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_ItemStock_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_PartsWarrantyDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_PODetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_QuotDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_QuotRespDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_RGRDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SIRDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_StockIssueDetail_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_PartsSubLocation_PartsLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_PartsTransLocation_PartsSubLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_PartsWarrantyDetail_PartWarrantyMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_PODetail_POMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_POMaster_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_ProdRecDetail_ProdRecMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_QuotDetail_QuotMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_QuotMaster_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_QuotRespMaster_QuotMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_QuotRespDetail_QuotRespMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_RequisitionDetail_RequisitionMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_RGRDetail_RGRMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SecurityForms_SecurityApplication" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SecurityUser_SecurityCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SecurityGroupAccess_SecurityForms" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SecurityUserAccess_SecurityForms" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SecurityGroupAccess_SecurityGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SecurityUserGroup_SecurityGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SecurityObjectRights_SecurityObject" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SIRDetail_SIRMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_StockIssue_SIRMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_SODetail_SOMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_StockIssueDetail_StockIssue1" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_VehicleColor_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_VehicleSpec_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_VehicleDeliveryDetail_VehicleDeliveryMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="sngonclo_BMSModel.FK_VehicleLocTransDetail_VehicleLocTransMaster" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

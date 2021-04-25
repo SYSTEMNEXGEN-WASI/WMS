@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="SDDBContext">
+    <EntitySetMapping Name="Dealers">
+      <EntityTypeMapping TypeName="Models.Dealer">
+        <MappingFragment StoreEntitySet="Dealer">
+          <ScalarProperty Name="OperatedBy" ColumnName="OperatedBy" />
+          <ScalarProperty Name="DealerAdminId" ColumnName="DealerAdminId" />
+          <ScalarProperty Name="DealershipTypeCode" ColumnName="DealershipTypeCode" />
+          <ScalarProperty Name="DealerCatCode" ColumnName="DealerCatCode" />
+          <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+          <ScalarProperty Name="FacilityCode" ColumnName="FacilityCode" />
+          <ScalarProperty Name="LicenseNo" ColumnName="LicenseNo" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="ParentCode" ColumnName="ParentCode" />
+          <ScalarProperty Name="ParentDesc" ColumnName="ParentDesc" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="PST" ColumnName="PST" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="AreaOfficeCode" ColumnName="AreaOfficeCode" />
+          <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+          <ScalarProperty Name="UpdTerm" ColumnName="UpdTerm" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+          <ScalarProperty Name="UpdUser" ColumnName="UpdUser" />
+          <ScalarProperty Name="NTN" ColumnName="NTN" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+          <ScalarProperty Name="SaleTaxNo" ColumnName="SaleTaxNo" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="DealerDesc" ColumnName="DealerDesc" />
+          <ScalarProperty Name="DealerCode" ColumnName="DealerCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

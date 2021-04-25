@@ -1,0 +1,282 @@
+﻿@model IEnumerable<Core.CRM.ADO.ViewModel.SalesPersonPerformanceVM>
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+    int LeadsCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().GenerateLeads : 0);
+    int ConvertedCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().Converted : 0);
+    int LostCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().Lost : 0);
+    int FollowUpCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().FollowUp : 0);
+    int TaskCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().Task : 0);
+    int DOCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().DeliveryOrder : 0);
+    int BOCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().BookingOrder : 0);
+    int StockCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().Stock : 0);
+    int InvoiceCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().Invoice : 0);
+    int PICount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().PendingInvoice : 0);
+    int PPCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().PendingPayment : 0);
+    int JobCardCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().JobCardCount : 0);
+    int PartSales = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().PartSales : 0);
+    int CountOfInvoice = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().CountOfInvoice : 0);
+    int CashAmount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().CashAmount : 0);
+    int OtherAmount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().OtherAmount : 0);
+    int SparePartsStock = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().SparePartsStock : 0);
+    int LocalStock = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().LocalStock : 0);
+    int OtherStock = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().OtherStock : 0);
+    int DTRCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().DTRCount : 0);
+    int WarrantyCount = (Model.FirstOrDefault() != null ? Model.FirstOrDefault().WarrantyCount : 0);
+}
+
+<style>
+.item {
+ position: relative;
+ transition: all 0.2s ease;
+}
+    .item:hover {
+        transform: scale(1.1);
+        border: 1px solid rgba(33,33,33,.2);
+        border-radius: 20px;
+    } 
+.effect{
+     position: relative;
+ transition: all 2s ease;
+}
+.effect:hover{
+    transform:rotateX(360deg);
+}
+</style>
+
+
+
+
+
+<section class="wrapper main-wrapper row" style=''>
+
+    <div class='col-xs-12'>
+        <div class="page-title">
+
+            <div class="pull-left">
+                <!-- PAGE HEADING TAG - START --><h1 class="title">Dash Board Summary</h1><!-- PAGE HEADING TAG - END -->
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- MAIN CONTENT AREA STARTS -->
+
+
+    <div class="col-lg-12" height=" 100%" width="100%">
+        <section class="box nobox ">
+            <div class="content-body">
+                <div class="row">
+                    @*<div class="col-lg-12">
+                        @*<div class="r4_counter db_box">*@
+                    @*<i class='pull-left fa fa-users icon-md icon-rounded icon-primary'></i>*@
+                    @*<div class="stats">*@
+                    @*<iframe width="100%" height=" 600" src="https://app.powerbi.com/view?r=eyJrIjoiMmNmMGJkNjYtZjVjYS00M2M1LWE3NDktNjY5NDFhMDQ5NWY2IiwidCI6IjZkYmQxYWQ5LTZlYmQtNDJiNy04MTNkLTBkNmQyM2NmMzgwMyIsImMiOjl9" frameborder="0" allowfullscreen="true"></iframe>                                <span>Leads</span>*@
+                    @*</div>*@
+                    @*</div>*@
+                    @*</div>*@
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-users icon-md icon-rounded icon-primary effect'></i>
+                            <div class="stats">
+                                <h4><strong>@LeadsCount</strong></h4>
+                                <span>Leads/ Inquiries</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-phone-square icon-md icon-rounded icon-warning effect']></i>
+                            <div class="stats">
+                                <h4><strong>@FollowUpCount</strong></h4>
+                                <span>FollowUps</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-thumbs-up icon-md icon-rounded icon-success effect'></i>
+                            <div class="stats">
+                                <h4><strong>@ConvertedCount</strong></h4>
+                                <span>Converted</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-thumbs-down icon-md icon-rounded icon-danger effect'></i>
+                            <div class="stats">
+                                <h4><strong>@LostCount</strong></h4>
+                                <span>Lost</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-book icon-md icon-rounded icon-primary effect'></i>
+                            <div class="stats">
+                                <h4><strong>@BOCount</strong></h4>
+                                <span>Booking Orders</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-home icon-md icon-rounded icon-warning effect'></i>
+                            <div class="stats">
+                                <h4><strong>@StockCount</strong></h4>
+                                <span>Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-rocket icon-md icon-rounded icon-success effect'></i>
+                            <div class="stats">
+                                <h4><strong>@DOCount</strong></h4>
+                                <span>Delivery Orders</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-file-o icon-md icon-rounded icon-danger effect'></i>
+                            <div class="stats">
+                                <h4><strong>@InvoiceCount</strong></h4>
+                                <span>Sales Invoices</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-file-text icon-md icon-rounded icon-primary effect'></i>
+                            <div class="stats">
+                                <h4><strong>@PICount</strong></h4>
+                                <span>Pending Invoices</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-money icon-md icon-rounded icon-warning effect'></i>
+                            <div class="stats">
+                                <h4><strong>@PPCount</strong></h4>
+                                <span>Pending Payment</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box item">
+                            <i class="pull-left fa fa-thumbs-down icon-md icon-rounded icon-primary effect"></i>
+                            <div class="stats">
+                                <h4><strong>@JobCardCount</strong></h4>
+                                <span style="white-space: nowrap;">JobCard</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box item">
+                            <i class="pull-left fa fa-thumbs-down icon-md icon-rounded icon-primary effect"></i>
+                            <div class="stats">
+                                <h4><strong>@DTRCount</strong></h4>
+                                <span style="white-space: nowrap;">DTR</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box item">
+                            <i class="pull-left fa fa-thumbs-down icon-md icon-rounded icon-primary effect"></i>
+                            <div class="stats">
+                                <h4><strong>@WarrantyCount</strong></h4>
+                                <span style="white-space: nowrap;">Warranty</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-money icon-md icon-rounded icon-warning effect'></i>
+                            <div class="stats">
+                                <h4><strong>@CountOfInvoice</strong></h4>
+                                <span>Service Invoice</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-money icon-md icon-rounded icon-success effect'></i>
+                            <div class="stats">
+                                <h4><strong>@CashAmount</strong></h4>
+                                <span>Cash Amount</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-money icon-md icon-rounded icon-danger effect'></i>
+                            <div class="stats">
+                                <h4><strong>@OtherAmount</strong></h4>
+                                <span>Other Amount</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-money icon-md icon-rounded icon-primary effect'></i>
+                            <div class="stats">
+                                <h4><strong>@PartSales</strong></h4>
+                                <span>Part Sales</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-database icon-md icon-rounded icon-warning effect'></i>
+                            <div class="stats">
+                                <h4><strong>@SparePartsStock</strong></h4>
+                                <span>Spare Parts Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-database icon-md icon-rounded icon-success effect'></i>
+                            <div class="stats">
+                                <h4><strong>@LocalStock</strong></h4>
+                                <span>Local Stock</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hidden">
+
+                        <div class="r4_counter db_box item">
+                            <i class='pull-left fa fa-database icon-md icon-rounded icon-danger effect'></i>
+                            <div class="stats">
+                                <h4><strong>@OtherStock</strong></h4>
+                                <span>Other Stock</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- End .row -->
+
+
+                </div>
+        </section>
+    </div>
+
+    <!-- MAIN CONTENT AREA ENDS -->
+</section>
+

@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" xmlns:mstns="http://tempuri.org/nwindDataSet.xsd" id="dsPartItemStockReport" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection ConnectionStringObject="Data Source=.;Initial Catalog=BMS;Persist Security Info=True;User ID=sa;Password=100372" IsAppSettingsProperty="false" Modifier="Assembly" ParameterPrefix="@" Provider="System.Data.SqlClient" Name="Connection" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ItemAdapter" Name="Item" UserDataComponentName="ItemAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Connection" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT DealerCode, ItemCatCode, ItemCode, PartItemNo, ItemDesc, UnitCode, ProdCode, PartsTransLocCode, PurchaseRate, SaleRate, EssentialFlag, Source, MinLevel, Reorder, Warranty, WarrMonths, WarrRemarks, LubeFlag, AccountCode, UpdUser, UpdDate, UpdTime, UpdTerm, SEDPerc, OHQTY, OHStock, War, LastUpdatedOn, Critical, PackingSize, Access, SGOFlag, Liter, InvType, GSTPerc FROM dbo.Item</CommandText>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="DealerCode" DataSetColumn="DealerCode" />
+              <Mapping SourceColumn="ItemCatCode" DataSetColumn="ItemCatCode" />
+              <Mapping SourceColumn="ItemCode" DataSetColumn="ItemCode" />
+              <Mapping SourceColumn="PartItemNo" DataSetColumn="PartItemNo" />
+              <Mapping SourceColumn="ItemDesc" DataSetColumn="ItemDesc" />
+              <Mapping SourceColumn="UnitCode" DataSetColumn="UnitCode" />
+              <Mapping SourceColumn="ProdCode" DataSetColumn="ProdCode" />
+              <Mapping SourceColumn="PartsTransLocCode" DataSetColumn="PartsTransLocCode" />
+              <Mapping SourceColumn="PurchaseRate" DataSetColumn="PurchaseRate" />
+              <Mapping SourceColumn="SaleRate" DataSetColumn="SaleRate" />
+              <Mapping SourceColumn="EssentialFlag" DataSetColumn="EssentialFlag" />
+              <Mapping SourceColumn="Source" DataSetColumn="Source" />
+              <Mapping SourceColumn="MinLevel" DataSetColumn="MinLevel" />
+              <Mapping SourceColumn="Reorder" DataSetColumn="Reorder" />
+              <Mapping SourceColumn="Warranty" DataSetColumn="Warranty" />
+              <Mapping SourceColumn="WarrMonths" DataSetColumn="WarrMonths" />
+              <Mapping SourceColumn="WarrRemarks" DataSetColumn="WarrRemarks" />
+              <Mapping SourceColumn="LubeFlag" DataSetColumn="LubeFlag" />
+              <Mapping SourceColumn="AccountCode" DataSetColumn="AccountCode" />
+              <Mapping SourceColumn="UpdUser" DataSetColumn="UpdUser" />
+              <Mapping SourceColumn="UpdDate" DataSetColumn="UpdDate" />
+              <Mapping SourceColumn="UpdTime" DataSetColumn="UpdTime" />
+              <Mapping SourceColumn="UpdTerm" DataSetColumn="UpdTerm" />
+              <Mapping SourceColumn="SEDPerc" DataSetColumn="SEDPerc" />
+              <Mapping SourceColumn="OHQTY" DataSetColumn="OHQTY" />
+              <Mapping SourceColumn="OHStock" DataSetColumn="OHStock" />
+              <Mapping SourceColumn="War" DataSetColumn="War" />
+              <Mapping SourceColumn="LastUpdatedOn" DataSetColumn="LastUpdatedOn" />
+              <Mapping SourceColumn="Critical" DataSetColumn="Critical" />
+              <Mapping SourceColumn="PackingSize" DataSetColumn="PackingSize" />
+              <Mapping SourceColumn="Access" DataSetColumn="Access" />
+              <Mapping SourceColumn="SGOFlag" DataSetColumn="SGOFlag" />
+              <Mapping SourceColumn="Liter" DataSetColumn="Liter" />
+              <Mapping SourceColumn="InvType" DataSetColumn="InvType" />
+              <Mapping SourceColumn="GSTPerc" DataSetColumn="GSTPerc" />
+            </Mappings>
+          </TableAdapter>
+        </Tables>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsPartItemStockReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Item">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DealerCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ItemCatCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ItemCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PartItemNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="18" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ItemDesc">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UnitCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProdCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PartsTransLocCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PurchaseRate" type="xs:double" />
+              <xs:element name="SaleRate" type="xs:double" />
+              <xs:element name="EssentialFlag">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Source">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MinLevel" type="xs:double" />
+              <xs:element name="Reorder" type="xs:double" />
+              <xs:element name="Warranty">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="WarrMonths" type="xs:double" />
+              <xs:element name="WarrRemarks">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LubeFlag" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AccountCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UpdUser">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UpdDate" type="xs:dateTime" />
+              <xs:element name="UpdTime" type="xs:dateTime" />
+              <xs:element name="UpdTerm">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SEDPerc" type="xs:double" minOccurs="0" />
+              <xs:element name="OHQTY" type="xs:decimal" minOccurs="0" />
+              <xs:element name="OHStock" type="xs:decimal" minOccurs="0" />
+              <xs:element name="War" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LastUpdatedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Critical" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PackingSize" type="xs:int" minOccurs="0" />
+              <xs:element name="Access" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SGOFlag" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Liter" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="InvType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GSTPerc" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//Item" />
+      <xs:field xpath="DealerCode" />
+      <xs:field xpath="ItemCode" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,405 @@
+﻿@*@model CRM_V3.Models.Customers*@
+@model CRM_V3.Models.Customer
+
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+<style>
+    .bacground-color-hthelper {
+        background-color:#c4e66d;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<section class="wrapper main-wrapper row">
+   @using (Html.BeginForm("Customer", "Customer", FormMethod.Post))
+   { 
+    <form method="post" >
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Customer Form</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+                </header>
+
+
+                <div class="content-body">
+                    <div class="row" style="margin-bottom:1rem;">
+                        <div class="col-md-4">
+                            <label class="form-label">Customer Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
+                                @*<input type="text" class="form-control" id="CusCodeID" name="CusCode" readonly />*@
+                                @Html.TextBoxFor(model => model.CusCode, new { @class = "form-control", @id = "CusCodeID",@readonly="readonly" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Customer Type</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                @*@Html.DropDownList("CusTypeDesc", ViewBag.CustomerType as SelectList,
+                                new { @class = "form-control", @name = "CusTypeDesc", @id = "CusTypeCode" })*@
+                                <select class="form-control m-bot15" id="CusTitleID" name="CusTitle">
+                                    <option value="Mr">Select</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Title</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <select class="form-control m-bot15" id="CusTitleID" name="CusTitle">
+                                    <option value="Mr">Mr.</option>
+                                    <option value="Ms">Miss.</option>
+                                    <option value="Mr">Mrs.</option>
+                                    <option value="Ms">Ms.</option>
+                                    <option value="Mr">M/S</option>
+                                    <option value="Ms">Dr.</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Customer</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                @*<input type="text" class="form-control" id="CusDescID" name="CusDesc" maxlength="50"/>*@
+                                @Html.TextBoxFor(model => model.CusDesc, new { @class = "form-control", @id ="CusDescID" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">NIC/NTN</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info-circle"></i></span>
+                                @*<input type="text" class="form-control" id="NICID" name="NIC" maxlength="30" />*@
+                                @Html.TextBoxFor(model => model.NIC, new { @class = "form-control", @id = "NICID" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Sales Tax No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                <input type="text" class="form-control" id="SalesTaxRegNoID" name="SalesTaxRegNo" maxlength="30" />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Payment Term</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                                <input type="text" class="form-control" id="CreditDaysID" name="CreditDays" />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Credit Limit</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                <input type="text" class="form-control" id="CreditLimitID" name="CreditLimit" />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Customer Distance</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-plane"></i></span>
+                                <input type="text" class="form-control" id="DistanceID" name="Distance" />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel-group" id="accordion">
+                                @*<div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                Customer Information
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Customer Code</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
+                                                        <select class="form-control m-bot15" id="ddlUsage">
+                                                            <option value="0">Select</option>
+                                                            <option value="New">New</option>
+                                                            <option value="Used">Used</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Customer Type</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                                        <select class="form-control m-bot15" id="ddlUsage">
+                                                            <option value="0">Select</option>
+                                                            <option value="New">New</option>
+                                                            <option value="Used">Used</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Customer/Ms</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <input type="text" class="form-control" id="txtCNIC" />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">NIC</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-info-circle"></i></span>
+                                                        <input type="text" class="form-control" id="txtNTN"  />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Contact Person</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                                                        <input type="text" class="form-control" id="txtCity"  />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                Contact Information
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <ul class="nav nav-tabs nav-justified primary">
+                                                        <li class="active">
+                                                            
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content primary">
+                                                        <div class="tab-pane fade in active" id="home-7">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Address</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                                        @*<input type="text" class="form-control" id="Address1ID" name="Address1" maxlength="50"  />*@
+                                                                        @Html.TextBoxFor(model => model.Address1, new { @class = "form-control", @id = "Address1ID" })
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Country</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+                                                                        @*@Html.DropDownList("CountryDesc", ViewBag.Country as SelectList,
+                                                                        new { @class = "form-control", @name = "CountryDesc", @id = "CountryCode" })*@
+                                                                        <select class="form-control m-bot15" id="CusTitleID" name="CusTitle">
+                                                                            <option value="Mr">Select</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">State</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-institution"></i></span>
+                                                                        @*@Html.DropDownList("StateDesc", ViewBag.State as SelectList,
+                                                                        new { @class = "form-control", @name = "StateDesc", @id = "StateDescID" })*@
+                                                                        <select class="form-control m-bot15" id="CusTitleID" name="CusTitle">
+                                                                            <option value="Mr">Select</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Near City</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                                        @*@Html.DropDownList("CityDesc", ViewBag.City as SelectList,
+                                                                        new { @class = "form-control", @name = "CityDesc", @id = "CityCode" })*@
+                                                                        <select class="form-control m-bot15" id="CusTitleID" name="CusTitle">
+                                                                            <option value="Mr">Select</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Phone Number</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-phone-square"></i></span>
+                                                                        <input type="text" class="form-control" id="Phone1ID" name="Phone1" maxlength="15" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Mobile No</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
+                                                                        <input type="text" class="form-control" id="CellNoID" name="CellNo" maxlength="15"/>
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Whatssap No</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-whatsapp"></i></span>
+                                                                        <input type="text" class="form-control" id="Phone2ID" name="Phone2" maxlength="15" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Fax</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                                                        <input type="text" class="form-control" id="FaxNoID" name="FaxNo" maxlength="15"  />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Email</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                                                        <input type="text" class="form-control" id="EmailID" name="Email" maxlength="15" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Url</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-anchor"></i></span>
+                                                                        <input type="text" class="form-control" id="URLID" name="URL" maxlength="50"/>
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Contact Person</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+                                                                        @*<input type="text" class="form-control" id="ContPersonID" name="ContPerson" maxlength="50" />*@
+                                                                        @Html.TextBoxFor(model => model.ContPerson, new { @class = "form-control", @id = "ContPersonID" })
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4" style="padding:2rem;">
+                                                                    <input type="checkbox" />
+                                                                    <label class="form-label">Same As</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!--copy cut-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-8">
+                            <button type="submit" class="btn btn-info btn-sm" id="btnSave">Save</button>
+                            <button type="submit" class="btn btn-info btn-sm" id="">Delete</button>
+                            <button type="submit" class="btn btn-info btn-sm" id="">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+    }
+</section>
+<script src="~/assets/js/jquery-1.11.2.min.js"></script>
+@*<script type="text/javascript">
+    $(function(){
+    $("#btnSave").click(function(e){
+    e.preventDefault();
+    var CustomerList = [];
+    var count = 0;
+    var CustomerCode = $("#CusCodeID").val();
+    var CustomerType = $('#CusTypeCode').val();
+    var CustomerTitle = $('#CusTitleID').val();
+    var CustomrDescription = $('#CusDescID').val();
+    var CustomerCNIC = $('#NICID').val();
+    var CustomerContact = $('#ContPersonID').val();
+    var CustomrAddress = $('#Address1ID').val();
+    var Country = $('#CountryCode').val();
+    var State = $('#StateDescID').val();
+    var City = $('#CityCode').val();
+    var CustomerPhone = $('#Phone1ID').val();
+    var CustomerCellNo = $('#CellNoID').val();
+    var CustomerWhatssapNo = $('#Phone2ID').val();
+    var CustomerFaxNo = $('#FaxNoID').val();
+    var CustomerEmail = $('#EmailID').val();
+    var CustomerURL = $('#URLID').val();
+    var CutomerNTNno = $('#NTNnoID').val();
+    var CustomerSalesTaxNo = $('#SalesTaxRegNoID').val();
+    var CustomerPaymentTerm = $('#CreditDaysID').val();
+    var CustomerPaymentLimit = $('#CreditLimitID').val();
+    var CustomerDistance = $('#DistanceID').val();
+    
+   
+    
+    if(count==0)
+    {
+        var CustomerVariable = 
+    {
+        CusCode: CustomerCode, CusTypeCode: CustomerType, CusTitle: CustomerTitle, CusDesc: CustomrDescription, NIC: CustomerCNIC,
+        ContPerson: CustomerContact, Address1: CustomrAddress, CountryCode: Country, StateCode: State, CityCode: City,
+        Phone1: CustomerPhone, CellNo: CustomerCellNo, Phone2: CustomerWhatssapNo, FaxNo: CustomerFaxNo, Email: CustomerEmail,
+        URL: CustomerURL, NTNno: CutomerNTNno, SalesTaxRegNo: CustomerSalesTaxNo, CreditDays: CustomerPaymentTerm,
+        CreditLimit: CustomerPaymentLimit, Distance: CustomerDistance
+    };
+    CustomerList.push(CustomerVariable);
+
+
+    }
+    count++;
+    $.ajax({
+    type: "POST",
+    url: "/Customer/SaveData",
+    dataType: "json",
+    contentType: 'application/json',
+    data: JSON.stringify({ CustomerList: CustomerList }),
+    contentType: "application/json; charset=utf-8",
+    complete: function (result) {
+
+        //document.forms["Customer"].submit();
+        window.location.href = '@Url.Action("Customer", "Customer")';
+    }
+    });
+    });
+    })
+</script>*@
+

@@ -1,0 +1,980 @@
+﻿
+@{
+    ViewBag.Title = "InsuranceBranch";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+<h2>Insurance Branch</h2>
+<!--*** For  Skins ***-->
+<link href='@Url.Content("~/assets/plugins/icheck/skins/all.css")' rel="stylesheet" type="text/css" media="screen" />
+<!--*** For Date Picker ***-->
+<link href='@Url.Content("~/assets/plugins/datepicker/css/datepicker.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/jquery-ui/smoothness/jquery-ui.min.css")' rel="stylesheet" type="text/css" media="screen" />
+<script type="text/javascript" src='@Url.Content("~/assets/lib/jquery.min.js")'></script>
+<script type="text/javascript" src='@Url.Content("~/assets/lib/bootstrap-datepicker.js")'></script>
+<link rel="stylesheet" media="screen" type="text/css" href='@Url.Content("~/assets/lib/bootstrap-datepicker.css")' />
+<link rel="stylesheet" media="screen" href='@Url.Content("~/assets/lib/bootstrap.min.css")' />
+
+
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/select2/select2.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/select2/select2.min.js")' type="text/javascript"></script>
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<script src="~/assets/js/scrollablegridplugin_asp.netajax_2.0.js"></script>
+
+<!-- CORE CSS TEMPLATE - START -->
+<link href='@Url.Content("~/assets/css/style.css")' rel="stylesheet" type="text/css" />
+<link href='@Url.Content("~/assets/css/responsive.css")' rel="stylesheet" type="text/css" />
+@*<link href='@Url.Content("~/assets/plugins/bootstrap/css/bootstrap.min.css")' rel="stylesheet" type="text/css" />*@
+@*<link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/plugins/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />*@
+<link href="../assets/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/animate.min.css" rel="stylesheet" type="text/css" />
+<!-- CORE CSS TEMPLATE - END -->
+
+
+@*      HTML IMPORT FROM Import and TaxSetup Form      *@
+
+
+<style>
+    .scrollTable th, .scrollTable td {
+        width: 220px;
+        text-align: center;
+        border: 1px solid #E0E0E0;
+    }
+
+        .scrollTable th:first-child, .scrollTable td:first-child {
+            width: 250px;
+        }
+
+    .scrollTable thead {
+        display: block;
+    }
+
+    .scrollTable tbody {
+        display: block;
+        height: 200px;
+        overflow: auto;
+    }
+
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .table-responsive-border {
+        width: 100%;
+        height: 300px;
+    }
+
+
+    .icheckbox_minimal-blue {
+        top: 10px;
+    }
+</style>
+
+<section class="wrapper main-wrapper row">
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Insurance Branch</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+
+                </header>
+                <div class="content-body">
+                    <!--Radio Session Box hidden-->
+                    <div class="col-md-4" hidden>
+                        <div class="box" style="padding:15px 2px 0px 3px;">
+                            <div>
+                                <label>
+                                    <input type="radio" class="chkCurrentUser" name="Sessions" id="chkCurrentUser" value="@Session["DealerCode"].ToString()">
+                                    <label id="lblcu" value="@Session["DealerCode"].ToString()" for="chkCurrentUser" class="form-label">Login User</label>
+                                </label>
+                                <label style="margin-left:7px">
+                                    <input type="radio" class="chkForAll" name="Sessions" checked id="chkForAll" value="COMON">
+                                    <label id="lblForAll" value="COMON" for="chkForAll" class="form-label">Common</label>
+                                </label>
+                                <label style="margin-left:2px">
+                                    <input type="radio" class="chkDealer" name="Sessions" id="chkDealer" value="Dealer">
+                                    <label id="lblDealer" value="Dealer" for="chkDealer" class="form-label"> Dealer </label>
+                                    @Html.DropDownList("ddlAllDealer", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlAllDealer, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlAllDealer" })
+                                </label>
+                            </div>
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Insurance Company<span class="mandatory">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('Jobs')" style="color:red;"></i></span>
+                                <input type="text" class="form-control" maxlength="100" id="txtInsComBrDesc" readonly>
+                                <input type="hidden" class="form-control" maxlength="100" id="txtInsComBrCode" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Insurance Branch Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('Branch')" style="color:red;"></i></span>
+                                <input type="text" class="form-control" maxlength="4" id="txtInsBrCode" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Insurance Br. Description<span class="mandatory" style="color:red">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                <input type="text" class="form-control" maxlength="50" id="txtInsBrDesc">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Phone<span class="mandatory" style="color:red">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                <input type="text" class="form-control" maxlength="15" id="txtInsBrPhone">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Fax</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-fax"></i></span>
+                                <input type="text" class="form-control" maxlength="15" id="txtInsBrFax">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-mail-forward"></i></span>
+                                <input type="text" class="form-control" maxlength="90" id="txtInsBrEmail">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Address<span class="mandatory" style="color:red">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+                                <input type="text" class="form-control" maxlength="100" id="txtInsBrAddress">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">URL</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+                                <input type="text" class="form-control" maxlength="100" id="txtInsBrURL">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Account Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('accountof')" style="color:red;"></i></span>
+                                <input type="hidden" class="form-control" maxlength="16" id="txtInsBrAcctDesc" readonly>
+                                <input type="text" class="form-control" maxlength="16" id="txtInsBrAcctCode" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Advance Receipt</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                <input type="text" class="form-control" maxlength="8" id="txtInsBrAdvReceipt" value="0" onkeypress="return isNumberKey(event)">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Contact Person <span class="mandatory" style="color:red">*</span></label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" class="form-control" maxlength="100" id="txtInsBrContactName">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Contact Person Phone</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                <input type="text" class="form-control" maxlength="15" id="txtInsBrContactPhone">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                    </div>
+                    <!--Save/Clear/Delete-->
+                    <div class="row">
+                        <div class="col-xs-12" style="margin-top:27px;">
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-success" id="btnSave" style="margin-right:23px;">
+                                    Save
+                                </button>
+                                <button type="reset" class="btn btn-primary" id="btnclr" onclick="ClearDesc()" style="margin-right: 23px;">
+                                    Clear
+                                </button>
+
+                                <button type="button" class="btn btn-danger" id="btnDelete" style="margin-right: 23px;">
+                                    Delete
+                                </button>
+                                <div class="pull-right hidden">
+                                    <button class="btn btn-primary" id="btnPrint" href="#">Print</button>
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </form>
+
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveMasterEnquiry()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--popup model-->
+    <div class="modal" id="section-confirm-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to Delete ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-danger" type="button" onclick="DeleteMasterEnquiry()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--popup model with not loading  Function-->
+    <div class="modal" id="section-message-notload" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage-notload">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage-notload"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Popup box modal End -->
+    <!-- Account Code Modal Start-->
+    <div class="modal" tabindex="-1" id="POModalActCode" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Account Detail</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="AccountSearchSO" class="form-control" aria-controls="AccountTableSO" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row" style="margin-left:10px">
+                        <div class="table-responsive table-Scroll" style="height:280px">
+                            <table id="AccountTableSO" class="table color-table info-table">
+                                <thead>
+                                    <tr>
+                                        <th class="tdDiv" style="text-align:left" width:"30%">Account Code</th>
+                                        <th class="tdDiv" style="text-align:left" width:"30%">Account Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase">
+                                    @if (ViewBag.Accounts != null)
+                                    {
+                                        foreach (var item in ViewBag.Accounts)
+                                        {
+                                            <tr style="text-align: left" onclick="ClickAccount('@item.AcCode',' @item.AcTitle')">
+                                                <td class="tdDiv">
+                                                    @item.AcCode
+                                                </td>
+                                                <td class="tdDiv">
+                                                    @item.AcTitle
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- Account Code Modal END-->
+    @*Modal*@
+    <!-- Popup Modal Start  -->
+    <div class="modal" tabindex="-1" id="JobModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Insurance Company</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtEnquirySearch" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="table-responsive table-responsive-border">
+                                    <table class="table table-bordered table-striped table-hover responsive" id="InsCompTable" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr No.</th>
+                                                <th>DealerCode</th>
+                                                <th>Company Code</th>
+                                                <th>Company Description</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size:12px;">
+                                            <tr id="InsCompFixedRow"></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- Popup Modal END  -->
+    @*Modal*@
+    <!-- Popup Modal Start  -->
+    <div class="modal" tabindex="-1" id="BranchModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Insurance Branch</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtBrTableSearch" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="box">
+                                <div class="table-responsive table-responsive-border">
+                                    <table class="table table-bordered table-striped table-hover responsive" id="InsBrTable" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Sr No.</th>
+                                                <th>DealerCode</th>
+                                                <th>Company Code</th>
+                                                <th>BranchCode</th>
+                                                <th>Branch Description</th>
+                                                <th>Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size:12px;">
+                                            <tr id="InsBrFixedRow"></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- Popup Modal END  -->
+
+</section>
+
+<script>
+    var GlobalVar_InsuranceCode = null;
+    var GlobalVar_Dealer = null;
+
+    txtBrTableSearch
+    //For Search in Model->START
+    $(document).ready(function () {
+        $("#txtEnquirySearch").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#InsCompTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        $("#txtBrTableSearch").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#InsBrTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+        $("#AccountSearchSO").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#AccountTableSO tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    //For Search in Model->End
+
+    //For Numeric and Decimal Values Only In Text Box   ->START
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+        if (charCode == 46 && evt.srcElement.value.split('.').length > 1) { return false; }
+
+        return true;
+    }
+    //For Numeric and Decimal Values Only In Text Box   ->END
+
+    //For Session Buttons->START
+    $(document).ready(function () {
+        var dealer = 'COMON';
+        GlobalVar_Dealer = dealer;
+        Get_InsuranceCom(dealer);
+      //  Get_InsBranch(dealer);
+
+        document.getElementById("ddlAllDealer").style.display = "none";
+        $('input:radio[name=Sessions]').change(function () {
+            if (this.value == '@Session["DealerCode"].ToString()') {
+                var dealer = '@Session["DealerCode"].ToString()';
+                GlobalVar_Dealer = dealer;
+                $("[name='ddlAllDealer']").hide();
+                Get_InsuranceCom(dealer);
+              //  Get_InsBranch(dealer);
+            }
+            else if (this.value == 'COMON') {
+                $("[name='ddlAllDealer']").hide();
+                var dealer = 'COMON';
+                GlobalVar_Dealer = dealer;
+                Get_InsuranceCom(dealer);
+               // Get_InsBranch(dealer);
+
+            }
+            else if (this.value == 'Dealer') {
+                var dealer = $("#ddlAllDealer").val();
+                GlobalVar_Dealer = dealer;
+                $("[name='ddlAllDealer']").show();
+                Get_InsuranceCom(dealer);
+              //  Get_InsBranch(dealer);
+            }
+        });
+    });
+    $("#ddlAllDealer").change(function () {
+
+        var val = $("#ddlAllDealer").val();
+        Get_InsuranceCom(val);
+    });//For Session Buttons->End
+
+    function ShowModal(type) {
+        if (type == 'Jobs') {
+            $('#JobModal').modal("show");
+        } else
+            if (type == 'accountof') {
+                $('#POModalActCode').modal("show");
+            }
+        if (type == 'Branch') {
+            $('#BranchModal').modal("show");
+        }
+    }
+    /// Account Code
+
+    ClickAccount = function (AccountCode, AccountDesc) {
+        $('#txtInsBrAcctCode').val(AccountCode);
+        $('#txtInsBrAcctDesc').val(AccountDesc);
+        $('#txtInsBrAcctDesc').css("border-color", "#e1e1e1");
+
+        $("#POModalActCode").modal("hide");
+    }
+
+    function Get_InsuranceCom(value) {
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': value },
+            //Select_BrandDetails
+            url: '@Url.Content("~/InsuranceBranch/Select_InsuranceCompany")',
+            success: function (data) {
+
+                if (data.Success == true) {
+
+                    var item = JSON.parse(data.Response)
+                    $("#InsCompTable tbody tr").remove()
+
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#InsCompTable tbody").append('<tr onclick="Get_InsComp(this);" id="InsCompFixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                           '<td>' + SNo++ + '</td>' +
+                                           '<td id="lblDealerCode">' + item.DealerCode + '<input type="hidden" id="hiddenlblInsCompPhone1" value="' + item.InsCompPhone1 + '"/><input type="hidden" id="hiddenlblInsCompEmail" value="' + item.InsCompEmail + '"/><input type="hidden" id="hiddenlblInsCompAddress1" value="' + item.InsCompAddress1 + '"/><input type="hidden" id="hiddenlblInsCompFax" value="' + item.InsCompFax + '"/></td>' +
+                                           '<td id="lblInsComCode">' + item.InsCompCode + '<input type="hidden" id="hiddenlblInsCompCellNo" value="' + item.InsCompCellNo + '"/><input type="hidden" id="hiddenlblInsCompContactPerson" value="' + item.InsCompContactPerson + '"/><input type="hidden" id="hiddenlblInsCompURL" value="' + item.InsCompURL + '"/><input type="hidden" id="hiddenlblInsCompCellNo" value="' + item.InsCompCellNo + '"/></td>' +
+                                           '<td id="lblInsCompDescription">' + item.InsCompDescription + '<input type="hidden" id="hiddenlblInsCompStndrdDiscount" value="' + item.InsCompStndrdDiscount + '"/><input type="hidden" id="hiddenlblInsCompContactPerson" value="' + item.InsCompContactPerson + '"/><input type="hidden" id="hiddenlblSalesTaxRegNo" value="' + item.SalesTaxRegNo + '"/><input type="hidden" id="hiddenlblNTNNo" value="' + item.NTNNo + '"/></td>' +
+
+                                          '<td style="text-align:center;">' +
+                                          '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                          '</td>' +
+
+
+                                               '</tr>');
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+
+    function Get_InsComp(value) {
+
+        //var phone = $(value).closest('tr').find("#hiddenlblInsCompPhone1").val();
+        //var email = $(value).closest('tr').find("#hiddenlblInsCompEmail").val();
+        //var contactperson = $(value).closest('tr').find("#hiddenlblInsCompContactPerson").val();
+        //var address = $(value).closest('tr').find("#hiddenlblInsCompAddress1").val();
+        //var url = $(value).closest('tr').find("#hiddenlblInsCompURL").val();
+        //var discount = $(value).closest('tr').find("#hiddenlblInsCompStndrdDiscount").val();
+        //var salestax = $(value).closest('tr').find("#hiddenlblSalesTaxRegNo").val();
+        //var ntn = $(value).closest('tr').find("#hiddenlblNTNNo").val();
+        //var Cell = $(value).closest('tr').find("#hiddenlblInsCompCellNo").val();
+        //var fax = $(value).closest('tr').find("#hiddenlblInsCompFax").val();
+        var InsCompCode = $(value).closest('tr').find("#lblInsComCode").text().trim();
+        var InsCompDesc = $(value).closest('tr').find("#lblInsCompDescription").text().trim();
+
+        @*var dealerCode = "@Session["DealerCode"].ToString()";*@
+
+        $("#txtInsComBrDesc").val(InsCompDesc);
+
+        GlobalVar_InsuranceCode = InsCompCode;
+        Get_InsBranch(GlobalVar_Dealer);
+
+        $('#JobModal').modal("hide");
+    }
+    function Get_InsBranch(value) {
+      
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': value, 'InsComCode': GlobalVar_InsuranceCode },
+            //Select_BrandDetails
+            url: '@Url.Content("~/InsuranceBranch/Select_InsuranceBranch")',
+            success: function (data) {
+
+                if (data.Success == true) {
+
+                    var item = JSON.parse(data.Response)
+                    $("#InsBrTable tbody tr").remove()
+
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#InsBrTable tbody").append('<tr onclick="Get_InsBr(this);" id="InsBrFixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                           '<td>' + SNo++ + '</td>' +
+                                           '<td id="lblDealerCode">' + item.DealerCode + '<input type="hidden" id="hiddenlblPhone" value="' + item.Phone + '"/><input type="hidden" id="hiddenlblEmail" value="' + item.Email + '"/><input type="hidden" id="hiddenlblAddress" value="' + item.Address + '"/><input type="hidden" id="hiddenlblFax" value="' + item.Fax + '"/></td>' +
+                                           '<td id="lblInsComCode">' + item.InsCompCode + '<input type="hidden" id="hiddenlblContactPerson" value="' + item.ContName + '"/><input type="hidden" id="hiddenlblURL" value="' + item.URL + '"/><input type="hidden" id="hiddenlblContPhone" value="' + item.ContPhone + '"/></td>' +
+                                           '<td id="lblBranchCode">' + item.BranchCode + '<input type="hidden" id="hiddenlblInsCompDescription" value="' + item.InsCompDescription + '"/></td>' +
+                                           '<td id="lblBranchDesc">' + item.BranchDesc + '<input type="hidden" id="hiddenlblAccountCode" value="' + item.AccountCode + '"/><input type="hidden" id="hiddenlblAdvanceReceipt" value="' + item.AdvanceReceipt + '"/></td>' +
+
+                                          '<td style="text-align:center;">' +
+                                          '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                          '</td>' +
+
+
+                                               '</tr>');
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+
+    function Get_InsBr(value) {
+        debugger;
+        var phone = $(value).closest('tr').find("#hiddenlblPhone").val();
+        var email = $(value).closest('tr').find("#hiddenlblEmail").val();
+        var contactperson = $(value).closest('tr').find("#hiddenlblContactPerson").val();
+        var address = $(value).closest('tr').find("#hiddenlblAddress").val();
+        var url = $(value).closest('tr').find("#hiddenlblURL").val();
+        var contactphone = $(value).closest('tr').find("#hiddenlblContPhone").val();
+        var fax = $(value).closest('tr').find("#hiddenlblFax").val();
+        var InsCompDesc = $(value).closest('tr').find("#hiddenlblInsCompDescription").val();
+        var accountcode = $(value).closest('tr').find("#hiddenlblAccountCode").val();
+        var advReceipt = $(value).closest('tr').find("#hiddenlblAdvanceReceipt").val();
+        var Code = $(value).closest('tr').find("#lblInsComCode").text().trim();
+
+        var brCode = $(value).closest('tr').find("#lblBranchCode").text().trim();
+        var brDesc = $(value).closest('tr').find("#lblBranchDesc").text().trim();
+
+        GlobalVar_InsuranceCode = Code;
+        @*var dealerCode = "@Session["DealerCode"].ToString()";*@
+
+        $("#txtInsBrCode").val(brCode);
+        $("#txtInsBrDesc").val(brDesc);
+        $("#txtInsBrPhone").val(phone);
+        $("#txtInsBrEmail").val(email);
+        $("#txtInsBrContactName").val(contactperson);
+        $("#txtInsBrURL").val(url);
+        $("#txtInsBrFax").val(fax);
+        $("#txtInsBrAddress").val(address);
+        $("#txtInsBrContactPhone").val(contactphone);
+        $("#txtInsComBrDesc").val(InsCompDesc);
+        $("#txtInsBrAcctCode").val(accountcode);
+        $("#txtInsBrAdvReceipt").val(advReceipt);
+
+        $('#BranchModal').modal("hide");
+    }
+
+
+    //                                            ***SAVE INSURANCE RECORD***
+    $("#btnSave").click(function () {
+
+        var exitflag = false;
+
+
+        var brdesc = $("#txtInsBrDesc").val();
+        var InsCompBrdesc = $("#txtInsComBrDesc").val();
+        var AccCode = $("#txtInsBrAcctCode").val();
+        var conPerson = $("#txtInsBrContactName").val();
+        var txtInsBrPhone = $("#txtInsBrPhone").val();
+        var address = $("#txtInsBrAddress").val();
+
+
+        if (brdesc == "0" || brdesc == null || brdesc == "") {
+            $("#txtInsBrDesc").css("border-color", "red");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage-notload").text("Description Should Not Be Left Blank")
+            $("#section-message-notload").modal('show');
+            return false;
+        } else { $("#txtInsBrDesc").css("border-color", "#ccc"); }
+
+        if (txtInsBrPhone == "0" || txtInsBrPhone == null || txtInsBrPhone == "") {
+            $("#txtInsBrPhone").css("border-color", "red");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage-notload").text("Phone No. Should Not Be Left Blank")
+            $("#section-message-notload").modal('show');
+            return false;
+        } else { $("#txtInsBrPhone").css("border-color", "#ccc"); }
+
+        if (address == "0" || address == null || address == "") {
+            $("#txtInsBrAddress").css("border-color", "red");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage-notload").text(" Address Should Not Be Left Blank")
+            $("#section-message-notload").modal('show');
+            return false;
+        } else { $("#txtInsBrAddress").css("border-color", "#ccc"); }
+
+        if (InsCompBrdesc == "0" || InsCompBrdesc == null || InsCompBrdesc == "") {
+            $("#txtInsComBrDesc").css("border-color", "red");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage-notload").text("Description Should Not Be Left Blank")
+            $("#section-message-notload").modal('show');
+            return false;
+        } else { $("#txtInsComBrDesc").css("border-color", "#ccc"); }
+        if (conPerson == "0" || conPerson == null || conPerson == "") {
+            $("#txtInsBrContactName").css("border-color", "red");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage-notload").text("Contact Person. Should Not Be Left Blank")
+            $("#section-message-notload").modal('show');
+            return false;
+        } else { $("#txtInsBrContactName").css("border-color", "#ccc"); }
+       
+        //if (code == "0" || code == null || code == "") {
+        //    $("#txtInsComCode").css("border-color", "red");
+        //    $("#modalMessage").css("background-color", "#e46457");
+        //    $("#lblMessage-notload").text("Book Reference No. Should Not Be Left Blank")
+        //    $("#section-message-notload").modal('show');
+        //    return false;
+        //} else { $("#txtInsComCode").css("border-color", "#ccc"); }
+        //if (code == "0" || code == null || code == "") {
+        //    $("#txtInsComCode").css("border-color", "red");
+        //    $("#modalMessage").css("background-color", "#e46457");
+        //    $("#lblMessage-notload").text("Book Reference No. Should Not Be Left Blank")
+        //    $("#section-message-notload").modal('show');
+        //    return false;
+        //} else { $("#txtInsComCode").css("border-color", "#ccc"); }
+        //if (user == "0" || user == null || user == "") {
+        //    $("#ddlAllEmp").css("border-color", "red");
+        //    $("#modalMessage").css("background-color", "#e46457");
+        //    $("#lblMessage-notload").text("User Should be Selected")
+        //    $("#section-message-notload").modal('show');
+        //    return false;
+        //} else { $("#ddlAllEmp").css("border-color", "#ccc"); }
+
+
+
+        $("#section-confirm").modal("show");
+    })
+
+    function SaveMasterEnquiry(){
+        var cu = CheckSession();
+
+
+        var dto = {};
+
+        dto.DealerCode = cu;
+        dto.InsCompCode = GlobalVar_InsuranceCode;
+        dto.BranchCode = $("#txtInsBrCode").val();
+        dto.BranchDesc = $("#txtInsBrDesc").val();
+        dto.Address = $("#txtInsBrAddress").val();
+        dto.Phone = $("#txtInsBrPhone").val();
+        dto.Fax = $("#txtInsBrFax").val();
+        dto.Email = $("#txtInsBrEmail").val();
+        dto.URL = $("#txtInsBrURL").val();
+        dto.AccountCode = $("#txtInsBrAcctCode").val();
+        dto.AdvanceReceipt = $("#txtInsBrAdvReceipt").val();
+        dto.ContName = $("#txtInsBrContactName").val();
+        dto.ContPhone = $("#txtInsBrContactPhone").val();
+
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/InsuranceBranch/Insert_InsuranceBranch")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+
+    }
+
+    $("#btnDelete").click(function () {
+
+        $("#section-confirm").modal("hide")
+
+        var code = $("#txtInsBrCode").val();
+        var brdesc = $("#txtInsBrDesc").val();
+        var InsCompBrdesc = $("#txtInsComBrDesc").val();
+
+        if (code == "" || code == null) {
+            $("#txtInsBrCode").css("border-color", "red");
+            $("#warning").text("Record Should Be Selected");
+            $("#modalMessage-notload").css("background-color", "#e46457");
+            $("#section-message-notload").modal('show');
+
+            return;
+        }
+        if (GlobalVar_InsuranceCode == "" || GlobalVar_InsuranceCode == null) {
+            $("#txtInsComBrDesc").css("border-color", "red");
+            $("#warning").text("Description Should Be Selected");
+            $("#modalMessage-notload").css("background-color", "#e46457");
+            $("#section-message-notload").modal('show');
+
+            return;
+        }
+
+
+
+        $("#section-confirm-Delete").modal("show");
+    })
+    function DeleteMasterEnquiry() {
+        $("#section-confirm-Delete").modal("hide")
+        var cu = CheckSession();
+        var dto = {};
+
+        dto.DealerCode =cu;
+        dto.InsComCode = GlobalVar_InsuranceCode;
+        dto.BranchCode = $("#txtInsBrCode").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/InsuranceBranch/Delete_InsuranceBranch")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+
+    }
+
+    // Check For Radio Button Session->START
+    function CheckSession() {
+
+        var chkDealer = $('input.chkDealer').is(':checked');
+        var chkCurrentUser = $('input.chkCurrentUser').is(':checked');
+        var chkForAll = $('input.chkForAll').is(':checked');
+
+        cu = "COMON";
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+            // cu = "";
+        }
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+            //  cu = "";
+        }
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+            //  cu = "";
+        }
+        return cu;
+    }// Check For Radio Button Session->END
+
+
+    // FOR REPORT PRINT->START
+    $("#btnPrint").click(function () {
+        var session = CheckSession();
+        var baseurl = '@Url.Action("InvoiceRequestReport")';
+        //var url = baseurl + '?Session=' + $session;
+        var url = baseurl + '?RptType=' + $('#ddlReportType').val() + '&StockType=' + +$('#ddlStkType').val() + '&FromDate=' + $('#txtFromDate').val() + '&ToDate=' + $('#txtToDate').val();
+        //window.location.href = url;
+        window.open(url, '_blank');
+
+    })// FOR REPORT PRINT->END
+
+</script>
+
+
+
+

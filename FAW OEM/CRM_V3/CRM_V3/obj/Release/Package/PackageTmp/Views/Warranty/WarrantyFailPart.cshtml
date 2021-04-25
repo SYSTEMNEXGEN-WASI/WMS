@@ -1,0 +1,1881 @@
+﻿
+@{
+    ViewBag.Title = "WarrantyFailPart";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+<h2>Warranty Fail Part</h2>
+<style>
+    .bacground-color-hthelper {
+        background-color: #c4e66d;
+    }
+
+    .table > tbody > tr > td {
+        padding: 5px;
+    }
+
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .mandatory {
+        color: red;
+        margin-left: 5px;
+    }
+
+    #CustomerTable thead, #CustomerTable tbody, #CustomerTable tr, #CustomerTable td, #CustomerTable th {
+        display: block;
+    }
+
+        #CustomerTable tr:after {
+            content: ' ';
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+
+        #CustomerTable thead th {
+            height: 40px;
+        }
+
+    #CustomerTable tbody {
+        height: 350px;
+        overflow-y: auto;
+    }
+
+    thead {
+        /* fallback */
+    }
+
+    #CustomerTable tbody td, #CustomerTable thead th {
+        /*width: 10%;*/
+        float: left;
+    }
+</style>
+<section class="wrapper main-wrapper row">
+    <form method="post">
+        <div class="col-xs-12">
+        <section class="box">
+            <header class="panel-header">
+                <h2 class="title pull-left">Warranty Failed Part</h2>
+                <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+            </header>
+            <div class="content-body">
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">W.R. No</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search" onclick="WarrantyModal()" style="color:red; "></i></span>
+                            <input type="text" class="form-control " id="txtWRNo" readonly>
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">W.R. Date</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" class="form-control datepicker" id="txtWRDate" readonly>
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">JobCard No</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtJobCardNo">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">DTR No</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtDTRNo" readonly>
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">JobCard Date</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" class="form-control datepicker" id="txtJobCardDate" readonly>
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Total Amount</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                            <input type="text" class="form-control" readonly id="txtTotalAmount">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">DealerCode</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" readonly id="txtDealerCode">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                </div>
+                <div class="row">
+
+                <div class="col-xs-12">
+
+                    <ul class="nav nav-tabs primary" style="border-radius:0px; border-bottom: 0px;padding:2px">
+                         <li class="active">
+                            <a href="#tabCustomer" data-toggle="tab">
+                                <i></i> Vehicle Information
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#home-7" data-toggle="tab">
+                                <i></i> W.R. Cause
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#profile-7" data-toggle="tab">
+                                <i></i> W.R. Parts
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabLabor" data-toggle="tab">
+                                <i></i> W.R. Labor
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#messages-7" data-toggle="tab">
+                                <i></i> Approval
+                            </a>
+                        </li>
+                        <li class="hidden">
+                            <a href="#Images" data-toggle="tab">
+                                <i></i> Images
+                            </a>
+                        </li>
+                        <li >
+                            <a href="#FailedPart" data-toggle="tab">
+                                <i></i> Failed Part Received
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content primary">
+                        <div class="tab-pane fade in active" id="tabCustomer">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">Registration No</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtRegistrationNo" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Chassis No</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtChassisNo" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Engine No</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtEngineNo" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">Vehicle Model</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtVehicleModel" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Invoice No</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtInvoiceNo" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Invoice Date</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" class="form-control datepicker" id="txtInvoiceDate" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">Vehicle</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtVehicle" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Vehicle Colour</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtVehicleColour" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Road Condition</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtRoadCondition" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">Customer Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtCustomerName" readonly="readonly">
+                                        <input type="hidden" class="form-control" id="txtCusCode" readonly="readonly">
+
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">User Name</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtUserName" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">User Address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control datepicker" id="txtUserAddress" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">Phone No</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtPhoneNo" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Kilometer Reading</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        <input type="text" class="form-control" id="txtKmReading" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Problem Occured On</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" class="form-control datepicker" id="txtProblemOccuredDate" readonly="readonly">
+                                        <input type="hidden" class="form-control datepicker" id="txtNoOfProblems" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label">Date of Delivery</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" class="form-control datepicker" id="txtComplitionDate" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Date of Complition</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" class="form-control datepicker" id="txtComplitionDate" readonly="readonly">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <input type="hidden" class="form-control datepicker" id="txtTransferStatus" readonly="readonly">
+                                    <input type="hidden" class="form-control datepicker" id="txtStatus" readonly="readonly">
+                                    <input type="hidden" class="form-control datepicker" id="txtRemarks" readonly="readonly">
+                                    <input type="hidden" class="form-control datepicker" id="txtSaleDealerCode" readonly="readonly">
+                                    <input type="hidden" class="form-control datepicker" id="txtSaleDealerName" readonly="readonly">
+                                </div>
+
+                                <div class="col-md-4">
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="tab-pane fade" id="home-7">
+
+                            <div>
+                                @* WORK TODO:  *@
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label class="form-label">Complaint</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-clipboard"></i>
+                                            </span>
+                                            @Html.DropDownList("ddlComplaint", new SelectList((IEnumerable<SelectListItem>)ViewBag.Complaint, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlComplaint" })
+
+
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Defect</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-clipboard"></i>
+                                            </span>
+                                            @Html.DropDownList("ddlDefect", new SelectList((IEnumerable<SelectListItem>)ViewBag.Defect, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlDefect" })
+
+
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Labour Description</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-clipboard"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="txtLabourDesc">
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Amount</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-clipboard"></i>
+                                            </span>
+                                            <input type="text" class="form-control" id="txtAmount">
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="form-label" style="padding-top:20px">Description of Complain in Detail</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-clipboard"></i>
+                                            </span>
+                                            <textarea class="form-control" id="txtComplainDesc" rows="5" cols="5" maxlength="200"></textarea>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label" style="padding-top:20px">Root Cause Failure</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-clipboard"></i>
+                                            </span>
+                                            <textarea class="form-control" id="txtRootCauseFailure" rows="5" cols="5" maxlength="200"></textarea>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label" style="padding-top:20px">Corrective Action</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-clipboard"></i>
+                                            </span>
+                                            <textarea class="form-control" id="txtCorrectiveAction" rows="5" cols="5" maxlength="200"></textarea>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="profile-7">
+
+
+                            <div class="row">
+                                <div class="col-md-4" hidden>
+                                    <label class="form-label">Vendor</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                        @Html.DropDownList("ddlVendor", new SelectList((IEnumerable<SelectListItem>)ViewBag.Vendor, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlVendor" })
+
+
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="hidden" class="form-control" id="txtPartsCode">
+                                    <input type="hidden" class="form-control" id="txtQuantity">
+                                    <input type="hidden" class="form-control" id="txtUnitRate">
+                                    <input type="hidden" class="form-control" id="txtGSTAmount">
+                                    <input type="hidden" class="form-control" id="txtTotalAmount">
+                                    <input type="hidden" class="form-control" id="txtRecStatus">
+                                    <input type="hidden" class="form-control" id="txtCasual">
+
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-top:1rem;">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped" id="WRParts" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>S No</th>
+                                                    <th>Part No</th>
+                                                    <th>Item</th>
+                                                    <th>Description</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    <th>Total</th>
+                                                    <th>Remove</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="fixedRow1" data-tr-count="0"></tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="tab-pane fade" id="tabLabor">
+                            <div class="row">
+                                <div class="row" style="margin-top:1rem;">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped" id="WLabor" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S No</th>
+                                                        <th>Operational Code</th>
+                                                        <th>Op Description</th>
+                                                        <th>Hr</th>
+                                                        <th>Rate</th>
+                                                        <th>Total</th>
+                                                        <th>Remove</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="fixedRow1" data-tr-count="0"></tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="tab-pane fade hidden" id="messages-7">
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="form-label">Approval No</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-clipboard"></i>
+                                        </span>
+                                        <input type="text" class="form-control" id="txtApprovalNo">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Approval Date</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                        <input type="text" class="form-control datepicker" id="txtApprovalDate" readonly>
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">Approval Status</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                        <select class="form-control m-bot15" id="txtApprovalStatus" name="CusTitle">
+                                            <option value="0" selected>Select</option>
+                                            <option value="Approved">Approved</option>
+                                            <option value="Reject">Reject</option>
+                                            <option value="Not Acceptable">Not Acceptable</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">TR No</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-clipboard"></i>
+                                        </span>
+                                        <input type="text" class="form-control" id="txtTRNo">
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="form-label">TR Date</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                        <input type="text" class="form-control datepicker" id="txtTRDate" readonly>
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-3">
+                                    @*<button type="button" class="btn btn-success" id="SaveApproval" onclick="Save()" style="margin-top:25px;">Save</button>
+                                        <button type="button" class="btn btn-default" id="ClearApproval" onclick="ClearApproval('','')" style="margin-top:25px;">Clear</button>*@
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label" style="padding-top:20px">Approval/ Reject Remarks</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-clipboard"></i>
+                                        </span>
+                                        <textarea class="form-control" id="txtComplainRemarks" rows="5" cols="5" maxlength="200"></textarea>
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                                <div class="col-md-8">
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="tab-pane fade " id="Images">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="form-label">Picture 1</label>
+                                    <img id="img1" style="width: 100%" />
+                                    <div class="makespace"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Picture 2</label>
+                                    <img id="img2" style="width: 100%" />
+                                    <div class="makespace"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="FailedPart">
+                            <div class="row" style="margin-top:1rem;">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped" id="WRFParts" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>S No</th>
+                                                    <th>Part No</th>
+                                                    <th>Item</th>
+                                                    <th>Description</th>
+                                                    <th>Quantity</th>
+                                                    <th>Receive Parts Status</th>
+                                                    <th>Receive Parts</th>
+                                                    <th>Receive Date</th>
+                                                    <th>Receive Parts Remarks</th>
+                                                    <th>Remove</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr id="fixedRow1" data-tr-count="0"></tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>      
+                <div class="row">
+                  
+                    <div class="col-md-2 pull-right">
+                      
+                            @*<button type="button" class="btn btn-success" id="btnSave" onclick="SaveDealer()" style="margin-top:25px;">Save</button>
+                            <button type="button" class="btn btn-default" id="ClearWarrantyApproval" onclick="ClearApproval(this)" style="margin-top:25px;">Clear</button>*@
+                        <button type="button" class="btn btn-success" id="btnPrint" style="margin-top:27px; width:100px; border-radius:0px;">Print</button>
+                      
+                    </div>
+                   
+                </div>
+         
+   </div>
+                
+                </section>
+        </div>
+                </form>
+
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveMasterEnquiry()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <div class="modal" tabindex="-1" id="section-confirm3" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Warranty Approval</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="WarrantySearch" class="form-control" aria-controls="PositionTitle" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive" style="height:350px;">
+                            <table id="WarrentyDetail" class="table table-striped table-hover responsive">
+                                <thead>
+                                    <tr>
+                                        <th width="20%">#</th>
+                                        <th width="20%">Dealer Code</th>
+                                        <th width="20%">Dealer Description</th>
+                                        <th width="20%">W.R. No</th>
+                                        <th width="20%">Job Card No</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal" id="section-confirm2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveDealer()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<link href='@Url.Content("~/assets/plugins/select2/select2.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/select2/select2.min.js")' type="text/javascript"></script>
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+@* Date *@
+
+@*<link href='@Url.Content("~/assets/plugins/jquery-ui/smoothness/jquery-ui.min.css")' rel="stylesheet" type="text/css" media="screen" />*@
+@*<link href='@Url.Content("~/assets/plugins/datepicker/css/datepicker.css")' rel="stylesheet" type="text/css" media="screen" />*@
+
+<script>
+        $(function () {
+            $("#txtFPDate").datepicker();
+        });
+</script>
+<script>
+    $(document).ready(function () {
+
+
+        Get_WarrentyDetails();
+    });
+
+
+    $("#WarrantySearch").keyup(function () {
+        var value = this.value.toLowerCase().trim();
+
+        $("table#WarrentyDetail tr").each(function (index) {
+            if (!index) return;
+            $(this).find("td").each(function () {
+                var id = $(this).text().toLowerCase().trim();
+                var not_found = (id.indexOf(value) == -1);
+                $(this).closest('tr').toggle(!not_found);
+                return not_found;
+            });
+        });
+    });
+
+   
+
+    function Get_WarrentyDetails() {
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Warranty/Select_WarrentyFailPart")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#WarrentyDetail tbody tr").remove()
+                    //ProductDetail
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#WarrentyDetail tbody").append('<tr  onclick="SelectVehicleWarranty(this);" id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td> <label id="lblDealerCode">' + item.DealerCode.trim() + ' </label></td>' +
+                                                                '<td> <label id="lblDealerDesc">' + item.DealerDesc.trim() + ' </label></td>' +
+                                                                '<td> <label id="lblPPRCode">' + item.PPRCode.trim() + ' </label></td>' +
+                                                                '<td> <label id="lblJobCardCode">' + item.JobCardCode.trim() + ' </label></td>' +
+
+
+                                                                //'<td><button type="button" class="btn btn-primary btn-xs" id="btnRemove" onclick="RemoveDealer(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                            '</tr>');
+
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+    function SelectVehicleWarranty(value) {
+
+        var dealerCode = $(value).closest('tr').find("#lblDealerCode").text().trim();
+        var pprCode = $(value).closest('tr').find("#lblPPRCode").text().trim();
+
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+
+
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'value': dealerCode, 'value1': pprCode },
+            url: '@Url.Content("~/Warranty/Select_VehicleWarrantyDetail")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                        //event information
+
+                    $("#txtDealerCode").val(item[0].DealerCode);
+                    $("#txtWRNo").val(item[0].PPRCode);
+                    $("#txtWRDate").val(item[0].PPRDate);
+                    $("#txtJobCardNo").val(item[0].JobCardCode);
+                    $("#txtJobCardDate").val(item[0].JobCardDate);
+                    $("#txtTotalAmount").val(item[0].TotalAmount);
+                    $("#txtRegistrationNo").val(item[0].VehRegNo);
+                    $("#txtChassisNo").val(item[0].VehChassisNo);
+                    $("#txtEngineNo").val(item[0].VehEngineNo);
+                    $("#txtVehicleModel").val(item[0].InvoiceDate);
+                    $("#txtInvoiceNo").val(item[0].InvoiceNo);
+                    $("#txtInvoiceDate").val(item[0].InvoiceDate);
+                    $("#txtVehicle").val(item[0].ProdCode);
+                    $("#txtVehicleColour").val(item[0].Color);
+                    $("#txtRoadCondition").val(item[0].RoadCondition);
+                    $("#txtCustomerName").val(item[0].UserName);
+                    $("#txtUserName").val(item[0].UserName);
+                    $("#txtUserAddress").val(item[0].UserAddress1);
+                    $("#txtPhoneNo").val(item[0].UserPhoneNo);
+                    $("#txtKmReading").val(item[0].MeterReadingKM);
+                    $("#txtProblemOccuredDate").val(item[0].DateOfProblem);
+                    $("#txtDTRNo").val(item[0].DTRNo);
+
+                    $("#txtNoOfProblems").val(item[0].NoOfProblems);
+                    $("#txtRemarks").val(item[0].Remarks);
+                    $("#txtTransferStatus").val(item[0].TransferStatus);
+                    $("#txtStatus").val(item[0].Status);
+                    $("#txtSaleDealerCode").val(item[0].SaleDealerCode);
+                    $("#txtSaleDealerName").val(item[0].SaleDealerName);
+                    $("#txtApprovalNo").val(item[0].ApprovalNo);
+                    $("#txtApprovalDate").val(item[0].ApprovalDate);
+                    $("#txtApprovalStatus").val(item[0].ApprovalStatus);
+                    $("#txtTRNo").val(item[0].TRNo);
+                    $("#txtTRDate").val(item[0].TRDate);
+                    $("#txtComplainRemarks").val(item[0].ComplainRemarks);
+                    debugger
+                    $("#img1").attr("src", "http://oem.sngoncloud.com/" + item[0].Picture1);
+                    $("#img2").attr("src", "http://oem.sngoncloud.com/" + item[0].Picture2);
+
+                } $("#section-confirm3").modal("hide");
+                Get_WRPartsData();
+                Get_WRCauseData();
+                Get_WRLaborData();
+                Get_WRFailPartsData();
+
+            },
+            complete: function () {
+
+            },
+        });
+
+    }
+
+    $("#btnSave").click(function ()
+    {
+        $("#txtDealerCode").css("border-color", "#ccc");
+        $("#txtWRNo").css("border-color", "#ccc");
+        $("#txtWRDate").css("border-color", "#ccc");
+        $("#txtJobCardNo").css("border-color", "#ccc");
+        $("#txtTotalAmount").css("border-color", "#ccc");
+        $("#txtRegistrationNo").css("border-color", "#ccc");
+        $("#txtChassisNo").css("border-color", "#ccc");
+        $("#txtEngineNo").css("border-color", "#ccc");
+        $("#txtVehicleModel").css("border-color", "#ccc");
+        $("#txtInvoiceNo").css("border-color", "#ccc");
+        $("#txtInvoiceDate").css("border-color", "#ccc");
+        $("#txtVehicle").css("border-color", "#ccc");
+        $("#txtVehicleColour").css("border-color", "#ccc");
+        $("#txtRoadCondition").css("border-color", "#ccc");
+        $("#txtCustomerName").css("border-color", "#ccc");
+        $("#txtUserName").css("border-color", "#ccc");
+        $("#txtUserAddress").css("border-color", "#ccc");
+        $("#txtPhoneNo").css("border-color", "#ccc");
+        $("#txtKmReading").css("border-color", "#ccc");
+        $("#txtProblemOccuredDate").css("border-color", "#ccc");
+        $("#txtComplitionDate").css("border-color", "#ccc");
+        $("#txtApprovalNo").css("border-color", "#ccc");
+        $("#txtApprovalDate").css("border-color", "#ccc");
+        $("#txtApprovalStatus").css("border-color", "#ccc");
+        $("#txtTRNo").css("border-color", "#ccc");
+        $("#txtTRDate").css("border-color", "#ccc");
+        $("#txtComplainRemarks").css("border-color", "#ccc");
+
+        var DealerCode = $("#txtDealerCode").val();
+        var PPRCode = $("#txtWRNo").val();
+        var PPRDate = $("#txtWRDate").val();
+        var JobCardCode = $("#txtJobCardNo").val();
+        var JobCardDate = $("#txtJobCardDate").val();
+        var TotalAmount = $("#txtTotalAmount").val();
+        var VehRegNo = $("#txtRegistrationNo").val();
+        var VehChassisNo = $("#txtChassisNo").val();
+        var VehEngineNo = $("#txtEngineNo").val();
+        var InvoiceNo = $("#txtInvoiceNo").val();
+        var InvoiceDate = $("#txtInvoiceDate").val();
+        var ProdCode = $("#txtVehicle").val();
+        var Color = $("#txtVehicleColour").val();
+        var RoadCondition = $("#txtRoadCondition").val();
+        var UserName = $("#txtCustomerName").val();
+        var UserName = $("#txtUserName").val();
+        var UserAddress1 = $("#txtUserAddress").val();
+        var UserPhoneNo = $("#txtPhoneNo").val();
+        var MeterReadingKM = $("#txtKmReading").val();
+        var DateOfProblem = $("#txtProblemOccuredDate").val();
+        var CompletionDate = $("#txtComplitionDate").val();
+        var NoOfProblems = $("#txtNoOfProblems").val();
+        var Remarks = $("#txtRemarks").val();
+        var DelFlag = "N";
+        var PostFlag = "N";
+        var TransferStatus = $("#txtTransferStatus").val();
+        var Status = $("#txtStatus").val();
+        var SaleDealerCode = $("#txtSaleDealerCode").val();
+        var SaleDealerName = $("#txtSaleDealerName").val();
+        var ApprovalNo = $("#txtApprovalNo").val();
+        var ApprovalDate = $("#txtApprovalDate").val();
+        var ApprovalStatus = $("#txtApprovalStatus").val();
+        var TRNo = $("#txtTRNo").val();
+        var TRDate = $("#txtTRDate").val();
+        var ComplainRemarks = $("#txtComplainRemarks").val();
+
+
+        if (PPRCode == "" || PPRCode == " ") {
+            $("#txtWRNo").css("border-color", "red");
+            return;
+        }
+        if (PPRDate == "" || PPRDate == " ") {
+            $("#txtWRDate").css("border-color", "red");
+            return;
+        }
+        if (JobCardCode == "" || JobCardCode == " ") {
+            $("#txtJobCardNo").css("border-color", "red");
+            return;
+        }
+
+        if (TotalAmount == "" || TotalAmount == " ") {
+            $("#txtTotalAmount").css("border-color", "red");
+            return;
+        }
+
+
+        $("#section-confirm").modal("show");
+    })
+    function SaveMasterEnquiry() {
+
+        var dto = {};
+        debugger
+
+
+
+        dto.DealerCode = $("#txtDealerCode").val();
+        dto.PPRCode = $("#txtWRNo").val();
+        //dto.PPRDate = $("#txtWRDate").val();
+        //dto.JobCardCode = $("#txtJobCardNo").val();
+        //dto.JobCardDate = $("#txtJobCardDate").val();
+        //dto.TotalAmount = $("#txtTotalAmount").val();
+        //dto.VehRegNo = $("#txtRegistrationNo").val();
+        //dto.VehChassisNo = $("#txtChassisNo").val();
+        //dto.VehEngineNo = $("#txtEngineNo").val();
+        //dto.InvoiceNo = $("#txtInvoiceNo").val();
+        //dto.InvoiceDate = $("#txtInvoiceDate").val();
+        //dto.ProdCode = $("#txtVehicle").val();
+        //dto.Color = $("#txtVehicleColour").val();
+        //dto.RoadCondition = $("#txtRoadCondition").val();
+        //dto.UserName = $("#txtCustomerName").val();
+        //dto.UserName = $("#txtUserName").val();
+        //dto.UserAddress1 = $("#txtUserAddress").val();
+        //dto.UserPhoneNo = $("#txtPhoneNo").val();
+        //dto.MeterReadingKM = $("#txtKmReading").val();
+        //dto.DateOfProblem = $("#txtProblemOccuredDate").val();
+        //dto.CompletionDate = $("#txtComplitionDate").val();
+        //dto.CusCode = $("#txtCusCode").val();
+        //dto.NoOfProblems = $("#txtNoOfProblems").val();
+        //dto.Remarks = $("#txtRemarks").val();
+        //dto.DelFlag = "N";
+        //dto.PostFlag = "N";
+        //dto.TransferStatus = $("#txtTransferStatus").val();
+        //dto.Status = $("#txtStatus").val();
+        //dto.SaleDealerCode = $("#txtSaleDealerCode").val();
+        //dto.SaleDealerName = $("#txtSaleDealerName").val();
+        dto.ApprovalNo = $("#txtApprovalNo").val();
+        dto.ApprovalDate = $("#txtApprovalDate").val();
+        dto.ApprovalStatus = $("#txtApprovalStatus").val();
+        //dto.TRNo = $("#txtTRNo").val();
+        //dto.TRDate = $("#txtTRDate").val();
+        dto.ComplainRemarks = $("#txtComplainRemarks").val();
+        //dto.DTRNo = $("#txtDTRNo").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Warranty/Insert_PPRMaster")',
+            data: dto,
+            success: function (data) {
+                debugger
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+
+                   // InsertPPRCause();
+                    //InsertPPRParts();
+                    ClearPPRMaster();
+                    ClearPPRParts();
+
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+    }
+    function ClearPPRMaster(value) {
+
+        $("#txtDealerCode").val("");
+        $("#txtWRNo").val("");
+        $("#txtWRDate").val("");
+        $("#txtJobCardNo").val("");
+        $("#txtJobCardDate").val("");
+        $("#txtTotalAmount").val("");
+        $("#txtRegistrationNo").val("");
+        $("#txtChassisNo").val("");
+        $("#txtEngineNo").val("");
+        $("#txtVehicleModel").val("");
+        $("#txtInvoiceDate").val("");
+        $("#txtVehicle").val("");
+        $("#txtVehicleColour").val("");
+        $("#txtRoadCondition").val("");
+        $("#txtCustomerName").val("");
+        $("#txtUserName").val("");
+        $("#txtUserAddress").val("");
+        $("#txtPhoneNo").val("");
+        $("#txtKmReading").val("");
+        $("#txtProblemOccuredDate").val("");
+        $("#txtComplitionDate").val("");
+        $("#txtApprovalNo").val("");
+        $("#txtApprovalDate").val("");
+        $("#txtApprovalStatus").val("");
+        $("#txtTRNo").val("");
+        $("#txtTRDate").val("");
+        $("#txtComplainRemarks").val("");
+        $("#img2").attr("src", "");
+        $("#img1").attr("src", "");
+    }
+    function ClearApproval(value)
+    {
+
+        ClearPPRMaster();
+        ClearPPRParts();
+        ClearPPRCause();
+    }
+
+    function ClearPPRParts()
+    {
+        $("#txtAprovalNo").val("");
+        $("#txtAprovalDate").val("");
+        $("#txtAprovalStatus").val("");
+        $("#txtTRNo").val("");
+        $("#txtTRDate").val("");
+        $("#txtComplainRemarks").val("");
+        $("#ddlVendor").val("0");
+    }
+
+    function WarrantyModal() {
+        $("#section-confirm3").modal("show");
+    }
+
+    //$("#btnSave").click(function () {
+    function InsertPPRCause() {
+
+
+        $("#txtDealerCode").css("border-color", "#ccc");
+        $("#txtWRNo").css("border-color", "#ccc");
+        $("#ddlComplaint").css("border-color", "#ccc");
+        $("#ddlDefect").css("border-color", "#ccc");
+        $("#txtLabourDesc").css("border-color", "#ccc");
+        $("#txtAmount").css("border-color", "#ccc");
+        $("#txtComplainDesc").css("border-color", "#ccc");
+        $("#txtRootCauseFailure").css("border-color", "#ccc");
+        $("#txtCorrectiveAction").css("border-color", "#ccc");
+
+
+
+
+
+        var DealerCode = $("#txtDealerCode").val();
+        var PPRCode = $("#txtWRNo").val();
+        var Complaint = $("#ddlComplaint").val();
+        var Defect = $("#ddlDefect").val();
+        var LabourDesc = $("#txtLabourDesc").val();
+        var Amount = $("#txtAmount").val();
+        var ComplainDesc = $("#txtComplainDesc").val();
+        var RootCauseFailure = $("#txtRootCauseFailure").val();
+        var CorrectiveAction = $("#txtCorrectiveAction").val();
+
+
+
+        if (DealerCode == "" || DealerCode == " ") {
+            $("#txtDealerCode").css("border-color", "red");
+            return;
+        }
+        if (PPRCode == "" || PPRCode == " ") {
+            $("#txtWRNo").css("border-color", "red");
+            return;
+        }
+        if (Complaint == "0") {
+            $("#ddlComplaint").css("border-color", "red");
+            return;
+        }
+        if (Defect == "0") {
+            $("#ddlDefect").css("border-color", "red");
+            return;
+        }
+        if (LabourDesc == "" || LabourDesc == " ") {
+            $("#txtLabourDesc").css("border-color", "red");
+            return;
+        }
+        if (Amount == "" || Amount == " ") {
+            $("#txtAmount").css("border-color", "red");
+            return;
+        }
+        if (ComplainDesc == "" || ComplainDesc == " ") {
+            $("#txtComplainDesc").css("border-color", "red");
+            return;
+        }
+        if (RootCauseFailure == "" || RootCauseFailure == " ") {
+            $("#txtRootCauseFailure").css("border-color", "red");
+            return;
+        }
+        if (CorrectiveAction == "" || CorrectiveAction == " ") {
+            $("#txtCorrectiveAction").css(" border-color", "red");
+            return;
+        }
+
+        SavePPRCauseDetail();
+    }
+
+    function ClearPPRCause(value) {
+
+        $("#txtDealerCode").val("");
+        $("#txtWRNo").val("");
+        $("#ddlComplaint").val("0");
+        $("#ddlDefect").val("0");
+        $("#txtLabourDesc").val("");
+        $("#txtAmount").val("");
+        $("#txtComplainDesc").val("");
+        $("#txtRootCauseFailure").val("");
+        $("#txtCorrectiveAction").val("");
+
+    }
+   function SavePPRCauseDetail() {
+
+       var dto = {};
+        debugger
+        dto.DealerCode = $("#txtDealerCode").val();
+        dto.PPRCode = $("#txtWRNo").val();
+        dto.ComplainCode = $("#ddlComplaint").val();
+        dto.DefectCode = $("#ddlDefect").val();
+        dto.LabourDesc = $("#txtLabourDesc").val();
+        dto.LabourRate = $("#txtAmount").val();
+        dto.ComplaintDesc = $("#txtComplainDesc").val();
+        dto.RootCauseFailure = $("#txtRootCauseFailure").val();
+        dto.CorrectiveAction = $("#txtCorrectiveAction").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Warranty/Insert_PPRCause")',
+            data: dto,
+            success: function (data) {
+                debugger
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    ClearPPRCause();
+                                  }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+   }
+
+
+    @*function InsertPPRParts(value) {
+
+
+
+        $("#txtDealerCode").css("border-color", "#ccc");
+        $("#txtWRNo").css("border-color", "#ccc");
+        $("#txtPartsCode").css("border-color", "#ccc");
+        $("#txtQuantity").css("border-color", "#ccc");
+        $("#txtUnitRate").css("border-color", "#ccc");
+        $("#txtGSTAmount").css("border-color", "#ccc");
+        $("#txtTotalAmount").css("border-color", "#ccc");
+        $("#txtRecStatus").css("border-color", "#ccc");
+        $("#ddlVendor").css("border-color", "#ccc");
+        $("#txtCasual").css("border-color", "#ccc");
+
+
+
+        var DealerCode = $("#txtDealerCode").val();
+        var PPRCode = $("#txtWRNo").val();
+        var PartsCode = $("#txtPartsCode").val();
+        var Quantity = $("#txtQuantity").val();
+        var UnitRate = $("#txtUnitRate").val();
+        var GSTAmount = $("#txtGSTAmount").val();
+        var RecStatus = $("#txtRecStatus").val();
+        var VendorCode = $("#ddlVendor").val();
+        var TotalAmount = $("#txtTotalAmount").val();
+        var Casual = $("#txtCasual").val();
+
+
+
+        if (DealerCode == "" || DealerCode == " ") {
+            $("#txtDealerCode").css("border-color", "red");
+            return;
+        }
+        if (PPRCode == "" || PPRCode ==" ") {
+            $("#txtWRNo").css("border-color", "red");
+            return;
+        }
+        if (PartsCode == "" || PartsCode == " ") {
+            $("#txtPartsCode").css("border-color", "red");
+            return;
+        }
+        if (Quantity == "" || Quantity == " ") {
+            $("#txtQuantity").css("border-color", "red");
+            return;
+        }
+        if (UnitRate == "" || UnitRate == " ") {
+            $("#txtUnitRate").css("border-color", "red");
+            return;
+        }
+        if (TotalAmount == "" || TotalAmount == " ") {
+            $("#txtTotalAmount").css("border-color", "red");
+            return;
+        }
+        if (VendorCode == "0") {
+            $("#ddlVendor").css("border-color", "red");
+            return;
+        }
+        var dto = {};
+        debugger
+        dto.DealerCode = $("#txtDealerCode").val();
+        dto.PPRCode = $("#txtWRNo").val();
+        dto.PartsCode = $("#txtPartsCode").val();
+        dto.Quantity = $("#txtQuantity").val();
+        dto.VendorCode = $("#ddlVendor").val();
+        dto.UnitRate = $("#txtUnitRate").val();
+        dto.GSTAmount = $("#txtGSTAmount").val();
+        dto.TotalAmount = $("#txtTotalAmount").val();
+        dto.RecStatus = $("#txtRecStatus").val();
+        dto.Casual = $("#txtCasual").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Warranty/Insert_PPRCause")',
+            data: dto,
+            success: function (data) {
+                debugger
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm2").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+
+                    }
+                    else {
+                        $("#section-confirm2").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+
+                    PDealerCodeSelection();
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm2").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+    }*@
+
+    function Get_WRLaborData(value, value1) {
+        //
+        var value = $("#lblDealerCode").text();
+        var value1 = $("#lblPPRCode").text();
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'value': value, 'value1': value1 },
+            url: '@Url.Content("~/Warranty/Select_PPRLaborData")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#WLabor tbody tr").remove()
+                    //ProductDetail
+                    if (item.length > 0) {
+                        debugger
+                        $.each(item, function (value, item) {
+                            //
+                            $("#WLabor tbody").append('<tr  id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td> <label id="lblPartNo">' + item.LaborCode + ' </label></td>' +
+                                                                '<td> <label id="lblItem">' + item.LaborDesc + ' </label></td>' +
+                                                                '<td> <label id="lblItemDesc">' + item.Hr + ' </label></td>' +
+                                                                '<td> <label id="lblQuantity">' + item.Rate + ' </label></td>' +
+                                                                '<td> <label id="lblPrice">' + item.TotalLabor + ' </label></td>' +
+
+
+                                                                '<td><button type="button" class="btn btn-primary btn-xs" id="btnRemove" onclick="RemoveDealer(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                            '</tr>');
+                        });
+
+
+                        //$("#txtDealerCode").val(item[0].DealerCode);
+                        //$("#txtWRNo").val(item[0].PPRCode);
+                        //$("#txtPartsCode").val(item[0].PartsCode);
+                        //$("#txtQuantity").val(item[0].Quantity);
+                        //$("#txtUnitRate").val(item[0].UnitRate);
+                        //$("#txtGSTAmount").val(item[0].GSTAmount);
+                        //$("#txtTotalAmount").val(item[0].TotalAmount);
+                        //$("#txtRecStatus").val(item[0].RecStatus);
+                        //$("#txtCasual").val(item[0].Casual);
+                        //$("#ddlVendor").val(item[0].VendorCode);
+
+
+                    }
+
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+
+    function Get_WRFailPartsData(value, value1) {
+        //
+        var value = $("#lblDealerCode").text();
+        var value1 = $("#txtWRNo").val();
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'value': value, 'value1': value1 },
+            url: '@Url.Content("~/Warranty/Select_PPRFPartsData")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#WRFParts tbody tr").remove()
+                    //ProductDetail
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+                            //
+                            $("#WRFParts tbody").append('<tr  id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td> <label id="lblPartNo">' + item.PartNo + ' </label></td>' +
+                                                                '<td> <label id="lblItem">' + item.PartsCode + ' </label></td>' +
+                                                                '<td> <label id="lblItemDesc">' + item.ItemDesc + ' </label></td>' +
+                                                                '<td> <label id="lblQuantity">' + item.Quantity + ' </label></td>' +
+                                                                '<td> <label id="lblFPStatus">' + item.FailedPartReceivedFlag1 + ' </label>'+
+                                                                '<select class="form-control" id="ddlFPStatus" style="display:none;" >' +
+                                                                '<option value="Y" >Yes</option>' +
+                                                                '<option value="N" selected>No</option>' +
+                                                                '</select>'+
+                                                                '</td>' +
+                                                                 '<td> <label id="lblFPRQTY">' + item.FPRQTY1 + ' </label>' +
+                                                                '<input type="text"  style="display:none; class="form-control" id="txtFPRQTY"/></td>' +
+                                                                '<td> <label id="lblFPDate">' + item.FPDate1 + ' </label>'+
+                                                                '<input type="date"  style="display:none; class="form-control datepicker" data-format="D, dd MM yyyy" id="txtFPDate"/></td>' +
+                                                                '<td> <label id="lblFPRemarks">' + item.FPRemarks + ' </label>' +
+                                                                '<input type="text"  style="display:none; class="form-control"  id="txtFPRemarks"/></td>' +
+                                                                '<td style="text-align:center;">' +
+                                                     '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                                     '<button type="button" class="btn btn-success btn-xs" id="btnUpdate" style="display:none;" onclick="UpdateData(this)"><i class="fa fa-check fa-lg"></i></button>' +
+                                                      '<button type="button" class="btn btn-danger btn-xs" id="btnCancel" style="display:none;margin-left:5px;" onclick="CancelEvent(this)" ><i class="fa fa-close fa-lg"></i></button>' +
+                                                    '</td>' +
+                                                    '</tr>');
+                                                            //     '</td><td style="text-align:left"><a class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a class= "deleteItem" style="color:blue" ><i class="fa fa-trash"></i></a></td></tr>');
+                                                            ////    '<td><button type="button" class="btn btn-primary btn-xs" id="btnRemove" onclick="RemoveDealer(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                            ////  '<input type="dropdown"  style="display:none; class="form-control" id="ddlFPStatus"/>'+'</tr>');
+                            //<button type="button" class="btn btn-primary btn-xs" id="btnEdit" onclick="EditComplain(this)"><i class="fa fa-plus fa-lg"></i></button>'
+                        });
+
+                    }
+
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+    $("table#WRFParts").on('click', '.selectItem', function () {
+
+        rIndex = $(this).closest('tr');
+        //index = $(this).closest('tr')[0].rowIndex;
+        debugger
+        var lblStatusbyOEM1 = $(rIndex).closest('tr').find("#lblFPRQTY").text().trim();
+        //$(value).closest('tr').find("#lblFPRQTY").val(lblStatusbyOEM1);
+        $("#txtFPRQTY").val(lblStatusbyOEM1);
+        var lblStatusRemarks1 = $(rIndex).closest('tr').find("#lblFPStatus").text().trim();
+        $("#ddlFPStatus").val(lblStatusRemarks1);
+        var lblFPDate = $(rIndex).closest('tr').find("#lblFPDate").text().trim();
+        $("#txtFPDate").val(lblFPDate);
+        var lblFPRemarks = $(rIndex).closest('tr').find("#lblFPRemarks").text().trim();
+        $("#txtFPRemarks").val(lblFPRemarks);
+
+        debugger;
+        $(rIndex).closest('tr').find("#txtFPRQTY").show();
+        $(rIndex).closest('tr').find("#lblFPRQTY").hide();
+        $(rIndex).closest('tr').find("#ddlFPStatus").show();
+        $(rIndex).closest('tr').find("#lblFPStatus").hide();
+        $(rIndex).closest('tr').find("#txtFPDate").show();
+        $(rIndex).closest('tr').find("#lblFPDate").hide();
+        $(rIndex).closest('tr').find("#txtFPRemarks").show();
+        $(rIndex).closest('tr').find("#lblFPRemarks").hide();
+        $(rIndex).closest('tr').find("#btnUpdate").show();
+        $(rIndex).closest('tr').find("#btnCancel").show();
+        $(rIndex).closest('tr').find("#btnEdit").hide();
+
+
+        
+
+    });
+
+    function EditComplain(value) {
+        rIndex = $(value).closest('tr');
+       // index = $(this).closest('tr')[0].rowIndex;
+
+        debugger
+        var lblStatusbyOEM1 = $(rIndex).closest('tr').find("#lblFPRQTY").text().trim();
+        //$(value).closest('tr').find("#lblFPRQTY").val(lblStatusbyOEM1);
+        $("#txtFPRQTY").val(lblStatusbyOEM1);
+        var lblStatusRemarks1 = $(rIndex).closest('tr').find("#lblFPStatus").text().trim();
+        $("#ddlFPStatus").val(lblStatusRemarks1);
+        var lblFPDate = $(rIndex).closest('tr').find("#lblFPDate").text().trim();
+        $("#txtFPDate").val(lblFPDate);
+        var lblFPRemarks = $(rIndex).closest('tr').find("#lblFPRemarks").text().trim();
+        $("#txtFPRemarks").val(lblFPRemarks);
+
+        debugger;
+        $(value).closest('tr').find("#txtFPRQTY").show();
+        $(value).closest('tr').find("#lblFPRQTY").hide();
+        $(value).closest('tr').find("#ddlFPStatus").show();
+        $(value).closest('tr').find("#lblFPStatus").hide();
+        $(value).closest('tr').find("#txtFPDate").show();
+        $(value).closest('tr').find("#lblFPDate").hide();
+        $(value).closest('tr').find("#txtFPRemarks").show();
+        $(value).closest('tr').find("#lblFPRemarks").hide();
+        $(value).closest('tr').find("#btnUpdate").show();
+        $(value).closest('tr').find("#btnCancel").show();
+        $(value).closest('tr').find("#btnEdit").hide();
+
+
+       
+
+
+    }
+
+    function CancelEvent(_this) {
+        $(_this).closest('tr').find("#txtFPRQTY").hide();
+        $(_this).closest('tr').find("#lblFPRQTY").show();
+        $(_this).closest('tr').find("#ddlFPStatus").hide();
+        $(_this).closest('tr').find("#lblFPStatus").show();
+        $(_this).closest('tr').find("#txtFPDate").hide();
+        $(_this).closest('tr').find("#lblFPDate").show();
+        $(_this).closest('tr').find("#txtFPRemarks").hide();
+        $(_this).closest('tr').find("#lblFPRemarks").show();
+        $(_this).closest('tr').find("#btnUpdate").hide();
+        $(_this).closest('tr').find("#btnCancel").hide();
+        $(_this).closest('tr').find("#btnEdit").show();
+
+    }
+
+    function UpdateData(value) {
+        debugger;
+        //var FP1=$("#txtFPRQTY").val();
+        //var FP2=$("#ddlFPStatus").val();
+        //var FP3=$("#txtFPDate").val();
+        var lblFPRQTY = $(value).closest('tr').find("#txtFPRQTY").val();
+        var lblQuantity = $(value).closest('tr').find("#lblQuantity").text();
+        var lblFPStatus = $(value).closest('tr').find("#ddlFPStatus").val();
+        var lblFPDate = $(value).closest('tr').find("#txtFPDate").val();
+        var lblItem = $(value).closest('tr').find("#lblItem").text();
+        var lblRemarks = $(value).closest('tr').find("#txtFPRemarks").val();
+        //alert(vehicleDesc);
+        if (lblFPRQTY == "" || lblFPRQTY==0||lblFPRQTY==null) {
+
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage").text("Please Fill Received Quantity: ")
+            $("#section-message").modal('show');
+            setTimeout(function () {
+                $('#section-message').modal('hide')
+            }, 4000);
+            return;
+        }
+        if (lblFPRQTY > lblQuantity) {
+
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage").text("You Can Not Received More than Quantity: ")
+            $("#section-message").modal('show');
+            setTimeout(function () {
+                $('#section-message').modal('hide')
+            }, 4000);
+            return;
+        }
+        if (lblFPStatus == "" || lblFPStatus==null) {
+
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage").text("Please Fill Status: ")
+            $("#section-message").modal('show');
+            setTimeout(function () {
+                $('#section-message').modal('hide')
+            }, 4000);
+            return;
+        }
+
+        if (lblFPDate == "") {
+
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage").text("Please Fill Date First: ")
+            $("#section-message").modal('show');
+            setTimeout(function () {
+                $('#section-message').modal('hide')
+            }, 4000);
+            return;
+        }
+
+        UpdateFailPart(lblFPRQTY, lblFPStatus, lblFPDate, lblItem, lblRemarks);
+        Get_WRFailPartsData();
+
+    }
+
+    function UpdateFailPart(lblFPRQTY, lblFPStatus, lblFPDate, lblItem, lblRemarks) {
+        debugger;
+        var dto = {};
+
+        // var Dealercode=$('#txtDealerCode').val();
+        // var ticketNo= $("#txtTicketNo").val();
+        // var ticketDate= $("#txtTicketDate").val();
+        //var Type= $("#txtType").val();
+        //var Priority= $("#txtPriority").val();
+        //var Complaint= $("#txtComplaint").val();
+        //var Status= $("#txtStatus").val();
+        // $("#txtStatusbyOEM").val(StatusbyOEM);
+        // $("#txtStatusRemarks").val(StatusRemarks);
+
+
+        //if (StatusbyOEM == "") {
+
+        //    $("#modalMessage").css("background-color", "#e46457");
+        //    $("#lblMessage").text("Please Fill StatusbyOEM: ")
+        //    $("#section-message").modal('show');
+        //    setTimeout(function () {
+        //        $('#section-message').modal('hide')
+        //    }, 4000);
+        //    return;
+        //}
+
+        //if (StatusRemarks == "") {
+        //    $("#modalMessage").css("background-color", "#e46457");
+        //    $("#lblMessage").text("Please Fills StatusRemarks: ")
+        //    $("#section-message").modal('show');
+        //    setTimeout(function () {
+        //        $('#section-message').modal('hide')
+        //    }, 4000);
+        //    return;
+        //}
+
+        dto.DealerCode = "@Session["DealerCode"].ToString()";
+        dto.FPRQTY = lblFPRQTY;
+        dto.PPRCode = $("#txtWRNo").val();
+        dto.PartsCode = lblItem;
+        //dto.Priority = Priority;
+        //dto.ComplaintDesc = Complaint;
+        //dto.status = Status;
+        dto.FailedPartReceivedFlag = lblFPStatus;
+        dto.FPDate = lblFPDate;
+        dto.FPRemarks = lblRemarks;
+
+        $.ajax({
+
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Warranty/Insert_FailPartStatus")',
+            data: dto,
+
+            success: function (data) {
+                debugger;
+                if (data.Success == true) {
+                    $("#section-confirm").modal("hide")
+                    $("#modalMessage").css("background-color", "#64c344");
+                    $("#lblMessage").text(data.Message)
+                    $("#section-message").modal('show');
+                    Get_WRFailPartsData(value, value1);
+                    setTimeout(function () {
+                        $('#section-message').modal('hide')
+                    }, 4000);
+                   
+                } else {
+                    $("#section-confirm").modal("hide")
+                    $("#modalMessage").css("background-color", "#e46457");
+                    $("#lblMessage").text(data.Message)
+                    $("#section-message").modal('show');
+                }
+            },
+            complete: function () {
+              
+
+
+            },
+
+        });
+
+    }
+   
+    $("table#productDetail").on('click', '.deleteItem', function () {
+        rIndex = $(this).closest('tr');
+        index = $(this).closest('tr')[0].rowIndex;
+        $(this).closest('tr').remove();
+
+    });
+    function Get_WRPartsData(value,value1) {
+        //
+        var value = $("#lblDealerCode").text();
+        var value1 = $("#txtWRNo").val();
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'value': value , 'value1' : value1},
+            url: '@Url.Content("~/Warranty/Select_PPRPartsData")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#WRParts tbody tr").remove()
+                    //ProductDetail
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+                            //
+                            $("#WRParts tbody").append('<tr  id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td> <label id="lblPartNo">' + item.PartNo + ' </label></td>' +
+                                                                '<td> <label id="lblItem">' + item.PartsCode + ' </label></td>' +
+                                                                '<td> <label id="lblItemDesc">' + item.ItemDesc + ' </label></td>' +
+                                                                '<td> <label id="lblQuantity">' + item.Quantity+ ' </label></td>' +
+                                                                '<td> <label id="lblPrice">' + item.UnitRate + ' </label></td>' +
+                                                                '<td> <label id="lblTotal">' + item.TotalAmount + ' </label></td>' +
+                                                                 //'</td><td style="text-align:left"><a class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a class= "deleteItem" style="color:blue" ><i class="fa fa-trash"></i></a></td></tr>');
+                                                                '<td><button type="button" class="btn btn-primary btn-xs" id="btnRemove" onclick="RemoveDealer(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                            '</tr>');
+                        });
+
+                    }
+
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+
+    function Get_WRCauseData(value,value1) {
+
+        var value = $("#lblDealerCode").text();
+        var value1 = $("#lblPPRCode").text();
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'value': value , 'value1' : value1},
+            url: '@Url.Content("~/Warranty/Select_WRCauseDetail")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+
+                            //$("#txtDealerCode").val(item[0].DealerCode);
+                            //$("#txtWRNo").val(item[0].PPRCode);
+                            $("#ddlComplaint").val(item[0].ComplainCode);
+                            $("#ddlDefect").val(item[0].DefectCode);
+                            $("#txtLabourDesc").val(item[0].LabourDesc);
+                            $("#txtAmount").val(item[0].LabourRate);
+                            $("#txtComplainDesc").val(item[0].ComplaintDesc);
+                            $("#txtRootCauseFailure").val(item[0].RootCauseFailure);
+                            $("#txtCorrectiveAction").val(item[0].CorrectiveAction);
+
+
+
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+    $("#btnPrint").click(function () {
+
+        var baseurl = '@Url.Action("FPLCVExport")';
+        var url = baseurl + '?EnquiryId=' + $('#txtWRNo').val() + '&DealerCode=@Session["DealerCode"].ToString()';
+        //window.location.href = url;
+        window.open(url, '_blank');
+
+    })
+</script>
+

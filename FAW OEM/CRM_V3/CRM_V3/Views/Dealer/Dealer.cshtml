@@ -1,0 +1,810 @@
+﻿
+@{
+    ViewBag.Title = "Dealer";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+<link href='@Url.Content("~/assets/plugins/select2/select2.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/select2/select2.min.js")' type="text/javascript"></script>
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<script src="~/assets/js/scrollablegridplugin_asp.netajax_2.0.js"></script>
+
+<h2>Dealer</h2>
+
+<style>
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .icheckbox_minimal-blue {
+        top: 10px;
+    }
+
+    .button {
+  display: inline-block;
+  padding: 0px;
+  color: white;
+  background-color: #72A0C1;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 11px;
+}
+</style>
+
+<section class="wrapper main-wrapper row">
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Dealer Information</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+
+                </header>
+                <div class="content-body">
+                    <!--Row 1-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Dealer Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('Jobs')" style="color:red;"></i></span>
+                                <input type="text" class="form-control" id="txtDealerCode">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Dealer Category</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-tag" onclick="ShowModal('Jobs')"></i></span>
+                                <input type="text" class="form-control" id="txtDealerCat">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Parent Dealer Code</label>
+                            <div class="input-group">
+                                @Html.DropDownList("ddlParentDealerCode", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlParentDealerCode, "Value", "Text", "0"), new { @class = "form-control ", @id = "ddlParentDealerCode" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Parent Desc</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file-text" onclick="ShowModal('Jobs')"></i></span>
+                                <input type="text" class="form-control" id="txtParentDesc">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4" style="float: right;width: 28%;margin-right: 0;margin-left:53px;margin-bottom: -31px;">
+                            <label class="file-upload" style="text-align:right">Upload Image</label>
+                            <div class="input-group">
+                                <img id="imglogo"  style="height:240px;width:230px;border-radius: 50%;">
+                                <input class="upload" type="file" name="files" id="CompLogo" />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Dealer Description</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                <input type="text" class="form-control" id="txtDealerDesc" maxlength="150">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Address</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                <input type="text" class="form-control" id="txtAddress" maxlength="150">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Country</label>
+                            <div class="input-group">
+                                @Html.DropDownList("ddlCountry", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlCountry, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCountry" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">State</label>
+                            <div class="input-group">
+                                @Html.DropDownList("ddlState", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlState, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlState" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">City</label>
+                            <div class="input-group">
+                                @Html.DropDownList("ddlCity", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlCity, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCity" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Vehicle Category</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <select class="form-control m-bot15" id="ddlVehicle">
+                                    <option value="0">Select</option>
+                                    <option value="LCV">LCV</option>
+                                    <option value="HCV">HCV</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                <input type="text" class="form-control" id="txtEmail" maxlength="20">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Fax</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                <input type="text" class="form-control" id="txtFax" maxlength="20">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Phone1</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                <input type="text" class="form-control" id="txtPhone1" maxlength="20">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="row" style="float:right;margin-left:1px">
+                            <div class="col-md-4">
+                                <label class="form-label">Phone2</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                    <input type="text" class="form-control" id="txtPhone2" maxlength="20">
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Sales Tax Reg.No.</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                                    <input type="text" class="form-control" id="txtSales" maxlength="20">
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">NTN</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                    <input type="text" class="form-control" id="txtNTN" maxlength="20">
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Credit No</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                                    <input type="text" class="form-control" id="txtCredit" maxlength="20">
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">PST%</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                    <input type="text" class="form-control" id="txtPST" maxlength="20">
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Handling Charges%</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                    <input type="text" class="form-control" id="txtHandlingCharges" maxlength="20">
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!--Row 2-->
+                    <!--Save/Clear/Delete-->
+                    <div class="row">
+
+                        <!--SAVE/Clear/Delete BUTTONS-->
+                        <div class="col-md-4 pull-right" style="margin-top:27px;">
+                            @*onclick="SaveMasterEnquiry()"*@
+                            <button type="button" class="btn btn-success" id="btnSave" style="margin-right:23px;">
+                                Save
+                            </button>
+                            <button type="reset" class="btn btn-primary" id="btnclr" onclick="ClearDesc()" style="margin-right: 23px;">
+                                Clear
+                            </button>
+
+                            <button type="button" class="btn btn-danger" id="btnDelete" onclick="">
+                                Delete
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+        </div>
+    </form>
+
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveMasterEnquiry()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <div class="modal" id="section-confirm-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to Delete ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-danger" type="button" onclick="DeleteMasterEnquiry()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    @*JobCode Modal*@
+
+    <!-- Popup Modal Start  -->
+    <div class="modal" tabindex="-1" id="JobModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Brand</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtEnquirySearch" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive" style="height:300px;">
+                            <table id="JobTable" class="table table-striped table-hover responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>Dealer Code</th>
+                                        <th>Brand Code</th>
+                                        <th>Brand Description</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase">
+                                    <tr id="fixedRow"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
+</section>
+
+<script>
+// Image save in Folder->START
+    debugger;
+    var model = @Html.Raw(Json.Encode(Model));
+
+    $('#CompLogo').on('change', function (e) {
+        var files = e.target.files;
+
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                debugger;
+                var data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    data.append("file" + x, files[x]);
+                }
+                var no="Pic1";
+
+                $.ajax({
+                    type: "POST",
+
+                    url: '/Dealer/UploadFile/'+ model+ '?EnquiryId=' +no,
+
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (result) {
+                        $('#image').attr('src', '@Url.Content("~/Images/")' + result.fileName);
+                        $('#imglogo').attr('src', '@Url.Content("~/Images/")' + result.fileName);
+                    },
+                    error: function (xhr, status, p3, p4) {
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] == "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                        console.log(err);
+                    }
+                });
+            } else {
+                alert("This browser doesn't support HTML5 file uploads!");
+            }
+        }
+    });
+    // Image save in Folder->START
+
+    // City DDL ->START
+    $(document).ready(function () {
+        $("#ddlState").change(function () {
+            var state = $(this).val();
+            debugger;
+            $.ajax({
+                dataType: "json",
+                type: "GET",
+                url: '@Url.Content("~/Dealer/GetState")',
+                data: { 'state': state },
+                success: function (state) {
+                    debugger;
+
+                    //$("#ddlProdCode").val(item[0].ProdCode.trim());
+                    $("#ddlCity").find('option').remove();
+
+                    // next iterate thru your object adding each option to the drop down\
+                    $(state.Response).each(function (index, item) { // GETTING ERROR HERE
+                        $("#ddlCity").append($('<option value=' + item.Value + ' >' + item.Text + '</option>'));
+                    });
+
+                }
+            })
+        })
+    })
+    // City DDL ->END
+
+    function ShowModal(type) {
+        if (type == 'Jobs') {
+            $('#JobModal').modal("show");
+        } else
+            if (type == 'AccountOf') {
+                $('#AccountOfModal').modal("show");
+            } else if (type == 'BookRefNo') {
+                $('#BookRefNoModal').modal("show");
+            }
+            else if (type == 'JobCategory') {
+                $('#JobCatModal').modal("show");
+            }
+            else {
+                $('#EnquiryNoModal').modal("show");
+            }
+    }
+    //Get_BrandData
+    function Get_BrandData(value) {
+        debugger;
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': value },
+            //Select_BrandDetails
+            url: '@Url.Content("~/Brand/Select_BrandDetails")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#JobTable tbody tr").remove()
+
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#JobTable tbody").append('<tr onclick="Get_BrandDetails(this);" id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblDealer">' + item.DealerCode.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblBrandCode">' + item.BrandCode.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblBrandDesc">' + item.BrandDesc.trim() + ' </label></td>' +
+                                                                //'<td > <label id="lblVehicleCategory">' + item.VehicleCategory + ' </label></td>' +
+
+
+                                                            '</tr>');
+                        });
+                        $("#BrandTable tbody tr").remove();
+                        $.each(item, function (value, item) {
+
+                            $("#BrandTable tbody").append('<tr onclick="Get_BrandDetails(this);" id="BrandTableRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblDealer">' + item.DealerCode.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblBrandCode">' + item.BrandCode.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblBrandDesc">' + item.BrandDesc.trim() + ' </label></td>' +
+                                                                //'<td > <label id="lblVehicleCategory">' + item.VehicleCategory + ' </label></td>' +
+
+
+                                                            '</tr>');
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+
+    function Get_BrandDetails(value) {
+
+        var dealerCode ="@Session["DealerCode"].ToString()";
+        var FIRCode = $(value).closest('tr').find("#lblBrandCode").text().trim();
+        var JobDesc = $(value).closest('tr').find("#lblBrandDesc").text().trim();
+        //var JobCatCode = $(value).closest('tr').find("#lblVehicleCategory").text().trim();
+        //var JobCatDesc = $(value).closest('tr').find("#lblJobCatDesc").text().trim();
+
+        $("#txtDealerCode").val(FIRCode);
+        $("#txtDealerDesc").val(JobDesc);
+        //$("#ddlVehicle").val(JobCatCode);
+        //$("#ddlDeptDesc").val(JobCatDesc);
+        $('#JobModal').modal("hide");
+
+    }
+
+
+    $("#btnSave").click(function () {
+
+        var exitflag = false;
+        debugger;
+
+        var dcode = $("#txtDealerCode").val();
+        var ddesc = $("#txtDealerDesc").val();
+        //var dcat = $("#txtDealerCat").val();
+        //var pdcode = $("#txtParentDealerCode").val();
+        //var pdes = $("#txtParentDesc").val();
+        //var add = $("#txtAddress").val();
+        //var country = $("#ddlCountry").val();
+        //var state = $("#ddlState").val();
+        //var city = $("#ddlCity").val();
+        //var email = $("#txtEmail").val
+        //var fax = $("#txtFax").val();
+        //var phone1 = $("#txtPhone1").val();
+        //var phone2 = $("#txtPhone2").val();
+        //var sales = $("#txtSales").val();
+        //var ntn = $("#txtNTN").val();
+        //var credit = $("#txtCredit").val();
+        //var pst = $("#txtPST").val();
+        //var hcharges = $("#txtHandlingCharges").val();
+        //var parentcode = $("#ddlParentDealerCode").val();
+        //var chkDealer = $('input.chkDealer').is(':checked');
+        //var deptdesc = $("#ddlDeptDesc").val();
+
+
+        if (dcode == "" || dcode == null) {
+            $("#txtDealerCode").css("border-color", "red");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage").text("Dealer Code Should Not Be Left Blank")
+            $("#section-message").modal('show');
+
+            return false;
+        }
+        if (ddesc == "" || ddesc == null) {
+            $("#txtDealerDesc").css("border-color", "red");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage").text("Description Should Not Be Left Blank")
+            $("#section-message").modal('show');
+
+            return false;
+        }
+
+
+        //  if (exitflag) return false;
+
+
+
+
+        $("#section-confirm").modal("show");
+    })
+
+    function SaveMasterEnquiry(){
+        
+        var dto = {};
+
+      //   dto.Unchanged = changed;
+        dto.DealerCode =$("#txtDealerCode").val();
+        dto.ParentCode = $("#ddlParentDealerCode").val();
+        dto.ParentDesc  = $("#txtParentDesc").val();
+        dto.DealerDesc = $("#txtDealerDesc").val();
+        dto.Address1 = $("#txtAddress").val();
+        dto.Phone1 = $("#txtPhone1").val();
+        dto.Phone2 = $("#txtPhone2").val();
+        dto.SaleTaxNo = $("#txtSales").val();
+        dto.NTN = $("#txtNTN").val();
+        dto.Email = $("#txtEmail").val();
+        dto.Fax = $("#txtFax").val();
+        dto.HandlingCharges = $("#txtHandlingCharges").val();
+        dto.CreditLimit = $("#txtCredit").val();
+        dto.PST = $("#txtPST").val();
+        dto.CountryCode = $("#ddlCountry").val();
+        dto.StateCode = $("#ddlState").val();
+        dto.CityCode = $("#ddlCity").val();
+        dto.VehicleCategory  = $("#ddlVehicle").val();
+        //dto.StateCode = $("#ddlVehicle").val();
+        //dto.CityCode = $("#ddlVehicle").val();
+
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Dealer/Insert_DealerMaster")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+
+    }
+    $("#btnDelete").click(function () {
+        //var exitflag = false;
+        //var row = $("#JobGridTable tbody tr").length;
+        $("#section-confirm").modal("hide")
+        var brandcode = $("#txtDealerCode").val();
+        var branddesc = $("#txtDealerDesc").val();
+
+
+        if (brandcode == "" || brandcode == null) {
+            $("#txtDealerCode").css("border-color", "red");
+            $("#warning").text("Record Should Be Selected");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#section-message").modal('show');
+
+            //document.getElemenyById("#").style("backgroundColor"="red");
+            return;
+        }
+        if (branddesc == "" || branddesc == null) {
+            $("#txtDealerDesc").css("border-color", "red");
+            $("#warning").text("Record Should Be Selected");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#section-message").modal('show');
+
+            //document.getElemenyById("#").style("backgroundColor"="red");
+            return;
+        }
+
+
+        $("#section-confirm-Delete").modal("show");
+    })
+    function DeleteMasterEnquiry() {
+        $("#section-confirm-Delete").modal("hide")
+        var chkDealer = $('input.chkDealer').is(':checked');
+        var chkCurrentUser = $('input.chkCU').is(':checked');
+        var chkForAll = $('input.chkForAll').is(':checked');
+        debugger;
+        cu = "COMON";
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+           // cu = "";
+        }
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+          //  cu = "";
+        }
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+          //  cu = "";
+        }
+        var dto = {};
+
+
+
+        dto.DealerCode =cu;
+        dto.BrandCode = $("#txtDealerCode").val();
+        dto.BrandDesc =$("#txtDealerDesc").val();
+
+
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Brand/Delete_Brand")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+
+    }
+    function RemoveDealer(value) {
+
+        var value = $(value).closest('tr').find("#lblDefJobCode").text().trim();
+        var ProdCode = $(value).closest('tr').find("#lblProdCode").text().trim();
+        var DealerCode = "COMON";
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/OEM/Delete_LaborDetails")',
+            data: { 'value': value,'ProdCode':ProdCode,'DealerCode':DealerCode },
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                        setTimeout(function () {
+                            $('#section-message').modal('hide')
+                        }, 4000);
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                        setTimeout(function () {
+                            $('#section-message').modal('hide')
+                        }, 4000);
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+    }
+    function ClearDesc(value) {
+
+        $("#txtDealerCode").val("")
+        $("#txtDealerDesc").val("")
+        $("#txtJobCatCodeDesc").val("")
+        $("#txtBankDesc").val("")
+        $("#txtStandardTime").val("")
+        $("#ddlLabourAc").val("")
+        $("#ddlDeptDesc").val("")
+        $("#ddlVehicle").val("");
+    }
+
+    function PDealerLookup() {
+        $("#section-confirm3").modal("show");
+    }
+    function DealerCodeModal() {
+        $("#section-confirm4").modal("show");
+    }
+
+
+    //
+
+    $("#btnPrint").click(function () {
+
+        var baseurl = '@Url.Action("Export")';
+        var url = baseurl;
+        //window.location.href = url;
+        window.open(url, '_blank');
+
+    })
+
+
+
+    //Radio Button Validation
+
+
+
+
+</script>

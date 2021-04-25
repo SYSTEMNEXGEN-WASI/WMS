@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Dealer">
+    <Key>
+      <PropertyRef Name="DealerCode" />
+    </Key>
+    <Property Name="DealerCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="DealerDesc" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address1" Type="varchar" MaxLength="100" />
+    <Property Name="Address2" Type="varchar" MaxLength="50" />
+    <Property Name="Address3" Type="varchar" MaxLength="50" />
+    <Property Name="SaleTaxNo" Type="varchar" MaxLength="50" />
+    <Property Name="Phone1" Type="varchar" MaxLength="55" />
+    <Property Name="Phone2" Type="varchar" MaxLength="25" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Fax" Type="varchar" MaxLength="15" />
+    <Property Name="NTN" Type="varchar" MaxLength="50" />
+    <Property Name="UpdUser" Type="varchar" MaxLength="50" />
+    <Property Name="UpdDate" Type="datetime" />
+    <Property Name="UpdTerm" Type="varchar" MaxLength="50" />
+    <Property Name="RegionCode" Type="char" MaxLength="2" />
+    <Property Name="AreaOfficeCode" Type="char" MaxLength="3" />
+    <Property Name="CityCode" Type="varchar" MaxLength="3" />
+    <Property Name="Active" Type="char" MaxLength="1" />
+    <Property Name="PST" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="CreditLimit" Type="float" />
+    <Property Name="ParentDesc" Type="varchar" MaxLength="50" />
+    <Property Name="ParentCode" Type="char" MaxLength="8" />
+    <Property Name="Logo" Type="varchar(max)" />
+    <Property Name="Image" Type="text" />
+    <Property Name="StateCode" Type="char" MaxLength="3" />
+    <Property Name="CountryCode" Type="char" MaxLength="3" />
+    <Property Name="LicenseNo" Type="varchar" MaxLength="15" />
+    <Property Name="FacilityCode" Type="char" MaxLength="5" />
+    <Property Name="ContactPerson" Type="varchar" MaxLength="30" />
+    <Property Name="CurrencyCode" Type="varchar" MaxLength="3" />
+    <Property Name="DealerCatCode" Type="varchar" MaxLength="3" />
+    <Property Name="DealershipTypeCode" Type="varchar" MaxLength="3" />
+    <Property Name="DealerAdminId" Type="varchar" MaxLength="15" />
+    <Property Name="OperatedBy" Type="varchar" MaxLength="15" />
+  </EntityType>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="Dealer" EntityType="Self.Dealer" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

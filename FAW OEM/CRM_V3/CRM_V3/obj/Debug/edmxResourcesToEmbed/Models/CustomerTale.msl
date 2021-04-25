@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CRM_BMS0517Model1StoreContainer" CdmEntityContainer="CRM_BMS0517Entities">
+    <EntitySetMapping Name="CustomerTales">
+      <EntityTypeMapping TypeName="CRM_BMS0517Model1.CustomerTale">
+        <MappingFragment StoreEntitySet="CustomerTale">
+          <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+          <ScalarProperty Name="CusCode" ColumnName="CusCode" />
+          <ScalarProperty Name="CusDesc" ColumnName="CusDesc" />
+          <ScalarProperty Name="FatherHusName" ColumnName="FatherHusName" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="ContPerson" ColumnName="ContPerson" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="NIC" ColumnName="NIC" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+          <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="NTNno" ColumnName="NTNno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

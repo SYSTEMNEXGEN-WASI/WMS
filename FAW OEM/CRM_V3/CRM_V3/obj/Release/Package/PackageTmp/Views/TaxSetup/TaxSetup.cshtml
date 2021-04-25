@@ -1,0 +1,964 @@
+﻿
+@{
+    ViewBag.Title = "TaxSetup";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+<h2>Tax Setup</h2>
+
+
+
+<link href='@Url.Content("~/assets/plugins/select2/select2.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/select2/select2.min.js")' type="text/javascript"></script>
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<script src="~/assets/js/scrollablegridplugin_asp.netajax_2.0.js"></script>
+
+
+<style>
+    .scrollTable th, .scrollTable td {
+        width: 220px;
+        text-align: center;
+        border: 1px solid #E0E0E0;
+    }
+
+        .scrollTable th:first-child, .scrollTable td:first-child {
+            width: 250px;
+        }
+
+    .scrollTable thead {
+        display: block;
+    }
+
+    .scrollTable tbody {
+        display: block;
+        height: 200px;
+        overflow: auto;
+    }
+
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .table-responsive-border {
+        width: 100%;
+        border: 1px solid;
+        border-color: #aaaaaa;
+        height: 300px;
+    }
+
+    .icheckbox_minimal-blue {
+        top: 10px;
+    }
+</style>
+
+<section class="wrapper main-wrapper row">
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Tax Setup</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+
+                </header>
+                <div class="content-body">
+
+                    <div class="row">
+
+                        <div class="col-xs-12">
+                            <ul class="nav nav-tabs primary" style="border-radius:0px; ">
+                                <li class="active">
+                                    <a href="#TaxMaster" data-toggle="tab">
+                                        <i></i>  Tax Master
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#TaxDetail" data-toggle="tab">
+                                        <i></i> Tax Detail
+                                    </a>
+                                </li>
+                             
+
+                            </ul>
+                        
+                        <div class="tab-content primary">
+
+                            <div class="tab-pane fade in active" id="TaxMaster">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="col-md-2">
+                                            <label class="form-label">Tax Code</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('Jobs')" style="color:red;"></i></span>
+                                                <input type="text" class="form-control" maxlength="6" id="txtTaxCode" readonly>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label class="form-label">Tax Discription</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                                <input type="text" class="form-control" id="txtTaxDesc" maxlength="50">
+
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-2" style="padding:15px 0px 0px 16px;">
+                                            <div class="row">
+                                                <div>
+                                                    <div class="col-md-8">
+                                                        <label class="form-label"><input type="checkbox" id="ChangechkBox" />Changable</label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <label class="form-label"><input type="checkbox" id="AppchkBox" />Applicable</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <!--Radio Session Box-->
+                                        <div class="col-md-4">
+                                            <div class="box" style="padding:15px 2px 0px 3px;">
+                                                <div>
+                                                    <label>
+                                                        <input type="radio" class="chkCurrentUser" name="Sessions" id="chkCurrentUser" value="@Session["DealerCode"].ToString()">
+                                                        <label id="lblcu" value="@Session["DealerCode"].ToString()" for="chkCurrentUser" class="form-label">Login User</label>
+                                                    </label>
+                                                    <label style="margin-left:7px">
+                                                        <input type="radio" class="chkForAll" name="Sessions" checked id="chkForAll" value="COMON">
+                                                        <label id="lblForAll" value="COMON" for="chkForAll" class="form-label">Common</label>
+                                                    </label>
+                                                    <label style="margin-left:2px">
+                                                        <input type="radio" class="chkDealer" name="Sessions" id="chkDealer" value="Dealer">
+                                                        <label id="lblDealer" value="Dealer" for="chkDealer" class="form-label"> Dealer </label>
+                                                        @Html.DropDownList("ddlAllDealer", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlAllDealer, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlAllDealer" })
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="TaxDetail">
+                                <div class="row" style="margin-top:3rem;">
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">Tax Type</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                            @Html.DropDownList("ddlTaxType", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlTaxType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlTaxType" })
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+
+                                    <div class="col-md-8" style="padding:30px 0px 0px 16px;">
+                                        <div class="row">
+                                            <div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label"><input type="checkbox" id="SubchkBox" />Sublet</label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label"><input type="checkbox" id="BougchkBox" />Boughtout</label>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label"><input type="checkbox" id="LubchkBox" />Lubricant</label>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label"><input type="checkbox" checked id="PchkBox" name="PGFE" value="Y" />Part</label>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <label class="form-label"><input type="checkbox" checked id="LaborchkBox" name="LPST" value="Y" />Labour</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+
+                                    <!--Part Check Box-->
+                                    <div class="col-md-12">
+
+                                        <div class="col-md-2">
+                                            <label class="form-label">GST</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                                <input type="text" class="form-control" id="txtGST" maxlength="8" onkeypress="return isNumberKey(event)">
+
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Further</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                                <input type="text" class="form-control" id="txtFurther" maxlength="8" onkeypress="return isNumberKey(event)">
+
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Extra</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                                <input type="text" class="form-control" id="txtExtra" maxlength="8" onkeypress="return isNumberKey(event)">
+
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <label class="form-label">PST</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
+                                                <input type="text" class="form-control" id="txtPST" maxlength="8" onkeypress="return isNumberKey(event)">
+
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                            </div>
+
+                    </div>
+
+
+
+
+                       
+
+                        <!--Grid-->
+
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-md-12 ">
+                            <div class="row">
+                                <div class="box">
+                                    <div class="table-responsive table-responsive-border table-scroll">
+                                        <table class="table table-bordered table-striped table-hover responsive" id="TaxSetupGrid" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr</th>
+                                                    <th>Dealer Code</th>
+                                                    <th>Tax Code</th>
+                                                    <th>Tax Description</th>
+                                                    <th>Changable</th>
+                                                    <th>Applicable</th>
+                                                    <th>Part</th>
+                                                    <th>Sublet</th>
+                                                    <th>Labor</th>
+                                                    <th>BoughtOut</th>
+                                                    <th>TaxType</th>
+                                                    <th>GST</th>
+                                                    <th>FurTax</th>
+                                                    <th>ExtraTax</th>
+                                                    <th>PST</th>
+                                                    <th>Lubricant</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody style="font-size:12px; text-transform: uppercase">
+                                                <tr id="TaxSetupGridRow"></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                    </div>
+                    <!--Save/Clear/Delete-->
+                    <div class="row">
+                        <!--SAVE/Clear/Delete BUTTONS-->
+                        <div class="col-md-8 pull-right" style="margin-top:27px;">
+                           
+                            
+                            <div class="makespace"></div>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-success" id="btnSave" style="margin-right:23px;">
+                                        Save
+                                    </button>
+                                    <button type="reset" class="btn btn-primary" id="btnclr" onclick="ClearDesc()" style="margin-right: 23px;">
+                                        Clear
+                                    </button>
+
+                                    <button type="button" class="btn btn-danger" id="btnDelete" style="margin-right:23px;" disabled>
+                                        Delete
+                                    </button>
+                                    <a class="btn btn-primary" id="btnPrint" style="margin-right:23px;"  href="#">Print</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                 
+
+                </div>
+            </section>
+
+        </div>
+    </form>
+
+
+
+
+
+
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveMasterEnquiry()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--popup model-->
+    <div class="modal" id="section-confirm-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to Delete ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-danger" type="button" onclick="DeleteMasterEnquiry()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @*Modal*@
+    <!-- Popup Modal Start  -->
+    <div class="modal" tabindex="-1" id="JobModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Tax</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtEnquirySearch" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive table-responsive table-scroll" style="height:300px;">
+                            <table id="JobTable" class="table table-bordered table-striped table-hover responsive" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>Dealer Code</th>
+                                        <th>Tax Code</th>
+                                        <th>Tax Description</th>
+                                        <th>Changable</th>
+                                        <th>Applicable</th>
+                                        <th>Part</th>
+                                        <th>Sublet</th>
+                                        <th>Labor</th>
+                                        <th>BoughtOut</th>
+                                        <th>TaxType</th>
+                                        <th>GST</th>
+                                        <th>FurTax</th>
+                                        <th>ExtraTax</th>
+                                        <th>PST</th>
+                                        <th>Lubricant</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase">
+                                    <tr id="fixedRow"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
+
+</section>
+
+<script>
+
+
+    //For Disable Textbox->START
+    $("#PchkBox").change(function () {
+        debugger
+        var FFS = $("#PchkBox").is(":checked");
+        if (FFS) {
+            $("#txtGST").prop('disabled', false);
+            $("#txtFurther").prop('disabled', false);
+            $("#txtExtra").prop('disabled', false);
+
+
+        } else {
+            $("#txtGST").prop('disabled', true);
+            $("#txtFurther").prop('disabled', true);
+            $("#txtExtra").prop('disabled', true);
+
+        }
+
+    })
+    //For Disable Textbox->END
+
+    //For Disable Textbox->START
+    $("#LaborchkBox").change(function () {
+        debugger
+        var FFS = $("#LaborchkBox").is(":checked");
+        if (FFS) {
+            $("#txtPST").prop('disabled', false);
+
+
+        } else {
+            $("#txtPST").prop('disabled', true);
+
+        }
+
+    })
+    //For Disable Textbox->END
+
+
+    //For Numeric and Decimal Values Only In Text Box   ->START
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+        if (charCode == 46 && evt.srcElement.value.split('.').length > 1) { return false; }
+
+        return true;
+    }
+    //For Numeric and Decimal Values Only In Text Box   ->END
+
+    //For Search in Model->START
+    $(document).ready(function () {
+        $("#txtEnquirySearch").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#JobTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    //For Search in Model->End
+
+    //For Session Buttons->Start
+    $(document).ready(function () {
+        var dealer = 'COMON';
+        Get_PaymentData(dealer);
+        document.getElementById("ddlAllDealer").style.display = "none";
+        $('input:radio[name=Sessions]').change(function () {
+            if (this.value == '@Session["DealerCode"].ToString()') {
+                var dealer = '@Session["DealerCode"].ToString()';
+                $("[name='ddlAllDealer']").hide();
+                Get_PaymentData(dealer);
+            }
+            else if (this.value == 'COMON') {
+                $("[name='ddlAllDealer']").hide();
+                var dealer = 'COMON';
+                Get_PaymentData(dealer);
+            }
+            else if (this.value == 'Dealer') {
+                var dealer = $("#ddlAllDealer").val();
+                $("[name='ddlAllDealer']").show();
+                Get_PaymentData(dealer);
+            }
+        });
+    });
+    $("#ddlAllDealer").change(function () {
+
+        var val = $("#ddlAllDealer").val();
+        Get_PaymentData(val);
+
+    });//For Session Buttons->End
+
+    function ShowModal(type) {
+        if (type == 'Jobs') {
+            $('#JobModal').modal("show");
+        } else
+            if (type == 'AccountOf') {
+                $('#AccountOfModal').modal("show");
+            }
+    }
+
+    function Get_PaymentData(value) {
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': value },
+            //Select_BrandDetails
+            url: '@Url.Content("~/TaxSetup/Select_TaxDetails")',
+            success: function (data) {
+
+                if (data.Success == true) {
+
+                    var item = JSON.parse(data.Response)
+                    $("#JobTable tbody tr").remove()
+
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#JobTable tbody").append('<tr onclick="Get_TaxDetail(this);" id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                           '<td>' + SNo++ + '</td>' +
+                                           '<td > <label id="lblDealer">' + item.DealerCode.trim() + ' </label></td>' +
+                                           '<td > <label id="lblTaxCode">' + item.TaxAppCode.trim() + ' </label></td>' +
+                                           '<td > <label id="lblTaxDesc">' + item.TaxAppDesc.trim() + ' </label></td>' +
+                                           '<td > <label id="lblChange">' + item.ChangeAble.trim() + ' </label></td>' +
+                                           '<td > <label id="lblApplicable">' + item.Applicable.trim() + ' </label></td>' +
+                                           '<td > <label id="lblPart">' + item.Part.trim() + ' </label></td>' +
+                                           '<td > <label id="lblSublet">' + item.Sublet.trim() + ' </label></td>' +
+                                           '<td > <label id="lblLabor">' + item.Labor.trim() + ' </label></td>' +
+                                           '<td > <label id="lblBought">' + item.BoughtOut.trim() + ' </label></td>' +
+                                           '<td > <label id="lblTaxType">' + item.TaxType.trim() + ' </label></td>' +
+                                           '<td > <label id="lblGST">' + item.GST.trim() + ' </label></td>' +
+                                           '<td > <label id="lblFurther">' + item.FurTax.trim() + ' </label></td>' +
+                                           '<td > <label id="lblExtra">' + item.ExtraTax.trim() + ' </label></td>' +
+                                           '<td > <label id="lblPST">' + item.PST.trim() + ' </label></td>' +
+                                           '<td > <label id="lblLub">' + item.Lubricant.trim() + ' </label></td>' +
+
+
+                                          '<td style="text-align:center;">' +
+                                          '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                          '</td>' +
+
+
+                                               '</tr>');
+                        });
+                        $("#TaxSetupGrid tbody tr").remove();
+                        rowCount = 1;
+                        dataCount = 1;
+                        SNo = 1;
+                        $.each(item, function (value, item) {
+
+                            $("#TaxSetupGrid tbody").append('<tr onclick="Get_TaxDetail(this);" id="TaxSetupGridRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                           '<td>' + SNo++ + '</td>' +
+                                           '<td > <label id="lblDealer">' + item.DealerCode.trim() + ' </label></td>' +
+                                           '<td > <label id="lblTaxCode">' + item.TaxAppCode.trim() + ' </label></td>' +
+                                           '<td > <label id="lblTaxDesc">' + item.TaxAppDesc.trim() + ' </label></td>' +
+                                           '<td > <label id="lblChange">' + item.ChangeAble.trim() + ' </label></td>' +
+                                           '<td > <label id="lblApplicable">' + item.Applicable.trim() + ' </label></td>' +
+                                           '<td > <label id="lblPart">' + item.Part.trim() + ' </label></td>' +
+                                           '<td > <label id="lblSublet">' + item.Sublet.trim() + ' </label></td>' +
+                                           '<td > <label id="lblLabor">' + item.Labor.trim() + ' </label></td>' +
+                                           '<td > <label id="lblBought">' + item.BoughtOut.trim() + ' </label></td>' +
+                                           '<td > <label id="lblTaxType">' + item.TaxType.trim() + ' </label></td>' +
+                                           '<td > <label id="lblGST">' + item.GST.trim() + ' </label></td>' +
+                                           '<td > <label id="lblFurther">' + item.FurTax.trim() + ' </label></td>' +
+                                           '<td > <label id="lblExtra">' + item.ExtraTax.trim() + ' </label></td>' +
+                                           '<td > <label id="lblPST">' + item.PST.trim() + ' </label></td>' +
+                                           '<td > <label id="lblLub">' + item.Lubricant.trim() + ' </label></td>' +
+
+
+                                            '<td style="text-align:center;">' +
+                                            '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                            '</td>' +
+
+
+                                                            '</tr>');
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+
+    function Get_TaxDetail(value) {
+
+
+        var dealerCode = "@Session["DealerCode"].ToString()";
+        var Code = $(value).closest('tr').find("#lblTaxCode").text().trim();
+        var Desc = $(value).closest('tr').find("#lblTaxDesc").text().trim();
+        var chng = $(value).closest('tr').find("#lblChange").text().trim();
+        var app = $(value).closest('tr').find("#lblApplicable").text().trim();
+        var parts = $(value).closest('tr').find("#lblPart").text().trim();
+        var sub = $(value).closest('tr').find("#lblSublet").text().trim();
+        var lab = $(value).closest('tr').find("#lblLabor").text().trim();
+        var boug = $(value).closest('tr').find("#lblBought").text().trim();
+        var taxt = $(value).closest('tr').find("#lblTaxType").text().trim();
+        var gst = $(value).closest('tr').find("#lblGST").text().trim();
+        var fur = $(value).closest('tr').find("#lblFurther").text().trim();
+        var ext = $(value).closest('tr').find("#lblExtra").text().trim();
+        var pst = $(value).closest('tr').find("#lblPST").text().trim();
+        var lub = $(value).closest('tr').find("#lblLub").text().trim();
+
+
+
+        $("#txtTaxCode").val(Code);
+        $("#txtTaxDesc").val(Desc);
+        if (chng == 'Y') {
+            $("#ChangechkBox").prop("checked", true);
+
+        }
+        else {
+            $("#ChangechkBox").prop("checked", false);
+        }
+        if (app == 'Y') {
+            $("#AppchkBox").prop("checked", true);
+
+        }
+        else {
+            $("#AppchkBox").prop("checked", false);
+        }
+        if (parts == 'Y') {
+            $("#PchkBox").prop("checked", true);
+
+        }
+        else {
+            $("#PchkBox").prop("checked", false);
+        }
+        if (sub == 'Y') {
+            $("#SubchkBox").prop("checked", true);
+
+        }
+        else {
+            $("#SubchkBox").prop("checked", false);
+        }
+        if (lab == 'Y') {
+            $("#LaborchkBox").prop("checked", true);
+
+        }
+        else {
+            $("#LaborchkBox").prop("checked", false);
+        }
+        if (boug == 'Y') {
+            $("#BougchkBox").prop("checked", true);
+
+        }
+        else {
+            $("#BougchkBox").prop("checked", false);
+        }
+        $("#ddlTaxType").val(taxt);
+        $("#txtGST").val(gst);
+        $("#txtFurther").val(fur);
+        $("#txtExtra").val(ext);
+        $("#txtPST").val(pst);
+        if (lub == 'Y') {
+            $("#LubchkBox").prop("checked", true);
+        }
+
+
+        $('#JobModal').modal("hide");
+
+    }
+
+    //                                            ***SAVE TAX RECORD***
+    $("#btnSave").click(function () {
+
+        var exitflag = false;
+
+
+        var code = $("#txtTaxCode").val();
+        var cdes = $("#txtTaxDesc").val();
+
+        if (cdes == "" || cdes == null) {
+            $("#txtTaxDesc").css("border-color", "red");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage").text("Description Should Not Be Left Blank")
+            $("#section-message").modal('show');
+
+            return false;
+        } else { $("#txtTaxDesc").css("border-color", "#ccc"); }
+
+        //if (code == "0" || code == null || code =="") {
+        //    $("#txtTaxCode").css("border-color", "red");
+        //    $("#modalMessage").css("background-color", "#e46457");
+        //    $("#lblMessage").text("Payemnt Code Should Not Be Left Blank")
+        //    $("#section-message").modal('show');
+        //    return false;
+        //} else { $("#txtTaxCode").css("border-color", "#ccc"); }
+
+
+
+        $("#section-confirm").modal("show");
+    })
+
+    function SaveMasterEnquiry(){
+        var cu = CheckSession();
+        var chkChange = document.getElementById('ChangechkBox').checked;;
+        var chkApp = document.getElementById('AppchkBox').checked;;
+        var chkSub = document.getElementById('SubchkBox').checked;;
+        var chkbou = document.getElementById('BougchkBox').checked;;
+        var chkLub = document.getElementById('LubchkBox').checked;;
+        var chkPart = document.getElementById('PchkBox').checked;;
+        var chkLabor = document.getElementById('LaborchkBox').checked;
+
+        var dto = {};
+
+        if (chkChange) {
+            dto.ChangeAble = 'Y';
+        } else {
+            dto.ChangeAble = 'N';
+        }
+
+        if (chkApp) {
+            dto.Applicable = 'Y';
+        } else {
+            dto.Applicable = 'N';
+        }
+
+        if (chkSub) {
+            dto.Sublet = 'Y';
+        } else {
+            dto.Sublet = 'N';
+        }
+
+        if (chkbou) {
+            dto.BoughtOut = 'Y';
+        } else {
+            dto.BoughtOut = 'N';
+        }
+
+        if (chkLub) {
+            dto.Lubricant = 'Y';
+        } else {
+            dto.Lubricant = 'N';
+        }
+
+        if (chkPart) {
+            dto.Part = 'Y';
+        } else {
+            dto.Part = 'N';
+        }
+
+        if (chkLabor) {
+            dto.Labor = 'Y';
+        } else {
+            dto.Labor = 'N';
+        }
+
+
+        dto.DealerCode =cu;
+        dto.TaxAppCode = $("#txtTaxCode").val();
+        dto.TaxAppDesc = $("#txtTaxDesc").val();
+        dto.TaxType = $("#ddlTaxType").val();
+        dto.GST = $("#txtGST").val();
+        dto.FurTax = $("#txtFurther").val();
+        dto.ExtraTax = $("#txtExtra").val();
+        dto.PST = $("#txtPST").val();
+
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/TaxSetup/Insert_TaxSetup")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+
+    }
+
+    $("#btnDelete").click(function () {
+        //var exitflag = false;
+        //var row = $("#JobGridTable tbody tr").length;
+        $("#section-confirm").modal("hide")
+        var code = $("#txtTaxCode").val();
+        var desc = $("#txtTaxDesc").val();
+
+
+        if (code == "" || code == null) {
+            $("#txtTaxCode").css("border-color", "red");
+            $("#warning").text("Record Should Be Selected");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#section-message").modal('show');
+
+            //document.getElemenyById("#").style("backgroundColor"="red");
+            return;
+        }
+        if (desc == "" || desc == null) {
+            $("#txtTaxDesc").css("border-color", "red");
+            $("#warning").text("Record Should Be Selected");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#section-message").modal('show');
+
+            //document.getElemenyById("#").style("backgroundColor"="red");
+            return;
+        }
+
+
+        $("#section-confirm-Delete").modal("show");
+    })
+    function DeleteMasterEnquiry() {
+        $("#section-confirm-Delete").modal("hide")
+        var cu = CheckSession();
+        var dto = {};
+
+
+
+        dto.DealerCode =cu;
+        dto.TaxAppCode = $("#txtTaxCode").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/TaxSetup/Delete_TaxSetup")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+
+    }
+
+    // Check For Radio Button Session->START
+    function CheckSession() {
+
+        var chkDealer = $('input.chkDealer').is(':checked');
+        var chkCurrentUser = $('input.chkCurrentUser').is(':checked');
+        var chkForAll = $('input.chkForAll').is(':checked');
+
+        cu = "COMON";
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+            // cu = "";
+        }
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+            //  cu = "";
+        }
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+            //  cu = "";
+        }
+        return cu;
+    }// Check For Radio Button Session->END
+
+
+    // FOR REPORT PRINT->START
+    $("#btnPrint").click(function () {
+        var session = CheckSession();
+        var baseurl = '@Url.Action("Export")';
+        //var url = baseurl + '?Session=' + $session;
+        var url = baseurl + '?RptType=' + $('#ddlReportType').val() + '&StockType=' + +$('#ddlStkType').val() + '&FromDate=' + $('#txtFromDate').val() + '&ToDate=' + $('#txtToDate').val();
+        //window.location.href = url;
+        window.open(url, '_blank');
+
+    })// FOR REPORT PRINT->END
+
+</script>

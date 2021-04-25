@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8440338B-A644-462A-8664-6BBBA7916253}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core.CRM</RootNamespace>
+    <AssemblyName>Core.CRM</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADO\AlertsMethods.cs" />
+    <Compile Include="ADO\BankMasterMethods.cs" />
+    <Compile Include="ADO\BrandMethods.cs" />
+    <Compile Include="ADO\CityMasterMethods.cs" />
+    <Compile Include="ADO\ColorMethods.cs" />
+    <Compile Include="ADO\CompanyMethods.cs" />
+    <Compile Include="ADO\CusProfileMethods.cs" />
+    <Compile Include="ADO\Customer.cs" />
+    <Compile Include="ADO\CustomerProfileMethod.cs" />
+    <Compile Include="ADO\DashboardMethods.cs" />
+    <Compile Include="ADO\DealerLocationMethods.cs" />
+    <Compile Include="ADO\DeliveryOrderMethods.cs" />
+    <Compile Include="ADO\DepartmentMethods.cs" />
+    <Compile Include="ADO\DesignationMethods.cs" />
+    <Compile Include="ADO\DTRMethods.cs" />
+    <Compile Include="ADO\Enquiry.cs" />
+    <Compile Include="ADO\EnquiryMethods.cs" />
+    <Compile Include="ADO\EventMethods.cs" />
+    <Compile Include="ADO\FailedPartMethods.cs" />
+    <Compile Include="ADO\GeneralMethods.cs" />
+    <Compile Include="ADO\InsuranceBranchMethods.cs" />
+    <Compile Include="ADO\InsuranceCompanyMethods.cs" />
+    <Compile Include="ADO\ItemCategoryMethods.cs" />
+    <Compile Include="ADO\ItemMasterMethods.cs" />
+    <Compile Include="ADO\ItemVM.cs" />
+    <Compile Include="ADO\JobCategoryMethods.cs" />
+    <Compile Include="ADO\JobMethods.cs" />
+    <Compile Include="ADO\LabourMethods.cs" />
+    <Compile Include="ADO\MasterFormsOEM_Methods.cs" />
+    <Compile Include="ADO\MasterMethods.cs" />
+    <Compile Include="ADO\OEMMethods.cs" />
+    <Compile Include="ADO\ParentDealerMethods.cs" />
+    <Compile Include="ADO\PaymentModeMethods.cs" />
+    <Compile Include="ADO\ScheduleMethods.cs" />
+    <Compile Include="ADO\StateMasterMethods.cs" />
+    <Compile Include="ADO\TaxSetupMethods.cs" />
+    <Compile Include="ADO\UnitMethods.cs" />
+    <Compile Include="ADO\VehicleMethods.cs" />
+    <Compile Include="ADO\VehReceiptMethods.cs" />
+    <Compile Include="ADO\VersionMethods.cs" />
+    <Compile Include="ADO\ViewModel\AccountVM.cs" />
+    <Compile Include="ADO\ViewModel\AlertVM.cs" />
+    <Compile Include="ADO\ViewModel\BankMasterVM.cs" />
+    <Compile Include="ADO\ViewModel\BarChartVM.cs" />
+    <Compile Include="ADO\ViewModel\BrandVM.cs" />
+    <Compile Include="ADO\ViewModel\CityMasterVM.cs" />
+    <Compile Include="ADO\ViewModel\ColorVM.cs" />
+    <Compile Include="ADO\ViewModel\CompanyVM.cs" />
+    <Compile Include="ADO\ViewModel\CusProfileVM.cs" />
+    <Compile Include="ADO\ViewModel\CustomerProfileVM.cs" />
+    <Compile Include="ADO\ViewModel\DealerInfoVM.cs" />
+    <Compile Include="ADO\ViewModel\DealerLocationVM.cs" />
+    <Compile Include="ADO\ViewModel\DealerMethods.cs" />
+    <Compile Include="ADO\ViewModel\DealerSupplierVM.cs" />
+    <Compile Include="ADO\ViewModel\DeliveryCheckListVM.cs" />
+    <Compile Include="ADO\ViewModel\DepartmentVM.cs" />
+    <Compile Include="ADO\ViewModel\DesignationVM.cs" />
+    <Compile Include="ADO\ViewModel\DocumentCheckList.cs" />
+    <Compile Include="ADO\ViewModel\DTRVM.cs" />
+    <Compile Include="ADO\ViewModel\EventVM.cs" />
+    <Compile Include="ADO\ViewModel\EnquiryDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\EnquiryMasterVM.cs" />
+    <Compile Include="ADO\ViewModel\FollowUpDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\InsuranceBranchVM.cs" />
+    <Compile Include="ADO\ViewModel\InsuranceCompanyVM.cs" />
+    <Compile Include="ADO\ViewModel\ItemCategoryVM.cs" />
+    <Compile Include="ADO\ViewModel\ItemMasterVM.cs" />
+    <Compile Include="ADO\ViewModel\JobCardHistoryVM.cs" />
+    <Compile Include="ADO\ViewModel\JobCategoryVM.cs" />
+    <Compile Include="ADO\ViewModel\JobVM.cs" />
+    <Compile Include="ADO\ViewModel\LabourVM.cs" />
+    <Compile Include="ADO\ViewModel\MasterFormsOEM_VM.cs" />
+    <Compile Include="ADO\ViewModel\NameValueClass.cs" />
+    <Compile Include="ADO\ViewModel\OEMDealerVM.cs" />
+    <Compile Include="ADO\ViewModel\OEMJobCategoryVM.cs" />
+    <Compile Include="ADO\ViewModel\OEM_LabourMaster.cs" />
+    <Compile Include="ADO\ViewModel\ParentDealerVM.cs" />
+    <Compile Include="ADO\ViewModel\PaymentModeVM.cs" />
+    <Compile Include="ADO\ViewModel\PrdouctVM.cs" />
+    <Compile Include="ADO\ViewModel\ProdReceiptDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\ProdReceiptVM.cs" />
+    <Compile Include="ADO\ViewModel\ProspectDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\QuickEnquiryVM.cs" />
+    <Compile Include="ADO\ViewModel\RequestDeliveryOrderVM.cs" />
+    <Compile Include="ADO\ViewModel\RequestEnquiryDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\RequestEnquiryMasterVM.cs" />
+    <Compile Include="ADO\ViewModel\RequestEventDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\RequestFollowUpDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\RequestVehicleReceiptVM.cs" />
+    <Compile Include="ADO\ViewModel\SalesPersonPerformanceVM.cs" />
+    <Compile Include="ADO\ViewModel\ScheduleVM.cs" />
+    <Compile Include="ADO\ViewModel\SecurityUserAccess.cs" />
+    <Compile Include="ADO\ViewModel\StateMasterVM.cs" />
+    <Compile Include="ADO\ViewModel\TaxSetupVM.cs" />
+    <Compile Include="ADO\ViewModel\UnitVM.cs" />
+    <Compile Include="ADO\ViewModel\VehicleDeliveryDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\VehicleDeliveryMasterVM.cs" />
+    <Compile Include="ADO\ViewModel\VehicleLocationVM.cs" />
+    <Compile Include="ADO\ViewModel\VehicleReturnDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\VehicleReturnMasterVM.cs" />
+    <Compile Include="ADO\ViewModel\VehicleStockVM.cs" />
+    <Compile Include="ADO\ViewModel\VehicleTaxDetailVM.cs" />
+    <Compile Include="ADO\ViewModel\VehicleTypeVM.cs" />
+    <Compile Include="ADO\ViewModel\VehicleVM.cs" />
+    <Compile Include="ADO\ViewModel\VehReceiptTypoVM.cs" />
+    <Compile Include="ADO\ViewModel\VersionVM.cs" />
+    <Compile Include="ADO\ViewModel\WarretyApprovalVM.cs" />
+    <Compile Include="ADO\WarrentyApprovalVM_2.cs" />
+    <Compile Include="ADO\WarrentyMethods.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Customer.cs">
+      <DependentUpon>CustomerDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\AuthBase.cs" />
+    <Compile Include="Helper\CConnection.cs" />
+    <Compile Include="Helper\DataAccess.cs" />
+    <Compile Include="Helper\General.cs" />
+    <Compile Include="Helper\SecurityBll.cs" />
+    <Compile Include="Helper\SQLHelper.cs" />
+    <Compile Include="Helper\SysFunction.cs" />
+    <Compile Include="Helper\Transaction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="CustomerDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CustomerDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="CustomerDataModel.edmx.diagram">
+      <DependentUpon>CustomerDataModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CustomerDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CustomerDataModel.edmx</DependentUpon>
+      <LastGenOutput>CustomerDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="CustomerDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CustomerDataModel.edmx</DependentUpon>
+      <LastGenOutput>CustomerDataModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

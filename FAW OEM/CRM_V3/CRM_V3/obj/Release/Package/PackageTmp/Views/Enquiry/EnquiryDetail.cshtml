@@ -1,0 +1,1917 @@
+﻿
+@{
+    ViewBag.Title = "EnquiryDetail";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+    string leadId = ViewBag.UrlLeadId;
+}
+<style>
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .icheckbox_minimal-blue {
+        top: 10px;
+    }
+</style>
+<section class="wrapper main-wrapper row" style=''>
+
+    <div class='col-xs-12'>
+        <div class="page-title">
+
+            <div class="pull-left">
+                <!-- PAGE HEADING TAG - START --><h1 class="title">Enquiry Detail</h1><!-- PAGE HEADING TAG - END -->
+            </div>
+
+            @*<div class="pull-right hidden-xs">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html"><i class="fa fa-home"></i>Home</a>
+                        </li>
+
+                        <li class="active">
+                            <strong>CRM Admin</strong>
+                        </li>
+                    </ol>
+                </div>*@
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- MAIN CONTENT AREA STARTS -->
+
+    <form method="post">
+        <!-- LEAD INFORMATION STARTS -->
+        <div class="col-xs-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Lead Information</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                        @*<a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>*@
+                    </div>
+                    <input type="hidden" value="@leadId" id="txtLeadID" />
+                    <input type="hidden" value="" id="txtProspectID" />
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        @*<div class="col-md-12 col-sm-10 col-xs-12">
+
+                            </div>*@
+                        <div class="col-md-6">
+                            <label class="form-label">Lead ID</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-info"></i>
+                                </span>
+                                @Html.DropDownList("ddlLeadId", new SelectList((IEnumerable<SelectListItem>)ViewBag.LeadId, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlLeadId" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Lead Date</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" id="txtLeadDate" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Interest</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                <select class="form-control m-bot15" id="ddlInterest">
+                                    <option value="0">Select</option>
+                                    <option value="1">New</option>
+                                    <option value="2">Used</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Lead Type</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                @Html.DropDownList("ddlLeadType", new SelectList((IEnumerable<SelectListItem>)ViewBag.LeadType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlLeadType" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Lead Mode/Through</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                @Html.DropDownList("ddlLeadMode", new SelectList((IEnumerable<SelectListItem>)ViewBag.LeadMode, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlLeadMode" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Lead Source</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-info-circle"></i>
+                                </span>
+                                @Html.DropDownList("ddlLeadSource", new SelectList((IEnumerable<SelectListItem>)ViewBag.LeadSource, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlLeadSource" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Vehicle Segment</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-car"></i>
+                                </span>
+                                @Html.DropDownList("ddlLeadVehicleType", new SelectList((IEnumerable<SelectListItem>)ViewBag.VehicleSegments, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlLeadVehicleType" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Invoice Detail</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-male"></i>
+                                </span>
+                                <select class="form-control m-bot15" id="ddlInvoiceDetail">
+                                    <option value="0">Select</option>
+                                    <option value="1">Self</option>
+                                    <option value="2">Father</option>
+                                    <option value="3">Uncle</option>
+                                    <option value="4">Mother</option>
+                                    <option value="5">Brother</option>
+                                    <option value="6">Sister</option>
+                                    <option value="7">Company</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Assign To*</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-users"></i>
+                                </span>
+                                @Html.DropDownList("ddlAssignTo", new SelectList((IEnumerable<SelectListItem>)ViewBag.AssignTo, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlAssignTo" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label class="form-label">Finance Bank</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-bank"></i>
+                                </span>
+                                @Html.DropDownList("ddlBank", new SelectList((IEnumerable<SelectListItem>)ViewBag.Bank, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlBank", @disabled = "disabled" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-1">
+                            <label></label>
+                            <div class="input-group">
+                                <input tabindex="5" type="checkbox" id="checkBank flat-checkbox-4" class="chkBank icheckbox_minimal-blue" style="position: absolute; opacity: 0;">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        @*<div class="col-md-6">
+                                <label class="form-label">Assign To Branch</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <span class="arrow"></span>
+                                        <i class="fa fa-link"></i>
+                                    </span>
+                                    <select class="form-control m-bot15" id="ddlAssignToBranch">
+                                        <option value="0">Select</option>
+                                    </select>
+                                </div>
+                            </div>*@
+
+                        <div class="col-md-6">
+                            <label class="form-label">Subject</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                                <input type="text" class="form-control" id="txtSubject">
+                            </div>
+                        </div>
+
+                        <!-- ROW AREA ENDS -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- LEAD INFORMATION ENDDS -->
+        <!-- CUSTOMER INFORMATION STARTS -->
+        <div class="col-xs-12 col-md-8 col-lg-8">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Customer Information</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                        @*<a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>*@
+                    </div>
+                </header>
+                <div class="content-body">
+                    <!--starts here-->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                    @*<span class="glyphicon glyphicon-plus"></span>*@
+                                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                                    Customer Information
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseOne" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Pre-Customer ID</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-info"></i>
+                                                            </span>
+                                                            @Html.DropDownList("ddlCustomerId", new SelectList((IEnumerable<SelectListItem>)ViewBag.Customers, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCustomerId" })
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Salutation*</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-male"></i></span>
+                                                            <select class="form-control m-bot15" id="ddlSalutaion">
+                                                                <option value="0">Mr.</option>
+                                                                <option value="1">Ms.</option>
+                                                                <option value="2">Mrs.</option>
+                                                                <option value="3">M/S</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Name*</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-user"></i>
+                                                            </span>
+                                                            <input type="text" required class="form-control" id="txtCustName" maxlength="100">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Email*</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-envelope"></i>
+                                                            </span>
+                                                            <input type="email" class="form-control" id="txtCustEmail" required maxlength="100">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Contact Person</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-user-md"></i>
+                                                            </span>
+                                                            <input type="text" class="form-control" id="txtCustContactPerson">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Date Of Birth</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                            <input type="text" class="form-control datepicker" id="txtDOB" readonly>
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Cell No.*</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-phone"></i>
+                                                            </span>
+                                                            <input type="tel" required class="form-control" id="txtCustCellNo" maxlength="12">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Phone No.</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-phone-square"></i>
+                                                            </span>
+                                                            <input type="tel" class="form-control" id="txtCustPhone" maxlength="12">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Address</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-book"></i>
+                                                            </span>
+                                                            <input type="text" class="form-control" id="txtCustAddress">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">NTN</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-calculator"></i>
+                                                            </span>
+                                                            <input type="text" class="form-control" id="txtCustNTN" maxlength="20">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Country</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-flag-o"></i>
+                                                            </span>
+                                                            @Html.DropDownList("ddlCustCountry", new SelectList((IEnumerable<SelectListItem>)ViewBag.Country, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCustCountry" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">City</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                            @Html.DropDownList("ddlCustCity", new SelectList((IEnumerable<SelectListItem>)ViewBag.City, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCustCity" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Education</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-calculator"></i>
+                                                            </span>
+                                                            <input type="text" class="form-control" id="txtCustNTN" maxlength="20">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label class="form-label">Url</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <span class="arrow"></span>
+                                                                <i class="fa fa-book"></i>
+                                                            </span>
+                                                            <input type="text" class="form-control" id="txtCustAddress">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--ends hre-->
+                    <div class="row">
+                        @*<div class="col-md-12 col-sm-10 col-xs-12">
+
+                            </div>*@
+                        @*<div class="col-md-6">
+                            <label class="form-label">Pre-Customer ID</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-info"></i>
+                                </span>
+                                @Html.DropDownList("ddlCustomerId", new SelectList((IEnumerable<SelectListItem>)ViewBag.Customers, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCustomerId" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-6">
+                            <label class="form-label">Salutation*</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-male"></i></span>
+                                <select class="form-control m-bot15" id="ddlSalutaion">
+                                    <option value="0">Mr.</option>
+                                    <option value="1">Ms.</option>
+                                    <option value="2">Mrs.</option>
+                                    <option value="3">M/S</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-6">
+                            <label class="form-label">Name*</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <input type="text" required class="form-control" id="txtCustName" maxlength="100">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-6">
+                            <label class="form-label">Email*</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                                <input type="email" class="form-control" id="txtCustEmail" required maxlength="100">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-6">
+                            <label class="form-label">Contact Person</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-user-md"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtCustContactPerson">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Date Of Birth</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" id="txtDOB" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-6">
+                            <label class="form-label">Cell No.*</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-phone"></i>
+                                </span>
+                                <input type="tel" required class="form-control" id="txtCustCellNo" maxlength="12">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Phone No.</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-phone-square"></i>
+                                </span>
+                                <input type="tel" class="form-control" id="txtCustPhone" maxlength="12">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-6">
+                            <label class="form-label">Address</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-book"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtCustAddress">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">NTN</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-calculator"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtCustNTN" maxlength="20">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-6">
+                            <label class="form-label">Country</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-flag-o"></i>
+                                </span>
+                                @Html.DropDownList("ddlCustCountry", new SelectList((IEnumerable<SelectListItem>)ViewBag.Country, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCustCountry" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">City</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                @Html.DropDownList("ddlCustCity", new SelectList((IEnumerable<SelectListItem>)ViewBag.City, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCustCity" })
+                            </div>
+                        </div>*@
+                        @*<div class="col-md-6">
+                            <label class="form-label">Education</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-calculator"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtCustNTN" maxlength="20">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Url</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-book"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtCustAddress">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        <!-- ROW AREA ENDS -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- CUSTOMER INFORMATION ENDS -->
+        <!-- WORK INFORMATION STARTS -->
+        <div class="col-xs-12 col-md-4 col-lg-4">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Work Information</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                        @*<a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>*@
+                    </div>
+                </header>
+                <div class="content-body">
+                    <!--starts here-->
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                    @*<span class="glyphicon glyphicon-plus"></span>*@
+                                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                                    Work Information
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="collapseTwo" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">Company</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-building"></i>
+                                                            </span>
+                                                            <input type="text" class="form-control" id="txtCompany" maxlength="50">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">Profession</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-building"></i>
+                                                            </span>
+                                                            <select class="form-control m-bot15" id="ddlSalutaion">
+                                                                <option value="0">Doctor</option>
+                                                                <option value="1">Software Engineer</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">Designtaion</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                                                            <input type="text" class="form-control" id="txtDesigntaion" maxlength="30">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">Department</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-edit"></i>
+                                                            </span>
+                                                            <input type="text" class="form-control" id="txtDepartment" maxlength="20">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <label class="form-label">Office No.</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-phone"></i>
+                                                            </span>
+                                                            <input type="tel" class="form-control" id="txtOfficeNo" maxlength="12">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label></label>
+                                                        <input type="text" class="form-control" placeholder="EXT" id="txtOfficeNoExt" style="margin-top: 5px;" maxlength="5">
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">Address</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon">
+                                                                <i class="fa fa-book"></i>
+                                                            </span>
+                                                            <input type="text" class="form-control" id="txtWorkAddress">
+                                                        </div>
+                                                        <div class="makespace"></div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <label class="form-label">City</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                            @Html.DropDownList("ddlWorkCity", new SelectList((IEnumerable<SelectListItem>)ViewBag.City, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlWorkCity" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--ends here-->
+                    <div class="row">
+                        @*<div class="col-md-12 col-sm-10 col-xs-12">
+
+                            </div>*@
+                        @*<div class="col-md-12">
+                            <label class="form-label">Company</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-building"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtCompany" maxlength="50">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+                        @*<div class="col-md-12">
+                            <label class="form-label">Profession</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-building"></i>
+                                </span>
+                                <select class="form-control m-bot15" id="ddlSalutaion">
+                                    <option value="0">Doctor</option>
+                                    <option value="1">Software Engineer</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-12">
+                            <label class="form-label">Designtaion</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-briefcase"></i></span>
+                                <input type="text" class="form-control" id="txtDesigntaion" maxlength="30">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label">Department</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-edit"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtDepartment" maxlength="20">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-8">
+                            <label class="form-label">Office No.</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </span>
+                                <input type="tel" class="form-control" id="txtOfficeNo" maxlength="12">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label></label>
+                            <input type="text" class="form-control" placeholder="EXT" id="txtOfficeNoExt" style="margin-top: 5px;" maxlength="5">
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label">Address</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-book"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtWorkAddress">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label">City</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                @Html.DropDownList("ddlWorkCity", new SelectList((IEnumerable<SelectListItem>)ViewBag.City, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlWorkCity" })
+                            </div>
+                        </div>*@
+
+                        <!-- ROW AREA ENDS -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- WORK INFORMATION ENDS -->
+        <!-- PRODUCT INFORMATION STARTS -->
+        <div class="col-xs-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Product Information</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                        @*<a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>*@
+                    </div>
+                </header>
+                <div class="content-body">
+                    <!--starts here-->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                                @*<span class="glyphicon glyphicon-plus"></span>*@
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                Product Information
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseThree" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Brand Code</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                                        @Html.DropDownList("ddlBrandCode", new SelectList((IEnumerable<SelectListItem>)ViewBag.BrandCode, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlBrandCode" })
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Product Code</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                        @Html.DropDownList("ddlProdCode", new SelectList((IEnumerable<SelectListItem>)ViewBag.ProdCode, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlProdCode" })
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Version</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-sitemap"></i>
+                                                        </span>
+                                                        <input type="number" class="form-control" id="txtQuantity">
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Color</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-pie-chart"></i></span>
+                                                        @Html.DropDownList("ddlColor", new SelectList((IEnumerable<SelectListItem>)ViewBag.Color, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlColor" })
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Priority</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-bullhorn"></i></span>
+                                                        @Html.DropDownList("ddlPriority", new SelectList((IEnumerable<SelectListItem>)ViewBag.Priority, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlPriority" })
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Quantity</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-filter"></i>
+                                                        </span>
+                                                        <input type="number" class="form-control" id="txtQuantity">
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="input-group" style="width:100%;">
+                                                        <button class="btn btn-success btn-sm" type="button" style="margin-top: 28px;width: 100%;padding: 8px;" onclick="AddProduct(this)">
+                                                            <i class="fa fa-plus fa-2x"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped" id="productDetail">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Brand Code</th>
+                                                                    <th>Product Code</th>
+                                                                    <th>Description</th>
+                                                                    <th>Color</th>
+                                                                    <th>Priority</th>
+                                                                    <th>Quantity</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr id="fixedRow1" data-tr-count="0">
+                                                                    @*<td>1</td>
+                            <td>Suzuki</td>
+                            <td>Mehran</td>
+                            <td>Sedan</td>
+                            <td>White</td>
+                            <td>High</td>
+                            <td>2</td>
+                            <td>Call</td>
+                            <td>09-Feb-2018</td>
+                            <td style="text-align:center;"><button class="btn btn-danger btn-xs"><i class="fa fa-minus fa-lg"></i></button></td>*@
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--ends here -->
+                    <div class="row">
+                        @*<div class="col-md-12 col-sm-10 col-xs-12">
+
+                            </div>*@
+                        @*<div class="col-md-3">
+                            <label class="form-label">Brand Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                @Html.DropDownList("ddlBrandCode", new SelectList((IEnumerable<SelectListItem>)ViewBag.BrandCode, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlBrandCode" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-3">
+                            <label class="form-label">Product Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                @Html.DropDownList("ddlProdCode", new SelectList((IEnumerable<SelectListItem>)ViewBag.ProdCode, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlProdCode" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+                        @*<div class="col-md-3">
+                            <label class="form-label">Version</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-sitemap"></i>
+                                </span>
+                                <input type="number" class="form-control" id="txtQuantity">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-3">
+                            <label class="form-label">Color</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-pie-chart"></i></span>
+                                @Html.DropDownList("ddlColor", new SelectList((IEnumerable<SelectListItem>)ViewBag.Color, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlColor" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-3">
+                            <label class="form-label">Priority</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-bullhorn"></i></span>
+                                @Html.DropDownList("ddlPriority", new SelectList((IEnumerable<SelectListItem>)ViewBag.Priority, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlPriority" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-3">
+                            <label class="form-label">Quantity</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-filter"></i>
+                                </span>
+                                <input type="number" class="form-control" id="txtQuantity">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+                        @*<div class="col-md-3">
+                            <div class="input-group" style="width:100%;">
+                                <button class="btn btn-success btn-sm" type="button" style="margin-top: 28px;width: 100%;padding: 8px;" onclick="AddProduct(this)">
+                                    <i class="fa fa-plus fa-2x"></i>
+                                </button>
+                            </div>
+                        </div>*@
+
+                        
+                        <!-- ROW AREA ENDS -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- PRODUCT INFORMATION ENDS -->
+        <!--countrmeasure starts-->
+        <div class="col-xs-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Countermeasure Detail</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                        @*<a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>*@
+                    </div>
+                </header>
+                <div class="content-body">
+                    <!--starts here-->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                                @*<span class="glyphicon glyphicon-plus"></span>*@
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                Countermeasure Detail
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseFour" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Next Action</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                        @Html.DropDownList("ddlFurtherContact", new SelectList((IEnumerable<SelectListItem>)ViewBag.FurtherContact, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlFurtherContact" })
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Status</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                                        @*@Html.DropDownList("ddlStatusType", new SelectList((IEnumerable<SelectListItem>)ViewBag.StatusType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlStatusType" })*@
+                                                        <select class="form-control m-bot15" id="ddlSalutaion">
+                                                            <option value="0">Select</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Followup Date</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                        <input type="text" class="form-control datepicker" id="txtFurtherDate" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Followup Time</label>
+                                                    <div class="input-group control">
+                                                        <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                                        <input type="text" class="form-control timepicker" id="txtFurtherTime"
+                                                               data-template="dropdown" data-show-seconds="true" data-default-time="09:45 AM"
+                                                               data-show-meridian="true" data-minute-step="5" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <label class="form-label">Comments</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-comments"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control" id="txtComments">
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="input-group" style="width:100%;">
+                                                        <button class="btn btn-success btn-sm" id="btnAddData" type="button" style="margin-top: 28px;width: 100%;padding: 8px;" onclick="AddProduct(this)">
+                                                            <i class="fa fa-plus fa-2x"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped" id="followupDetail">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Next Action</th>
+                                                                    <th>Status</th>
+                                                                    <th>Followup Date</th>
+                                                                    <th>Followup Time</th>
+                                                                    <th>Comments</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr id="fixedRow1" data-tr-count="0">
+                                                                    @*<td>1</td>
+                                <td>Suzuki</td>
+                                <td>Mehran</td>
+                                <td>Sedan</td>
+                                <td>White</td>
+                                <td>High</td>
+                                <td>2</td>
+                                <td>Call</td>
+                                <td>09-Feb-2018</td>
+                                <td style="text-align:center;"><button class="btn btn-danger btn-xs"><i class="fa fa-minus fa-lg"></i></button></td>*@
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--ends here-->
+                    <div class="row">
+                        @*<div class="col-md-12 col-sm-10 col-xs-12">
+
+                        </div>*@
+                        @*<div class="col-md-3">
+                            <label class="form-label">Next Action</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                @Html.DropDownList("ddlFurtherContact", new SelectList((IEnumerable<SelectListItem>)ViewBag.FurtherContact, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlFurtherContact" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-3">
+                            <label class="form-label">Status</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                @Html.DropDownList("ddlStatusType", new SelectList((IEnumerable<SelectListItem>)ViewBag.StatusType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlStatusType" })
+                                <select class="form-control m-bot15" id="ddlSalutaion">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-3">
+                            <label class="form-label">Followup Date</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" id="txtFurtherDate" readonly>
+                            </div>
+                        </div>*@
+
+                        @*<div class="col-md-3">
+                            <label class="form-label">Followup Time</label>
+                            <div class="input-group control">
+                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="text" class="form-control timepicker" id="txtFurtherTime"
+                                       data-template="dropdown" data-show-seconds="true" data-default-time="09:45 AM"
+                                       data-show-meridian="true" data-minute-step="5" readonly>
+                            </div>
+                        </div>*@
+
+                        @*<div class="col-md-9">
+                            <label class="form-label">Comments</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-comments"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtComments">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>*@
+
+                        @*<div class="col-md-3">
+                            <div class="input-group" style="width:100%;">
+                                <button class="btn btn-success btn-sm" id="btnAddData" type="button" style="margin-top: 28px;width: 100%;padding: 8px;" onclick="AddProduct(this)">
+                                    <i class="fa fa-plus fa-2x"></i>
+                                </button>
+                            </div>
+                        </div>*@
+
+                        <!-- ROW AREA ENDS -->
+                    </div>
+
+                    <div id="LostArea" style="display:none;">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label class="form-label">Lost Reason</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                    @*@Html.DropDownList("ddlLostReason", new SelectList((IEnumerable<SelectListItem>)ViewBag.LostReason, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlLostReason" })*@
+                                    <select class="form-control m-bot15" id="ddlSalutaion">
+                                        <option value="0">Select</option>
+                                    </select>
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Lost Date</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input type="text" class="form-control datepicker" id="txtLostDate" readonly>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Comments</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-comments"></i>
+                                    </span>
+                                    <input type="text" class="form-control" id="txtLostComments">
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    
+
+                </div>
+            </section>
+        </div>
+        <!--cuntermeaure ends-->
+        <div class="col-xs-12">
+            <section class="box ">
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="pull-left">
+                                <button type="reset" class="btn btn-default" id="btnCancel" style="margin-top:25px;">Cancel</button>
+                            </div>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary" id="btnSave" style="margin-top:25px;" onclick='$("#section-confirm").modal("show")'>Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveForm()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <!-- MAIN CONTENT AREA ENDS -->
+</section>
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/icheck/icheck.min.js")' type="text/javascript"></script>
+<script>
+    var checkBank = false;
+    $(document).ready(function () {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+        $("#txtLeadDate").val(today);
+        $("#txtFurtherDate").val(today);
+        $("#txtDOB").val(today)
+
+        $("input[type='checkbox'], input[type='radio']").iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        });
+
+        $('input').on('ifClicked', function (ev) {
+            debugger;
+            checkBank = $('input.chkBank').is(':checked'); //$('.chkBank').iCheck('update')[0].checked;
+
+            if (checkBank == true) {
+                $("#ddlBank").prop("disabled", true);
+            }
+            else {
+                $("#ddlBank").prop("disabled", false);
+            }
+        })
+
+        $("#ddlCustCountry").val("PAK");
+
+        var leadid = $("#txtLeadID").val();
+
+        if(leadid != "" || leadid != null)
+        {
+            getDate(leadid);
+            $("#ddlLeadId").val(leadid);
+        }
+
+    })
+
+    var rowCount = 1;
+    var dataCount = 1;
+    var SNo = 1;
+
+    function AddProduct(value)
+    {
+        var check = ValidateProductDetails();
+        if (check == true) {
+            var brandCode = $("#ddlBrandCode :selected").text(); $("#ddlBrandCode").css("border-color", "#ccc");
+            var prodCode = $("#ddlProdCode :selected").text(); $("#ddlProdCode").css("border-color", "#ccc");
+            var color = $("#ddlColor :selected").text(); $("#ddlColor").css("border-color", "#ccc");
+            var priority = $("#ddlPriority :selected").text(); $("#ddlPriority").css("border-color", "#ccc")
+            var quantity = $("#txtQuantity").val(); $("#txtQuantity").css("border-color", "#ccc");
+            var furhterContact = $("#ddlFurtherContact :selected").text(); $("#ddlFurtherContact").css("border-color", "#ccc");
+            var furtherDate = $("#txtFurtherDate").val(); $("#txtFurtherDate").css("border-color", "#ccc");
+
+            var row = $(value).parent().parent().html();
+            var dt = $("#productDetail tbody").append('<tr id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                        '<td>' + SNo++ + '</td>' +
+                                                        '<td> <label id="lblBrandCode">' + brandCode + ' </label></td>' +
+                                                        '<td> <label id="lblProdCode">' + prodCode + ' </label></td>' +
+                                                        '<td> <label id="">' + prodCode + ' </label></td>' +
+                                                        '<td> <label id="lblColor">' + color + ' </label></td>' +
+                                                        '<td> <label id="lblPriority">' + priority + ' </label></td>' +
+                                                        '<td> <label id="lblQuantity">' + quantity + ' </label></td>' +
+                                                        '<td> <label id="lblFurtherContact">' + furhterContact + ' </label></td>' +
+                                                        '<td> <label id="lblFurtherDate">' + furtherDate + ' </label></td>' +
+                                                        '<td style="text-align:center;"><button class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                        '</tr>');
+
+        }
+        else
+        {
+
+        }
+    }
+
+    function removeRow(value) {
+        var tempRow = "fixedRow" + (parseInt($(value).parent().parent().attr("data-tr-count")) - 1);
+
+        $("#" + tempRow).find('.remove').show();
+        $(value).parent().parent().remove();
+
+        dataCount--;
+        rowCount--;
+        SNo--;
+    }
+
+    function formatDate(value) {
+        return value.getMonth() + 1 + "/" + value.getDate() + "/" + value.getYear();
+    }
+
+    function ValidateProductDetails()
+    {
+        var check = false;
+        var brandCode = $("#ddlBrandCode").val();
+        var prodCode = $("#ddlProdCode").val();
+        var color = $("#ddlColor").val();
+        var priority = $("#ddlPriority").val();
+        var quantity = $("#txtQuantity").val();
+        var furhterContact = $("#ddlFurtherContact").val();
+        var furtherDate = $("#txtFurtherDate").val();
+
+        if(brandCode == "0")
+        {
+            $("#ddlBrandCode").css("border-color", "red");
+            return check;
+        }
+        else {
+            $("#ddlBrandCode").css("border-color", "#ccc");
+        }
+
+        if (prodCode == "0") {
+            $("#ddlProdCode").css("border-color", "red");
+            return check;
+        } else {
+            $("#ddlProdCode").css("border-color", "#ccc");
+        }
+
+        if (color == "0") {
+            $("#ddlColor").css("border-color", "red");
+            return check;
+        } else {
+            $("#ddlColor").css("border-color", "#ccc");
+        }
+
+        if (priority == "0") {
+            $("#ddlPriority").css("border-color", "red");
+            return check;
+        } else {
+            $("#ddlPriority").css("border-color", "#ccc")
+        }
+
+        if (quantity == "0" || quantity == "" || quantity.includes("-") || quantity.includes(".")) {
+            $("#txtQuantity").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtQuantity").css("border-color", "#ccc");
+        }
+
+        if (furhterContact == "0") {
+            $("#ddlFurtherContact").css("border-color", "red");
+            return check;
+        } else {
+            $("#ddlFurtherContact").css("border-color", "#ccc");
+        }
+
+        if (furtherDate == "") {
+            $("#txtFurtherDate").css("border-color", "red");
+            return check;
+        } else {
+            $("#txtFurtherDate").css("border-color", "#ccc");
+        }
+
+        check = true;
+        return check;
+    }
+
+
+    function SaveForm()
+    {
+        $("#ddlBrandCode").css("border-color", "#ccc");
+        $("#ddlProdCode").css("border-color", "#ccc");
+        $("#ddlPriority").css("border-color", "#ccc")
+        $("#txtQuantity").css("border-color", "#ccc");
+        $("#ddlFurtherContact").css("border-color", "#ccc");
+        $("#txtFurtherDate").css("border-color", "#ccc");
+
+        saveEnquiryForm();
+    }
+
+    function saveEnquiryForm()
+    {
+        var dto = {};
+        var prospectId = $("#ddlCustomerId").val();
+        var leadId = $("#ddlLeadId").val();
+        var enqDate = $("#txtLeadDate").val();
+        var interest = $("#ddlInterest :selected").text()
+        var leadType = $("#ddlLeadType").val()
+        var leadMode = $("#ddlLeadMode").val()
+        var leadSource = $("#ddlLeadSource").val()
+        var segmentId = $("#ddlLeadVehicleType").val()
+        var invoiceType = $("#ddlInvoiceDetail :selected").text()
+        var assignto = $("#ddlAssignTo").val()
+        var bank = $("#ddlBank").val()
+        var assignToBranch = $("#ddlAssignToBranch").val()
+        var subject = $("#txtSubject").val()
+        var event_campaign = $("#ddlLeadSource :selected").text();
+        var campaign = "N";
+        var IsEvent = "N";
+        var cashFinanced = "Y";
+        var IsFinanced = "N";
+        var FinancedBank = "";
+        var mobileNumber = $("#txtCustCellNo").val();
+
+        if (event_campaign == "Event")
+        {
+            IsEvent = "Event";
+        } else if (event_campaign == "Campaign")
+        {
+            campaign = "Campaign";
+        }
+        else
+        {
+            event_campaign = "None of both";
+        }
+
+        var check = validiadtor($("#ddlInterest"));
+        check = validiadtor($("#ddlLeadType"));
+        check = validiadtor($("#ddlLeadMode"));
+        check = validiadtor($("#ddlLeadSource"));
+        check = validiadtor($("#ddlLeadVehicleType"));
+        check = validiadtor($("#ddlInvoiceDetail"));
+        check = validiadtor($("#ddlAssignTo"));
+        check = validiadtor($("#txtSubject"));
+        if(checkBank ==  false)
+        {
+            debugger;
+            cashFinanced = "N";
+            IsFinanced = "Y";
+            check = validiadtor($("#ddlBank"));
+            FinancedBank = bank;
+        }
+
+        if(check == true)
+        {
+            dto.Enquiry_ID = leadId;
+            dto.DealerCode = "00166";
+            dto.EnqDate = enqDate;
+            dto.Interest = interest;
+            dto.ProspectID = prospectId;
+            dto.EmpCode = assignto;
+            dto.ProspectTypeID = leadType;
+            dto.EnquiryModeID = leadMode;
+            dto.EnquirySourceID = leadSource;
+            dto.Event = IsEvent;
+            dto.Campaign = campaign;
+            dto.InvoiceDetail = invoiceType;
+            dto.SegmentID = segmentId;
+            dto.IsDeleted = false;
+            dto.IsMatured = "N";
+            dto.CashFinanced = cashFinanced;
+            dto.IsFinanced = IsFinanced;
+            dto.FinancedBank = FinancedBank;
+            dto.Remarks = subject;
+            dto.ProspectLost = false;
+            dto.EnquiryTypeID = leadType;
+            dto.Mobile = mobileNumber;
+
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'POST',
+                url: '@Url.Content("~/Enquiry/Insert_EnquiryMaster")',
+                data: dto,
+                success: function (data) {
+                    if (data) {
+                        $("#txtLeadID").val(data.LeadId)
+                        $("#txtProspectID").val(data.ProspectId);
+                        //alert(data.Message)
+                        //location.relead();
+                        saveCustomerForm();
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+        else
+        {
+            return;
+        }
+
+    }
+
+    function saveCustomerForm() {
+        var dto = {};
+        //CUSTOMER INFO
+        var prospectId = $("#txtProspectID").val();
+        var leadId = $("#txtLeadID").val();
+        var salutation = $("#ddlSalutaion :selected").text();
+        var custName = salutation + " " + $("#txtCustName").val();
+        var custEmail = $("#txtCustEmail").val()
+        var contactPerson = $("#txtCustContactPerson").val()
+        var dob = $("#txtDOB").val()
+        var custMobile = $("#txtCustCellNo").val()
+        var custPhone = $("#txtCustPhone").val()
+        var custAddress = $("#txtCustAddress").val()
+        var custNTN = $("#txtCustNTN").val()
+        var custCity = $("#ddlCustCity").val()
+        var custCountry = $("#ddlCustCountry").val()
+        //WORK INFO
+        var company = $("#txtCompany").val()
+        var designation = $("#txtDesigntaion").val();
+        var department = $("#txtDepartment").val();
+        var workPhone = $("#txtOfficeNo").val() + " x " + $("#txtOfficeNoExt").val();
+        var workAddress = $("#txtWorkAddress").val();
+        var workCity = $("#ddlWorkCity").val();
+
+        var check = validiadtor($("#txtDOB"));
+
+        if (check == true) {
+            dto.Enquiry_ID = leadId; // Need to add this in View Model
+            dto.DealerCode = "00166";
+            dto.ProspectID = prospectId;
+            dto.ProspectTitle = salutation;
+            dto.Name = custName;
+            dto.ProspectType = $("#ddlLeadType").val();
+            dto.NTN = custNTN;
+            dto.ResAddress = custAddress;
+            dto.ResCityCode = custCity;
+            dto.ResPhone = custPhone;
+            dto.Mobile = custMobile;
+            dto.OfficeAddress = workAddress;
+            dto.OffCityCode = workCity;
+            dto.OffPhone = workPhone;
+            dto.DOB = dob;
+            dto.Profession = department;
+            dto.Designation = designation;
+            dto.Email = custEmail;
+            dto.CompanyDetail = company;
+            dto.ContactPerson = contactPerson;
+
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'POST',
+                url: '@Url.Content("~/Enquiry/Insert_Prospect")',
+                data: dto,
+                success: function (data) {
+                    if (data) {
+                        if (data.Success == true)
+                        {
+                            var rowCount = $('#productDetail tbody tr').length;
+                            if (rowCount > 1)
+                            {
+                                saveProductForm()
+                            }
+                            else
+                            {
+                                $("#section-confirm").modal("hide")
+                                $("#modalMessage").css("background-color", "#64c344");
+                                $("#lblMessage").text(data.Message)
+                                $("#section-message").modal('show');
+                            }
+                        }
+                        else {
+                            $("#section-confirm").modal("hide")
+                            $("#modalMessage").css("background-color", "#e46457");
+                            $("#lblMessage").text(data.Message)
+                            $("#section-message").modal('show');
+                        }
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+    }
+
+    function insertRecord()
+    {
+        var obj = [];
+        var leadId = $("#txtLeadID").val();
+        $("#productDetail tbody tr").each(function () {
+            var quantity = $(this).closest('tr').find('#lblQuantity').text().trim();
+            var dto = {};
+            quantity = parseInt(quantity)
+            dto.EnquiryDetID = 0;
+            dto.Enquiry_ID = leadId; // Need to add this in View Model
+            dto.DealerCode = "00166";
+            dto.BrandCode =  $(this).closest('tr').find('#lblBrandCode').text().trim();
+            dto.ProdCode = $(this).closest('tr').find('#lblProdCode').text().trim();
+            dto.VersionCode = $(this).closest('tr').find('#lblProdCode').text().trim();
+            dto.ColorCode = $(this).closest('tr').find('#lblColor').text().trim();
+            if (isNaN(quantity))
+            {
+                dto.Qty = 0;
+            }
+            else
+            {
+                dto.Qty = quantity;
+            }
+
+            dto.StatusCode = $(this).closest('tr').find('#lblPriority').text().trim();
+            dto.FurtherContact =$(this).closest('tr').find('#lblFurtherContact').text().trim();
+            dto.FurtherDate = $(this).closest('tr').find('#lblFurtherDate').text().trim();
+
+            obj.push(dto);
+        });
+
+        return obj;
+    }
+
+    function saveProductForm() {
+
+        debugger;
+        var check = ValidateProductDetails();
+
+        if (check == true) {
+            debugger;
+
+            var objects = [];
+
+            objects = JSON.stringify({ 'objects': insertRecord() });
+
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                type: 'POST',
+                url: '@Url.Content("~/Enquiry/Insert_EnquiryDetail")',
+                data: objects,
+                //async: true,
+                //cache: false,
+                //crossDomain: true,
+                success: function (data) {
+                    if (data) {
+                        if (data.Success == true)
+                        {
+                            $("#section-confirm").modal("hide")
+                            $("#modalMessage").css("background-color", "#64c344");
+                            $("#lblMessage").text(data.Message)
+                            $("#section-message").modal('show');
+                        }
+                        else
+                        {
+                            $("#section-confirm").modal("hide")
+                            $("#modalMessage").css("background-color", "#e46457");
+                            $("#lblMessage").text(data.Message)
+                            $("#section-message").modal('show');
+                        }
+
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+    }
+
+    $("#ddlLeadId").change(function () {
+        var leadId = $("#ddlLeadId").val();
+        if (leadId == "0")
+        {
+            location.reload();
+        }
+        else
+        {
+            getDate(leadId);
+        }
+
+    });
+
+    function getDate(id) {
+
+        var leadId = id;
+        var dealerCode = "00166";
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/Enquiry/Select_EnquiryMaster")',
+                data: { 'EnquiryId': leadId, 'DealerCode': dealerCode },
+                success: function (data) {
+                    debugger;
+                    if (data.Success == true) {
+                        var item = JSON.parse(data.Response)
+
+                        //Lead Information
+                        $("#txtLeadDate").val(item[0].EnqDate);
+                        //$("#ddlLeadId").val();
+                        (item[0].Interest == "New") ? $("#ddlInterest").val(1) : $("#ddlInterest").val(2)
+
+                        $("#ddlLeadType").val(item[0].ProspectTypeID)
+                        $("#ddlLeadMode").val(item[0].EnquiryModeID)
+                        $("#ddlLeadSource").val(item[0].EnquirySourceID)
+                        $("#ddlLeadVehicleType").val(item[0].SegmentID)
+                        $("#ddlInvoiceDetail").val(1)
+                        $("#ddlAssignTo").val(item[0].EmpCode.trim())
+                        $("#txtCustCellNo").val(item[0].Mobile);
+                        var IsFinanced = item[0].IsFinanced.trim();
+                        if (IsFinanced == "Y") {
+                            // Make check Box Checked
+                            $("#ddlBank").prop("disabled", true);
+                            $("#ddlBank").val(item[0].FinancedBank)
+                            $('input').iCheck('check');
+                        }
+                        $("#txtSubject").val(item[0].Remarks)
+
+                        //Customer  and Work Details
+                        $("#ddlCustomerId").val(item[0].ProspectID);
+                        $("#ddlSalutaion").val(0);
+                        $("#txtCustName").val(item[0].Name);
+                        $("#txtCustEmail").val(item[0].Email)
+                        $("#txtCustContactPerson").val(item[0].ContactPerson)
+                        $("#txtDOB").val(item[0].DOB)
+                        $("#txtCustCellNo").val(item[0].Mobile)
+                        $("#txtCustPhone").val(item[0].ResPhone)
+                        $("#txtCustAddress").val(item[0].ResAddress)
+                        $("#txtCustNTN").val(item[0].NTN)
+                        $("#ddlCustCity").val(item[0].ResCityCode)
+                        //$("#ddlCustCountry").val()
+                        //WORK INFO
+                        $("#txtCompany").val(item[0].CompanyDetail)
+                        $("#txtDesigntaion").val(item[0].Designation);
+                        $("#txtDepartment").val(item[0].Profession);
+                        var str = item[0].OffPhone;
+                        var officephone = new Array();
+                        officephone = str.split("x");
+                        $("#txtOfficeNo").val(officephone[0].trim()) + " x " + $("#txtOfficeNoExt").val(officephone[1].trim());
+                        $("#txtWorkAddress").val(item[0].OfficeAddress);
+                        $("#ddlWorkCity").val(item[0].OffCityCode);
+
+                        //ProductDetail
+                        Get_EnquiryDetailData(id)
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+    }
+
+    function Get_EnquiryDetailData(id)
+    {
+        var dealerCode = "00166";
+        var leadId = id;
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/Enquiry/Select_EnquiryDetail")',
+                data: { 'EnquiryId': leadId, 'DealerCode': dealerCode },
+                success: function (data) {
+                    debugger;
+                    if (data.Success == true) {
+                        var item = JSON.parse(data.Response)
+                        $("#productDetail tbody tr").remove()
+                        //ProductDetail
+                        if (item.length > 0)
+                        {
+
+                            $.each(item, function (value, item) {
+
+                                $("#productDetail tbody").append('<tr id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                        '<td>' + SNo++ + '</td>' +
+                                                        '<td> <label id="lblBrandCode">' + item.BrandCode.trim() + ' </label></td>' +
+                                                        '<td> <label id="lblProdCode">' + item.ProdCode.trim() + ' </label></td>' +
+                                                        '<td> <label id="">' + item.VersionCode.trim() + ' </label></td>' +
+                                                        '<td> <label id="lblColor">' + item.ColorCode.trim() + ' </label></td>' +
+                                                        '<td> <label id="lblPriority">' + item.StatusCode + ' </label></td>' +
+                                                        '<td> <label id="lblQuantity">' + item.Qty + ' </label></td>' +
+                                                        '<td> <label id="lblFurtherContact">' + item.FurtherContact + ' </label></td>' +
+                                                        '<td> <label id="lblFurtherDate">' + item.FurtherDate + ' </label></td>' +
+                                                        '<td style="text-align:center;"><button class="btn btn-danger btn-xs" onclick="removeRow(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                        '</tr>');
+
+                            });
+
+                        }
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+    }
+
+    function validiadtor(control)
+    {
+        var check = false;
+        var input = control.val();
+        if(input == "0" || input == "")
+        {
+            control.css("border-color", "red")
+            check = false;
+        }
+        else
+        {
+            control.css("border-color", "#ccc")
+            check = true;
+        }
+
+        return check;
+    }
+
+    $('#txtCustCellNo').keypress(function (event) {
+        var keycode = event.which;
+        if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+            event.preventDefault();
+        }
+    });
+
+    $('#txtCustPhone').keypress(function (event) {
+        var keycode = event.which;
+        if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+            event.preventDefault();
+        }
+    });
+
+    $('#txtOfficeNo').keypress(function (event) {
+        var keycode = event.which;
+        if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+            event.preventDefault();
+        }
+    });
+
+    $('#txtOfficeNoExt').keypress(function (event) {
+        var keycode = event.which;
+        if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+            event.preventDefault();
+        }
+    });
+</script>

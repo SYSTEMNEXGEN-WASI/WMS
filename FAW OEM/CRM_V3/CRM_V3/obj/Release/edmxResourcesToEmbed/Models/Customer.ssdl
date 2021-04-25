@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRM_BMS0517Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="DealerCode" />
+      <PropertyRef Name="CityCode" />
+    </Key>
+    <Property Name="DealerCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="StateCode" Type="char" MaxLength="3" />
+    <Property Name="CityCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="CityDesc" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UpdUser" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UpdDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdTerm" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CRM_BMS0517.dbo.Country' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryCode" />
+      <PropertyRef Name="CountryDesc" />
+    </Key>
+    <Property Name="CountryCode" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="CountryDesc" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="DealerCode" />
+      <PropertyRef Name="CusCode" />
+    </Key>
+    <Property Name="DealerCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="CusCode" Type="char" MaxLength="8" Nullable="false" />
+    <Property Name="CusTitle" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="GuestID" Type="char" MaxLength="8" />
+    <Property Name="CusDesc" Type="varchar" MaxLength="50" />
+    <Property Name="FatherHusName" Type="varchar" MaxLength="50" />
+    <Property Name="AuxCusCode" Type="char" MaxLength="8" />
+    <Property Name="Address1" Type="varchar" MaxLength="50" />
+    <Property Name="Address2" Type="varchar" MaxLength="50" />
+    <Property Name="Address3" Type="varchar" MaxLength="50" />
+    <Property Name="ContPerson" Type="varchar" MaxLength="50" />
+    <Property Name="CreditDays" Type="int" />
+    <Property Name="CreditLimit" Type="float" />
+    <Property Name="NIC" Type="varchar" MaxLength="30" />
+    <Property Name="CusTypeCode" Type="char" MaxLength="3" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Phone1" Type="varchar" MaxLength="15" />
+    <Property Name="Phone2" Type="varchar" MaxLength="15" />
+    <Property Name="CellNo" Type="varchar" MaxLength="15" />
+    <Property Name="FaxNo" Type="varchar" MaxLength="15" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="URL" Type="varchar" MaxLength="50" />
+    <Property Name="NTNno" Type="varchar" MaxLength="30" />
+    <Property Name="AdvanceReceipt" Type="float" />
+    <Property Name="AccountCode" Type="varchar" MaxLength="16" />
+    <Property Name="UpdUser" Type="varchar" MaxLength="50" />
+    <Property Name="UpdDate" Type="datetime" />
+    <Property Name="UpdTerm" Type="varchar" MaxLength="50" />
+    <Property Name="SalesTaxRegNo" Type="varchar" MaxLength="30" />
+    <Property Name="Behavior" Type="char" MaxLength="6" />
+    <Property Name="Remarks" Type="varchar" MaxLength="200" />
+    <Property Name="Distance" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerKey" Type="bigint" />
+    <Property Name="ApplyUnRegSalesTaxFlag" Type="char" MaxLength="1" />
+    <Property Name="IsPvtLtd" Type="char" MaxLength="1" />
+    <Property Name="CountryCode" Type="char" MaxLength="3" />
+    <Property Name="StateCode" Type="char" MaxLength="3" />
+    <Property Name="CityCode" Type="char" MaxLength="3" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CRM_BMS0517.dbo.CustomerType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CustomerType">
+    <Key>
+      <PropertyRef Name="DealerCode" />
+      <PropertyRef Name="CusTypeCode" />
+      <PropertyRef Name="CusTypeDesc" />
+      <PropertyRef Name="BookFormCode" />
+      <PropertyRef Name="UpdUser" />
+      <PropertyRef Name="UpdDate" />
+      <PropertyRef Name="UpdTerm" />
+    </Key>
+    <Property Name="DealerCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="CusTypeCode" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="CusTypeDesc" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BookFormCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="UpdUser" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UpdDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdTerm" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="CountryCode" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="StateCode" Type="char" MaxLength="3" />
+    <Property Name="StateDesc" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="CRM_BMS0517ModelStoreContainer">
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Country].[CountryCode] AS [CountryCode], 
+    [Country].[CountryDesc] AS [CountryDesc]
+    FROM [dbo].[Country] AS [Country]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CustomerType" EntityType="Self.CustomerType" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CustomerType].[DealerCode] AS [DealerCode], 
+    [CustomerType].[CusTypeCode] AS [CusTypeCode], 
+    [CustomerType].[CusTypeDesc] AS [CusTypeDesc], 
+    [CustomerType].[BookFormCode] AS [BookFormCode], 
+    [CustomerType].[UpdUser] AS [UpdUser], 
+    [CustomerType].[UpdDate] AS [UpdDate], 
+    [CustomerType].[UpdTerm] AS [UpdTerm]
+    FROM [dbo].[CustomerType] AS [CustomerType]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

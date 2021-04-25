@@ -1,0 +1,1188 @@
+﻿
+@{
+    ViewBag.Title = "DOMain";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+
+<style>
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .icheckbox_minimal-blue {
+        top: 10px;
+    }
+</style>
+
+<link href="../assets/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="../assets/plugins/icheck/skins/all.css" rel="stylesheet" type="text/css" media="screen" />
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+
+<section class="wrapper main-wrapper row" style=''>
+
+    <div class="clearfix"></div>
+
+    @* Main Body Starts *@
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Deliver Order</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                        @*<a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>*@
+                    </div>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>DO No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                @Html.DropDownList("ddlDONo", new SelectList((IEnumerable<SelectListItem>)ViewBag.DONo, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlDONo" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>DO Date</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" id="txtDODate" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Vehicle Type</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                @Html.DropDownList("ddlVehType", new SelectList((IEnumerable<SelectListItem>)ViewBag.VehType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlVehType" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Segment</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                <select class="form-control m-bot15" id="ddlSegment">
+                                    <option value="0">Select</option>
+                                    <option value="2 weeks">2 wheels</option>
+                                    <option value="4 weeks">4 wheels</option>
+                                    <option value="6 weeks">6 wheels</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label>Usage</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <select class="form-control m-bot15" id="ddlUsage">
+                                    <option value="0">Select</option>
+                                    <option value="New">New</option>
+                                    <option value="Used">Used</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Reference Receipt No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                <input type="text" class="form-control" id="txtRefDocNo" maxlength="25" />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Customer</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                @Html.DropDownList("ddlCustomers", new SelectList((IEnumerable<SelectListItem>)ViewBag.Customers, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCustomers" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Receiver</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                @Html.DropDownList("ddlReceiver", new SelectList((IEnumerable<SelectListItem>)ViewBag.Customers, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlReceiver" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label >Contact No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-dashboard"></i></span>
+                                <input type="text" autocomplete="on" class="form-control" id="txtContNo" maxlength="11" onkeypress="return isNumberKey(event)" />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Sales Type</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <select class="form-control m-bot15" id="ddlSalesType">
+                                    <option value="0">Select</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Instalment">Instalment</option>
+                                    <option value="Order">Order</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label >Remarks</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                                <input type="text" class="form-control" id="txtRemarks" maxlength="25" />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label >Sales Person</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-users"></i>
+                                </span>
+                                @Html.DropDownList("ddlAssignTo", new SelectList((IEnumerable<SelectListItem>)ViewBag.AssignTo, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlAssignTo" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <ul class="nav nav-tabs nav-justified primary">
+                                <li class="active">
+                                    <a href="#home-7" data-toggle="tab">
+                                        <i class="fa fa-car"></i> Detail
+                                    </a>
+                                </li>
+                                <li>
+                                        <a href="#profile-7" data-toggle="tab">
+                                            <i class="fa fa-car"></i> Delivery Check List
+                                        </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content primary">
+                                <div class="tab-pane fade in active" id="home-7">
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">VIN / Chassis</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                <select class="form-control m-bot15" id="ddlChassisNo">
+                                                    <option value="0">Select</option>
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Engine</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                <input type="text" class="form-control" id="txtEngineNo" readonly/>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Color</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-pie-chart"></i></span>
+                                                <input type="text" class="form-control" id="txtColor"  readonly/>
+                                                @*@Html.DropDownList("ddlColor", new SelectList((IEnumerable<SelectListItem>)ViewBag.Color, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlColor" })*@
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Brand</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                <input type="text" class="form-control" id="txtBrand"  readonly/>
+                                                @*@Html.DropDownList("ddlBrandCode", new SelectList((IEnumerable<SelectListItem>)ViewBag.BrandCode, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlBrandCode" })*@
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Product</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                <input type="text" class="form-control" id="txtProduct" readonly/>
+                                                @*@Html.DropDownList("ddlProdCode", new SelectList((IEnumerable<SelectListItem>)ViewBag.ProdCode, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlProdCode" })*@
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Version</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                                <input type="text" class="form-control" id="txtVersionCode" readonly/>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>                                       
+
+                                        
+
+                                        <div class="col-md-4">
+                                            <label>Stock Type</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-th-list"></i></span>
+                                                <input type="text" required class="form-control" id="txtStkType" readonly/>
+
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Document No</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="arrow"></span>
+                                                    <i class="fa fa-file"></i>
+                                                </span>
+                                                <input type="text" required class="form-control" id="txtDocNo"  readonly/>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Order No</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="arrow"></span>
+                                                    <i class="fa fa-file"></i>
+                                                </span>
+                                                <input type="text" required class="form-control" id="txtOrderNo" readonly/>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label>Rec No</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="arrow"></span>
+                                                    <i class="fa fa-file"></i>
+                                                </span>
+                                                <input type="text" required class="form-control" id="txtRecNo" readonly />
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="form-label">Vehilce Location</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                                <input type="text" class="form-control" id="txtLocation" readonly />
+                                                @*@Html.DropDownList("ddlVehLoc", new SelectList((IEnumerable<SelectListItem>)ViewBag.VehLoc, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlVehLoc" })*@
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                       
+                                        <div class="col-md-4">
+                                            <div class="input-group" style="width:23%;float: right;">
+                                                <button class="btn btn-success btn-sm" type="button" style="width: 100%;padding: 8px; margin-top: 20px; right: 15px;" onclick="AddProduct(this)">
+                                                    <i class="fa fa-plus fa-2x"></i>
+                                                </button>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped" id="productDetail" style="white-space: nowrap; FONT-SIZE: 10px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Chassis No</th>
+                                                            <th>Engine No</th> 
+                                                            <th>Color</th>
+                                                            <th>Brand </th>
+                                                            <th>Product</th>
+                                                            <th>Model</th>                                                             
+                                                            <th>Stock Type</th>
+                                                            <th>Document No</th>                                                            
+                                                            <th>Order No</th>
+                                                            <th>Rec No</th>
+                                                            <th>Location</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr id="fixedRow1" data-tr-count="0"></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="profile-7">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped" id="tblDelChkList">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Check List Code</th>
+                                                            <th>Check List Desc</th>                                                            
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr id="DelChkListRow1" data-tr-count="0"></tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>                               
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="pull-right">
+                                <button type="reset" class="btn btn-default" id="btnCancel" style="margin-top:25px;">Cancel</button>
+                                <button type="button" class="btn btn-primary" id="btnSave" style="margin-top:25px;">Save</button>
+                                <button type="button" class="btn btn-danger" id="btnDelete" style="margin-top:25px;" disabled>Delete</button>
+                                <a class="btn btn-primary" id="btnPrint" style="margin-top:25px;" href="#">Print</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveMasterEnquiry()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <div class="modal" id="section-confirm-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to Delete ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-danger" type="button" onclick="DeleteEnquiry()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+
+</section>
+
+<link href='@Url.Content("~/assets/plugins/select2/select2.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/select2/select2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/icheck/icheck.min.js")' type="text/javascript"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        Get_DelChkListData();
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+
+        $("#txtDODate").val(today);
+
+
+    })
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    var rowCount = 1;
+    var dataCount = 1;
+    var SNo = 1;
+
+    function Get_DelChkListData() {
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/DeliveryOrder/Select_DelChkList")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#tblDelChkList tbody tr").remove()
+                    //ProductDetail
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            var test2= "";
+                            var test  = '<tr id="DelChkListRow1' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">'+
+                                '<td>' + SNo++ + '</td>' +
+                                                    '<td> <label id="lblDelChkListCode">' + item.DelChkListCode.trim() + ' </label></td>' +
+                                                    '<td> <label id="lblDelChkListDesc">' + item.DelChkListDesc.trim() + ' </label>' +
+                                                        '<input type="text" style="display:none;" class="form-control" id="txtDocTypeDesctbl"></td>';
+                            if(item.OptFlag == "M"){
+                            test2 =    '<td style="text-align:center;">' +
+                                    '<input type="checkbox" id="chkOptFlag" class="chkBank icheckbox_minimal-blue" checked="true" value="' + item.DelChkListCode.trim() + '" >'+
+                                    '<input type="hidden" id="hdnDocCode" value="' + item.DelChkListCode.trim() + '"/>' +
+                                '</td>'+
+                                '</tr>';
+                                }else{
+                             test2 =  '<td style="text-align:center;">' +
+                                    '<input type="checkbox" id="chkOptFlag" class="chkBank icheckbox_minimal-blue" value="' + item.DelChkListCode.trim() + '" >'+
+                                    '<input type="hidden" id="hdnDocCode" value="' + item.DelChkListCode.trim() + '"/>' +
+                                '</td>}'+
+                                '</tr>'}
+
+                            $("#tblDelChkList tbody").append(test + test2);
+
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+
+
+    $("#btnDelete").click(function () {
+        $("#section-confirm-Delete").modal("show");
+    })
+
+    function DeleteEnquiry() {
+        var leadId = $("#ddlDONo").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'POST',
+            url: '@Url.Content("~/DeliveryOrder/Delete_DeliveryOrder")',
+            data: { 'EnquiryId': leadId },
+            success: function (data) {
+                if (data) {
+                    if (data.success == true) {
+                        $("#section-confirm-Delete").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                        setTimeout(function () {
+                            $('#section-message').modal('hide')
+                        }, 4000);
+                    } else {
+                        $("#section-confirm-Delete").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                        setTimeout(function () {
+                            $('#section-message').modal('hide')
+                        }, 4000);
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+
+    }
+
+    $("#ddlVehType").change(function () {
+
+        var vehType = $("#ddlVehType").val();
+        if (vehType == "0") {
+            location.reload();
+        } else {
+            getChassisNo(vehType);
+
+        }
+
+    });
+
+    function getChassisNo(id) {
+        var leadId = id;
+
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/DeliveryOrder/Select_ChassisNo")',
+                data: { 'EnquiryId': leadId},
+                success: function (data) {
+
+                    if (data.Success == true) {
+                        //var items = JSON.parse(data.Response)
+
+                        //$("#ddlProdCode").val(item[0].ProdCode.trim());
+                        $("#ddlChassisNo").find('option').remove();
+
+                        // next iterate thru your object adding each option to the drop down\
+                        $(data.Response).each(function (index, item) { // GETTING ERROR HERE
+                            $("#ddlChassisNo").append($('<option value=' + item.Value + ' >' + item.Text + '</option>'));
+                        });
+
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+    }
+
+
+    $("#ddlChassisNo").change(function () {
+
+        var chassisNo = $("#ddlChassisNo").val();
+        if (chassisNo == "0") {
+            location.reload();
+        } else {
+            getProRecDetail(chassisNo);
+        }
+    });
+
+    function getProRecDetail(chassisNo) {
+
+        var leadId = chassisNo;
+
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/DeliveryOrder/Select_ProRecDetail")',
+                data: { 'EnquiryId': leadId },
+                success: function (data) {
+
+                    if (data.Success == true) {
+                        var item = JSON.parse(data.Response)
+
+                        //Event Information
+
+                        $("#txtEngineNo").val(item[0].EngineNo);
+                        $("#txtColor").val(item[0].ColorCode);
+                        $("#txtBrand").val(item[0].BrandCode);
+                        $("#txtProduct").val(item[0].ProdCode);
+                        $("#txtVersionCode").val(item[0].VersionCode);
+                        $("#txtStkType").val(item[0].StockType);
+                        $("#txtDocNo").val(item[0].DocumentNo);
+                        $("#txtOrderNo").val(item[0].BookingNo);
+                        $("#txtRecNo").val(item[0].RecNo);
+                        $("#txtLocation").val(item[0].LocCode);
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+    }
+
+
+    function SplitCodeDesc(){
+
+        var skillsSelect = document.getElementById("ddlProdCode");
+        var selectedText = skillsSelect.options[skillsSelect.selectedIndex].text;
+        var prodCode = $("#ddlProdCode").val();
+        var version = selectedText.split('|', selectedText.length);
+
+        $("#txtVersionCode").val(version[1]);
+
+
+    }
+
+    $("#ddlDONo").change(function () {
+        var leadId = $("#ddlDONo").val();
+        if (leadId == "0") {
+            location.reload();
+        }
+        else {
+            getData(leadId);
+            document.getElementById("btnDelete").disabled = false;
+        }
+
+    });
+
+    function getData(id) {
+        var leadId = id;
+        var dealerCode = "00166";
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/DeliveryOrder/Select_DeliveryOrder")',
+                data: { 'EnquiryId': leadId},
+                success: function (data) {
+                    debugger;
+                    if (data.Success == true) {
+                        var item = JSON.parse(data.Response)
+
+                        //Event Information
+
+                        $("#txtDODate").val(item[0].DeliveryDate);
+                        $("#ddlVehType").val(item[0].VehTypeCode);
+                        $("#ddlSegment").val(item[0].Segment);
+                        $("#ddlUsage").val(item[0].Usage.trim());
+                        $("#txtRefDocNo").val(item[0].BookRefNo);
+                        $("#ddlCustomers").val(item[0].CusCode);
+                        $("#ddlReceiver").val(item[0].ReceiverCode);
+                        $("#txtContNo").val(item[0].CusContNo);
+                        $("#ddlSalesType").val(item[0].Type);
+                        $("#txtRemarks").val(item[0].Remarks.trim());
+                        $("#ddlAssignTo").val(item[0].EmpCode);
+
+
+                        $.each(item, function (value, item) {
+                            debugger
+                            $("#productDetail tbody").append('<tr id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                    '<td>' + SNo++ + '</td>' +
+                                                    '<td> <label id="lblChassisNo">' + item.ChasisNo + ' </label></td>' +
+                                                    '<td> <label id="lblEngineNo">' + item.EngineNo + ' </label></td>' +
+                                                    '<td> <label id="lblColor">' + item.ColorCode + ' </label></td>' +
+                                                    '<td> <label id="lblBrandCode">' + item.BrandCode + ' </label></td>' +
+                                                    '<td> <label id="lblProdCode">' + item.ProdCode + ' </label></td>' +
+                                                    '<td> <label id="lblVersion">' + item.VersionCode + ' </label></td>' +
+                                                    '<td> <label id="lblStockType">' + item.StockType + ' </label></td>' +
+                                                    '<td> <label id="lblDocNo">' + item.DocumentNo + ' </label></td>' +
+                                                    '<td> <label id="lblOrderNo">' + item.BookingNo + ' </label></td>' +
+                                                    '<td> <label id="lblRecNo">' + item.ProdRecNo + ' </label></td>' +
+                                                    '<td> <label id="lblLocaction">' + item.LocCode + ' </label></td>' +
+                                                    '<td style="text-align:center;">' +
+                                                        '<button type="button" class="btn btn-primary btn-xs" id="btnEdit" onclick="EditProdRecDetail(this)"><i class="fa fa-plus fa-lg"></i></button>' +
+                                                        '<button class="btn btn-danger btn-xs" id="btnRemove" onclick="removeRow(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                    '</td>' +
+                                                    '</tr>');
+
+                        });
+
+                        getDeliveryCheckList(id);
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+    }
+
+    function getDeliveryCheckList(id) {
+
+        var leadId = id;
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/DeliveryOrder/Select_DeliveryCheckList")',
+                data: { 'EnquiryId': leadId },
+                success: function (data) {
+                    debugger
+                    if (data.Success == true) {
+                        var item = JSON.parse(data.Response)
+
+                        //ProductDetail
+                        if (item.length > 0) {
+                            $.each(item, function (value, item) {
+
+                                $("#tblDelChkList tbody tr").each(function () {
+                                    debugger
+
+                                    var check = $(this).closest('tr').find('#hdnDocCode').val();
+
+                                    if(item.DelChkListCode == check ){
+                                        $(this).closest('tr').find('#chkOptFlag').prop('checked', true);
+                                            //$('#chkOptFlag').prop('checked', true);
+
+
+                                    }
+
+                                });
+
+                            });
+
+                        }
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+    }
+
+    function removeRow(value) {
+
+            var tempRow = "fixedRow" + (parseInt($(value).parent().parent().attr("data-tr-count")) - 1);
+
+            $("#" + tempRow).find('.remove').show();
+            $(value).parent().parent().remove();
+
+            dataCount--;
+            rowCount--;
+            SNo--;
+
+    }
+
+    function AddProduct(value) {
+        //var check = ValidateProRecDetails();
+        var check = true;
+
+        if (check == true) {
+            debugger
+            var brand = $("#txtBrand").val();
+            var splitBrand = brand.split('|', brand.length);
+            var brandDesc = splitBrand[1];
+            var brandCode = splitBrand[0];
+
+            var color = $("#txtColor").val();
+            var splitColor = color.split('|', color.length);
+            var colorDesc = splitColor[1];
+            var colorCode = splitColor[0];
+
+            var vehLoc = $("#txtLocation").val();
+            var splitLoc = vehLoc.split('|', vehLoc.length);
+            var locDesc = splitLoc[1];
+            var locCode = splitLoc[0];
+
+            var product = $("#txtProduct").val();
+            var version = $("#txtVersionCode").val();
+
+            var stockType = $("#txtStkType").val();
+            var chassisNo = $("#ddlChassisNo :selected").text(); $("#ddlChassisNo").css("border-color", "#ccc");
+            var engineNo = $("#txtEngineNo").val(); $("#txtEngineNo").css("border-color", "#ccc");
+            var recNo = $("#txtRecNo").val();
+            var docNo = $("#txtDocNo").val();
+            var orderNo = $("#txtOrderNo").val();
+
+
+            var row = $(value).parent().parent().html();
+            var dt = $("#productDetail tbody").append('<tr id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                        '<td>' + SNo++ + '</td>' +
+                                                        '<td> <label id="lblChassisNo">' + chassisNo + ' </label></td>' +
+                                                        '<td> <label id="lblEngineNo">' + engineNo + ' </label></td>' +
+                                                        '<td> <label id="lblColor">' + colorDesc + ' </label><input type="hidden" id="hdnColorCode" value="' + colorCode + '"/></td>' +
+                                                        '<td> <label id="lblBrandCode">' + brandDesc + ' </label><input type="hidden" id="hdnBrandCode" value="' + brandCode + '"/></td>' +
+                                                        '<td> <label id="lblProdCode">' + product + ' </label></td>' +
+                                                        '<td> <label id="lblVersion">' + version + ' </label></td>' +
+                                                        '<td> <label id="lblStockType">' + stockType + ' </label></td>' +
+                                                        '<td> <label id="lblDocNo">' + docNo + ' </label></td>' +
+                                                        '<td> <label id="lblOrderNo">' + orderNo + ' </label></td>' +
+                                                        '<td> <label id="lblRecNo">' + recNo + ' </label></td>' +
+                                                        '<td> <label id="lblLocaction">' + locDesc + ' </label><input type="hidden" id="hdnLocCode" value="' + locCode + '"/></td>' +
+                                                        '<td style="text-align:center;">' +
+                                                            '<button class="btn btn-danger btn-xs" id="btnRemove" onclick="removeRow(this)"><i class="fa fa-minus fa-lg"></i></button></td>' +
+                                                        '</tr>');
+
+            $('#ddlChassisNo').find('option:selected').remove().end();
+
+            clearFeilds();
+
+        }
+        else {
+
+        }
+    }
+
+    function clearFeilds(){
+
+        $("#txtBrand").val("");
+        $("#txtProduct").val("");
+        $("#txtVersionCode").val("");
+        $("#txtColor").val("");
+        $("#txtStkType").val('');
+        $("#ddlChassisNo").val("0");
+        $("#txtEngineNo").val("");
+        $("#txtLocation").val("");
+        $("#txtDocNo").val("");
+        $("#txtOrderNo").val("");
+        $("#txtRecNo").val("");
+
+    }
+
+    $("#btnPrint").click(function () {
+
+        var baseurl = '@Url.Action("Export")';
+        var url = baseurl + '?EnquiryId=' + $('#ddlDONo').val() + '&DealerCode=@Session["DealerCode"].ToString()';
+        //window.location.href = url;
+        window.open(url, '_blank');
+
+    })
+
+    $("#btnSave").click(function () {
+
+        //var check = true;
+        var check = ValidateDOMaster();
+        if (check == true) {
+            $("#section-confirm").modal("show");
+        }
+    })
+
+    function ValidateDOMaster() {
+
+        var check = false;
+
+        var vehType = $("#ddlVehType").val();
+        var RefDocNo = $("#txtRefDocNo").val();
+        var customer = $("#ddlCustomers").val();
+        var segment = $("#ddlSegment").val();
+        var saleType = $("#ddlSalesType").val();
+        var usage = $("#ddlUsage").val();
+        var docNo = $("#txtContNo").val();
+        var assignTo = $("#ddlAssignTo").val();
+
+        if (vehType == "0") {
+            $("#ddlVehType").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlVehType").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlVehType").css("border-color", "#ccc");
+        }
+
+        if (RefDocNo == "") {
+            $("#txtRefDocNo").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtRefDocNo").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#txtRefDocNo").css("border-color", "#ccc");
+        }
+
+        if (customer == "0") {
+            $("#ddlCustomers").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlCustomers").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlCustomers").css("border-color", "#ccc");
+        }
+
+        if (segment == "0") {
+            $("#ddlSegment").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlSegment").scrollTop(500)
+            }, 800);
+            return check;
+
+        }
+        else {
+            $("#ddlSegment").css("border-color", "#ccc");
+        }
+
+        if (saleType == "0") {
+            $("#ddlSalesType").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlSalesType").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlSalesType").css("border-color", "#ccc");
+        }
+        if (usage == "0") {
+            $("#ddlUsage").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlUsage").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#ddlUsage").css("border-color", "#ccc");
+        }
+
+        if (docNo == "") {
+            $("#txtContNo").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtContNo").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#txtContNo").css("border-color", "#ccc");
+        }
+
+
+        var rowCount = $('#productDetail >tbody  >tr').length;
+        if (rowCount == 1) {
+            $("#productDetail").css("border-color", "red");
+            return check;
+        }
+
+        check = true;
+        return check;
+    }
+
+
+
+    function SaveMasterEnquiry() {
+
+        var dto = {};
+
+
+        dto.DealerCode = @Session["DealerCode"].ToString();
+        dto.DeliveryNo = $("#ddlDONo").val();
+        dto.DeliveryDate = $("#txtDODate").val();
+        dto.BookRefNo = $("#txtRefDocNo").val();
+        dto.VehTypeCode = $("#ddlVehType").val();
+        dto.Segment = $("#ddlSegment").val();
+        dto.CusCode = $("#ddlCustomers").val();
+        dto.ReceiverCode = $("#ddlReceiver").val();
+        dto.Usage = $("#ddlUsage").val();
+        dto.Type = $("#ddlSalesType").val();
+        dto.CusContNo = $("#txtContNo").val();
+        dto.Remarks = $("#txtRemarks").val();
+        dto.EmpCode = $("#ddlAssignTo").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/DeliveryOrder/Insert_DOMaster")',
+            data: dto,
+            success: function (data) {
+                debugger
+                if (data) {
+                    if (data.Success == true) {
+                        saveDetailEnquiry();
+
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+    }
+
+    function insertRecord() {
+        var obj = [];
+
+        $("#productDetail tbody tr").each(function () {
+            var dto = {};
+            dto.BrandCode = $(this).closest('tr').find('#hdnBrandCode').val();
+            dto.ProdCode = $(this).closest('tr').find('#lblProdCode').text().trim();
+            dto.VersionCode = $(this).closest('tr').find('#lblVersion').text().trim();
+            dto.ChasisNo = $(this).closest('tr').find('#lblChassisNo').text().trim();
+            dto.EngineNo = $(this).closest('tr').find('#lblEngineNo').text().trim();
+            dto.ColorCode = $(this).closest('tr').find('#hdnColorCode').val();
+            dto.LocCode = $(this).closest('tr').find('#hdnLocCode').val();
+            dto.StockType = $(this).closest('tr').find('#lblStockType').text().trim();
+            dto.BookingNo = $(this).closest('tr').find('#lblOrderNo').text().trim();
+            dto.DocNo = $(this).closest('tr').find('#lblDocNo').text().trim();
+            dto.ProdRecNo = $(this).closest('tr').find('#lblRecNo').text().trim();
+
+            obj.push(dto);
+        });
+
+        return obj;
+    }
+
+    function saveDetailEnquiry(){
+
+        var objects = [];
+
+        objects = JSON.stringify({ 'objects' : insertRecord()});
+
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            //async: true,
+            type: 'POST',
+            url: '@Url.Content("~/DeliveryOrder/Insert_DODetail")',
+            data: objects ,
+            success: function (data) {
+
+                if (data) {
+                    saveCheckList();
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+
+        });
+
+    }
+
+
+    function saveCheckList(){
+        var checkedValues = $('input:checkbox:checked').map(function() {
+            if(this.value != "on"){
+                return this.value;
+            }
+
+        }).get();
+        var strCheckedValues = checkedValues.toString();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'POST',
+            url: '@Url.Content("~/DeliveryOrder/Insert_VehChkList")',
+            data: { 'strCheckedValues' : strCheckedValues } ,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+
+        });
+
+
+    }
+
+</script>

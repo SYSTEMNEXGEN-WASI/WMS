@@ -1,0 +1,887 @@
+﻿@{
+    ViewBag.Title = "CustomerProfileData";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+    string CusCode = (ViewBag.Customer != null ? ViewBag.Customer : "");
+}
+
+<h2>CustomerProfileData</h2>
+<section class="wrapper main-wrapper row">
+
+    <form method="post">
+        <section class="box">
+            <header class="panel-header">
+                <h2 class="title pull-left">Customer Information</h2>
+                @*<div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>*@
+            </header>
+            <div class="content-body" id="customer">
+                <div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Customer Code</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('CusCode')" id="cusCodeSelection"></i></span>
+
+
+                            <input type="text" class="form-control" id="txtCustomerCode">
+
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Customer Type</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            @*<select class="form-control m-bot15" id="CustomerTypeSelect" name="DealerSelect">
+                                    <option value="Mr">Option</option>
+                                    <option value="Ms">Option</option>
+                                </select>*@
+                            @Html.DropDownList("ddlCusType", new SelectList((IEnumerable<SelectListItem>)ViewBag.CusType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCusType" })
+
+
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Title</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <select class="form-control m-bot15" id="TitleSelect" name="WRNoSelect">
+                                <option value="Mr">Mr.</option>
+                                <option value="Ms">Ms.</option>
+                            </select>
+                            @*@Html.DropDownList("ddlTitle", new SelectList((IEnumerable<SelectListItem>)ViewBag.Title, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlTitle" })*@
+
+
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Customer/MS</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtCustomerMS" />
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">NIC</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtNIC" placeholder="1234-1234567-1">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Contact Person</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtContactPerson">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="box">
+            <header class="panel-header">
+                <h2 class="title pull-left">Contact Information</h2>
+                <div class="actions panel_actions pull-right">
+                    <a class="box_toggle fa fa-chevron-down"></a>
+                </div>
+            </header>
+            <div class="content-body">
+                <div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Address</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtAddress">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Country</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            @*<select class="form-control m-bot15" id="CountrySelect" name="DealerSelect">
+                                    <option value="Mr">Option</option>
+                                    <option value="Ms">Option</option>
+                                </select>*@
+                            @Html.DropDownList("ddlCountry", new SelectList((IEnumerable<SelectListItem>)ViewBag.Country, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCountry" })
+
+
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">State</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            @*<select class="form-control m-bot15" id="StateSelect" name="DealerSelect">
+                                    <option value="Mr">Option</option>
+                                    <option value="Ms">Option</option>
+                                </select>*@
+                            @Html.DropDownList("ddlState", new SelectList((IEnumerable<SelectListItem>)ViewBag.State, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlState" })
+
+
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">City</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            @*<select class="form-control m-bot15" id="CitySelect" name="DealerSelect">
+                                    <option value="Mr">Option</option>
+                                    <option value="Ms">Option</option>
+                                </select>*@
+                            @Html.DropDownList("ddlCity", new SelectList((IEnumerable<SelectListItem>)ViewBag.City, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCity" })
+
+
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Phone No</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtPhoneNo">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Phone 2</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtPhone2">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Mobile No</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtMobileNo">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Fax</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtFax">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Email</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtEmail" placeholder="YourEmail@abc.com">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+
+                    <div class="col-md-4">
+                        <label class="form-label">URL</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtURL" placeholder="www.yoursite.com">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+
+                    <div class="col-md-8">
+
+                    </div>
+
+                </div>
+        </section>
+
+        <section class="box">
+            <header class="panel-header">
+                <h2 class="title pull-left">Other Information</h2>
+                <div class="actions panel_actions pull-right">
+                    <a class="box_toggle fa fa-chevron-down"></a>
+                </div>
+            </header>
+            <div class="content-body">
+                <div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">NTN No</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtNTNNo">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Sales Tax No</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtSalesTaxNo">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Payment Term</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtPaymentTerm">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Payment Limit</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtPaymentLimit">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Customer Distance</label>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-clipboard"></i></span>
+                            <input type="text" class="form-control" id="txtCustomerDistance" placeholder="KM">
+                        </div>
+                        <div class="makespace"></div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="hidden" class="form-control" id="txtDealerCode" >
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="box">
+            <div class="content-body">
+                <div class="row">
+                    <div class="col-md-4">
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <button type="reset" class="btn btn-default" id="btnCancel" style="margin-top:25px;">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="btnSave" style="margin-top:25px;">Save</button>
+                            <button type="button" class="btn btn-danger" id="btnDelete" style="margin-top:25px;" disabled>Delete</button>
+
+
+                            @*<button type="button" class="btn btn-success" id="SaveWarrantyApproval" onclick="InsertApproval('','')" style="margin-top:25px;">Save</button>
+                                <button type="button" class="btn btn-danger" id="DeleteWarrantyApproval" onclick="DeleteApproval('','')" style="margin-top:25px;">Delete</button>
+                                <button type="button" class="btn btn-default" id="ClearWarrantyApproval" onclick="ClearApproval('','')" style="margin-top:25px;">Clear</button>*@
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+
+    
+                <div id="showTable" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="QualificationModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-content actions panel_actions center-block" style="width: 1180px;">
+                        <div class="modal-content">
+                            @*<div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="QualificationModalLabel">Customer Profile</h4>
+                            </div>*@
+                            <div class="modal-body">
+                                <section class="wrapper main-wrapper row">
+
+                                    <div class="form-group row">
+                                        <div class="col-md-1">
+                                            <label for="exampleInputuname" class="col-md-2">Search:</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" id="CustomerSearch" class="form-control" aria-controls="PositionTitle" placeholder="Search . . . ">
+                                        </div>
+                                        <div class="col-md-7"></div>
+                                    </div>
+
+                                    <div class="col-xs-12">
+                                        <section class="box">
+                                            <header class="panel_header">
+                                                <h2 class="title pull-left">Customer Profile</h2>
+                                                <div class="actions panel_actions pull-right">
+                                                    <a class="box_toggle fa fa-chevron-down"></a>
+                                                </div>
+                                            </header>
+                                            <div class="content-body">
+                                                <div class="row" style="margin-top:1rem;">
+                                                    <div class="col-md-12">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered table-striped" id="cusDetail" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th width="50px">#</th>
+                                                                        <th width="100px">Cus Code</th>
+                                                                        <th width="150px">Customer</th>
+                                                                        <th width="356px">Address</th>
+                                                                        <th width="100px">cell No</th>
+                                                                        <th width="150px">NIC No</th>
+                                                                        <th>DealerCode</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr id="fixedRow1" data-tr-count="0"></tr>
+                                                                    <tr>
+                                                                        <td width="50px"></td>
+                                                                        <td width="100 px"></td>
+                                                                        <td width="150px"></td>
+                                                                        <td width="356px"></td>
+                                                                        <td width="100px"></td>
+                                                                        <td width="150px"></td>
+                                                                        <td></td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @*<div class="row">
+                                                    <div class="col-lg-12">
+                                                        <input type="hidden" class="form-control" id="txtDealerCode">                                                        
+                                                    </div>
+                                                </div>*@
+                                            </div>
+                                        </section>
+                                    </div>
+                                </section> 
+                                </div>                         
+                                     <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                                    </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                    <!-- /.modal-dialog -->
+                </div>
+
+
+
+
+                <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog animated bounceInDown">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Confirm</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <h5>Are you sure want to save ?</h5>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                                <button class="btn btn-success" type="button" onclick="SaveMasterEnquiry()">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal end -->
+                <div class="modal" id="section-confirm-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog animated bounceInDown">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Confirm</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <h5>Are you sure want to Delete ?</h5>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                                <button class="btn btn-danger" type="button" onclick="DeleteEnquiry()">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Popup box modal start -->
+                <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog animated bounceInDown">
+                        <div class="modal-content">
+                            <div class="modal-header" id="modalMessage">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Success</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <h5 id="lblMessage"></h5>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</section>
+
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/Scripts/bootstrap.js")'></script>
+<script src='@Url.Content("~/Scripts/bootstrap.min.js")'></script>
+<script src='@Url.Content("~/assets/plugins/datatables/js/jquery.dataTables.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/datatables/js/jquery.dataTables.min.js")' type="text/javascript"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+        Get_CusProfileDetailsData();
+        debugger
+        //$("customer").DataTable();
+        var cuscode = "@ViewBag.Customer";
+        if ( cuscode != "" && cuscode != null) {
+            
+            getcustomerdetail(cuscode);
+        }
+
+        cusCodeSelection = function (value) {
+
+            var cust = $(value).closest('tr').find("#hdnCusCode").val();
+            var lblCusDesc = $(value).closest('tr').find('#lblCusDesc').val();
+            $("#showTable").modal("hide");
+            $("#txtCustomerCode").val(cust);
+
+            getcustomerdetail(cust);
+        }
+
+
+    })
+
+
+    $("#CustomerSearch").keyup(function () {
+        var value = this.value.toLowerCase().trim();
+
+        $("table#cusDetail tr").each(function (index) {
+            if (!index) return;
+            $(this).find("td").each(function () {
+                var id = $(this).text().toLowerCase().trim();
+                var not_found = (id.indexOf(value) == -1);
+                $(this).closest('tr').toggle(!not_found);
+                return not_found;
+            });
+        });
+    });
+    //$("#cusCode").click(function () {
+
+    //    //debugger
+    //    $("#showTable").modal("show");
+
+
+
+
+
+    //})
+
+
+
+    IssueFunc = function (value) {
+
+        var lblCusCode = $(value).closest('tr').find("#hdnCusCode").val();
+        var lblCusDesc = $(value).closest('tr').find('#lblCusDesc').val();
+
+
+        document.getElementById("txtCustomerCode").value = lblCusCode;
+
+
+        $("#showTable").modal("hide");
+    }
+
+    //var totalQty = 0;
+    //var finalPrice = 0;
+
+
+
+
+    function ShowModal() {
+
+        $('#showTable').modal("show");
+
+    }
+
+
+
+
+
+
+    function Get_CusProfileDetailsData() {
+        debugger;
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/CustomerProfileData/Select_CustomerDetails")',
+            success: function (data) {
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#cusDetail tbody tr").remove()
+                    //ProductDetail
+                    if (item.length > 0) {
+                        debugger;
+
+                        $.each(item, function (value, item) {
+                            $("#cusDetail tbody").append('<tr id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '" onclick="cusCodeSelection(this)">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td class="tdDiv" style="overflow:auto"><label id="lblCusCode" >' + item.CusCode + '</label><input type="hidden" id="hdnCusCode" value="' + item.CusCode + '"/></td>' +
+                                                                '<td> <label id="lblCusDesc">' + item.CusDesc + ' </label></td>' +
+                                                                '<td> <label id="lblAddress1">' + item.Address1 + ' </label></td>' +
+                                                                '<td> <label id="lblContPerson">' + item.ContPerson + ' </label></td>' +
+                                                                '<td> <label id="lblNIC">' + item.NIC + ' </label></td>' +
+                                                                '<td> <label id="lblDealerCode">' + item.DealerCode + ' </label></td>' +
+
+                                                                '</tr>');
+
+
+                        });
+
+                    }
+
+                }
+            },
+            complete: function () {
+
+            },
+        });
+
+    }
+
+
+
+    $("#txtCustomerCode").change(function () {
+
+        var CusCode = $("#txtCustomerCode").val();
+        if (CusCode == "") {
+            location.reload();
+        } else {
+            getcustomerdetail(DealerCode , CusCode);
+        }
+    });
+
+
+    function getcustomerdetail(CusCode) {
+        debugger;
+        var leadid = CusCode;
+        
+        if (leadid != "") {
+            $.ajax({
+                datatype: "json",
+                async: true,
+                type: 'get',
+                url: '@Url.Content("~/CustomerProfileData/Select_CustomerDetail")',
+
+                data: {'CusCode': leadid },
+                success: function (data) {
+                    debugger;
+                    if (data.Success == true) {
+                        var item = JSON.parse(data.Response)
+
+                        //event information
+                        $("#txtDealerCode").val(item[0].DealerCode);
+                        $("#txtCustomerCode").val(item[0].CusCode);
+                        $("#ddlCusType").val(item[0].CusTypeCode);
+                        $("#TitleSelect").val(item[0].title);
+                        $("#txtCustomerMS").val(item[0].CusDesc);
+                        $("#txtNIC").val(item[0].NIC);
+                        $("#txtContactPerson").val(item[0].ContPerson);
+                        $("#txtAddress").val(item[0].Address1);
+                        $("#ddlCountry").val(item[0].CountryCode);
+                        $("#ddlState").val(item[0].StateCode);
+                        $("#ddlCity").val(item[0].CityCode);
+                        $("#txtPhoneNo").val(item[0].Phone1);
+                        $("#txtPhone2").val(item[0].Phone2);
+                        $("#txtMobileNo").val(item[0].CellNo);
+                        $("#txtFax").val(item[0].FaxNo);
+                        $("#txtEmail").val(item[0].Email);
+                        $("#txtUrl").val(item[0].Url);
+                        $("#txtNTNNo").val(item[0].NTNNo);
+                        $("#txtSalesTaxNo").val(item[0].SalesTaxRegNo);
+                        $("#txtPaymentTerm").val(item[0].CreditDays);
+                        $("#txtPaymentLimit").val(item[0].CreditLimit);
+                        $("#txtCustomerDistance").val(item[0].Distance);
+
+
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+
+        function ClearPPRMaster(value) {
+            debugger;
+            $("#txtDealerCode").val("");
+            $("#txtCustomerCode").val("");
+            $("#ddlCusType").val("0");
+            $("#TitleSelect").val("0");
+            $("#txtCustomerMS").val("");
+            $("#txtNIC").val("");
+            $("#txtContactPerson").val("");
+            $("#txtAddress").val("");
+            $("#ddlCountry").val("0");
+            $("#ddlState").val("0");
+            $("#ddlCity").val("0");
+            $("#txtPhoneNo").val("");
+            $("#txtPhone2").val("");
+            $("#txtMobileNo").val("");
+            $("#txtFax").val("");
+            $("#txtEmail").val("");
+            $("#txtUrl").val("");
+            $("#txtNTNNo").val("");
+            $("#txtSalesTaxNo").val("");
+            $("#txtPaymentTerm").val("");
+            $("#txtPaymentLimit").val("");
+            $("#txtCustomerDistance").val("");
+
+
+        }
+    }
+
+    //Save
+
+    $("#btnSave").click(function () {
+        debugger;
+
+        $("#txtDealerCode").css("border-color", "#ccc");
+        $("#ddlCusType").css("border-color", "#ccc");
+        $("#TitleSelect").css("border-color", "#ccc");
+        $("#txtCustomerMS").css("border-color", "#ccc");
+        $("#txtNIC").css("border-color", "#ccc");
+        $("#txtAddress").css("border-color", "#ccc");
+        $("#ddlCountry").css("border-color", "#ccc");
+        $("#ddlState").css("border-color", "#ccc");
+        $("#ddlCity").css("border-color", "#ccc");
+        $("#txtPhoneNo").css("border-color", "#ccc");
+        $("#txtEmail").css("border-color", "#ccc");
+        $("#txtNTNNo").css("border-color", "#ccc");
+        $("#txtSalesTaxNo").css("border-color", "#ccc");
+       
+        var DealerCode = $("#txtDealerCode").val();
+        var cusType = $("#ddlCusType").val();
+        var title = $("#TitleSelect").val();
+        var customer = $("#txtCustomerMS").val();
+        var NIC = $("#txtNIC").val();
+        var address = $("#txtAddress").val();
+        var country = $("#ddlCountry").val();
+        var state = $("#ddlState").val();
+        var city = $("#ddlCity").val();
+        var phoneNo = $("#txtPhoneNo").val();
+        var email = $("#txtEmail").val();
+        var NTNNo = $("#txtNTNNo").val();
+        var salesTaxNo = $("#txtSalesTaxNo").val();
+
+
+
+        if (cusType == "0") {
+            $("#ddlCusType").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlCusType").scrollTop(500)
+            }, 800);
+            return;
+        }
+
+        if (customer == "") {
+            $("#txtCustomerMS").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtCustomerMS").scrollTop(500)
+            }, 800);
+            return;
+        }
+        if (NIC == "") {
+            $("#txtNIC").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtNIC").scrollTop(500)
+            }, 800);
+            return;
+        }
+        if (address == "") {
+            $("#txtAddress").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtAddress").scrollTop(500)
+            }, 800);
+            return;
+        }
+
+        if (country == "0") {
+            $("#ddlCountry").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlCountry").scrollTop(500)
+            }, 800);
+            return;
+        }
+
+        if (state == "0") {
+            $("#ddlState").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlState").scrollTop(500)
+            }, 800);
+            return;
+
+        }
+        if (city == "0") {
+            $("#ddlCity").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#ddlCity").scrollTop(500)
+            }, 800);
+            return;
+        }
+
+        if (phoneNo == "") {
+            $("#txtPhoneNo").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtPhoneNo").scrollTop(500)
+            }, 800);
+            return;
+        }
+        if (DealerCode == "") {
+            $("#txtDealerCode").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtDealerCode").scrollTop(500)
+            }, 800);
+            return;
+        }
+        if (email == "") {
+            $("#txtEmail").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtEmail").scrollTop(500)
+            }, 800);
+            return;
+        }
+
+        if (salesTaxNo == "") {
+            $("#txtSalesTaxNo").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtSalesTaxNo").scrollTop(500)
+            }, 800);
+            return;
+        }
+
+                  $("#section-confirm").modal("show");
+        
+      
+
+
+    })
+
+        
+                
+    
+
+
+
+    function SaveMasterEnquiry() {
+
+        var dto = {};
+
+        dto.DealerCode = $("#txtDealerCode").val();
+        dto.CusCode = $("#txtCustomerCode").val();
+        dto.CusTypeCode = $("#ddlCusType").val();
+        dto.Title = $("#TitleSelect").val();
+        dto.CusDesc = $("#txtCustomerMS").val();
+        dto.NIC = $("#txtNIC").val();
+        dto.ContPerson = $("#txtContactPerson").val();
+        dto.Address1 = $("#txtAddress").val();
+        dto.CountryCode = $("#ddlCountry").val();
+        dto.StateCode = $("#ddlState").val();
+        dto.CityCode = $("#ddlCity").val();
+        dto.Phone1 = $("#txtPhoneNo").val();
+        dto.Phone2 = $("#txtPhone2").val();
+        dto.CellNo = $("#txtMobileNo").val();
+        dto.FaxNo = $("#txtFax").val();
+        dto.Email = $("#txtEmail").val();
+        dto.URL = $("#txtUrl").val();
+        dto.NTNno = $("#txtNTNNo").val();
+        dto.SalesTaxRegNo = $("#txtSalesTaxNo").val();
+        dto.CreditDays = $("#txtPaymentTerm").val();
+        dto.CreditLimit = $("#txttxtPaymentLimit").val();
+        dto.Distance = $("#txtCustomerDistance").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/CustomerProfileData/Insert_CustomerDetail")',
+            data: dto,
+            success: function (data) {
+                debugger
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+
+                    $(document).ready(function () {
+                        if (window.location.href.indexOf('?') > -1) {
+                            window.location.href = window.location.pathname;
+                        }
+                    });
+                    ClearPPRMaster();
+
+                }
+
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+    }
+
+</script>
+
+
+
+

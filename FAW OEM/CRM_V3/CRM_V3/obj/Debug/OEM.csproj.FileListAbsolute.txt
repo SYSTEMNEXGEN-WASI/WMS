@@ -1,0 +1,425 @@
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CRM_V3.dll.config
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CRM_V3.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CRM_V3.pdb
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Antlr3.Runtime.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Core.CRM.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportSource.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.Shared.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.Web.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\EntityFramework.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Web.Infrastructure.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Newtonsoft.Json.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Owin.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.Helpers.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.Mvc.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.Optimization.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.Razor.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\WebGrease.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\stdole.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.SqlServer.Types.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Core.CRM.pdb
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.Helpers.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.Mvc.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.Optimization.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.Razor.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Newtonsoft.Json.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Antlr3.Runtime.pdb
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\EntityFramework.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\de\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\es\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\fr\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\it\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\ja\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\ko\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\pt\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\ru\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\obj\Debug\OEM.csprojResolveAssemblyReference.cache
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\obj\Debug\CRM_V3.dll
+E:\Yusuf\systemnexgen\oem\CRM_V3\CRM_V3\obj\Debug\CRM_V3.pdb
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CRM_V3.dll.config
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CRM_V3.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CRM_V3.pdb
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Antlr3.Runtime.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Core.CRM.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.CrystalReports.Engine.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportSource.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.Shared.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.Web.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\EntityFramework.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Web.Infrastructure.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Newtonsoft.Json.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Owin.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Helpers.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Mvc.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Optimization.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Razor.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\WebGrease.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\stdole.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.SqlServer.Types.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Core.CRM.pdb
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Helpers.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Mvc.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Optimization.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Razor.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Newtonsoft.Json.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Antlr3.Runtime.pdb
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\EntityFramework.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\de\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\es\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\fr\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\it\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\ja\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\ko\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\pt\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\ru\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\obj\Debug\OEM.csprojResolveAssemblyReference.cache
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\obj\Debug\CRM_V3.dll
+D:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\obj\Debug\CRM_V3.pdb
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CRM_V3.dll.config
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CRM_V3.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CRM_V3.pdb
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Antlr3.Runtime.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Core.CRM.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportSource.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.Shared.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.Web.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\EntityFramework.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Web.Infrastructure.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Newtonsoft.Json.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Owin.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Helpers.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Mvc.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Optimization.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Razor.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\WebGrease.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\stdole.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.SqlServer.Types.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Core.CRM.pdb
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Helpers.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Mvc.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Optimization.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.Razor.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Newtonsoft.Json.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Antlr3.Runtime.pdb
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\EntityFramework.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\de\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\es\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\fr\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\it\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\ja\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\ko\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\pt\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\ru\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\obj\Debug\OEM.csprojResolveAssemblyReference.cache
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\obj\Debug\CRM_V3.dll
+E:\AL Haj Faw\Project\oem\CRM_V3\CRM_V3\obj\Debug\CRM_V3.pdb
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CRM_V3.dll.config
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CRM_V3.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CRM_V3.pdb
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Antlr3.Runtime.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Core.CRM.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportSource.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.Shared.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.Web.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\EntityFramework.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Web.Infrastructure.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Newtonsoft.Json.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Owin.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Helpers.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Mvc.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Optimization.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Razor.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\WebGrease.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\stdole.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.SqlServer.Types.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Core.CRM.pdb
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Helpers.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Mvc.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Optimization.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Razor.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Newtonsoft.Json.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Antlr3.Runtime.pdb
+E:\FAW OEM\CRM_V3\CRM_V3\bin\EntityFramework.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\FAW OEM\CRM_V3\CRM_V3\bin\de\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\es\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\fr\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\it\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\ja\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\ko\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\pt\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\ru\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+E:\FAW OEM\CRM_V3\CRM_V3\obj\Debug\OEM.csprojResolveAssemblyReference.cache
+E:\FAW OEM\CRM_V3\CRM_V3\obj\Debug\CRM_V3.dll
+E:\FAW OEM\CRM_V3\CRM_V3\obj\Debug\CRM_V3.pdb
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CRM_V3.dll.config
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CRM_V3.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CRM_V3.pdb
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Antlr3.Runtime.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Core.CRM.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportSource.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.Shared.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.Web.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\EntityFramework.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Web.Infrastructure.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Newtonsoft.Json.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Owin.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Helpers.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Mvc.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Optimization.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Razor.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\WebGrease.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\stdole.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.SqlServer.Types.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Core.CRM.pdb
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Helpers.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Mvc.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Optimization.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.Razor.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.Deployment.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\System.Web.WebPages.Razor.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Newtonsoft.Json.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Antlr3.Runtime.pdb
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\EntityFramework.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\EntityFramework.SqlServer.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Core.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Facebook.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Cookies.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.OAuth.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Google.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.Twitter.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\de\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\es\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\fr\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\it\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\ja\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\ko\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\pt\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\ru\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\obj\Debug\OEM.csprojResolveAssemblyReference.cache
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\obj\Debug\CRM_V3.dll
+E:\AL Haj Faw\Project\FAW OEM\CRM_V3\CRM_V3\obj\Debug\CRM_V3.pdb

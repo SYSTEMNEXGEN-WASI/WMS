@@ -1,0 +1,77 @@
+C:\Users\sonu\documents\visual studio 2013\Projects\CRM_V3\Core.CRM\bin\Release\Core.CRM.dll
+C:\Users\sonu\documents\visual studio 2013\Projects\CRM_V3\Core.CRM\bin\Release\Core.CRM.pdb
+C:\Users\sonu\documents\visual studio 2013\Projects\CRM_V3\Core.CRM\obj\Release\Core.CRM.csprojResolveAssemblyReference.cache
+C:\Users\sonu\documents\visual studio 2013\Projects\CRM_V3\Core.CRM\obj\Release\Core.CRM.dll
+C:\Users\sonu\documents\visual studio 2013\Projects\CRM_V3\Core.CRM\obj\Release\Core.CRM.pdb
+F:\CRM_V3\Core.CRM\bin\Release\Core.CRM.dll
+F:\CRM_V3\Core.CRM\bin\Release\Core.CRM.pdb
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.Mvc.dll
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.Razor.dll
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Razor.dll
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.dll
+F:\CRM_V3\Core.CRM\bin\Release\Microsoft.Web.Infrastructure.dll
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Deployment.dll
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.Mvc.xml
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.Razor.xml
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Razor.xml
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.xml
+F:\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Deployment.xml
+F:\CRM_V3\Core.CRM\obj\Release\Core.CRM.csprojResolveAssemblyReference.cache
+F:\CRM_V3\Core.CRM\obj\Release\Core.CRM.dll
+F:\CRM_V3\Core.CRM\obj\Release\Core.CRM.pdb
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\Core.CRM.dll
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\Core.CRM.pdb
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.Mvc.dll
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.Razor.dll
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Razor.dll
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.dll
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.Mvc.xml
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.Razor.xml
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Razor.xml
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.xml
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\obj\Release\Core.CRM.csprojResolveAssemblyReference.cache
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\obj\Release\Core.CRM.dll
+C:\Users\salman\Desktop\OEM\CRM_V3\Core.CRM\obj\Release\Core.CRM.pdb
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\Core.CRM.dll
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\Core.CRM.pdb
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.Mvc.dll
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.Razor.dll
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Razor.dll
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.dll
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.Mvc.xml
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.Razor.xml
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Razor.xml
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.xml
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\obj\Release\Core.CRM.csprojResolveAssemblyReference.cache
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\obj\Release\Core.CRM.dll
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\obj\Release\Core.CRM.pdb
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\Core.CRM.dll.config
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\EntityFramework.dll
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\EntityFramework.xml
+C:\Users\Shaharyar Jafri.Sherry\Downloads\CRM_V3\CRM_V3\Core.CRM\bin\Release\EntityFramework.SqlServer.xml
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\Core.CRM.dll.config
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\Core.CRM.dll
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\Core.CRM.pdb
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\EntityFramework.dll
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\EntityFramework.SqlServer.dll
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.Mvc.dll
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.Razor.dll
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Razor.dll
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.dll
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Deployment.dll
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\EntityFramework.xml
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\EntityFramework.SqlServer.xml
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.Mvc.xml
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.Razor.xml
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Razor.xml
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.xml
+E:\systemnexgen\oem\CRM_V3\Core.CRM\bin\Release\System.Web.WebPages.Deployment.xml
+E:\systemnexgen\oem\CRM_V3\Core.CRM\obj\Release\Core.CRM.csprojResolveAssemblyReference.cache
+E:\systemnexgen\oem\CRM_V3\Core.CRM\obj\Release\Core.CRM.dll
+E:\systemnexgen\oem\CRM_V3\Core.CRM\obj\Release\Core.CRM.pdb

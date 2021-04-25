@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CompanyApplication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="ApplicationCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="150" />
+    <Property Name="ActiveFlag" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="SecurityUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserCode" Type="char" MaxLength="5" />
+    <Property Name="CompCode" Type="char" MaxLength="5" />
+    <Property Name="LoginName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmployeeCode" Type="varchar" MaxLength="50" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="50" />
+    <Property Name="Remarks" Type="varchar" MaxLength="100" />
+    <Property Name="ActiveFlag" Type="char" MaxLength="1" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="CreateBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SecurityUserAccess">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserCode" Type="char" MaxLength="5" />
+    <Property Name="ApplicationCode" Type="char" MaxLength="3" />
+    <Property Name="FormCode" Type="char" MaxLength="4" />
+    <Property Name="FormActionCode" Type="char" MaxLength="3" />
+    <Property Name="ActionValue" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="SecurityUserApplication">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserCode" Type="char" MaxLength="5" />
+    <Property Name="ApplicationCode" Type="char" MaxLength="3" />
+    <Property Name="AllowFlag" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="CompanyApplication" EntityType="Self.CompanyApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SecurityUser" EntityType="Self.SecurityUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SecurityUserAccess" EntityType="Self.SecurityUserAccess" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SecurityUserApplication" EntityType="Self.SecurityUserApplication" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

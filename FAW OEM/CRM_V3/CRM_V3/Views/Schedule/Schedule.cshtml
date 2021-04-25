@@ -1,0 +1,2493 @@
+﻿
+@{
+    ViewBag.Title = "Schedule";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+@*HTML Import from Labour*@
+
+<link href='@Url.Content("~/assets/plugins/select2/select2.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/select2/select2.min.js")' type="text/javascript"></script>
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<script src="~/assets/js/scrollablegridplugin_asp.netajax_2.0.js"></script>
+
+
+
+<h2>Schedule</h2>
+
+<style>
+    .scrollTable th, .scrollTable td {
+        width: 220px;
+        text-align: center;
+        border: 1px solid #E0E0E0;
+    }
+
+        .scrollTable th:first-child, .scrollTable td:first-child {
+            width: 250px;
+        }
+
+    .scrollTable thead {
+        display: block;
+    }
+
+    .scrollTable tbody {
+        display: block;
+        height: 200px;
+        overflow: auto;
+    }
+
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .table-responsive-border {
+        width: 100%;
+        border: 1px solid;
+        border-color: #aaaaaa;
+        height: 300px;
+    }
+
+    .icheckbox_minimal-blue {
+        top: 10px;
+    }
+</style>
+
+<section class="wrapper main-wrapper row">
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Schedule</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+
+                </header>
+                <div class="content-body">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Schedule Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('Jobs')" style="color:red;"></i></span>
+                                <input type="text" class="form-control" id="txtSchedule" maxlength="10" readonly="readonly">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Vehicle</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('JobCategory')" style="color:red;"></i></span>
+                                <input type="text" class="form-control" id="txtProdDesc" maxlength="100" readonly="readonly">
+                                <input type="hidden" class="form-control" id="hdnProduct" readonly="readonly">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Brand</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <input type="text" class="form-control" id="txtBrand" maxlength="50" readonly="readonly">
+                                <input type="hidden" class="form-control" id="hdnBrandCode" readonly="readonly">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Vehicle Category</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <input type="text" class="form-control" id="txtVehicleCategory" maxlength="3" readonly>
+                                <input type="hidden" class="form-control" id="hdnVehicleCatCode" readonly="readonly">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <!--next-->
+                        <div class="col-md-2">
+                            <label class="form-label">Schedule KM</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="text" class="form-control" id="txtScheduleKM" maxlength="10" onkeypress="return isNumber(event)">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Next Visit</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-male"></i></span>
+                                <input type="text" class="form-control" id="txtNextVisit" maxlength="3" placeholder="Days" onkeypress="return isNumber(event)">
+
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Reminder Later</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-bell"></i></span>
+                                <input type="text" class="form-control" id="txtReminderLater" maxlength="6" placeholder="Days" onkeypress="return isNumber(event)">
+
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Call Alert</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                <input type="text" class="form-control" id="txtCallAlert" maxlength="5" placeholder="Days" onkeypress="return isNumber(event)">
+
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">SMS Alert</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-comment"></i></span>
+                                <input type="text" class="form-control" id="txtSMSAlert" maxlength="5" placeholder="Days" onkeypress="return isNumber(event)">
+
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <!--Radio Box-->
+                        <div class="col-md-4">
+                            <div class="box" style="padding:5px 5px 2px 5px;">
+                                <div>
+                                    <label>
+                                        <input type="radio" class="chkCurrentUser" name="Sessions" id="chkCurrentUser" value="@Session["DealerCode"].ToString()">
+                                        <label id="lblcu" value="@Session["DealerCode"].ToString()" class="form-label">Login User</label>
+                                    </label>
+                                    <label style="margin-left:7px">
+                                        <input type="radio" class="chkForAll" name="Sessions" checked id="chkForAll" value="COMON">
+                                        <label id="lblForAll" value="COMON" class="form-label">Common</label>
+                                    </label>
+                                    <label style="margin-left:2px">
+                                        <input type="radio" class="chkDealer" name="Sessions" id="chkDealer" value="Dealer">
+                                        <label id="lblDealer" value="Dealer" style="" class="form-label"> Dealer </label>
+                                        @Html.DropDownList("ddlAllDealer", new SelectList((IEnumerable<SelectListItem>)ViewBag.ddlAllDealer, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlAllDealer" })
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:5px">
+                        <div class="col-md-9" style="margin-left: -15px;">
+                            <ul class="nav nav-tabs nav-justified primary">
+                                <li class="active">
+                                    <a href="#Jobs" data-toggle="tab">
+                                        <i></i> Jobs
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#Parts" data-toggle="tab">
+                                        <i></i> Parts
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#Lubricant" data-toggle="tab">
+                                        <i></i> Lubricants
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="tab-content primary">
+                            <div class="tab-pane fade in active" id="Jobs">
+                                <div class="row" style="margin-top:2rem;">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Jobs</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('DefaultJobs')" style="color:red;"></i></span>
+                                            <input type="text" class="form-control" id="txtJobCode" maxlength="15" style="width:30%" readonly>
+                                            <input type="text" class="form-control" id="txtJobDesc" maxlength="150" style="width:70%" readonly>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <label class="form-label">Labour Price</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-money" style="color:grey;"></i></span>
+                                            <input type="text" class="form-control" id="txtLabourAmount" readonly>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-2 pull-right ">
+                                        <div class="input-group" style="width:100%;">
+                                            <button class="btn btn-success btn-sm" type="button" style="margin-top:23px; padding:8px; width:100%;" onclick="AddJobDetail(this)">
+                                                <i class="fa fa-plus fa-2x"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12" style="margin-top:1rem;">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped" id="JobGridTable" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S No</th>
+                                                        <th>Job</th>
+                                                        <th>Job Description</th>
+                                                        <th>Amount</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Total Amount</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="txtJobTotal" maxlength="150" style="width:70%" readonly>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="Parts">
+                                <div class="row" style="margin-top:2rem;">
+
+                                    <div class="col-md-4">
+                                        <label class="form-label">Item Code</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('Parts')" style="color:red;"></i></span>
+                                            <input type="text" class="form-control" id="txtItemCode" readonly>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Item No.</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-square" style="color:grey;"></i></span>
+                                            <input type="text" class="form-control" id="txtItemNo" readonly>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Item Description</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                                            <input type="text" class="form-control" id="txtItemDesc" readonly>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Quantity</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                            <input type="text" class="form-control" id="txtPartQuantity" value="1" onkeypress="return isNumberKey(event)" />
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Price</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                                            <input type="text" class="form-control" id="txtPartPrice" readonly />
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Amount</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-cog fa-spin"></i></span>
+                                            <input type="text" class="form-control" id="txtPartAmount" readonly>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+                                    <div>
+                                        <div class="col-md-2 pull-right ">
+                                            <div class="input-group" style="width:100%;">
+                                                <button class="btn btn-success btn-sm" type="button" style="margin-top:23px; padding:8px; width:100%;" onclick="AddPartToGrid(this)">
+                                                    <i class="fa fa-plus fa-2x"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" style="margin-top:1rem;">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-striped" id="PartsGrid" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>S No</th>
+                                                        <th>Item code</th>
+                                                        <th>Part No</th>
+                                                        <th>Part Description</th>
+                                                        <th>Qty</th>
+                                                        <th>Price</th>
+                                                        <th>Amount</th>
+                                                        <th>Action</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Total Amount</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-money" style="color:grey;"></i></span>
+                                            <input type="text" class="form-control" id="txtTotalPart" readonly>
+                                        </div>
+                                        <div class="makespace"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="Lubricant">
+
+                                <div class="row" style="margin-top:2rem;">
+                                    <div class="col-md-12">
+                                        <div class="col-md-4">
+                                            <label class="form-label">Part Code</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-search" onclick="ShowModal('Lubcricant')" style="color:red;"></i></span>
+                                                <input type="text" class="form-control" id="txtPartCode" readonly>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Item No.</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-square" style="color:grey;"></i></span>
+                                                <input type="text" class="form-control" id="txtLubItemNo" readonly>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">Item Description</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-tag"></i></span>
+                                                <input type="text" class="form-control" id="txtLubItemDesc" readonly>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Quantity</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-cubes"></i></span>
+                                                <input type="text" class="form-control" id="txtLubQty" value="1" onkeypress="return isNumberKey(event)">
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Price</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                                                <input type="text" class="form-control" id="txtLubPrice" readonly>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Amount</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-cog fa-spin"></i></span>
+                                                <input type="text" class="form-control" id="txtLubAmount" readonly>
+                                            </div>
+                                            <div class="makespace"></div>
+                                        </div>
+                                        <div class="col-md-2 pull-right ">
+                                            <div class="input-group" style="width:100%;">
+                                                <button class="btn btn-success btn-sm" type="button" style="margin-top:23px; padding:8px; width:100%;" onclick="AddLubToGrid(this)">
+                                                    <i class="fa fa-plus fa-2x"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12" style="margin-top:1rem;">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-striped" id="LubGrid" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S No</th>
+                                                            <th>Item code</th>
+                                                            <th>Part No</th>
+                                                            <th>Part Description</th>
+                                                            <th>Qty</th>
+                                                            <th>Price</th>
+                                                            <th>Amount</th>
+                                                            <th>Action</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Total Amount</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="txtLubTotal" maxlength="150" style="width:70%" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+                    <!--Save/Clear/Delete-->
+                    <div class="row">
+
+                        <!--SAVE/Clear/Delete BUTTONS-->
+                        <div class="col-md-4 pull-right" style="margin-top:27px;">
+                            @*onclick="SaveMasterEnquiry()"*@
+                            <button type="button" class="btn btn-success" id="btnSave" style="margin-right:23px;">
+                                Save
+                            </button>
+                            <button type="reset" class="btn btn-primary" id="btnclr" onclick="ClearDesc()" style="margin-right: 23px;">
+                                Clear
+                            </button>
+
+                            <button type="button" class="btn btn-danger" id="btnDelete" onclick="">
+                                Delete
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </form>
+
+
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveMasterEnquiry()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <div class="modal" id="section-confirm-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to Delete ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-danger" type="button" onclick="DeleteEnquiry()">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <!-- Popup box Error modal start -->
+    <div class="modal" id="section-error" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalErrorMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblErrorMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    @*Schedule Modal ->START*@
+    <div class="modal" tabindex="-1" id="JobModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Schedule</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtEnquirySearch" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive" style="height:300px;">
+                            <table id="JobTable" class="table table-striped table-hover responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>Dealer</th>
+                                        <th>Schedule Code</th>
+                                        <th>KM</th>
+                                        <th>Reminder Later</th>
+                                        <th>Call Alert</th>
+                                        <th>SMS Alert</th>
+                                        <th>Vehicle Category</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    @*Vehicle Modal->START*@
+
+    <div class="modal" tabindex="-1" id="JobCatModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Vehicle</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtVehicleModalSearch" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive" style="height:300px;">
+                            <table id="JobCatTable" class="table table-striped table-hover responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>Dealer Code</th>
+                                        <th>Brand Desc</th>
+                                        <th>Product Desc</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase">
+                                    <tr id="JobCatRow"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    @*DefaultJobsModal->START*@
+    <div class="modal" tabindex="-1" id="DefaultJobsModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Jobs</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtEnquirySearch3" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive" style="height:300px;">
+                            <table id="ScheduleJobTable" class="table table-striped table-hover responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>Job Code</th>
+                                        <th>Job Desc</th>
+                                        <th>Amount</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase">
+                                    <tr id="ScheduleJobRow"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    @*PartsModal->START*@
+    <div class="modal" tabindex="-1" id="PartModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Parts</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtPartModalSearch" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive" style="height:300px;">
+                            <table id="SchedulePartsTable" class="table table-striped table-hover responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>DealerCode</th>
+                                        <th>Item Code</th>
+                                        <th>Part No</th>
+                                        <th>Item Description</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase">
+                                    <tr id="SchedulePartsRow"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    @*LubricantModal->START*@
+    <div class="modal" tabindex="-1" id="LubModal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="margin-top:60px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="modal123Label">Lubricant</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="exampleInputuname" class="col-md-2">Search :</label>
+                        <div class="col-md-10">
+                            <input type="text" id="txtLubModalSearch" class="form-control" aria-controls="EnquiryTable" placeholder="Search . . . ">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="table-responsive" style="height:300px;">
+                            <table id="ScheduleLubTable" class="table table-striped table-hover responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>DealerCode</th>
+                                        <th>Part Code</th>
+                                        <th>Lubricant No</th>
+                                        <th>Lubricant Description</th>
+                                        <th>Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="font-size:12px; text-transform: uppercase">
+                                    <tr id="ScheduleLubRow"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="text-transform: uppercase;" class="btn btn-danger waves-effect text-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</section>
+
+<script>
+
+    //For Search in Model->START
+    $(document).ready(function () {
+        $("#txtEnquirySearch").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#JobTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    //For Search in Model->End
+
+    //For Search in VehicleModel->START
+    $(document).ready(function () {
+        $("#txtVehicleModalSearch").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#JobCatTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    //For Search in Model->End
+
+    //For Search in Model->START
+    $(document).ready(function () {
+        $("#txtEnquirySearch3").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#ScheduleJobTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    //For Search in Model->End
+
+    //For Search in PartsModel->START
+    $(document).ready(function () {
+        $("#txtPartModalSearch").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#SchedulePartsTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    //For Search in Model->End
+
+    //For Search in LubModel->START
+    $(document).ready(function () {
+        $("#txtLubModalSearch").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#ScheduleLubTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+    //For Search in Model->End
+
+    //For Session Buttons->Start
+    $(document).ready(function () {
+        var dealer = 'COMON';
+        Get_JobData(dealer);
+        Get_JobCatData(dealer);
+        document.getElementById("ddlAllDealer").style.display = "none";
+        $('input:radio[name=Sessions]').change(function () {
+            if (this.value == '@Session["DealerCode"].ToString()') {
+                var dealer = '@Session["DealerCode"].ToString()';
+                $("[name='ddlAllDealer']").hide();
+                Get_JobData(dealer);
+                Get_JobCatData(dealer);
+            }
+            else if (this.value == 'COMON') {
+                $("[name='ddlAllDealer']").hide();
+                var dealer = 'COMON';
+                Get_JobData(dealer);
+                Get_JobCatData(dealer);
+            }
+            else if (this.value == 'Dealer') {
+                var dealer = $("#ddlAllDealer").val();
+                $("[name='ddlAllDealer']").show();
+                Get_JobData(dealer);
+                Get_JobCatData(dealer);
+            }
+        });
+    });
+    $("#ddlAllDealer").change(function () {
+
+        var val = $("#ddlAllDealer").val();
+        Get_JobData(val);
+        Get_JobCatData(dealer);
+        Get_PartsData(dealer);
+
+    });//For Session Buttons->End
+    //For Quantity Event On Change
+    $("#txtPartQuantity").change(function () {
+
+        var price = $("#txtPartPrice").val();
+        var qty = $("#txtPartQuantity").val();
+        var prod =  parseFloat(price) * parseFloat(qty);
+        $("#txtPartAmount").val(prod);
+
+    });//For Quantity Event On Change->End
+
+    //For Quantity Event On Change
+    $("#txtLubQty").change(function () {
+
+        var price = $("#txtLubPrice").val();
+        var qty = $("#txtLubQty").val();
+        var prod = parseFloat(price) * parseFloat(qty);
+        $("#txtLubAmount").val(prod);
+
+    });//For Quantity Event On Change->End
+
+    //For Numeric Values Only In Text Box   ->START
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
+    //For Numeric Values Only In Text Box   ->END
+    //For Numeric and Decimal Values Only In Text Box   ->START
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31
+          && (charCode < 48 || charCode > 57))
+            return false;
+        if (charCode == 46 && evt.srcElement.value.split('.').length > 1) { return false; }
+
+        return true;
+    }
+    //For Numeric and Decimal Values Only In Text Box   ->END
+
+
+
+    function ShowModal(type) {
+        if (type == 'Jobs') {
+            $('#JobModal').modal("show");
+        } else
+            if (type == 'DefaultJobs') {
+                $('#DefaultJobsModal').modal("show");
+            }
+            else if (type == 'JobCategory') {
+                $('#JobCatModal').modal("show");
+            }
+            else if(type== 'Parts'){
+                $('#PartModal').modal("show");
+            }
+            else if (type == 'Lubcricant') {
+                $('#LubModal').modal("show");
+            }
+    }
+
+    function Get_JobData(value) {
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        ;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': value },
+            url: '@Url.Content("~/Schedule/Select_ScheduleDetails")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#JobTable tbody tr").remove()
+                    //ProductDetail
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#JobTable tbody").append('<tr onclick="Get_ScheduleModalDetail(this);" id="fixedRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lbldealer">' + item.DealerCode.trim() + ' </label><input type="hidden" id="hdnBrandCode" value="' + item.BrandCode.trim() + '"/></td>' +
+                                                                '<td > <label id="lblScheduleCode">' + item.ScheduleCode.trim() + ' </label><input type="hidden" id="hdnProdCode" value="' + item.ProdCode.trim() + '"/></td>' +
+                                                                 '<td > <label id="lblBrandDesc">' + item.BrandDesc.trim() + ' </label><input type="hidden" id="lblRL" value="'+item.ReminderLetter+'"/></td>' +
+                                                                 '<td > <label id="lblProdDesc">' + item.ProdDesc.trim() + ' </label><input type="hidden" id="lblCallAlert" value="'+item.CallAlert+'"/></td>' +
+                                                                '<td > <label id="lblKM">' + item.KM.trim() + ' </label><input type="hidden" id="lblSmsAlert" value="' + item.SmsAlert + '"/><input type="hidden" id="hdnVisit" value="' + item.SDays + '"/></td>' +
+                                                                '<td > <label id="lblVehicleCategory">' + item.VehicleCategory + ' </label></td>' +
+
+
+
+                                                                '<td style="text-align:center;">' +
+                                                                '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                                                '<button type="button" class="btn btn-success btn-xs" id="btnUpdate" style="display:none;" onclick="UpdateData(this)"><i class="fa fa-check fa-lg"></i></button>' +
+                                                                '<button type="button" class="btn btn-danger btn-xs" id="btnCancel" style="display:none;margin-left:5px;" onclick="CancelEvent(this)" ><i class="fa fa-close fa-lg"></i></button>' +
+                                                                '</td>' +
+
+
+                                                            '</tr>');
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+
+    function Get_ScheduleModalDetail(value) {
+        debugger;
+
+        var dealerCode = $(value).closest('tr').find("#lbldealer").text().trim();
+        var schcode = $(value).closest('tr').find("#lblScheduleCode").text().trim();
+        var km = $(value).closest('tr').find("#lblKM").text().trim();
+        var later = $(value).closest('tr').find("#lblRL").val();
+        var call = $(value).closest('tr').find("#lblCallAlert").val();
+        var sms = $(value).closest('tr').find("#lblSmsAlert").val();
+        var vc = $(value).closest('tr').find("#lblVehicleCategory").text().trim();
+        var hdnBrandCode = $(value).closest('tr').find("#hdnBrandCode").val().trim();
+        var hdnProdCode = $(value).closest('tr').find("#hdnProdCode").val().trim();
+        var lblBrandDesc = $(value).closest('tr').find("#lblBrandDesc").text().trim();
+        var lblProdDesc = $(value).closest('tr').find("#lblProdDesc").text().trim();
+        var hdnVisit = $(value).closest('tr').find("#hdnVisit").val();
+        $("#txtSchedule").val(schcode);
+        $("#txtBrand").val(lblBrandDesc);
+        $("#hdnBrandCode").val(hdnBrandCode);
+        $("#txtProdDesc").val(lblProdDesc);
+        $("#hdnProduct").val(hdnProdCode);
+        $("#txtScheduleKM").val(km);
+        $("#txtReminderLater").val(later);
+        $("#txtCallAlert").val(call);
+        $("#txtSMSAlert").val(sms);
+        $("#txtVehicleCategory").val(vc);
+        $("#txtNextVisit").val(hdnVisit);
+        $('#JobModal').modal("hide");
+        // Calling Jobs Data
+        Get_ScheduleJobSave(dealerCode, schcode);
+        // Calling Part Data
+        Get_SchedulePartsSave(dealerCode, schcode);
+        // Calling Lubricant Data
+        Get_ScheduleLubeSave(dealerCode, schcode)
+    }
+    ///For Get Save Job
+    function Get_ScheduleJobSave(Dealer, schcode) {
+        ;
+        var dealer = Dealer;
+        var SCode = schcode;
+        var rowCount = 1;
+        var dataCount = 1;
+        var JobTotal = 0;
+        var SNo = 1;
+        ;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': Dealer, 'ScheduleCode': schcode },
+            url: '@Url.Content("~/Schedule/Select_SaveJobDetails")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#JobGridTable tbody tr").remove()
+                    //
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+                            $("#JobGridTable tbody").append('<tr  id="JobGridRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                   '<td>' + SNo++ + '</td>' +
+                                                                   '<td > <label id="lblJobCode">' + item.JobCode + ' </label></td>' +
+                                                                   '<td > <label id="lblJobDesc">' + item.JobDesc + ' </label></td>' +
+                                                                   '<td > <label id="lblAmount">' + item.Amount + ' </label></td>' +
+
+                                                                   '<td>' +
+                                                                   '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<a id="btnEdit" class="deleteItem"><i class="fa fa-remove" style="color:red"></i></a> ' +
+                                                                   '</td>' +
+
+                                                               '</tr>');
+                        });
+                            $("#JobGridTable tbody tr").each(function () {
+
+                                var check = $(this).closest('tr').find('td:eq(3)').text().trim();
+                                JobTotal = JobTotal + parseFloat(check);
+
+                            });
+                        //Add to PartsTotal
+                        ;
+                            $("#JobGridTable tbody tr").each(function () {
+
+                                var check = $(this).closest('tr').find('td:eq(3)').text().trim();
+                                JobTotal = JobTotal + parseFloat(check);
+
+                            });
+
+
+                        //Add to JobTotal
+                            ;
+                            $("#txtJobTotal").val(JobTotal);
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+
+    }
+    //For Vehicle
+    function Get_JobCatData(value) {
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        ;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': value },
+            url: '@Url.Content("~/Schedule/Select_ScheduleDetails2")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#JobCatTable tbody tr").remove()
+                    //Vehicle
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#JobCatTable tbody").append('<tr onclick="Get_JobCatDetail(this);" id="JobCatRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td> <label id="lblDealer">' + item.DealerCode.trim() + ' </label><input type="hidden" id="lblBrandCode" value="' + item.BrandCode + '"/></td>' +
+                                                                '<td> <label id="lblBrandDesc">' + item.BrandDesc.trim() + ' </label><input type="hidden" id="lblProdCode" value="' + item.ProdCode + '"/></td>' +
+                                                                '<td> <label id="lblProdDesc">' + item.ProdDesc.trim() + ' </label><input type="hidden" id="lblVehicleCat" value="' + item.VehicleCategory + '"/></td>' +
+
+
+
+                                                                '<td style="text-align:center;">' +
+                                                                '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                                                '<button type="button" class="btn btn-success btn-xs" id="btnUpdate" style="display:none;" onclick="UpdateData(this)"><i class="fa fa-check fa-lg"></i></button>' +
+                                                                '<button type="button" class="btn btn-danger btn-xs" id="btnCancel" style="display:none;margin-left:5px;" onclick="CancelEvent(this)" ><i class="fa fa-close fa-lg"></i></button>' +
+                                                                '</td>' +
+
+
+                                                            '</tr>');
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+    }
+    //data selection to grid /edit/Vehicle
+    function Get_JobCatDetail(value) {
+        ;
+        var vehicle = $(value).closest('tr').find("#lblVehicleCat").val();
+        var ProdCode = $(value).closest('tr').find("#lblProdCode").val();
+        var BrandCode = $(value).closest('tr').find("#lblBrandCode").val();
+        var valjobCode = $(value).closest('tr').find("#lblBrandDesc").text();
+        var ProdDes = $(value).closest('tr').find("#lblProdDesc").text();
+        $("#txtVehicleCategory").val(vehicle);
+        $("#hdnProduct").val(ProdCode);
+        $("#hdnBrandCode").val(BrandCode);
+        $("#txtBrand").val(valjobCode);
+        $("#txtProdDesc").val(ProdDes);
+        //Hide Modal
+        $('#JobCatModal').modal("hide");
+        ;
+        // Calling Part Data
+        Get_PartsData(value, vehicle);
+        // Calling Lubricant Data
+        Get_LubData(value, vehicle);
+
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        ;
+        var Job = 0;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'ProdCode': ProdCode, 'VehicleCategory': vehicle },
+            url: '@Url.Content("~/Schedule/Select_ScheduleDetails3")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#ScheduleJobTable tbody tr").remove()
+                    //
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#ScheduleJobTable tbody").append('<tr onclick="Get_ScheduleJobDetail(this);" id="ScheduleJobRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblJobCode">' + item.JobCode + ' </label></td>' +
+                                                                '<td > <label id="lblJobDesc">' + item.JobDesc + ' </label></td>' +
+                                                                '<td > <label id="lblAmount">' + item.Amount + ' </label></td>' +
+
+
+
+                                                                '<td style="text-align:center;">' +
+                                                                '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                                                '<button type="button" class="btn btn-success btn-xs" id="btnUpdate" style="display:none;" onclick="UpdateData(this)"><i class="fa fa-check fa-lg"></i></button>' +
+                                                                '<button type="button" class="btn btn-danger btn-xs" id="btnCancel" style="display:none;margin-left:5px;" onclick="CancelEvent(this)" ><i class="fa fa-close fa-lg"></i></button>' +
+                                                                '</td>' +
+
+
+                                                            '</tr>');
+
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+
+
+    }
+    //data selection to grid /edit/Jobs
+    function Get_ScheduleJobDetail(value) {
+        ;
+        var jobCode = $(value).closest('tr').find("#lblJobCode").text();
+        var jobDesc = $(value).closest('tr').find("#lblJobDesc").text();
+        var amount = $(value).closest('tr').find("#lblAmount").text();
+        $("#txtJobCode").val(jobCode);
+        $("#txtJobDesc").val(jobDesc);
+        $("#txtLabourAmount").val(amount);
+        //Hide Modal
+        $('#DefaultJobsModal').modal("hide");
+    }
+    function AddJobDetail() {
+
+        //;
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        var JobTotal = 0;
+        var jobcode = $("#txtJobCode").val().trim();
+        var jobDesc = $("#txtJobDesc").val().trim();
+        var amount = $("#txtLabourAmount").val();
+        if (jobcode == "" || jobcode == "null") {
+            $("#txtJobCode").css("border-color", "red");
+            if (jobDesc == "" || jobDesc == "null" && amount<=0) {
+                $("#txtJobDesc").css("border-color", "red");
+                $("#txtLabourAmount").css("border-color", "red");
+            }
+            return;
+        } else { $("#txtJobCode").css("border-color", "#ccc"); }
+        if (jobDesc == "" || jobDesc == "null") {
+            $("#txtJobDesc").css("border-color", "red");
+            return;
+        } else { $("#txtJobDesc").css("border-color", "#ccc"); }
+        if (amount<=0) {
+            $("#txtLabourAmount").css("border-color", "red");
+            return;
+        } else { $("#txtLabourAmount").css("border-color", "#ccc"); }
+        ;
+        var vali=TableValidation();
+        if ( !vali== true) {
+            return;
+        }
+        $("#JobGridTable tbody").append('<tr  id="JobGridRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblJobCode">' + jobcode + ' </label></td>' +
+                                                                '<td > <label id="lblJobDesc">' + jobDesc + ' </label></td>' +
+                                                                '<td > <label id="lblAmount">' + amount + ' </label></td>' +
+
+                                                                '<td>' +
+                                                                '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<a id="btnEdit" class="deleteItem"><i class="fa fa-remove" style="color:red"></i></a> ' +
+                                                                '</td>' +
+
+                                                            '</tr>');
+        $("#JobGridTable tbody tr").each(function () {
+
+            var check = $(this).closest('tr').find('td:eq(3)').text().trim();
+            JobTotal = JobTotal + parseFloat(check);
+
+        });
+
+
+
+        //Select row from Grid;
+
+        $("#txtJobCode").val("");
+        $("#txtJobDesc").val("");
+        $("#txtLabourAmount").val("");
+        //Add to JobTotal
+        ;
+        $("#txtJobTotal").val(JobTotal);
+    }
+
+    //Grid to Textboxes//Job
+    $("table#JobGridTable").on('click', '.selectItem', function () {
+        rIndex = $(this).closest('tr');
+        index = $(this).closest('tr')[0].rowIndex;
+        var jobCode = rIndex.find('td:eq(1)').text();
+        var jobDesc = rIndex.find('td:eq(2)').text();
+        var amount = rIndex.find('td:eq(3)').text();
+        $("#txtJobCode").val(jobCode);
+        $("#txtJobDesc").val(jobDesc);
+        $("#txtLabourAmount").val(amount);
+        //Grid Row Removes/Job
+        $(this).closest('tr').remove();
+        $(this).empty();
+
+    });
+
+    //Delete row from Grid;
+    $("table#JobGridTable").on('click', '.deleteItem', function () {
+        rIndex = $(this).closest('tr');
+        index = $(this).closest('tr')[0].rowIndex;
+        $(this).closest('tr').remove();
+
+    });
+    //Grid Validation
+    function TableValidation() {
+        var ret = true;
+        var count = 0;
+        $("#JobGridTable tbody tr").each(function () {
+            ;
+            var jobc = $("#txtJobCode").val().trim();
+            //  var check = $("#lblJobCode").val();
+            //var check = document.getElemenyById("lblJobCode").value();
+            //var check = $(this).closest('tr').find("#lblJobCode").val();
+            var check = $(this).closest('tr').find('td:eq(1)').text().trim();
+
+            if (jobc == check) {
+
+                $("#modalErrorMessage").css("background-color", "#e46457");
+                $("#lblErrorMessage").text("This Job is already  in table")
+                $("#section-error").modal('show');
+                $("#txtJobCode").css("border-color", "red");
+                ret = false;
+                //$("#btnAdd").prop('disabled', true);
+                // isExistChassis = false;
+                count++;
+            }
+
+        });
+        if (count > 0) {
+            return false;
+        }
+        check = "";
+        jobc = "";
+        return true;
+
+    }
+
+    ///                                              ***   PARTS TAB WORKING START  ***
+    function Get_SchedulePartsSave(Dealer, schcode) {
+        ;
+        var dealer = Dealer;
+        var SCode=schcode;
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        var PartTotal = 0;
+        
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': Dealer, 'ScheduleCode': schcode },
+            url: '@Url.Content("~/Schedule/Select_SavePartsDetails")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#SchedulePartsTable tbody tr").remove()
+                    //
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#PartsGrid tbody").append('<tr  id="PartsGridRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblJobCode">' + item.ItemCode + ' </label></td>' +
+                                                                '<td > <label id="lblJobNo">' + item.PartItemNo + ' </label></td>' +
+                                                                '<td > <label id="lblJobDesc">' + item.ItemDesc + ' </label></td>' +
+                                                                '<td > <label id="lblQty">' + item.Qty + ' </label></td>' +
+                                                                '<td > <label id="lblPrice">' + item.SaleRate + ' </label></td>' +
+                                                                '<td > <label id="lblAmount">' + parseFloat(item.Qty) * parseFloat(item.SaleRate) + ' </label></td>' +
+
+                                                                '<td>' +
+                                                                '<a id="btnEdit" class="selectParts"><i class="fa fa-edit" style="color:blue"></i></a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<a id="btnEdit" class="deletePart"><i class="fa fa-remove" style="color:red"></i></a> ' +
+                                                                '</td>' +
+
+                                                            '</tr>');
+
+                        });
+                        $("#PartsGrid tbody tr").each(function () {
+
+                            var check = $(this).closest('tr').find('td:eq(6)').text().trim();
+                            PartTotal = PartTotal + parseFloat(check);
+
+                        });
+                        //Add to PartsTotal
+                        ;
+                        $("#txtTotalPart").val(PartTotal);
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+
+    }
+    function Get_PartsData(value,vehicle) {
+        ;
+        var dealer = $(value).closest('tr').find("#lblDealer").text();
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        ;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': dealer, 'VehicleCategory': vehicle },
+            url: '@Url.Content("~/Schedule/Select_SchedulePartsDetails")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#SchedulePartsTable tbody tr").remove()
+                    //
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#PartsGrid tbody").append('<tr onclick="Get_PartsDetail(this);" id="SchedulePartsRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lbldealer">' + item.DealerCode.trim() + ' </label><input type="hidden" id="lblPartItemCatCode" value="' + item.ItemCatCode.trim() + '"/></td>' +
+                                                                '<td > <label id="lblItemCode">' + item.ItemCode.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblPartItemNo">' + item.PartItemNo.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblItemDesc">' + item.ItemDesc.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblSaleRate">' + item.SaleRate.trim() + ' </label></td>' +
+
+
+                                                                '<td>' +
+                                                                '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                                                '</td>' +
+
+
+                                                            '</tr>');
+
+                        });
+                        $("#PartsGrid tbody tr").each(function () {
+
+                            var check = $(this).closest('tr').find('td:eq(6)').text().trim();
+                            PartTotal = PartTotal + parseFloat(check);
+
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+
+    }
+    //data selection to grid /edit/Parts
+    function Get_PartsDetail(value) {
+        ;
+        var partitemcatcode = $(value).closest('tr').find("#lblPartItemCatCode").text();
+        var itemcode = $(value).closest('tr').find("#lblItemCode").text();
+        var partitem = $(value).closest('tr').find("#lblPartItemNo").text();
+        var itemdesc = $(value).closest('tr').find("#lblItemDesc").text();
+        var salerate = $(value).closest('tr').find("#lblSaleRate").text();
+
+        $("#txtItemCode").val(itemcode);
+        $("#txtItemNo").val(partitem);
+        $("#txtItemDesc").val(itemdesc);
+        $("#txtPartPrice").val(salerate);
+        $("#txtPartAmount").val(salerate);
+        //Hide Modal
+        $('#PartModal').modal("hide");
+    }
+    //Parts/Add /Button
+    function AddPartToGrid() {
+        //;
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        var PartTotal = 0;
+        var jobcode = $("#txtItemCode").val().trim();
+        var jobno = $("#txtItemNo").val().trim();
+        var jobDesc = $("#txtItemDesc").val().trim();
+        var qty = $("#txtPartQuantity").val().trim();
+        var price = $("#txtPartPrice").val().trim();
+        var amount = $("#txtPartAmount").val().trim();
+        if (jobcode == "" || jobcode == "null") {
+            $("#txtItemCode").css("border-color", "red");
+            if (jobDesc == "" || jobDesc == "null" && amount <= 0) {
+                $("#txtItemDesc").css("border-color", "red");
+                $("#txtPartAmount").css("border-color", "red");
+            } else {
+                $("#txtItemDesc").css("border-color", "#ccc");
+                $("#txtPartAmount").css("border-color", "#ccc");
+            }
+            return;
+        } else { $("#txtItemCode").css("border-color", "#ccc"); }
+        if (jobDesc == "" || jobDesc == "null") {
+            $("#txtItemDesc").css("border-color", "red");
+            return;
+        } else { $("#txtItemDesc").css("border-color", "#ccc"); }
+        if (amount <= 0) {
+            $("#txtPartAmount").css("border-color", "red");
+            return;
+        } else { $("#txtPartAmount").css("border-color", "#ccc"); }
+        ;
+        var vali = PartsTableValidation();
+        if (!vali == true) {
+            return;
+        }
+
+        $("#PartsGrid tbody").append('<tr  id="PartsGridRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblJobCode">' + jobcode + ' </label></td>' +
+                                                                '<td > <label id="lblJobNo">' + jobno + ' </label></td>' +
+                                                                '<td > <label id="lblJobDesc">' + jobDesc + ' </label></td>' +
+                                                                '<td > <label id="lblQty">' + qty + ' </label></td>' +
+                                                                '<td > <label id="lblPrice">' + price + ' </label></td>' +
+                                                                '<td > <label id="lblAmount">' + amount + ' </label></td>' +
+
+                                                                '<td>' +
+                                                                '<a id="btnEdit" class="selectParts"><i class="fa fa-edit" style="color:blue"></i></a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<a id="btnEdit" class="deletePart"><i class="fa fa-remove" style="color:red"></i></a> ' +
+                                                                '</td>' +
+
+                                                            '</tr>');
+        $("#PartsGrid tbody tr").each(function () {
+
+            var check = $(this).closest('tr').find('td:eq(6)').text().trim();
+            PartTotal = PartTotal + parseFloat(check);
+
+        });
+
+
+        $("#txtItemCode").val("");
+        $("#txtItemNo").val("");
+        $("#txtItemDesc").val("");
+        $("#txtPartQuantity").val("");
+        $("#txtPartPrice").val("");
+        $("#txtPartAmount").val("");
+        //Add to JobTotal
+        ;
+        $("#txtTotalPart").val(PartTotal);
+    }
+    //Delete row from Grid//Parts
+    $("table#PartsGrid").on('click', '.deletePart', function () {
+        rIndex = $(this).closest('tr');
+        index = $(this).closest('tr')[0].rowIndex;
+        $(this).closest('tr').remove();
+
+    });
+    //Selete row from Grid//Parts
+    $("table#PartsGrid").on('click', '.selectParts', function () {
+        ;
+        rIndex = $(this).closest('tr');
+        index = $(this).closest('tr')[0].rowIndex;
+        var jobCode = rIndex.find('td:eq(1)').text();
+        var jobNo = rIndex.find('td:eq(2)').text();
+        var jobDesc = rIndex.find('td:eq(3)').text();
+        var qty = rIndex.find('td:eq(4)').text();
+        var price = rIndex.find('td:eq(5)').text();
+        var amount = rIndex.find('td:eq(6)').text();
+        $("#txtItemCode").val(jobCode);
+        $("#txtItemNo").val(jobNo);
+        $("#txtItemDesc").val(jobDesc);
+        $("#txtPartQuantity").val(qty);
+        $("#txtPartPrice").val(price);
+        $("#txtPartAmount").val(amount);
+        //Grid Row Removes/Parts
+        $(this).closest('tr').remove();
+        $(this).empty();
+
+    });
+    //Grid Validation/Parts
+    function PartsTableValidation() {
+        var ret = true;
+        var count = 0;
+        $("#PartsGrid tbody tr").each(function () {
+            ;
+            var jobc = $("#txtItemCode").val().trim();
+            //  var check = $("#lblJobCode").val();
+            //var check = document.getElemenyById("lblJobCode").value();
+            //var check = $(this).closest('tr').find("#lblJobCode").val();
+            var check = $(this).closest('tr').find('td:eq(1)').text().trim();
+
+            if (jobc == check) {
+
+                $("#modalErrorMessage").css("background-color", "#e46457");
+                $("#lblErrorMessage").text("This Part is Already  in Table")
+                $("#section-error").modal('show');
+                $("#txtItemCode").css("border-color", "red");
+                ret = false;
+                //$("#btnAdd").prop('disabled', true);
+                // isExistChassis = false;
+                count++;
+            }
+
+        });
+        if (count > 0) {
+            return false;
+        }
+        return true;
+
+    }
+
+
+    ///                                             *** LUBRICANT TAB WORKING START  ***
+
+
+    function Get_ScheduleLubeSave(Dealer, schcode) {
+        ;
+        var dealer = Dealer;
+        var SCode = schcode;
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        ;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': Dealer, 'ScheduleCode': schcode },
+            url: '@Url.Content("~/Schedule/Select_SaveLubeDetails")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#LubGrid tbody tr").remove()
+                    //
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#LubGrid tbody").append('<tr  id="LubGridRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblLubJobCode">' + jobcode + ' </label></td>' +
+                                                                '<td > <label id="lblLubJobNo">' + jobno + ' </label></td>' +
+                                                                '<td > <label id="lblLubJobDesc">' + jobDesc + ' </label></td>' +
+                                                                '<td > <label id="lblLubQty">' + qty + ' </label></td>' +
+                                                                '<td > <label id="lblLubPrice">' + price + ' </label></td>' +
+                                                                '<td > <label id="lblLubAmount">' + amount + ' </label></td>' +
+
+                                                                '<td>' +
+                                                                '<a id="btnEdit" class="selectLub"><i class="fa fa-edit" style="color:blue"></i></a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<a id="btnEdit" class="deleteLub"><i class="fa fa-remove" style="color:red"></i></a> ' +
+                                                                '</td>' +
+
+                                                            '</tr>');
+                                                            });
+                            $("#LubGrid tbody tr").each(function () {
+
+                                var check = $(this).closest('tr').find('td:eq(6)').text().trim();
+                                Lubtotal = Lubtotal + parseFloat(check);
+
+                            });
+                        //Add to LubeTotal
+                        ;
+                            $("#txtLubTotal").val(Lubtotal);
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+
+    }
+    function Get_LubData(value, vehicle) {
+        ;
+        var dealer = $(value).closest('tr').find("#lblDealer").text();
+        var rowCount = 1;
+        var dataCount = 1;
+        var Lubtotal = 0;
+        var SNo = 1;
+        ;
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            data: { 'dealer': dealer, 'VehicleCategory': vehicle },
+            url: '@Url.Content("~/Schedule/Select_ScheduleLubDetails")',
+            success: function (data) {
+
+                if (data.Success == true) {
+                    var item = JSON.parse(data.Response)
+                    $("#ScheduleLubTable tbody tr").remove()
+                    //
+                    if (item.length > 0) {
+
+                        $.each(item, function (value, item) {
+
+                            $("#ScheduleLubTable tbody").append('<tr onclick="Get_LubDetail(this);" id="ScheduleLubRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblLubdealer">' + item.DealerCode.trim() + ' </label><input type="hidden" id="lblLubItemCatCode" value="' + item.ItemCatCode.trim() + '"/></td>' +
+                                                                '<td > <label id="lblLubItemCode">' + item.ItemCode.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblLubItemNo">' + item.PartItemNo.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblLubItemDesc">' + item.ItemDesc.trim() + ' </label></td>' +
+                                                                '<td > <label id="lblLubSaleRate">' + item.SaleRate.trim() + ' </label></td>' +
+
+
+                                                                '<td>' +
+                                                                '<a id="btnEdit" class="selectItem"><i class="fa fa-edit" style="color:blue"></i></a> ' +
+                                                                '</td>' +
+
+
+                                                            '</tr>');
+                        });
+
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+        });
+
+    }
+    //data selection to grid /edit/Lub
+    function Get_LubDetail(value) {
+        ;
+
+        var partitemcatcode = $(value).closest('tr').find("#lblLubItemCatCode").text();
+        var itemcode = $(value).closest('tr').find("#lblLubItemCode").text();
+        var partitem = $(value).closest('tr').find("#lblLubItemNo").text();
+        var itemdesc = $(value).closest('tr').find("#lblLubItemDesc").text();
+        var salerate = $(value).closest('tr').find("#lblLubSaleRate").text();
+
+        $("#txtPartCode").val(itemcode);
+        $("#txtLubItemNo").val(partitem);
+        $("#txtLubItemDesc").val(itemdesc);
+        $("#txtLubPrice").val(salerate);
+        $("#txtLubAmount").val(salerate);
+        //Hide Modal
+        $('#LubModal').modal("hide");
+    }
+    //Lub/Add /Button
+    function AddLubToGrid() {
+
+        ;
+        var rowCount = 1;
+        var dataCount = 1;
+        var SNo = 1;
+        var Lubtotal=0;
+        var jobcode = $("#txtPartCode").val().trim();
+        var jobno = $("#txtLubItemNo").val().trim();
+        var jobDesc = $("#txtLubItemDesc").val().trim();
+        var qty = $("#txtLubQty").val().trim();
+        var price = $("#txtLubPrice").val().trim();
+        var amount = $("#txtLubAmount").val().trim();
+        if (jobno == "" || jobno == "null" && jobcode == "" || jobcode == "null") {
+            $("#txtPartCode").css("border-color", "red");
+            $("#txtLubItemNo").css("border-color", "red");
+            if (amount <= 0) {
+                $("#txtLubAmount").css("border-color", "red");
+            } else {$("#txtLubAmount").css("border-color", "#ccc");}
+            return;
+        } else {
+            $("#txtPartCode").css("border-color", "#ccc");
+            $("#txtLubItemNo").css("border-color", "#ccc");
+        }
+        if (jobDesc == "" || jobDesc == "null") {
+            $("#txtLubItemDesc").css("border-color", "red");
+            return;
+        }
+        if (amount <= 0) {
+            $("#txtLubAmount").css("border-color", "red");
+            return;
+        }
+        ;
+        var vali = LubTableValidation();
+        if (!vali == true) {
+            return;
+        }
+
+        $("#LubGrid tbody").append('<tr  id="LubGridRow' + (rowCount++) + '" data-tr-count="' + (dataCount++) + '">' +
+                                                                '<td>' + SNo++ + '</td>' +
+                                                                '<td > <label id="lblLubJobCode">' + jobcode + ' </label></td>' +
+                                                                '<td > <label id="lblLubJobNo">' + jobno + ' </label></td>' +
+                                                                '<td > <label id="lblLubJobDesc">' + jobDesc + ' </label></td>' +
+                                                                '<td > <label id="lblLubQty">' + qty + ' </label></td>' +
+                                                                '<td > <label id="lblLubPrice">' + price + ' </label></td>' +
+                                                                '<td > <label id="lblLubAmount">' + amount + ' </label></td>' +
+
+                                                                '<td>' +
+                                                                '<a id="btnEdit" class="selectLub"><i class="fa fa-edit" style="color:blue"></i></a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp<a id="btnEdit" class="deleteLub"><i class="fa fa-remove" style="color:red"></i></a> ' +
+                                                                '</td>' +
+
+                                                            '</tr>');
+        $("#LubGrid tbody tr").each(function () {
+
+            var check = $(this).closest('tr').find('td:eq(6)').text().trim();
+            Lubtotal = Lubtotal + parseFloat(check);
+
+        });
+
+        $("#txtPartCode").val("");
+        $("#txtLubItemNo").val("");
+        $("#txtLubItemDesc").val("");
+        $("#txtLubQty").val("");
+        $("#txtLubPrice").val("");
+        $("#txtLubAmount").val("");
+        //Add to JobTotal
+
+        $("#txtLubTotal").val(Lubtotal);
+    }
+    //Delete row from Grid//Lubricant;
+    $("table#LubGrid").on('click', '.deleteLub', function () {
+        rIndex = $(this).closest('tr');
+        index = $(this).closest('tr')[0].rowIndex;
+        $(this).closest('tr').remove();
+
+    });
+    //Selete row from Grid//Lub
+    $("table#LubGrid").on('click', '.selectLub', function () {
+        ;
+        rIndex = $(this).closest('tr');
+        index = $(this).closest('tr')[0].rowIndex;
+        var jobCode = rIndex.find('td:eq(1)').text();
+        var jobNo = rIndex.find('td:eq(2)').text();
+        var jobDesc = rIndex.find('td:eq(3)').text();
+        var qty = rIndex.find('td:eq(4)').text();
+        var price = rIndex.find('td:eq(5)').text();
+        var amount = rIndex.find('td:eq(6)').text();
+        $("#txtPartCode").val(jobCode);
+        $("#txtLubItemNo").val(jobNo);
+        $("#txtLubItemDesc").val(jobDesc);
+        $("#txtLubQty").val(qty);
+        $("#txtLubPrice").val(price);
+        $("#txtLubAmount").val(amount);
+        //Grid Row Removes/Parts
+        $(this).closest('tr').remove();
+        $(this).empty();
+
+    });
+
+    //Grid Validation/Lub
+    function LubTableValidation() {
+        var ret = true;
+        var count = 0;
+        $("#LubGrid tbody tr").each(function () {
+            ;
+            var jobc = $("#txtPartCode").val().trim();
+            //  var check = $("#lblJobCode").val();
+            //var check = document.getElemenyById("lblJobCode").value();
+            //var check = $(this).closest('tr').find("#lblJobCode").val();
+            var check = $(this).closest('tr').find('td:eq(1)').text().trim();
+
+            if (jobc == check) {
+                $("#modalErrorMessage").css("background-color", "#e46457");
+                $("#lblErrorMessage").text("This Lubricant is Already  in Table")
+                $("#section-error").modal('show');
+                $("#txtPartCode").css("border-color", "red");
+                ret = false;
+                //$("#btnAdd").prop('disabled', true);
+                // isExistChassis = false;
+                count++;
+            }
+
+        });
+        if (count > 0) {
+            return false;
+        }
+        return true;
+
+    }
+    //SAVE
+    $("#btnSave").click(function () {
+
+        //var check = true;
+        var check = ValidateSchedule();
+        if (check == true) {
+            $("#section-confirm").modal("show");
+        }
+    })
+    ///                                       ***  Starting Validation Of The Form Before SAVE ***
+    function ValidateSchedule() {
+        var check = false;
+
+        var sch = $("#txtSchedule").val();
+        var prod = $("#txtProdDesc").val();
+        var brand = $("#txtBrand").val();
+        var vc = $("#txtVehicleCategory").val();
+        var schkm = $("#txtScheduleKM").val();
+        var visit = $("#txtNextVisit").val();
+        var rem = $("#txtReminderLater").val();
+        var call = $("#txtCallAlert").val();
+        var sms = $("#txtSMSAlert").val();
+        var LubTotal = $("#txtLubTotal").val();
+        var PartTotal = $("#txtTotalPart").val();
+        var JobTotal = $("#txtJobTotal").val();
+        if (prod == "" || prod == "null") {
+            $("#txtProdDesc").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtProdDesc").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#txtProdDesc").css("border-color", "#ccc");
+        }
+
+        if (brand == "" || brand == "null") {
+            $("#txtBrand").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtBrand").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#txtBrand").css("border-color", "#ccc");
+        }
+
+        if (vc == "" || vc == "null") {
+            $("#txtVehicleCategory").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtVehicleCategory").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#txtVehicleCategory").css("border-color", "#ccc");
+        }
+
+        if (schkm == "0" || schkm == "null" || schkm == "") {
+            $("#txtScheduleKM").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtScheduleKM").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#txtScheduleKM").css("border-color", "#ccc");
+        }
+        if (visit == "0") {
+            $("#txtNextVisit").css("border-color", "red");
+            $('html, body').animate({
+                scrollTop: $("#txtNextVisit").scrollTop(500)
+            }, 800);
+            return check;
+        }
+        else {
+            $("#txtNextVisit").css("border-color", "#ccc");
+        }
+        if (LubTotal == "" || LubTotal == null) {
+            $("#txtJobTotal").val("0");
+
+
+        }
+        if (PartTotal == "" || PartTotal == null) {
+            $("#txtTotalPart").val("0");
+
+
+        }
+        if (LubTotal == "" || LubTotal == null) {
+            $("#txtLubTotal").val("0");
+
+
+        }
+        check = true;
+        return check;
+    }
+    ///                                       ***  Starting SAVE Of The Master Fields***
+    function SaveMasterEnquiry() {
+
+        var chkCurrentUser = $('input.chkCurrentUser').is(':checked');
+        var chkCU = $('input.chkCU').is(':checked');
+        ;
+        cu = "COMON";
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+            // cu = "";
+        }
+
+        var chkForAll = $('input.chkForAll').is(':checked');
+
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+            //  cu = "";
+        }
+        var chkDealer = $('input.chkDealer').is(':checked');
+
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+            //  cu = "";
+        }
+        var dto = {};
+
+        dto.DealerCode =cu;
+        dto.ScheduleCode = $("#txtSchedule").val();
+        dto.ProdCode =  $("#hdnProduct").val();
+        dto.BrandCode = $("#hdnBrandCode").val();
+        dto.VehicleCategory = $("#txtVehicleCategory").val();
+        dto.KM = $("#txtScheduleKM").val();
+        dto.SDays = $("#txtNextVisit").val();
+        dto.CallAlert = $("#txtCallAlert").val();
+        dto.SmsAlert = $("#txtSMSAlert").val();
+        dto.ReminderLetter = $("#txtReminderLater").val();
+        dto.JobsTotal = $("#txtJobTotal").val();
+        dto.PartsTotal = $("#txtTotalPart").val();
+        dto.LubsTotal = $("#txtLubTotal").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Schedule/Insert_ScheduleMaster")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        SaveTabJobs();
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+
+        });
+    }
+    //                                                   *** SAVING TAB JOBS ***
+    function insertTabRecordJob() {
+        var obj = [];
+        var chkCurrentUser = $('input.chkCurrentUser').is(':checked');
+        var chkCU = $('input.chkCU').is(':checked');
+
+        cu = "COMON";
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+            // cu = "";
+        }
+
+        var chkForAll = $('input.chkForAll').is(':checked');
+
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+            //  cu = "";
+        }
+        var chkDealer = $('input.chkDealer').is(':checked');
+
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+            //  cu = "";
+        }
+
+        $("#JobGridTable tbody tr").each(function () {
+
+            var dto = {};
+            dto.DealerCode = cu;
+            dto.ProdCode = $("#hdnProduct").val().trim();
+            dto.BrandCode = $("#hdnBrandCode").val().trim();
+            dto.KM = $("#txtScheduleKM").val().trim();
+            dto.SDays = $("#txtNextVisit").val().trim();
+            dto.JobCode = $(this).closest('tr').find('#lblJobCode').text().trim();
+            dto.Labor = $(this).closest('tr').find('#lblAmount').text().trim();
+            dto.DefJobDesc = $(this).closest('tr').find('#lblJobDesc').text().trim();
+
+
+            obj.push(dto);
+        });
+
+        return obj;
+    }
+
+    function SaveTabJobs() {
+
+        var objects = [];
+
+        objects = JSON.stringify({ 'objects': insertTabRecordJob() });
+
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            //async: true,
+            type: 'POST',
+            url: '@Url.Content("~/Schedule/Insert_ScheduleTabJobs")',
+            data: objects,
+            success: function (data) {
+
+                if (data.Success == true) {
+
+                   SaveTabParts();
+                }
+                else {
+                    $("#section-confirm").modal("hide")
+                    $("#modalMessage").css("background-color", "#e46457");
+                    $("#lblMessage").text(data.Message)
+                    $("#section-message").modal('show');
+
+                }
+            },
+
+
+        });
+
+    }
+    //                                                   *** SAVING TAB PARTS ***
+    function insertTabRecordParts() {
+        var obj = [];
+        var chkCurrentUser = $('input.chkCurrentUser').is(':checked');
+        var chkCU = $('input.chkCU').is(':checked');
+        ;
+        cu = "COMON";
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+            // cu = "";
+        }
+
+        var chkForAll = $('input.chkForAll').is(':checked');
+
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+            //  cu = "";
+        }
+        var chkDealer = $('input.chkDealer').is(':checked');
+
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+            //  cu = "";
+        }
+        $("#PartsGrid tbody tr").each(function () {
+            var dto = {};
+
+            dto.DealerCode = cu;
+            dto.ProdCode = $("#hdnProduct").val().trim();
+            dto.BrandCode = $("#hdnBrandCode").val().trim();
+            dto.KM = $("#txtScheduleKM").val().trim();
+            dto.SDays = $("#txtNextVisit").val().trim();
+            dto.ItemCode = $(this).closest('tr').find('#lblJobCode').text();
+            dto.PartNo = $(this).closest('tr').find('#lblJobNo').text();
+            dto.Qty = $(this).closest('tr').find('#lblQty').text().trim();
+            dto.Price = $(this).closest('tr').find('#lblPrice').text().trim();
+            dto.PartsDesc = $(this).closest('tr').find('#lblJobDesc').text();
+            dto.Total = $(this).closest('tr').find('#lblAmount').text().trim();
+
+
+            obj.push(dto);
+
+        });
+
+        return obj;
+    }
+    function SaveTabParts() {
+
+        var objects = [];
+
+        objects = JSON.stringify({ 'objects': insertTabRecordParts() });
+
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            //async: true,
+            type: 'POST',
+            url: '@Url.Content("~/Schedule/Insert_ScheduleTabParts")',
+            data: objects,
+            success: function (data) {
+
+                if (data.Success == true) {
+
+                    SaveTabLub();
+                }
+                else {
+                    $("#section-confirm").modal("hide")
+                    $("#modalMessage").css("background-color", "#e46457");
+                    $("#lblMessage").text(data.Message)
+                    $("#section-message").modal('show');
+
+                }
+            },
+
+
+        });
+
+    }
+    //                                                      *** SAVING TAB LUB ***
+    function insertTabRecordLub() {
+        var obj = [];
+        var chkCurrentUser = $('input.chkCurrentUser').is(':checked');
+        var chkCU = $('input.chkCU').is(':checked');
+        ;
+        cu = "COMON";
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+            // cu = "";
+        }
+
+        var chkForAll = $('input.chkForAll').is(':checked');
+
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+            //  cu = "";
+        }
+        var chkDealer = $('input.chkDealer').is(':checked');
+
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+            //  cu = "";
+        }
+        $("#LubGrid tbody tr").each(function () {
+            var dto = {};
+            dto.DealerCode = cu;
+            dto.ProdCode = $("#hdnProduct").val().trim();
+            dto.BrandCode = $("#hdnBrandCode").val().trim();
+            dto.KM = $("#txtScheduleKM").val().trim();
+            dto.SDays = $("#txtNextVisit").val().trim();
+            dto.ItemCode = $(this).closest('tr').find('#lblLubJobCode').text();
+            dto.PartNo = $(this).closest('tr').find('#lblLubJobNo').text();
+            dto.Qty = $(this).closest('tr').find('#lblLubQty').text().trim();
+            dto.Price = $(this).closest('tr').find('#lblLubPrice').text().trim();
+            dto.PartsDesc = $(this).closest('tr').find('#lblLubJobDesc').text();
+            dto.Total = $(this).closest('tr').find('#lblLubAmount').text().trim();
+
+            obj.push(dto);
+        });
+
+        return obj;
+    }
+    function SaveTabLub() {
+
+        var objects = [];
+
+        objects = JSON.stringify({ 'objects': insertTabRecordLub() });
+
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            //async: true,
+            type: 'POST',
+            url: '@Url.Content("~/Schedule/Insert_ScheduleTabLub")',
+            data: objects,
+            success: function (data) {
+
+                if (data.Success == true) {
+
+                    $("#section-confirm").modal("hide")
+                    $("#modalMessage").css("background-color", "#64c344");
+                    $("#lblMessage").text(data.Message)
+                    $("#section-message").modal('show');
+
+                }
+                else {
+                    $("#section-confirm").modal("hide")
+                    $("#modalMessage").css("background-color", "#e46457");
+                    $("#lblMessage").text(data.Message)
+                    $("#section-message").modal('show');
+
+                }
+            },
+
+
+        });
+
+    }
+
+
+
+    @*$("#btnSave").click(function () {
+        var exitflag = false;
+        var row = $("#JobGridTable tbody tr").length;
+        var jcode = $("#txtSchedule").val();
+        var jccode = $("#txtJobCatCode").val();
+        var jccdesc = $("#txtScheduleCode").val();
+        var jdes = $("#txtJobDesc").val();
+        var prod = $("#ddlproduct").val();
+        var ver = $("#ddlversion").val();
+        var amo = $("#txtAmount").val();
+        var st = $("#txtStandardTime").val();
+        var vc = $("#ddlVehicle").val();
+        if (jdes == "" || jdes == null) {
+            $("#txtDefJobDesc").css("border-color", "red");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#lblMessage").text("Description Should Not Be Left Blank")
+            $("#section-message").modal('show');
+        }
+        else {
+            $("#JobGridTable tbody tr").each(function () {
+                var tem = $(this).closest('tr').find('#lblDefJobDesc').text().trim();
+
+                if (jdes == tem) {
+                    $("#warning").text("Description Already Exist");
+                    exitflag = true;
+                }
+            });
+        }
+        if (exitflag) return false;
+        $("#txtJobCatCode").css("border-color", "#ccc");
+        $("#txtJobCatDesc").css("border-color", "#ccc");
+        var JobCatCode = $("#txtJobCatCode").val();
+        var JobCatDesc = $("#txtJobCatDesc").val();
+
+
+        if (JobCatDesc == "" || JobCatDesc == "") {
+            $("#txtJobCatDesc").css("border-color", "red");
+            return;
+        }
+
+        $("#section-confirm").modal("show");
+    })
+    function SaveMasterEnquiry() {
+        var chkCurrentUser = $('input.chkCurrentUser').is(':checked');
+        var chkCU = $('input.chkCU').is(':checked');
+        //var chkUnChanged = $('input.chkCU').is(':checked');
+
+        ;
+        cu = "COMON";
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+            // cu = "";
+        }
+
+        var chkForAll = $('input.chkForAll').is(':checked');
+
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+            //  cu = "";
+        }
+
+        var chkDealer = $('input.chkDealer').is(':checked');
+
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+            //  cu = "";
+        }
+        var dto = {};
+
+
+        dto.DealerCode =cu;
+        dto.DefJobCode = $("#txtSchedule").val();
+        dto.BrandCode = $("#ddlBrand").val();
+        dto.ProdCode = $("#ddlproduct").val();
+        dto.VersionCode = $("#ddlversion").val();
+        dto.Amount = $("#txtAmount").val();
+        dto.ServiceTax = $("#txtServiceTax").val();
+        dto.StandardTime = $("#txtStandardTime").val();
+
+
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Labour/Insert_Labour")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+
+    }
+    $("#btnDelete").click(function () {
+        //var exitflag = false;
+        //var row = $("#JobGridTable tbody tr").length;
+        $("#section-confirm").modal("hide")
+        var code = $("#txtDefJobCode").val();
+        var desc = $("#txtDefJobDesc").val();
+
+
+        if (code == "" || code == null) {
+            $("#txtDefJobCode").css("border-color", "red");
+            $("#warning").text("Record Should Be Selected");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#section-message").modal('show');
+
+            //document.getElemenyById("#").style("backgroundColor"="red");
+            return;
+        }
+        if (desc == "" || desc == null) {
+            $("#txtDefJobDesc").css("border-color", "red");
+            $("#warning").text("Record Should Be Selected");
+            $("#modalMessage").css("background-color", "#e46457");
+            $("#section-message").modal('show');
+
+            //document.getElemenyById("#").style("backgroundColor"="red");
+            return;
+        }
+
+
+        $("#section-confirm-Delete").modal("show");
+    })
+    function DeleteMasterEnquiry() {
+        $("#section-confirm-Delete").modal("hide")
+        var chkDealer = $('input.chkDealer').is(':checked');
+        var chkCurrentUser = $('input.chkCurrentUser').is(':checked');
+        var chkForAll = $('input.chkForAll').is(':checked');
+        ;
+        cu = "COMON";
+        if (chkCurrentUser) {
+            cu = "@Session["DealerCode"].ToString()";
+        } else {
+            // cu = "";
+        }
+        if (chkForAll) {
+            cu = "COMON";
+        } else {
+            //  cu = "";
+        }
+        if (chkDealer) {
+            cu = $("#ddlAllDealer").val();
+        } else {
+            //  cu = "";
+        }
+        var dto = {};
+
+        dto.DealerCode = cu;
+        dto.JobCatCode = $("#txtJobCatCode").val();
+
+        $.ajax({
+            dataType: "json",
+            async: true,
+            type: 'GET',
+            url: '@Url.Content("~/Labour/Delete_Labour")',
+            data: dto,
+            success: function (data) {
+
+                if (data) {
+                    if (data.Success == true) {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#64c344");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                    else {
+                        $("#section-confirm").modal("hide")
+                        $("#modalMessage").css("background-color", "#e46457");
+                        $("#lblMessage").text(data.Message)
+                        $("#section-message").modal('show');
+                    }
+                }
+            },
+            complete: function () {
+
+            },
+            error: function (data) {
+                $("#section-confirm").modal("hide")
+                $("#modalMessage").css("background-color", "#e46457");
+                $("#lblMessage").text(data.Message)
+                $("#section-message").modal('show');
+            }
+        });
+
+    }
+    function ClearDesc(value) {
+
+        $("#txtJobCatDesc").val("")
+    }
+
+    function PDealerLookup() {
+        $("#section-confirm3").modal("show");
+    }
+    function DealerCodeModal() {
+        $("#section-confirm4").modal("show");
+    }
+
+
+    //*@
+
+    $("#btnPrint").click(function () {
+
+        var baseurl = '@Url.Action("Export")';
+        var url = baseurl;
+        //window.location.href = url;
+        window.open(url, '_blank');
+
+    })
+
+
+
+
+
+
+</script>

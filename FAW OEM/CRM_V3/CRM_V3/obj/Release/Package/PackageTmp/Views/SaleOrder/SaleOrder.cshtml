@@ -1,0 +1,669 @@
+﻿
+@{
+    ViewBag.Title = "SaleOrder";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+
+
+
+<style>
+    .makespace {
+        margin-bottom:0.5rem;
+    }
+
+    .icheckbox_minimal-blue {
+        top: 10px;
+    }
+</style>
+
+
+<section class="wrapper main-wrapper row">
+
+   
+
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Sale Order</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                    </div>
+                </header>
+
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">SO No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-file-o"></i>
+                                </span>
+                                <input type="text" class="form-control" id="txtSoNumber" maxlength="10">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="reset" class="btn btn-warning" id="btnNew1" style="margin-top:1.6rem;">Incomplete Sales Order</button>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">SO Date</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" id="txtSoDate" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                       
+                        <div class="col-md-4">
+                            <label class="form-label">Sale Type</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                                <select class="form-control input-md m-bot15">
+                                    <option>Select</option>
+                                    <option>Cash</option>
+                                    <option>Credit</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Credit Terms</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                <select class="form-control input-md m-bot15">
+                                    <option>Select</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Sales Person</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <select class="form-control input-md m-bot15">
+                                    <option>Select</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Bill To</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-file"></i></span>
+                                <select class="form-control input-md m-bot15">
+                                    <option>Select</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </select>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Ship To</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+                                <input type="text" class="form-control" id="txtSoDate"/>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4" style="padding:2rem;">
+                            <input type="checkbox" />
+                            <label class="form-label">Same As</label>
+                        </div>
+                        <!--copy till this-->
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel-group" id="accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                @*<span class="glyphicon glyphicon-plus"></span>*@
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                Customer
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <div class="pull-left">
+                                                        <button type="reset" class="btn btn-default" id="btnNew">New</button>
+                                                        <button type="button" class="btn btn-primary" id="btnExisting">Existing</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Customer</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                                        <select class="form-control m-bot15" id="ddlUsage">
+                                                            <option value="0">Select</option>
+                                                            <option value="New">New</option>
+                                                            <option value="Used">Used</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Contact</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-mobile-phone"></i></span>
+                                                        <input type="text" class="form-control" id="txtContact" />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">CNIC</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-info-circle"></i></span>
+                                                        <input type="text" class="form-control" id="txtCNIC" readonly />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">NTN</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-info"></i></span>
+                                                        <input type="text" class="form-control" id="txtNTN" readonly />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">City</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                                        <input type="text" class="form-control" id="txtCity" readonly />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Country</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-institution"></i></span>
+                                                        <input type="text" class="form-control" id="txtCountry" readonly />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Customer Type</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                                        <input type="text" class="form-control" id="txtCustomner" readonly />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="form-label">Price Level</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                                                        <input type="text" class="form-control" id="txtPriceLevel" readonly />
+                                                    </div>
+                                                    <div class="makespace"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="pull-left">
+                                                        <button type="button" class="btn btn-primary" id="btnUpdate" style="margin-top:1.6rem;">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                Vehicle
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse">
+                                        <div class="panel-body">
+
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <ul class="nav nav-tabs nav-justified primary">
+                                                        <li class="active">
+                                                            <a href="#home-7" data-toggle="tab">
+                                                                <i class="fa fa-car"></i> Vehicle Type
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content primary">
+                                                        <div class="tab-pane fade in active" id="home-7">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">VIN / Chassis</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
+                                                                        <select class="form-control m-bot15" id="ddlUsage">
+                                                                            <option value="0">Select</option>
+                                                                            <option value="New">New</option>
+                                                                            <option value="Used">Used</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Engine</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-cogs"></i></span>
+                                                                        <input type="text" class="form-control" id="txtEngineNo" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Product</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-suitcase"></i></span>
+                                                                        <input type="text" class="form-control" id="txtProduct" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Model</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+                                                                        <input type="text" class="form-control" id="txtModel" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Product Description</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
+                                                                        <input type="text" class="form-control" id="txtProductDescription" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Color</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-pie-chart"></i></span>
+                                                                        <input type="text" class="form-control" id="txtColor" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Segment</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-th"></i></span>
+                                                                        <input type="text" class="form-control" id="txtSegment" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Stock Type</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                                        <input type="text" class="form-control" id="txtSegment" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Rec No</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-book"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRecNo" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Brand</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-tags"></i></span>
+                    <select class="form-control m-bot15" id="ddlUsage">
+                        <option value="0">Select</option>
+                        <option value="New">New</option>
+                        <option value="Used">Used</option>
+                    </select>
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Version</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-sitemap"></i></span>
+                    <input type="text" class="form-control" id="txtVersionCode" maxlength="3" />
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Invoice No.</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-sort-numeric-asc"></i></span>
+                    <input type="text" class="form-control" id="txtInvNo" maxlength="15" />
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Invoice Date</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input type="text" class="form-control datepicker" id="txtInvDate" readonly>
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Reg No.</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-book"></i></span>
+                    <input type="text" class="form-control" id="txtRegNo" maxlength="15" />
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Reg Date</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input type="text" class="form-control datepicker" id="txtRegDate" readonly>
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+
+                                                                @*<div class="col-md-4">
+                <label class="form-label">VIN / Chassis</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-qrcode"></i></span>
+                    <input type="text" class="form-control" id="txtChassisNo" maxlength="25" />
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Engine</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-cogs"></i></span>
+                    <input type="text" class="form-control" id="txtEngineNo" maxlength="25" />
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Color</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-pie-chart"></i></span>
+                    <select class="form-control m-bot15" id="ddlUsage">
+                        <option value="0">Select</option>
+                        <option value="New">New</option>
+                        <option value="Used">Used</option>
+                    </select>
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Stock Type</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                    <select class="form-control m-bot15" id="ddlStkType">
+                        <option value="Open">Open</option>
+                        <option value="On Order">On Order</option>
+                        <option value="Exchange">Exchange</option>
+                    </select>
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Milage</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-road"></i></span>
+                    <input type="text" autocomplete="on" class="form-control" id="txtMilage" maxlength="6" onkeypress="return isNumberKey(event)" />
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Customer</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                    <select class="form-control m-bot15" id="ddlStkType">
+                        <option value="Open">Open</option>
+                        <option value="On Order">On Order</option>
+                        <option value="Exchange">Exchange</option>
+                    </select>
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Order No</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="arrow"></span>
+                        <i class="fa fa-pencil-square-o"></i>
+                    </span>
+                    <input type="text" required class="form-control" id="txtOrderNo" maxlength="10">
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+                                                                @*<div class="col-md-4">
+                <label class="form-label">Vehicle Location</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+                    <select class="form-control m-bot15" id="ddlStkType">
+                        <option value="Open">Open</option>
+                        <option value="On Order">On Order</option>
+                        <option value="Exchange">Exchange</option>
+                    </select>
+                </div>
+                <div class="makespace"></div>
+            </div>*@
+
+                                                            </div>
+                                                            @*<div class="row">
+            <div class="col-md-2">
+                <label class="form-label">Insurance</label>
+                <div class="input-group">
+                    <input type="checkbox" id="chkIns" class="chkBank icheckbox_minimal-blue">
+                </div>
+                <div class="makespace"></div>
+            </div>
+            <div class="col-md-10">
+                <div class="input-group" style="width:8%;float: right;">
+                    <button class="btn btn-success btn-sm" type="button" style="width: 100%;padding: 8px;" onclick="AddProduct(this)">
+                        <i class="fa fa-plus fa-2x"></i>
+                    </button>
+                </div>
+                <div class="makespace"></div>
+            </div>
+        </div>*@
+
+                                                            <div class="row">
+                                                                <div class="col-xs-12 col-md-12" style="margin-top:0.3rem;">
+                                                                    <label class="form-label">Pricing</label>
+                                                                    <hr style="border-top:1px solid blue;" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Basic Price</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Freight Charges</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-truck"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" maxlength="20" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Registration Charges</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-file-o"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" maxlength="20" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                               
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">GST</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-inr"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Other Charges</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" maxlength="20" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Delivery Charges</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-gift"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" maxlength="20" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">MSPR</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" readonly />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Insurance Charges</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-recycle"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" maxlength="20" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Total Price</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" maxlength="20" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Discount</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-scissors"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" maxlength="20" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="form-label">Net Payble</label>
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                                                        <input type="text" class="form-control" id="txtRegNo" maxlength="20" />
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin-top:1rem;">
+                                                                <div class="col-md-12">
+                                                                    <div class="table-responsive">
+                                                                        <table class="table table-bordered table-striped" id="productDetail" style="white-space: nowrap; FONT-SIZE: 13px;">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th>#</th>
+                                                                                    <th>Brand </th>
+                                                                                    <th>Product | Model</th>
+                                                                                    <th>Color</th>
+                                                                                    <th>Chassis No</th>
+                                                                                    <th>Engine No</th>
+                                                                                    <th>Reg No</th>
+                                                                                    <th>Reg Date</th>
+                                                                                    <th>Stock Type</th>
+                                                                                    <th>Milage</th>
+                                                                                    <th>Location</th>
+                                                                                    <th>Invoice</th>
+                                                                                    <th>Inv Date</th>
+                                                                                    <th>Insurance</th>
+                                                                                    <th>Customer</th>
+                                                                                    <th>Order No</th>
+                                                                                    <th>Action</th>
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <tr id="fixedRow1" data-tr-count="0"></tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- -->
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    
+                                                                </div>
+                                                                <div class="col-md-10">
+                                                                    <div class="input-group" style="width:8%;float: right;">
+                                                                        <button class="btn btn-success btn-sm" type="button" style="width: 100%;padding: 8px;" onclick="AddProduct(this)">
+                                                                            <i class="fa fa-plus fa-2x"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="makespace"></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!--Copy Till This-->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Total Payable</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                <input type="text" class="form-control" id="txtRegNo" readonly />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="pull-right">
+                                <button type="reset" class="btn btn-default" id="btnCancel" style="margin-top:25px;">Cancel</button>
+                                <button type="button" class="btn btn-primary" id="btnSave" style="margin-top:25px;">Save</button>
+                                <button type="button" class="btn btn-danger" id="btnDelete" style="margin-top:25px;" disabled>Delete</button>
+                                <a class="btn btn-primary" id="btnPrint" style="margin-top:25px;" href="#">Print</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+
+</section>

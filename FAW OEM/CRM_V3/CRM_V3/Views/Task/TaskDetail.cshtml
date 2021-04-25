@@ -1,0 +1,501 @@
+﻿
+@{
+    ViewBag.Title = "TaskDetail";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+<style>
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .rdoBtn {
+        cursor: pointer;
+        margin-right: 10px;
+        padding: 0px 10px;
+    }
+</style>
+<section class="wrapper main-wrapper row" style=''>
+
+    <div class='col-xs-12'>
+        <div class="page-title">
+
+            <div class="pull-left">
+                <!-- PAGE HEADING TAG - START --><h1 class="title">Task</h1><!-- PAGE HEADING TAG - END -->
+            </div>
+
+            @*<div class="pull-right hidden-xs">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html"><i class="fa fa-home"></i>Home</a>
+                        </li>
+
+                        <li class="active">
+                            <strong>CRM Admin</strong>
+                        </li>
+                    </ol>
+                </div>*@
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- MAIN CONTENT AREA STARTS -->
+
+    <form method="post">
+        <!-- TASK INFORMATION STARTS -->
+        <div class="col-xs-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Task Information</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                        @*<a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>*@
+                    </div>
+                </header>
+
+                <div class="content-body">
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <label class="form-label">Task ID</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-tasks"></i></span>
+                                @Html.DropDownList("ddlTaskId", new SelectList((IEnumerable<SelectListItem>)ViewBag.Tasks, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlTaskId" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Assign To</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-users"></i>
+                                </span>
+                                @Html.DropDownList("ddlAssignTo", new SelectList((IEnumerable<SelectListItem>)ViewBag.AssignTo, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlAssignTo" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Status</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                @Html.DropDownList("ddlStatusType", new SelectList((IEnumerable<SelectListItem>)ViewBag.StatusType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlStatusType" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Subject</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-check"></i></span>
+                                @Html.DropDownList("ddlSubjects", new SelectList((IEnumerable<SelectListItem>)ViewBag.Subjects, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlSubjects" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Customer*</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                @Html.DropDownList("ddlCustomerId", new SelectList((IEnumerable<SelectListItem>)ViewBag.Customers, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlCustomerId" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Due Date</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" id="txtDueDate" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Related To</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-info"></i>
+                                </span>
+                                @Html.DropDownList("ddlRealtedTo", new SelectList((IEnumerable<SelectListItem>)ViewBag.RelatedTo, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlRealtedTo" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-phone"></i>
+                                </span>
+                                <input type="tel" required class="form-control" id="txtPhone" maxlength="12">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Email*</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                                <input type="email" class="form-control" id="txtEmail" required maxlength="75">
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Task Type</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                @Html.DropDownList("ddlTaskType", new SelectList((IEnumerable<SelectListItem>)ViewBag.TaskType, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlTaskType" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Priority</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-bullhorn"></i></span>
+                                @Html.DropDownList("ddlPriority", new SelectList((IEnumerable<SelectListItem>)ViewBag.Priority, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlPriority" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Lead ID</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="arrow"></span>
+                                    <i class="fa fa-info"></i>
+                                </span>
+                                @Html.DropDownList("ddlLeadId", new SelectList((IEnumerable<SelectListItem>)ViewBag.LeadId, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlLeadId" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label">Comments</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-comments-o"></i>
+                                </span>
+                                <input type="text" required class="form-control" id="txtComments" maxlength="150">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- RECURRENCE INFORMATION STARTS -->
+        <div class="col-xs-12">
+            <section class="box ">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Recurrence</h2>
+                    <div class="actions panel_actions pull-right">
+                        <a class="box_toggle fa fa-chevron-down"></a>
+                        @*<a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>*@
+                    </div>
+                </header>
+
+                <div class="content-body">
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="col-md-8">
+                                <label class="form-label">Frequency</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </span>
+                                    <label class="rdoBtn">
+                                        Daily<input type="radio" name="frequency" id="minimal-radio-1" value="0" class="icheck-minimal-blue" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%;
+                                        height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;" checked />
+                                    </label>
+
+                                    <label class="rdoBtn">
+                                        Weekly<input type="radio" name="frequency" id="minimal-radio-2" value="1" class="icheck-minimal-blue" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%;
+                                        height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;" />
+                                    </label>
+
+                                    <label class="rdoBtn">
+                                        Monthly
+                                        <input type="radio" name="frequency" id="minimal-radio-3" class="icheck-minimal-blue" value="2" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%;
+                                        height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;" />
+                                    </label>
+
+                                    <label class="rdoBtn">
+                                        Yearly
+                                        <input type="radio" name="frequency" id="minimal-radio-4" class="icheck-minimal-blue" value="3" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%;
+                                        height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;" />
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                       
+                                        <label class="rdoBtn">
+                                            <input type="radio" name="Daily" id="minimal-radio-5 rdoDaily" value="0" class="icheck-minimal-blue rdoDaily" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%;
+                                        height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;" checked />Every Weekday
+                                        </label>
+
+                                        <label class="rdoBtn">
+                                            <input type="radio" name="Daily" id="minimal-radio-6 rdoDaily" value="1" class="icheck-minimal-blue rdoDaily" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%;
+                                        height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;" />Everyday
+                                        </label>
+
+                                        <input type="number" placeholder="Days" id="txtDays" class="form-control" maxlength="3" disabled />
+                                    </div>
+                                    <div class="makespace"></div>
+                                </div>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label">Start Date</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" id="txtStartDate" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Start Time</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="text" class="form-control timepicker" id="txtStartTime"
+                                       data-template="dropdown" data-show-seconds="true" data-default-time="08:00 AM"
+                                       data-show-meridian="true" data-minute-step="5" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">End Date</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control datepicker" id="txtEndDate" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">End Time</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                                <input type="text" class="form-control timepicker" id="txtEndTime"
+                                       data-template="dropdown" data-show-seconds="true" data-default-time="08:00 AM"
+                                       data-show-meridian="true" data-minute-step="5" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label></label>
+                            <div class="input-group">
+                                <label> Ongoing
+                                    <input tabindex="5" type="checkbox" name="Ongoing" id="checkOngoing flat-checkbox-4" class="checkOngoing icheckbox_minimal-blue" style="position: absolute; opacity: 0;">
+                                </label>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                    </div>
+
+                    <header class="panel_header">
+                        <h2 class="title pull-left">Reminder</h2>
+                        
+                    </header>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="col-md-6">
+                                <label class="form-label">Reminder at
+                                    <input tabindex="5" type="checkbox" name="Reminder" id="checkReminder flat-checkbox-4" class="checkReminder icheckbox_minimal-blue" style="position: absolute; opacity: 0;">
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-history"></i>
+                                    </span>
+                                   <select id="ddlReminder" class="form-control m-bot15" disabled>
+                                       <option value="0">Select</option>
+                                   </select>
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">For each occurrence</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-clock-o"></i>
+                                    </span>
+                                    <input type="text" class="form-control timepicker" id="txtReminderTime"
+                                           data-template="dropdown" data-show-seconds="true" data-default-time="08:00 AM"
+                                           data-show-meridian="true" data-minute-step="5" disabled>
+                                </div>
+                                <div class="makespace"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+
+
+        <div class="col-xs-12">
+            <section class="box ">
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="pull-left">
+                                <button type="reset" class="btn btn-default" id="btnCancel" style="margin-top:25px;">Cancel</button>
+                            </div>
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary" id="btnSave" style="margin-top:25px;" onclick='$("#section-confirm").modal("show")'>Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-confirm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Confirm</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5>Are you sure want to save ?</h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                    <button class="btn btn-success" type="button" onclick="SaveForm()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+    <!-- Popup box modal start -->
+    <div class="modal" id="section-message" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog animated bounceInDown">
+            <div class="modal-content">
+                <div class="modal-header" id="modalMessage">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Success</h4>
+                </div>
+                <div class="modal-body">
+
+                    <h5 id="lblMessage"></h5>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button" onclick="location.reload();">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal end -->
+</section>
+<link href='@Url.Content("~/assets/plugins/select2/select2.css")' rel="stylesheet" type="text/css" media="screen" />
+<link href='@Url.Content("~/assets/plugins/icheck/skins/minimal/blue.css")' rel="stylesheet" type="text/css" media="screen" />
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+<script src='@Url.Content("~/assets/plugins/select2/select2.min.js")' type="text/javascript"></script>
+<script src="../assets/plugins/icheck/icheck.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        // $(".select2").select2();
+
+        $("input[type='checkbox'], input[type='radio']").iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        });
+        //
+        $('input[name="Ongoing"]').on('ifClicked', function (ev) {
+            debugger;
+            checkBank = $('input.checkOngoing').is(':checked'); //$('.chkBank').iCheck('update')[0].checked;
+
+            if (checkBank == true) {
+                $("#txtEndTime").prop("disabled", false);
+                $("#txtEndDate").prop("disabled", false);
+            }
+            else {
+                $("#txtEndTime").prop("disabled", true);
+                $("#txtEndDate").prop("disabled", true);
+            }
+        })
+
+        $('input[name="Reminder"]').on('ifClicked', function (ev) {
+            debugger;
+            checkReminder = $('input.checkReminder').is(':checked'); //$('.chkBank').iCheck('update')[0].checked;
+
+            if (checkReminder == true) {
+                $("#ddlReminder").prop("disabled", true);
+                $("#txtReminderTime").prop("disabled", true);
+            }
+            else {
+                $("#ddlReminder").prop("disabled", false);
+                $("#txtReminderTime").prop("disabled", false);
+                $("#txtReminderTime").prop("readonly", true);
+            }
+        })
+
+        $('input[name="Daily"]').on('ifUnchecked', function (ev)
+            //$('#rdoDaily').on('ifChanged', function (event) 
+            {
+            debugger;
+            var value = $("input[name='Daily']:checked").val();
+            if (value == "1")
+            {
+                $("#txtDays").prop("disabled", false);
+            }
+            else
+            {
+                $("#txtDays").prop("disabled", true);
+            }
+            
+        });
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+            dd = '0' + dd
+        }
+
+        if (mm < 10) {
+            mm = '0' + mm
+        }
+
+        today = mm + '/' + dd + '/' + yyyy;
+        $("#ddlReminder").append('<option value="'+ today +'">'+today+'</option> <option value="2">Set Occurrence date</option>')
+    })
+
+    $('#txtPhone').keypress(function (event) {
+        var keycode = event.which;
+        if (!(event.shiftKey == false && (keycode == 46 || keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 && keycode <= 57)))) {
+            event.preventDefault();
+        }
+    });
+</script>
+

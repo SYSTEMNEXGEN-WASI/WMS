@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CRM_BMS0517ModelStoreContainer" CdmEntityContainer="CRM_BMS0517Entities">
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="CRM_BMS0517Model.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="DealerCode" ColumnName="DealerCode" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="CityDesc" ColumnName="CityDesc" />
+          <ScalarProperty Name="UpdUser" ColumnName="UpdUser" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+          <ScalarProperty Name="UpdTime" ColumnName="UpdTime" />
+          <ScalarProperty Name="UpdTerm" ColumnName="UpdTerm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="CRM_BMS0517Model.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="DealerCode" ColumnName="DealerCode" />
+          <ScalarProperty Name="CusCode" ColumnName="CusCode" />
+          <ScalarProperty Name="CusTitle" ColumnName="CusTitle" />
+          <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+          <ScalarProperty Name="CusDesc" ColumnName="CusDesc" />
+          <ScalarProperty Name="FatherHusName" ColumnName="FatherHusName" />
+          <ScalarProperty Name="AuxCusCode" ColumnName="AuxCusCode" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="ContPerson" ColumnName="ContPerson" />
+          <ScalarProperty Name="CreditDays" ColumnName="CreditDays" />
+          <ScalarProperty Name="CreditLimit" ColumnName="CreditLimit" />
+          <ScalarProperty Name="NIC" ColumnName="NIC" />
+          <ScalarProperty Name="CusTypeCode" ColumnName="CusTypeCode" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+          <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+          <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+          <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="NTNno" ColumnName="NTNno" />
+          <ScalarProperty Name="AdvanceReceipt" ColumnName="AdvanceReceipt" />
+          <ScalarProperty Name="AccountCode" ColumnName="AccountCode" />
+          <ScalarProperty Name="UpdUser" ColumnName="UpdUser" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+          <ScalarProperty Name="UpdTerm" ColumnName="UpdTerm" />
+          <ScalarProperty Name="SalesTaxRegNo" ColumnName="SalesTaxRegNo" />
+          <ScalarProperty Name="Behavior" ColumnName="Behavior" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Distance" ColumnName="Distance" />
+          <ScalarProperty Name="CustomerKey" ColumnName="CustomerKey" />
+          <ScalarProperty Name="ApplyUnRegSalesTaxFlag" ColumnName="ApplyUnRegSalesTaxFlag" />
+          <ScalarProperty Name="IsPvtLtd" ColumnName="IsPvtLtd" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="CRM_BMS0517Model.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateDesc" ColumnName="StateDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="CRM_BMS0517Model.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="CountryDesc" ColumnName="CountryDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerTypes">
+      <EntityTypeMapping TypeName="CRM_BMS0517Model.CustomerType">
+        <MappingFragment StoreEntitySet="CustomerType">
+          <ScalarProperty Name="DealerCode" ColumnName="DealerCode" />
+          <ScalarProperty Name="CusTypeCode" ColumnName="CusTypeCode" />
+          <ScalarProperty Name="CusTypeDesc" ColumnName="CusTypeDesc" />
+          <ScalarProperty Name="BookFormCode" ColumnName="BookFormCode" />
+          <ScalarProperty Name="UpdUser" ColumnName="UpdUser" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+          <ScalarProperty Name="UpdTerm" ColumnName="UpdTerm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

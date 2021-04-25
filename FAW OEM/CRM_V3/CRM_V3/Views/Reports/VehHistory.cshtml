@@ -1,0 +1,172 @@
+﻿
+@{
+    ViewBag.Title = "VehHistory";
+    Layout = "~/Views/Shared/_LayoutV2.cshtml";
+}
+
+<h2>Vehicle History</h2>
+
+<style>
+    .makespace {
+        margin-bottom: 20px;
+    }
+
+    .icheckbox_minimal-blue {
+        top: 10px;
+    }
+</style>
+
+<section class="wrapper main-wrapper row" style=''>
+
+    <div class="clearfix"></div>
+    <form method="post">
+        <div class="col-xs-12">
+            <section class="box">
+                <header class="panel_header">
+                    <h2 class="title pull-left">Vehicle History Report</h2>
+                </header>
+                <div class="content-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Vin No</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-th-list"></i></span>
+                                @Html.DropDownList("ddlRegNo", new SelectList((IEnumerable<SelectListItem>)ViewBag.RegNo, "Value", "Text", "0"), new { @class = "form-control m-bot15", @id = "ddlRegNo", @onchange = "ChangeColor(this)" })
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">VIN / Chassis</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <input type="text" class="form-control" id="txtChassisNo" readonly />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Engine</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <input type="text" class="form-control" id="txtEngineNo" readonly />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Customer</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <input type="text" class="form-control" id="txtCustomer" readonly />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Product</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <input type="text" class="form-control" id="txtProduct" readonly />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Model</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <input type="text" class="form-control" id="txtModel" readonly />
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Vehicle Category</label>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-car"></i></span>
+                                <input type="text" required class="form-control" id="txtType" value="@ViewBag.Heading" maxlength="250" readonly>
+                            </div>
+                            <div class="makespace"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="pull-right">
+                                <a class="btn btn-primary" id="btnPrint" style="margin-top:25px;" href="#">Print</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+
+</section>
+
+<script src='@Url.Content("~/assets/js/jquery-1.11.2.min.js")' type="text/javascript"></script>
+
+
+<script>
+
+    function ChangeColor(value) {
+
+        if ($(value).val() != '')
+            $(value).css("border-color", "#e1e1e1");
+    }
+
+    $("#btnPrint").click(function () {
+
+        var baseurl = '@Url.Action("VehicleHistory")';
+        var url = baseurl + '?RegNo=' + $('#ddlRegNo').val() + '&ChassisNo=' + $("#txtChassisNo").val() + '&EngineNo=' + $("#txtEngineNo").val() + '&type=' + $("#txtType").val();
+        //window.location.href = url;
+        window.open(url, '_blank');
+
+    })
+
+    $("#ddlRegNo").change(function () {
+
+        var RegNo = $("#ddlRegNo").val();
+        if (RegNo != "0") {
+
+            getProRecDetail(RegNo);
+        }
+    });
+
+    function getProRecDetail(RegNo) {
+
+        var leadId = RegNo;
+
+        if (leadId != "0") {
+            $.ajax({
+                dataType: "json",
+                async: true,
+                type: 'GET',
+                url: '@Url.Content("~/Reports/Select_ProRecDetail")',
+                data: { 'EnquiryId': leadId },
+                success: function (data) {
+
+                    if (data.Success == true) {
+                        var item = JSON.parse(data.Response)
+
+                        //Event Information
+
+                        $("#txtChassisNo").val(item[0].ChassisNo);
+                        $("#txtEngineNo").val(item[0].EngineNo);
+                        $("#txtCustomer").val(item[0].CusDesc);
+                        $("#txtProduct").val(item[0].ProdTitle);
+                        $("#txtModel").val(item[0].VersionCode);
+                    }
+                },
+                complete: function () {
+
+                },
+            });
+
+        }
+    }
+
+</script>
+
+
