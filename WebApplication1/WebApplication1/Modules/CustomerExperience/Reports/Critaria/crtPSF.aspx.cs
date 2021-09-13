@@ -1,14 +1,9 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using DXBMS.Data;
 
 namespace DXBMS.Modules.CustomerExperience.Reports
 {
@@ -17,6 +12,11 @@ namespace DXBMS.Modules.CustomerExperience.Reports
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (this.Session["UserName"] == null)
+            {
+                Response.Redirect("~/login.aspx");
+
+            }
             if (!IsPostBack)
             {
                 ddlStatus.Items.Add(new ListItem("All", "All"));
@@ -78,12 +78,6 @@ namespace DXBMS.Modules.CustomerExperience.Reports
             RD.DataDefinition.FormulaFields["ReportTitle"].Text = "\"" + " POST SERVICE FOLLOWUP SUMMARY" + "\"";
             RD.DataDefinition.FormulaFields["CompanyName"].Text = "'" + Session["DealerDesc"].ToString() + "'";
             RD.DataDefinition.FormulaFields["Pic"].Text = "'" + Server.MapPath("~") + Session["Logo"] + "'";
-            //RD.DataDefinition.FormulaFields["Pic"].Text = "'C:\\Users\\u_ahm\\OneDrive\\Documents\\Visual Studio 2010\\Projects\\WebApplication1\\WebApplication1\\" + Session["Logo"] + "'";
-            //RD.DataDefinition.FormulaFields["Pic"].Text = "'C:\\Users\\u_ahm\\OneDrive\\Documents\\Visual Studio 2010\\Projects\\WebApplication1\\WebApplication1\\Images\\havoline.png'";
-            //RD.DataDefinition.FormulaFields["DealershipName"].Text = "'Authorised " + Session["ParentDesc"].ToString() + " Dealership'";
-
-
-
             RD.Database.Tables[0].SetDataSource(data);
 
             // convert and show

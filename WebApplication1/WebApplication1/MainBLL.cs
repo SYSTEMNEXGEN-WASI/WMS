@@ -48,7 +48,7 @@ namespace DXBMS
         {
             //Fill document Type DropDown
             DataSet ds1 = new DataSet();
-            ds1 = SqlHelper.ExecuteDataset(GlobalVar.mDataConnection, CommandType.Text, strQuery);
+            ds1 = SqlHelper.ExecuteDataset(CConn.CConnection.GetConnectionString(), CommandType.Text, strQuery);
             ddlFill.DataSource = ds1.Tables[0];
             ddlFill.DataTextField = DataTextField;
             ddlFill.DataValueField = DataValueField;

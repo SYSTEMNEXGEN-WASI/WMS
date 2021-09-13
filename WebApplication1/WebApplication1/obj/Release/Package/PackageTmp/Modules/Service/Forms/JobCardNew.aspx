@@ -313,6 +313,17 @@
                              TabIndex="8" Width="100%" Visible="false"></asp:TextBox>
                           </td>
                           <td colspan="1">
+                          Card Type Category <font color="red"><b>*</b></font>
+                          </td>
+                          <td colspan="2">
+                          <asp:DropDownList ID="ddlJobCardTypeCategory" runat="server" Width="100%" AutoPostBack="true" TabIndex="1"
+                                                OnSelectedIndexChanged="ddlJobCardTypeCategory_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                            <ajaxToolkit:ListSearchExtender ID="ListSearchExtender1" runat="server" TargetControlID="ddlJobCardTypeCategory"
+                                                PromptText="" QueryPattern="Contains">
+                                            </ajaxToolkit:ListSearchExtender>
+                          </td>
+                          <td colspan="1">
                           Job Card Type <font color="red"><b>*</b></font>
                           </td>
                           <td colspan="2">
@@ -323,7 +334,30 @@
                                                 PromptText="" QueryPattern="Contains">
                                             </ajaxToolkit:ListSearchExtender>
                           </td>
-                          <td colspan="1">
+                         
+                          
+                          </tr>
+                          <%--Row3--%>
+                          <tr>
+                            <td colspan="1">
+                            Sub Category 
+                          </td>
+                          <td colspan="2">
+                          <asp:DropDownList ID="ddlSubCategory" runat="server" Width="100%" TabIndex="2">
+                                             <%--   <asp:ListItem Selected="true" Text="Select" Value="Select"></asp:ListItem>
+                                                <asp:ListItem Text="Cash" Value="Cash"></asp:ListItem>
+                                                <asp:ListItem Text="Credit" Value="Credit"></asp:ListItem>
+                                                <asp:ListItem Text="Intra" Value="Intra"></asp:ListItem>
+                                                <asp:ListItem Text="Internal" Value="Internal"></asp:ListItem>
+                                                  <asp:ListItem Text="Free of Cost" Value="FOC"></asp:ListItem>
+                                                   <asp:ListItem Text="OEM" Value="OEM"></asp:ListItem>
+                                                 <asp:ListItem Text="Good Will Warranty" Value="Good Will Warranty"></asp:ListItem>--%>
+                                            </asp:DropDownList>
+                                            <ajaxToolkit:ListSearchExtender ID="ListSearchExtender2" runat="server" TargetControlID="ddlSubCategory"
+                                                PromptText="" QueryPattern="Contains">
+                                            </ajaxToolkit:ListSearchExtender>
+                          </td>
+                           <td colspan="1">
                             Payment Mode <font color="red"><b>*</b></font>
                           </td>
                           <td colspan="2">
@@ -341,26 +375,19 @@
                                                 PromptText="" QueryPattern="Contains">
                                             </ajaxToolkit:ListSearchExtender>
                           </td>
-                          
-                          </tr>
-                          <%--Row3--%>
-                          <tr>
                           <td colspan="1">
                            Customer
                            </td>
                           <td colspan="2">
                             <asp:TextBox ID="txtCustomerDesc" class="WidthAt764" runat="server" ReadOnly="true" SkinID="ROTextBox" Width="100%" placeholder="    Customer Name" ></asp:TextBox>
                            </td>
-                          <td colspan="1">
-                         <asp:Label ID="Label1" runat="server" Text="Schedule"></asp:Label>
-                         </td>
-                          <td colspan="2">
-                           <asp:DropDownList ID="ddlScheduleJC" runat="server" AutoPostBack="true" TabIndex="3" Width="100%" OnSelectedIndexChanged="ddlScheduleJC_OnSelectedIndexChanged" >
-                                            </asp:DropDownList>
-                                            <ajaxToolkit:ListSearchExtender ID="ListSearchExtender8" runat="server" TargetControlID="ddlScheduleJC"
-                                                PromptText="" QueryPattern="Contains">
-                                            </ajaxToolkit:ListSearchExtender>
-                          </td>
+                         
+                          
+                           <%--Display None Billing Mode --%>
+                      
+                           </tr>
+                          <%--Row4--%>
+                          <tr>
                           <td colspan="1">
                            Tax Policy<font color="red"><b>*</b></font>
                             <asp:ImageButton runat="server" ID="imgTaxDetail" ImageUrl="~/Images/LookupNew.png" OnClick="imgTaxDetail_Click" Visible="false" AccessKey="t"/>
@@ -378,8 +405,7 @@
                                             PromptText="" QueryPattern="Contains">
                                         </ajaxToolkit:ListSearchExtender>--%>
                           </td>
-                           <%--Display None Billing Mode --%>
-                          <td style="display:none;" colspan="1">
+                              <td style="display:none;" colspan="1">
                          Billing: <font color="red"><b>*</b></font>
                           </td>
                           <td style="display:none;" colspan="2">
@@ -395,9 +421,6 @@
                                                 PromptText="" QueryPattern="Contains">
                                             </ajaxToolkit:ListSearchExtender>
                           </td>
-                           </tr>
-                          <%--Row4--%>
-                          <tr>
                            <td colspan="1">
                            Start Date/Time <font color="red"><b>*</b></font>
                            </td>
@@ -437,6 +460,11 @@
                            CultureDatePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder=""
                            CultureTimePlaceholder="" Enabled="true" Mask="99:99" MaskType="Time" TargetControlID="txtPromistedTime" />
                            </td>
+                          
+                          
+                           </tr>
+                          <%--Row5--%>
+                          <tr>
                            <td colspan="1">
                             Notification No/Coupon No
                             </td>
@@ -444,10 +472,6 @@
                              <asp:TextBox ID="txtCouponNo" runat="server" MaxLength="15" TabIndex="7" 
                                                 Width="100%"></asp:TextBox>
                             </td>
-                          
-                           </tr>
-                          <%--Row5--%>
-                          <tr>
                           <td colspan="1">
                              Category
                           </td>
@@ -466,7 +490,11 @@
                                 PromptText="" QueryPattern="Contains">
                             </ajaxToolkit:ListSearchExtender>
                           </td>
-                          <td colspan="1">
+                        
+                          </tr>
+                          <%--Row6--%>
+                          <tr>
+                           <td colspan="1">
                           Fuel
                           </td>
                          <td colspan="2">
@@ -474,10 +502,6 @@
                          <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" runat="server"
                          Enabled="true" FilterType="Numbers" TargetControlID="txtFuel" />
                           </td>
-                          </tr>
-                          <%--Row6--%>
-                          <tr>
-                         
                          <td colspan="1">
                            Job Card Total
                            </td>
@@ -491,7 +515,11 @@
                               <asp:TextBox ID="txtvaluables" TabIndex="10" runat="server" MaxLength="100" TextMode="MultiLine" onkeyDown="checkTextAreaMaxLength(this,event,'99');"
                                                 Width="100%"></asp:TextBox>
                             </td>
-                         <td colspan="1">
+                        
+                          </tr>
+                          <%--Row7--%>
+                          <tr>
+                           <td colspan="1">
                            Comments                                
                           </td>
                          <td colspan="2">
@@ -505,9 +533,6 @@
                                             CultureDateFormat="" CultureDatePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder=""
                                             CultureTimePlaceholder="" Enabled="true" Mask="99:99" MaskType="Time" TargetControlID="txtDeliveryTime" />
                          </td>
-                          </tr>
-                          <%--Row7--%>
-                          <tr>
                           <td colspan="1">
                           Manual JobCard No
                           </td>
@@ -520,11 +545,25 @@
                           <td colspan="2">
                           <asp:TextBox runat="server" ID="txtRepairSugest" Width="100%" TextMode="MultiLine"></asp:TextBox>
                           </td>
-                          <td colspan="1">
+                        
+                          </tr>
+                          <%-- Row8 --%>
+                          <tr>
+                            <td colspan="1">
                           Customer Remarks
                           </td>
                           <td colspan="2">
                           <asp:TextBox runat="server" ID="txtCusRemarks" Width="100%" TextMode="MultiLine"></asp:TextBox>
+                          </td>
+                           <td colspan="1">
+                         <asp:Label ID="Label1" runat="server" Text="Schedule"></asp:Label>
+                         </td>
+                          <td colspan="2">
+                           <asp:DropDownList ID="ddlScheduleJC" runat="server" AutoPostBack="true" TabIndex="3" Width="100%" OnSelectedIndexChanged="ddlScheduleJC_OnSelectedIndexChanged" >
+                                            </asp:DropDownList>
+                                            <ajaxToolkit:ListSearchExtender ID="ListSearchExtender8" runat="server" TargetControlID="ddlScheduleJC"
+                                                PromptText="" QueryPattern="Contains">
+                                            </ajaxToolkit:ListSearchExtender>
                           </td>
                           </tr>
                         </table>

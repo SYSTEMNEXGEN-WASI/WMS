@@ -26,15 +26,15 @@ namespace DXBMS.Modules.Service
         Transaction ObjTrans = new Transaction();
         SqlTransaction Trans;
         string apStr;
-        DataTable JobDT, LubDT, SubletDT, PartsDT,ConPartsDT,BayDT,BoutDT;
-        DataSet dsJobCardDetail, dsJobCardParts, dsJobCardLub, dsJobCardSublet,dsJobCardConParts,dsJobCardBay, dsJobCardBoutParts, ds;
-        
-       
-        int  updflag, countLabour, countConPartsRecQty,countConParts;
+        DataTable JobDT, LubDT, SubletDT, PartsDT, ConPartsDT, BayDT, BoutDT;
+        DataSet dsJobCardDetail, dsJobCardParts, dsJobCardLub, dsJobCardSublet, dsJobCardConParts, dsJobCardBay, dsJobCardBoutParts, ds;
+
+
+        int updflag, countLabour, countConPartsRecQty, countConParts;
         decimal countlubRecQty, countlub, countParts, countPartsRecQty;
         string sQuery;
-        double totLabour, totParts, totlub, totsubletInv, totsubletPayable, totConParts, totBoutInv, totPayableBout, totEst,totJob;
-        
+        double totLabour, totParts, totlub, totsubletInv, totsubletPayable, totConParts, totBoutInv, totPayableBout, totEst, totJob;
+
         bool search_result, search_item;
         clsLookUp clslook = new clsLookUp();
 
@@ -57,7 +57,7 @@ namespace DXBMS.Modules.Service
             if (ViewState["Lub"] != null) LubDT = (DataTable)ViewState["Lub"];
             if (ViewState["SubLet"] != null) SubletDT = (DataTable)ViewState["SubLet"];
             if (ViewState["ConParts"] != null) ConPartsDT = (DataTable)ViewState["ConParts"];
-            if (ViewState["BoutParts"] != null) BoutDT = (DataTable)ViewState["BoutParts"]; 
+            if (ViewState["BoutParts"] != null) BoutDT = (DataTable)ViewState["BoutParts"];
             //d1 = (ViewState["d1"] != null ? Convert.ToDecimal(ViewState["d1"].ToString()) : 0);
             //d2 = (ViewState["d2"] != null ? Convert.ToDecimal(ViewState["d2"].ToString()) : 0);
             //d3 = (ViewState["d3"] != null ? Convert.ToDecimal(ViewState["d3"].ToString()) : 0);
@@ -79,9 +79,9 @@ namespace DXBMS.Modules.Service
             if (Page.IsPostBack == false)
             {
                 LoadEmptyGrid();
-               
 
-                
+
+
             }
 
 
@@ -92,7 +92,7 @@ namespace DXBMS.Modules.Service
 
 
                 if (Session["JobCardCode"] != null)
-                {                   
+                {
 
                     ThreadStart childthreat = new ThreadStart(childthreadcall);
                     Thread child = new Thread(childthreat);
@@ -104,21 +104,22 @@ namespace DXBMS.Modules.Service
                     SqlParameter[] JobCardMaster_param = {                                            
            /*0*/ new SqlParameter("@DealerCode",SqlDbType.Char,5)};
                     JobCardMaster_param[0].Value = Session["DealerCode"].ToString();
-             
+
                     objMBLL.FillDrp_SP(ddlAdvisorCode, "sp_Get_Advisor", "EmpCode", "EmpName", JobCardMaster_param, true, "Select", false, "");
-                 
+
                     objMBLL.FillDrp_SP(ddlTechnicianEmpCode, "sp_2W_DealerEmp_Technician_Select", "EmpCode", "EmpName", JobCardMaster_param, true, "--Select--", false, "");
-                 
+
 
                     objMBLL.FillDrp_SP(ddlVendorCode, "sp_2W_Vendor_Select", "VendorCode", "VendorDesc", JobCardMaster_param, true, "--Select--", false, "");
 
-                    objMBLL.FillDropDown(ddlJobCardTypeCode, "SELECT JobTypeCode,JobTypeDesc FROM JobTypeMaster Where DealerCode IN('" + Session["DealerCode"].ToString() + "', 'COMON') order by SortKey Desc ", "JobTypeDesc", "JobTypeCode", "Select");
-                    string where = "Bay.ShopID = Shops.ShopID and Bay.DealerCode = '"+Session["DealerCode"].ToString()+"'";
-                  
+                    loadJobTypeCategory();
+                    //   objMBLL.FillDropDown(ddlJobCardTypeCode, "SELECT JobTypeCode,JobTypeDesc FROM JobTypeMaster Where DealerCode IN('" + Session["DealerCode"].ToString() + "', 'COMON') order by SortKey Desc ", "JobTypeDesc", "JobTypeCode", "Select");
+                    string where = "Bay.ShopID = Shops.ShopID and Bay.DealerCode = '" + Session["DealerCode"].ToString() + "'";
+
                     String[] col = new string[] { "BayID", "BayDesc", "ShopDesc" };
                     myFunc.GetMultiColumnsDDL(ddlBay, col, "Bay,Shops", where, "BayID", "", false, false);
-                  
-                    objMBLL.FillDropDown(ddlTaxType, "Select TM.TaxAppCode,TD.TaxType+'|'+TaxAppDesc as TaxDesc from TaxSetupMaster TM inner join TaxSetupDetail TD on TD.DealerCode=TM.DealerCode and TD.TaxAppCode = TM.TaxAppCode "+
+
+                    objMBLL.FillDropDown(ddlTaxType, "Select TM.TaxAppCode,TD.TaxType+'|'+TaxAppDesc as TaxDesc from TaxSetupMaster TM inner join TaxSetupDetail TD on TD.DealerCode=TM.DealerCode and TD.TaxAppCode = TM.TaxAppCode " +
                        " Where TM.DealerCode IN('" + Session["DealerCode"].ToString() + "', 'COMON')  ", "TaxDesc", "TaxAppCode", "Select");
 
                     txtDep.ReadOnly = true;
@@ -128,11 +129,11 @@ namespace DXBMS.Modules.Service
                     txtJobCardCode.Text = leadId;
                     ViewState["JobCardCode"] = leadId;
                     LoadMasterData();
-                   // LoadEmptyGrid();
+                    // LoadEmptyGrid();
                 }
                 else
                 {
-                    
+
                     ThreadStart childthreat = new ThreadStart(childthreadcall);
                     Thread child = new Thread(childthreat);
 
@@ -167,12 +168,13 @@ namespace DXBMS.Modules.Service
                     objMBLL.FillDrp_SP(ddlTechnicianEmpCode, "sp_2W_DealerEmp_Technician_Select", "EmpCode", "EmpName", JobCardMaster_param, true, "Select", false, "");
                     //objMBLL.FillDrp_SP(ddlTechnician, "sp_2W_DealerEmp_Technician_Select", "EmpCode", "EmpName", JobCardMaster_param, true, "--Select--", false, "");
                     objMBLL.FillDrp_SP(ddlVendorCode, "sp_2W_Vendor_Select", "VendorCode", "VendorDesc", JobCardMaster_param, true, "--Select--", false, "");
-                    objMBLL.FillDropDown(ddlJobCardTypeCode, "SELECT JobTypeCode,JobTypeDesc FROM JobTypeMaster Where DealerCode IN('" + Session["DealerCode"].ToString() + "', 'COMON') ", "JobTypeDesc", "JobTypeCode", "Select");
+                    loadJobTypeCategory();
+                    // objMBLL.FillDropDown(ddlJobCardTypeCode, "SELECT JobTypeCode,JobTypeDesc FROM JobTypeMaster Where DealerCode IN('" + Session["DealerCode"].ToString() + "', 'COMON') ", "JobTypeDesc", "JobTypeCode", "Select");
                     objMBLL.FillDropDown(ddlTaxType, "Select TM.TaxAppCode,TD.TaxType+'|'+TaxAppDesc as TaxDesc from TaxSetupMaster TM inner join TaxSetupDetail TD on TD.DealerCode=TM.DealerCode and TD.TaxAppCode = TM.TaxAppCode " +
                         " Where TM.DealerCode IN('" + Session["DealerCode"].ToString() + "', 'COMON')  ", "TaxDesc", "TaxAppCode", "Select");
                     txtDep.ReadOnly = true;
                     Session["CheckRefresh"] = Server.UrlDecode(System.DateTime.Now.ToString());
-                    
+
                     TabContainer1.ActiveTabIndex = 0;
                     //Create_Grid();
 
@@ -186,7 +188,7 @@ namespace DXBMS.Modules.Service
                 txtJobCardCode.Text = ViewState["JobCardCode"].ToString();
 
             }
-            
+
             Session["LookUpData"] = string.Empty;
             Session["JobCardCode"] = null;
             //if (Session["LookUpData"] != null)
@@ -232,11 +234,15 @@ namespace DXBMS.Modules.Service
             ddlPayMode.Items.Add(new ListItem("OEM", "OEM"));
             ddlPayMode.Items.Add(new ListItem("Good Will Warranty", "Good Will Warranty"));
         }
+        public void loadJobTypeCategory()
+        {
+            objMBLL.FillDropDown(ddlJobCardTypeCategory, "Select  Distinct(JobNatureCatCode),JobNatureCatDesc from JobTypeCategory where DealerCode IN('" + Session["DealerCode"].ToString() + "', 'COMON') And Active='Y' ", "JobNatureCatDesc", "JobNatureCatCode", "Select");
+        }
         public void childthreadcall()
         {
             try
             {
-                
+
                 sQuery = "SP_SelectParts '" + Session["DealerCode"].ToString() + "', 'P'";
 
                 if (myFunc.ExecuteQuery(sQuery, ref ds))
@@ -257,9 +263,9 @@ namespace DXBMS.Modules.Service
             }
         }
 
-        
 
-       
+
+
         //private void Load_ddlEstNo()
         //{
         //    string WhereClause = "DealerCode = '" + Session["DealerCode"].ToString() + "' " +
@@ -268,11 +274,11 @@ namespace DXBMS.Modules.Service
         //    string[] Columns = new string[] { "CustomerEstimateCode", "CONVERT(VARCHAR(10),tdDate,105)","RegNo", "UserName" };
         //    myFunc.GetMultiColumnsDDL(ddlEstNo, Columns, "CustomerEstimateMaster ", WhereClause, "CustomerEstimateCode", " Order by CustomerEstimateCode Desc ", false, false);
         //}
-        
+
         //private void Load_ddlVehRegNo()
         //{
         //    string WhereClause = "DealerCode IN ('" + Session["DealerCode"].ToString() + "','COMON')  ";
-                
+
 
         //    string[] Columns = new string[] { "RegNo", "ChassisNo", "EngineNo" };
         //    myFunc.GetMultiColumnsDDL(ddlVehRegNo, Columns, "CustomerVehicle ", WhereClause, "RegNo", "order by CusVehCode desc ", false, false);
@@ -280,7 +286,7 @@ namespace DXBMS.Modules.Service
         private void Load_ddlJobs(DropDownList ddlJobs)
         {
             string WhereClause = "DJ.DealerCode = JC.DealerCode " +
-            "And DJ.JobCatCode = JC.JobCatCode "+
+            "And DJ.JobCatCode = JC.JobCatCode " +
             "And DJ.DealerCode = '" + Session["DealerCode"].ToString() + "'";
 
             string[] Columns = new string[] { "DJ.DefJobCode", "DJ.DefJobDesc", "JC.JobCatDesc" };
@@ -365,15 +371,15 @@ namespace DXBMS.Modules.Service
             PartsDT.Columns.Add(new DataColumn("Type", typeof(string)));
             PartsDT.Columns.Add(new DataColumn("ItemCode", typeof(string)));
             PartsDT.Columns.Add(new DataColumn("RecQty", typeof(string)));
-           // PartsDT.Columns.Add(new DataColumn("Type", typeof(string)));
+            // PartsDT.Columns.Add(new DataColumn("Type", typeof(string)));
             //PartsDT.Rows.Add(new object[] { null, null, null, null, null, null, null, null, null,null });                        
             gvJobCardParts.DataSource = PartsDT; gvJobCardParts.DataBind(); ViewState["Parts"] = PartsDT;
         }
 
-        
+
         private void createJobDT()
         {
-            
+
             JobDT = new DataTable();
             JobDT.Columns.Add(new DataColumn("ID", typeof(int)));
             JobDT.Columns.Add(new DataColumn("JobCode", typeof(string)));
@@ -385,7 +391,7 @@ namespace DXBMS.Modules.Service
             JobDT.Columns.Add(new DataColumn("Amount", typeof(string)));
             JobDT.Columns.Add(new DataColumn("Type", typeof(string)));
             //JobDT.Rows.Add(new object[] { null, null, null, null, null, null });
-            gvJobCard.DataSource = JobDT; gvJobCard.DataBind(); ViewState["Job"] = JobDT;            
+            gvJobCard.DataSource = JobDT; gvJobCard.DataBind(); ViewState["Job"] = JobDT;
 
         }
         private void createConPartsDT()
@@ -522,8 +528,8 @@ namespace DXBMS.Modules.Service
         protected void LoadVehInfo()
         {
             DataSet dsVehInfo = new DataSet();
-            SqlParameter[] param = {                                 
-                                    new SqlParameter("@DealerCode",SqlDbType.VarChar,5), 
+            SqlParameter[] param = {
+                                    new SqlParameter("@DealerCode",SqlDbType.VarChar,5),
                                     new SqlParameter("@RegNo",SqlDbType.VarChar,30)
                                };
 
@@ -545,24 +551,24 @@ namespace DXBMS.Modules.Service
         }
         protected void LoadMasterData()
         {
-            SqlParameter[] dsParam = {                                                       
+            SqlParameter[] dsParam = {
                                     new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                     new SqlParameter("@JobCardCode",SqlDbType.Char,8)
                                  };
 
             dsParam[0].Value = Session["DealerCode"].ToString();
             dsParam[1].Value = (ViewState["JobCardCode"].ToString().Trim() == "" ? null : ViewState["JobCardCode"].ToString().Trim());
-            
+
             DataTable dtjc = new DataTable();
-            string sqlj = "select * from JobCardMaster where JobCardCode='" + dsParam[1].Value.ToString() + "' and DealerCode='" + Session["DealerCode"].ToString()+"'";
+            string sqlj = "select * from JobCardMaster where JobCardCode='" + dsParam[1].Value.ToString() + "' and DealerCode='" + Session["DealerCode"].ToString() + "'";
             dtjc = myFunc.GetData(sqlj);
             if (dtjc.Rows.Count == 0)
             {
-                
+
                 btnClearJC_Click(btnClearJC, EventArgs.Empty);
                 lblMsg.Text = "Error opening JobCard please contact concern person";
                 return;
-                
+
             }
 
             HFJobCard.Value = ViewState["JobCardCode"].ToString().Trim();
@@ -576,7 +582,7 @@ namespace DXBMS.Modules.Service
 
             dtjc.Dispose();
 
-            SqlParameter[] dsMasterParam = {                                                       
+            SqlParameter[] dsMasterParam = {
                                             new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                             new SqlParameter("@JobCardCode",SqlDbType.Char,8),
                                             new SqlParameter("@RegNo",SqlDbType.VarChar,50),
@@ -597,7 +603,7 @@ namespace DXBMS.Modules.Service
 
             DataSet dsJobCardMaster = new DataSet();
             dsJobCardMaster = myFunc.FillDataSet("sp_W2_JobCard_Master_Select", dsMasterParam);
-           
+
 
             setVehcileInfo(dsJobCardMaster);
             setJobCardInfo(dsJobCardMaster);
@@ -672,26 +678,27 @@ namespace DXBMS.Modules.Service
             txtBrandDesc.Text = dsJobCardMaster.Tables[0].Rows[0]["Brand"].ToString();
             txtProduct.Text = dsJobCardMaster.Tables[0].Rows[0]["ProdCode"].ToString();
             txtVersion.Text = dsJobCardMaster.Tables[0].Rows[0]["VersionCode"].ToString();
-            txtCntPerName.Text= dsJobCardMaster.Tables[0].Rows[0]["ContPersonName"].ToString();
-            txtCntPerCell.Text= dsJobCardMaster.Tables[0].Rows[0]["ContPersonCell"].ToString();
+            txtCntPerName.Text = dsJobCardMaster.Tables[0].Rows[0]["ContPersonName"].ToString();
+            txtCntPerCell.Text = dsJobCardMaster.Tables[0].Rows[0]["ContPersonCell"].ToString();
             txtVehicleCategory.Text = dsJobCardMaster.Tables[0].Rows[0]["VehicleCategory"].ToString();
             txtCusType.Text = dsJobCardMaster.Tables[0].Rows[0]["CusTypeDesc"].ToString();
             txtCusTypeCode.Text = dsJobCardMaster.Tables[0].Rows[0]["CusTypeCode"].ToString();
             dt = myFunc.GetData("Select C.CusDesc,C.CreditDays,C.CreditLimit ,isnull(round(isnull(CV.NetAmountCustomer,0)-isnull(CV.PaidC,0),0),0) as Outstanding from Customer C inner join CustomerInvoice CV on CV.DealerCode = C.DealerCode and CV.CusCode = C.CusCode where C.DealerCode='" + Session["DealerCode"].ToString() + "' and C.CusCode='" + txtCustomer.Text + "' "); //ddlEstNo.SelectedValue.ToString().Trim()
-          if(dt.Rows.Count>0) {
+            if (dt.Rows.Count > 0)
+            {
                 txtCreditDays.Text = dt.Rows[0]["CreditDays"].ToString();
                 txtCreditLimit.Text = dt.Rows[0]["CreditLimit"].ToString();
                 txtOutStanding.Text = dt.Rows[0]["Outstanding"].ToString();
             }
-            
-            SqlParameter[] param_Schedule = {                                                       
+
+            SqlParameter[] param_Schedule = {
                                                                 new SqlParameter("@ProdCode",SqlDbType.VarChar,10),
                                                                 new SqlParameter("@VersionCode",SqlDbType.Char,3)
                                                               };
             param_Schedule[0].Value = txtProduct.Text.Trim();
             param_Schedule[1].Value = txtVersion.Text.Trim();
             objMBLL.FillDrp_SP(ddlScheduleJC, "sp_2W_MaintainenceSchedule_Select", "ScheduleCode", "KM", param_Schedule, true, "Select", false, "");
-            
+
             if (dsJobCardMaster.Tables[0].Columns.Contains("SIRMaster"))
             {
                 txtSIRMasterId.Text = dsJobCardMaster.Tables[0].Rows[0]["SIRMaster"].ToString();
@@ -707,15 +714,22 @@ namespace DXBMS.Modules.Service
             // txtGatePass.Text = ddlJobCardNo.Text.Trim();
             if (ViewState["JobCardCode"].ToString().Trim() != "")
             {
-                ddlJobCardTypeCode.SelectedValue= dsJobCardMaster.Tables[0].Rows[0]["JobCardType"].ToString().Trim();
+                loadJobTypeCategory();
+                ddlJobCardTypeCategory.SelectedValue = dsJobCardMaster.Tables[0].Rows[0]["JobNatureCatCode"].ToString().Trim();
+               
+
+                ddlJobCardTypeCategory_SelectedIndexChanged(null, null);
+                ddlJobCardTypeCode.SelectedValue = dsJobCardMaster.Tables[0].Rows[0]["JobCardType"].ToString().Trim();
                 if (dsJobCardMaster.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "002")
                 {
                     lknPDI.Visible = true;
                 }
-               else if (dsJobCardMaster.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "008")
+                else if (dsJobCardMaster.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "008")
                 {
-                    ddlJobCardType_SelectedIndexChanged(null,null);
+                    ddlJobCardType_SelectedIndexChanged(null, null);
                 }
+                ddlJobCardType_SelectedIndexChanged(null, null);
+                ddlSubCategory.SelectedValue = dsJobCardMaster.Tables[0].Rows[0]["SubCategory"].ToString().Trim();
                 //txtJobType.Text = dsJobCardMaster.Tables[0].Rows[0]["JobTypeCode"].ToString();
                 //txtJobTypeDesc.Text = grl.GetStringValuesAgainstCodes("jobTypeCode", txtJobType.Text, "JobTypeDesc", "JobTypeMaster");
                 //ddlJobType.Value = dsJobCardMaster.Tables[0].Rows[0]["JobTypeCode"].ToString();
@@ -737,10 +751,10 @@ namespace DXBMS.Modules.Service
                 lblJobCardTotal.Text = dsJobCardMaster.Tables[0].Rows[0]["JobsTotal"].ToString().Trim();
                 lblPartsTotal.Text = dsJobCardMaster.Tables[0].Rows[0]["PartsTotal"].ToString().Trim();
                 txtLubTotal.Text = dsJobCardMaster.Tables[0].Rows[0]["LubPartsTotal"].ToString().Trim();
-              //  txtSubletTotal.Text = dsJobCardMaster.Tables[0].Rows[0]["SubletTotal"].ToString().Trim();
+                //  txtSubletTotal.Text = dsJobCardMaster.Tables[0].Rows[0]["SubletTotal"].ToString().Trim();
 
                 txtJobCardTotal.Text = Convert.ToString(Math.Floor(
-                                                        Convert.ToDecimal(dsJobCardMaster.Tables[0].Rows[0]["JobsTotal"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dsJobCardMaster.Tables[0].Rows[0]["JobsTotal"].ToString().Replace("&nbsp;", "").Trim())+
+                                                        Convert.ToDecimal(dsJobCardMaster.Tables[0].Rows[0]["JobsTotal"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dsJobCardMaster.Tables[0].Rows[0]["JobsTotal"].ToString().Replace("&nbsp;", "").Trim()) +
                                                         Convert.ToDecimal(dsJobCardMaster.Tables[0].Rows[0]["PartsTotal"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dsJobCardMaster.Tables[0].Rows[0]["PartsTotal"].ToString().Replace("&nbsp;", "").Trim()) +
                                                         Convert.ToDecimal(dsJobCardMaster.Tables[0].Rows[0]["LubPartsTotal"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dsJobCardMaster.Tables[0].Rows[0]["LubPartsTotal"].ToString().Replace("&nbsp;", "").Trim()) +
                                                         Convert.ToDecimal(dsJobCardMaster.Tables[0].Rows[0]["SubletTotal"].ToString().Replace("&nbsp;", "").Trim() == "" ? "0" : dsJobCardMaster.Tables[0].Rows[0]["SubletTotal"].ToString().Replace("&nbsp;", "").Trim()) +
@@ -766,15 +780,15 @@ namespace DXBMS.Modules.Service
                 txtFuel.Text = dsJobCardMaster.Tables[0].Rows[0]["FuelSelection"].ToString().Trim();
                 txtAvgKm.Text = dsJobCardMaster.Tables[0].Rows[0]["AvgKM"].ToString().Trim();
                 ddlTaxType.SelectedValue = dsJobCardMaster.Tables[0].Rows[0]["hdnTaxCode"].ToString();
-                hdnTaxCode.Value= dsJobCardMaster.Tables[0].Rows[0]["hdnTaxCode"].ToString();
+                hdnTaxCode.Value = dsJobCardMaster.Tables[0].Rows[0]["hdnTaxCode"].ToString();
                 hdnTaxType.Value = dsJobCardMaster.Tables[0].Rows[0]["hdnTaxType"].ToString();
-               // ddlTaxType.SelectedValue = dsJobCardMaster.Tables[0].Rows[0]["TaxAppCode"].ToString();
+                // ddlTaxType.SelectedValue = dsJobCardMaster.Tables[0].Rows[0]["TaxAppCode"].ToString();
                 txtTaxPolicyDesc.Text = dsJobCardMaster.Tables[0].Rows[0]["TaxAppDesc"].ToString();
                 txtManJobCardNo.Text = dsJobCardMaster.Tables[0].Rows[0]["ManJobCardNo"].ToString();
                 txtRepairSugest.Text = dsJobCardMaster.Tables[0].Rows[0]["RepairSuguestion"].ToString();
                 txtCusRemarks.Text = dsJobCardMaster.Tables[0].Rows[0]["CusRemarks"].ToString();
                 txtSIRMasterId.Text = dsJobCardMaster.Tables[0].Rows[0]["SIRMaster"].ToString();
-               
+
             }
             //txtGatePass.Text = dsJobCardMaster.Tables[0].Rows[0]["GatePass"].ToString();
 
@@ -799,96 +813,96 @@ namespace DXBMS.Modules.Service
         }
 
         protected void clearAll()
-    {
+        {
             //if (ddlJobCardCode.SelectedIndex != 0)
             //{
             //    ddlJobCardCode.SelectedIndex = 0;
             //}
             txtJobCardCode.Text = "";
-        ddlBay.SelectedIndex = 0;
+            ddlBay.SelectedIndex = 0;
             txtExtno.Text = "";
-        //ddlJobCardNo.Text = "";
-        //ddlJobCardNo.Enabled = true;
-        txtGatePass.Text = "";
-        txtChassisNo.Text = string.Empty;
-        txtEngineNo.Text = string.Empty;
-        //ddlRegNo.Text = "--Select--";
-        //ddlChassisNo.Text = "--Select--";
-        //ddlEngineNo.Text = "--Select--";
-        txtUserPhNo.Text = "";
-        //ddlJobCardType.SelectedIndex = 0;
-        //txtChassisNo.Text = "";
-        //txtEngineNo.Text = "";
-        txtCustomer.Text = "";
-        txtCustomerDesc.Text = "";
-        txtEndUser.Text = "";
-        txtEndUserDesc.Text = "";
-        txtBrand.Text = "";
-        txtBrandDesc.Text = "";
-        txtProduct.Text = "";
-        txtVersion.Text = "";
-        txtVersionDesc.Text = "";
-        txtRemarks.Text = "";
-        txtKM.Text = "";
-        txtCusRemarks.Text = "";
+            //ddlJobCardNo.Text = "";
+            //ddlJobCardNo.Enabled = true;
+            txtGatePass.Text = "";
+            txtChassisNo.Text = string.Empty;
+            txtEngineNo.Text = string.Empty;
+            //ddlRegNo.Text = "--Select--";
+            //ddlChassisNo.Text = "--Select--";
+            //ddlEngineNo.Text = "--Select--";
+            txtUserPhNo.Text = "";
+            //ddlJobCardType.SelectedIndex = 0;
+            //txtChassisNo.Text = "";
+            //txtEngineNo.Text = "";
+            txtCustomer.Text = "";
+            txtCustomerDesc.Text = "";
+            txtEndUser.Text = "";
+            txtEndUserDesc.Text = "";
+            txtBrand.Text = "";
+            txtBrandDesc.Text = "";
+            txtProduct.Text = "";
+            txtVersion.Text = "";
+            txtVersionDesc.Text = "";
+            txtRemarks.Text = "";
+            txtKM.Text = "";
+            txtCusRemarks.Text = "";
             txtRepairSugest.Text = "";
             txtManJobCardNo.Text = "";
             txtCouponNo.Text = "";
             ddlTaxType.SelectedIndex = 0;
-        ddlStatusJC.SelectedIndex = 0;
-        lblJobCardTotal.Text = "0";
-        lblPartsTotal.Text = "0";
-        txtLubTotal.Text = "0";
-        txtSubletTotal.Text = "0";
-        txtColor.Text = "";
-        txtTaxPolicyCode.Text = "";
-        txtTaxPolicyDesc.Text = "";
-        txtVehicleCategory.Text = "";
-        txtCreditDays.Text = "";
-        txtCreditLimit.Text = "";
-        txtBAmt.Text = "";
-        hdnTaxType.Value = "";
-        hdnTaxType.Value = "";
-        txtCntPerCell.Text = "";
-        txtCntPerName.Text = "";
-        ddlAdvisorCode.SelectedIndex = 0;
-        createSubletDT();
-        createLubDT();
-        createPartsDT();
-        createJobDT();
-        createConPartsDT();
-        createBayDT();
-        txtSIRMasterId.Text = string.Empty;
-        setInitialDates();
-        ClearJobTextBoxes();
-        ClearPartsTextBoxes();
-        ClearLubricantsTextBoxes();
-        ClearJobSubletTextBoxes();
-        ClearConPartsTextBoxes();
-        txtPartTotalQuantity.Text = lblPartsTotal.Text =
-        lbltotLubQty.Text = txtLubTotal.Text =
-        txtSubletTotal.Text = txtSubletPayableTotal.Text = "0";
-        lblJobCardTotal.Text = txtJobsTotal.Text = "0";
-        //ddlVehRegNo.SelectedIndex = 0;
-        txtVehRegNo.Text = "";
-        txtDep.Text = string.Empty;
-        lblSIRMaster.Text = "";
-        txtAvgKm.Text = "";
-        txtFuel.Text = "";
-        //ddlJobCardNo.Text = "";
-        //ddlJobCardNo.DataBind();
-        ///Load_ddlJobCardCode();
-        txtvaluables.Text = "";
-        ddlBay.SelectedIndex = 0;
-        ddlJobCardTypeCode.SelectedIndex = 0;
-        ddlPayMode.SelectedIndex = 0;
-        ddlBillingType.SelectedIndex=0;
-        ddlAdvisorCode.SelectedIndex = 0;
-        ddlStatusJC.SelectedIndex = 0;
-        if (ddlScheduleJC.Items.Count > 1)
-        {
-            ddlScheduleJC.SelectedIndex = 0;
-        }
+            ddlStatusJC.SelectedIndex = 0;
+            lblJobCardTotal.Text = "0";
+            lblPartsTotal.Text = "0";
+            txtLubTotal.Text = "0";
+            txtSubletTotal.Text = "0";
+            txtColor.Text = "";
+            txtTaxPolicyCode.Text = "";
+            txtTaxPolicyDesc.Text = "";
+            txtVehicleCategory.Text = "";
+            txtCreditDays.Text = "";
+            txtCreditLimit.Text = "";
+            txtBAmt.Text = "";
+            hdnTaxType.Value = "";
+            hdnTaxType.Value = "";
+            txtCntPerCell.Text = "";
+            txtCntPerName.Text = "";
+            ddlAdvisorCode.SelectedIndex = 0;
+            createSubletDT();
+            createLubDT();
+            createPartsDT();
+            createJobDT();
+            createConPartsDT();
+            createBayDT();
+            txtSIRMasterId.Text = string.Empty;
+            setInitialDates();
+            ClearJobTextBoxes();
+            ClearPartsTextBoxes();
+            ClearLubricantsTextBoxes();
+            ClearJobSubletTextBoxes();
+            ClearConPartsTextBoxes();
+            txtPartTotalQuantity.Text = lblPartsTotal.Text =
+            lbltotLubQty.Text = txtLubTotal.Text =
+            txtSubletTotal.Text = txtSubletPayableTotal.Text = "0";
+            lblJobCardTotal.Text = txtJobsTotal.Text = "0";
+            //ddlVehRegNo.SelectedIndex = 0;
+            txtVehRegNo.Text = "";
+            txtDep.Text = string.Empty;
+            lblSIRMaster.Text = "";
+            txtAvgKm.Text = "";
+            txtFuel.Text = "";
+            //ddlJobCardNo.Text = "";
+            //ddlJobCardNo.DataBind();
+            ///Load_ddlJobCardCode();
+            txtvaluables.Text = "";
+            ddlBay.SelectedIndex = 0;
+            ddlJobCardTypeCode.SelectedIndex = 0;
+            ddlPayMode.SelectedIndex = 0;
+            ddlBillingType.SelectedIndex = 0;
+            ddlAdvisorCode.SelectedIndex = 0;
+            ddlStatusJC.SelectedIndex = 0;
+            if (ddlScheduleJC.Items.Count > 1)
+            {
+                ddlScheduleJC.SelectedIndex = 0;
+            }
 
             btnSaveJC.Enabled = true;
 
@@ -902,7 +916,7 @@ namespace DXBMS.Modules.Service
 
         private void ClearJobTextBoxes()
         {
-            TextBox[] txts = {     txtJobRemarks, txtLabor };
+            TextBox[] txts = { txtJobRemarks, txtLabor };
             ClearTextBoxes(txts);
             //ddlTechnicianEmpCode.SelectedIndex = 0;
             //ddlJobs_Labor.SelectedIndex = 0;
@@ -913,7 +927,7 @@ namespace DXBMS.Modules.Service
         }
         private void ClearBoutPartsTextBoxes()
         {
-            TextBox[] txts = { txtBItemCode, txtBItemDesc,txtBPartNo,txtBPrice,txtBQty,txtBAmt };
+            TextBox[] txts = { txtBItemCode, txtBItemDesc, txtBPartNo, txtBPrice, txtBQty, txtBAmt };
             ClearTextBoxes(txts);
             //ddlTechnicianEmpCode.SelectedIndex = 0;
             //ddlJobs_Labor.SelectedIndex = 0;
@@ -925,8 +939,8 @@ namespace DXBMS.Modules.Service
 
         private void ClearPartsTextBoxes()
         {
-            TextBox[] txts = { txtQuantity,   txtPartPrice,  txtDep };
-            ClearTextBoxes(txts); 
+            TextBox[] txts = { txtQuantity, txtPartPrice, txtDep };
+            ClearTextBoxes(txts);
             txtPartsRecQuantity.Text = "0";
             //ddlPartCode.SelectedIndex = 0;
             txtItemCode.Text = string.Empty;
@@ -935,7 +949,7 @@ namespace DXBMS.Modules.Service
         }
         private void ClearBPartsTextBoxes()
         {
-            TextBox[] txts = { txtBQty, txtBPrice, txtBPartNo,txtBPartNo,txtBItemDesc,txtBItemCode,txtBAmt };
+            TextBox[] txts = { txtBQty, txtBPrice, txtBPartNo, txtBPartNo, txtBItemDesc, txtBItemCode, txtBAmt };
             ClearTextBoxes(txts);
             //txtPartsRecQuantity.Text = "0";
             ////ddlPartCode.SelectedIndex = 0;
@@ -945,7 +959,7 @@ namespace DXBMS.Modules.Service
         }
         private void ClearLubricantsTextBoxes()
         {
-            TextBox[] txts = { txtLubPartDesc, txtLubPrice, txtLubQuantity};
+            TextBox[] txts = { txtLubPartDesc, txtLubPrice, txtLubQuantity };
             ClearTextBoxes(txts);
             txtLubRecQuantity.Text = "0";
             //ddlLubCode.SelectedIndex = 0;
@@ -954,7 +968,7 @@ namespace DXBMS.Modules.Service
         }
         private void ClearJobSubletTextBoxes()
         {
-            TextBox[] txts = { txtSubletJobDesc,  txtSubletPayAmnt, txtSubletRemarks, txtSubletIncAmnt };
+            TextBox[] txts = { txtSubletJobDesc, txtSubletPayAmnt, txtSubletRemarks, txtSubletIncAmnt };
             ClearTextBoxes(txts);
             ddlVendorCode.SelectedIndex = 0;
             //ddlJobs_Sublet.SelectedIndex = 0;
@@ -970,13 +984,13 @@ namespace DXBMS.Modules.Service
         }
         private void ClearConPartsTextBoxes()
         {
-            TextBox[] txts = { txtConQuantity, txtConPartDesc, txtConPartPrice,txtPartItemNoConParts };
+            TextBox[] txts = { txtConQuantity, txtConPartDesc, txtConPartPrice, txtPartItemNoConParts };
             ClearTextBoxes(txts); txtConPartsRecQuantity.Text = "0";
             //ddlConsumableParts.SelectedIndex = 0;
             txtConPartCode.Text = "";
             txtConPartDesc.Text = "";
         }
-        
+
 
         #region Master Validation
 
@@ -991,7 +1005,7 @@ namespace DXBMS.Modules.Service
                     isValid = false;
                     textBoxes[i].BorderColor = System.Drawing.Color.Red;
                     SetFocus(textBoxes[i]);
-                    
+
                     lblMsg.Text = "Error: Field(s) Marked With Red Steriks '*' Are Mendetory...";
                     break;
                 }
@@ -1006,7 +1020,7 @@ namespace DXBMS.Modules.Service
 
 
             /////////////////
-            if(gvJobCardParts.Rows.Count>0 || gvLubParts.Rows.Count > 0)
+            if (gvJobCardParts.Rows.Count > 0 || gvLubParts.Rows.Count > 0)
             {
                 if (ddlJobCardTypeCode.SelectedValue == "008")
                 {
@@ -1021,13 +1035,13 @@ namespace DXBMS.Modules.Service
                             txtSIRMasterId.Text = "";
                         }
 
-                        
+
                     }
                     else
                     {
                         txtSIRMasterId.Text = "";
                     }
-                   
+
 
                 }
                 else if (ddlJobCardTypeCode.SelectedValue != "008")
@@ -1036,13 +1050,13 @@ namespace DXBMS.Modules.Service
                     {
                         txtSIRMasterId.Text = grl.AutoGen("sirmaster", "SIRNO", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy"));
                     }
-                   
+
                 }
-                
-               
-               
+
+
+
             }
-           else
+            else
             {
                 txtSIRMasterId.Text = "";
             }
@@ -1108,6 +1122,8 @@ namespace DXBMS.Modules.Service
                          /*47*/ new SqlParameter("@CusRemark",SqlDbType.VarChar,100),
                            /*47*/ new SqlParameter("@CouponNo",SqlDbType.VarChar,50),
                            /*47*/ new SqlParameter("@ScheduleCode",SqlDbType.Char,08),
+                           /*47*/ new SqlParameter("@JobNatureCatCode",SqlDbType.Char,03),
+                           /*47*/ new SqlParameter("@SubCategory",SqlDbType.VarChar,50),
         };
 
 
@@ -1116,7 +1132,7 @@ namespace DXBMS.Modules.Service
             //Auto Code Generation Decision on Insert OR Update
             //ddlJobCardNo.Text = grl.AutoGen("JobCardMaster", "JobCardCode", DateTime.Parse(DateTime.Now.ToShortDateString()).ToString("dd/MM/yyyy")); 
             //JobCardMaster_param[1].Value = ddlJobCardNo.Text;         
-            if ( txtExtno.Text.Trim() == "") //ddlEstNo.SelectedIndex
+            if (txtExtno.Text.Trim() == "") //ddlEstNo.SelectedIndex
             {
                 JobCardMaster_param[2].Value = string.Empty;
             }
@@ -1227,7 +1243,7 @@ namespace DXBMS.Modules.Service
             JobCardMaster_param[47].Value = txtCntPerCell.Text;
             JobCardMaster_param[48].Value = txtVehicleCategory.Text;
             JobCardMaster_param[49].Value = lblBInvAmt.Text;
-            
+
             JobCardMaster_param[50].Value = hdnTaxCode.Value;
             JobCardMaster_param[51].Value = hdnTaxType.Value;
             JobCardMaster_param[52].Value = txtManJobCardNo.Text;
@@ -1241,6 +1257,15 @@ namespace DXBMS.Modules.Service
             else
             {
                 JobCardMaster_param[56].Value = ddlScheduleJC.SelectedValue.ToString();
+            }
+            JobCardMaster_param[57].Value = ddlJobCardTypeCategory.SelectedValue.ToString().Trim();
+            if (ddlSubCategory.Items.Count > 0)
+            {
+                JobCardMaster_param[58].Value = ddlSubCategory.SelectedValue.ToString();
+            }
+            else
+            {
+                JobCardMaster_param[58].Value = "";
             }
             #endregion
 
@@ -1306,7 +1331,7 @@ namespace DXBMS.Modules.Service
                                 }
 
                             }
-                           
+
                         }
                         else { objMBLL.ShowMessageBox("Saving Faild", txtCustomer); }
                     }
@@ -1372,33 +1397,33 @@ namespace DXBMS.Modules.Service
                         else { objMBLL.ShowMessageBox("Update Fail", lblMsg); }
                     }
 
-                        if (ObjTrans.CommittTransaction(ref Trans) == true)
+                    if (ObjTrans.CommittTransaction(ref Trans) == true)
+                    {
+                        lblMsg.ForeColor = Color.Green;
+                        if (txtJobCardCode.Text.Trim() == "") //ddlJobCardCode.SelectedIndex
                         {
-                            lblMsg.ForeColor = Color.Green;
-                            if (txtJobCardCode.Text.Trim() == "") //ddlJobCardCode.SelectedIndex
-                            {
-                                lblMsg.Text = "Record Saved Successfully: " + HFJobCard.Value;
-                            
-                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved Successfully: " + HFJobCard.Value + "')", true);
-                        }
-                            else
-                            {
-                                lblMsg.Text = "Record Updated Successfully: " + HFJobCard.Value;
-                            
-                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Updated Successfully: " + HFJobCard.Value+"')", true);
-                            
-                           
-                        }
+                            lblMsg.Text = "Record Saved Successfully: " + HFJobCard.Value;
 
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Saved Successfully: " + HFJobCard.Value + "')", true);
                         }
                         else
                         {
-                            ObjTrans.RollBackTransaction(ref Trans);
-                            grl.UserMsg(lblMsg, Color.Red, "Record not saved Try again. Or contact to support team ");
-                        }
-                        clearAll();
+                            lblMsg.Text = "Record Updated Successfully: " + HFJobCard.Value;
 
-                    
+                            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "ClientScript", "alert('Record Updated Successfully: " + HFJobCard.Value + "')", true);
+
+
+                        }
+
+                    }
+                    else
+                    {
+                        ObjTrans.RollBackTransaction(ref Trans);
+                        grl.UserMsg(lblMsg, Color.Red, "Record not saved Try again. Or contact to support team ");
+                    }
+                    clearAll();
+
+
                 }
             }
             catch (Exception ex)
@@ -1448,7 +1473,7 @@ namespace DXBMS.Modules.Service
             //foreach (GridViewRow row in gvSublet.Rows) { if (row.Cells[2].Text.Replace("&nbsp;", "").Trim() != "") search_item = true; }
             return search_item;
         }
-         private bool rowInJobCardConPartsDetail(GridView gvJobCardConParts)
+        private bool rowInJobCardConPartsDetail(GridView gvJobCardConParts)
         {
             search_item = false;
             if (gvJobCardConParts.Rows.Count > 0)
@@ -1494,7 +1519,7 @@ namespace DXBMS.Modules.Service
                 }
 
             }
-           else if (ddlJobCardTypeCode.SelectedValue == "002")
+            else if (ddlJobCardTypeCode.SelectedValue == "002")
             {
                 if (sysfun.IsExist("JobCode", txtJobs_Labor.Text, "FreeJobs", "COMON", "and VehicleCategory='" + Session["VehicleCategory"].ToString() + "'"))
                 {
@@ -1555,15 +1580,15 @@ namespace DXBMS.Modules.Service
             }
             else if (ddlJobCardTypeCode.SelectedValue == "012")
             {
-                  rowJobDT["Type"] = ddlJobType.SelectedValue;
-              
+                rowJobDT["Type"] = ddlJobType.SelectedValue;
+
 
             }
             else
             {
                 rowJobDT["Type"] = "J";
             }
-           
+
 
         }
 
@@ -1580,7 +1605,7 @@ namespace DXBMS.Modules.Service
             rowBayDT["EmpCode"] = ddlTechnicianEmpCode.SelectedItem.Value.ToString();
             rowBayDT["EmpName"] = ddlTechnicianEmpCode.SelectedItem.ToString();
             rowBayDT["StdTime"] = dt.Rows[0]["StandardTime"].ToString().Trim();
-            rowBayDT["StartTime"] = DateTime.Now.ToString("hh:mm"); 
+            rowBayDT["StartTime"] = DateTime.Now.ToString("hh:mm");
             rowBayDT["EndTime"] = "";
         }
 
@@ -1594,7 +1619,7 @@ namespace DXBMS.Modules.Service
                     if ((grl.IsExist("VersionCode", txtVersion.Text, "Vehicle", Session["DealerCode"].ToString()) == true ? true : false))
                     {
                         apStr = " and versioncode= '" + txtVersion.Text + "' and ProdCode='" + txtProduct.Text + "'";
-                        if ((grl.IsExist("ProdCode", txtProduct.Text, "Vehicle",Session["DealerCode"].ToString(), apStr) == true ? true : false))
+                        if ((grl.IsExist("ProdCode", txtProduct.Text, "Vehicle", Session["DealerCode"].ToString(), apStr) == true ? true : false))
                         {
                             if (txtJobCardCode.Text.Trim() == "" && ViewState["JobCardCode"].ToString().Trim() == "") strAction = "Insert"; //ddlJobCardCode.SelectedIndex == 0
                             else
@@ -1602,7 +1627,7 @@ namespace DXBMS.Modules.Service
                                 apStr = " and chassisno ='" + txtChassisNo.Text + "' and GatePass = null";
                                 if (grl.IsExist("ChassisNo", txtChassisNo.Text, "JobCardMaster", Session["DealerCode"].ToString()))
                                 {
-                                    if (grl.IsExist("JobCardCode", txtJobCardCode.Text.Trim(), "JobCardMaster",Session["DealerCode"].ToString(), apStr)) //ddlJobCardCode.SelectedValue.ToString().Trim()
+                                    if (grl.IsExist("JobCardCode", txtJobCardCode.Text.Trim(), "JobCardMaster", Session["DealerCode"].ToString(), apStr)) //ddlJobCardCode.SelectedValue.ToString().Trim()
                                     {
                                         objMBLL.ShowMessageBox("Update Failed", txtCustomer);
                                         strAction = "No Action";
@@ -1629,7 +1654,7 @@ namespace DXBMS.Modules.Service
                 bool flag = false;
                 //if (gvJobCard.Rows.Count > 0)
                 //{
-                SqlParameter[] JobCardDetail_Delete_param = {                                                       
+                SqlParameter[] JobCardDetail_Delete_param = {
                                                                 new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                 new SqlParameter("@JobCardCode",SqlDbType.Char,8)
                                                                 //new SqlParameter("@JobCode",SqlDbType.VarChar,8)
@@ -1637,7 +1662,7 @@ namespace DXBMS.Modules.Service
                 JobCardDetail_Delete_param[0].Value = Session["DealerCode"].ToString();
                 //JobCardDetail_Delete_param[1].Value = ddlJobCardCode.SelectedIndex == 0 ? HFJobCard.Value.Trim() : ddlJobCardCode.SelectedValue.ToString().Trim();
                 JobCardDetail_Delete_param[1].Value = txtJobCardCode.Text;
-                SqlParameter[] JobCardDetail_Insert_param = {                                                       
+                SqlParameter[] JobCardDetail_Insert_param = {
                                                                 new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                 new SqlParameter("@JobCardCode",SqlDbType.Char,8),
                                                                 new SqlParameter("@JobCode",SqlDbType.VarChar,8),
@@ -1682,14 +1707,14 @@ namespace DXBMS.Modules.Service
                 bool flag = false;
                 // if (gvJobCardParts.Rows.Count > 0)
                 //{
-                SqlParameter[] JobCardPartsDetail_Delete_param = {                                                       
+                SqlParameter[] JobCardPartsDetail_Delete_param = {
                                                                     new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                     new SqlParameter("@JobCardCode",SqlDbType.Char,8)
                                                                  };
                 JobCardPartsDetail_Delete_param[0].Value = Session["DealerCode"].ToString();
                 //JobCardPartsDetail_Delete_param[1].Value = ddlJobCardCode.SelectedIndex == 0 ? HFJobCard.Value.Trim() : ddlJobCardCode.SelectedValue.ToString().Trim();
                 JobCardPartsDetail_Delete_param[1].Value = txtJobCardCode.Text;
-                SqlParameter[] JobCardPartsDetail_Insert_param = {                                                       
+                SqlParameter[] JobCardPartsDetail_Insert_param = {
                                                                     new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                     new SqlParameter("@JobCardCode",SqlDbType.Char,8),
                                                                     new SqlParameter("@ItemCode",SqlDbType.VarChar,8),
@@ -1699,7 +1724,7 @@ namespace DXBMS.Modules.Service
                                                                     new SqlParameter("@RecQty",SqlDbType.VarChar,50),
                                                                     new SqlParameter("@Type",SqlDbType.Char,1),
                                                                     new SqlParameter("@Dep",SqlDbType.VarChar,5),
-                                                                   
+
                                                                  };
 
                 if (myFunc.ExecuteSP_NonQuery("sp_W2_JobCard_PartsDetail_Delete", JobCardPartsDetail_Delete_param, Trans))
@@ -1710,7 +1735,7 @@ namespace DXBMS.Modules.Service
                     {
                         JobCardPartsDetail_Insert_param[0].Value = Session["DealerCode"].ToString();
                         //JobCardPartsDetail_Insert_param[1].Value = ddlJobCardCode.SelectedIndex == 0 ? HFJobCard.Value.Trim() : ddlJobCardCode.SelectedValue.ToString().Trim();
-                        JobCardPartsDetail_Insert_param[1].Value = txtJobCardCode.Text == "" ? HFJobCard.Value.Trim() :txtJobCardCode.Text;
+                        JobCardPartsDetail_Insert_param[1].Value = txtJobCardCode.Text == "" ? HFJobCard.Value.Trim() : txtJobCardCode.Text;
                         if (PartsDT.Rows[i]["ItemCode"].ToString() != "")
                         {
                             JobCardPartsDetail_Insert_param[2].Value = PartsDT.Rows[i]["ItemCode"].ToString(); //Item Code System Generted num. Get it from lookup
@@ -1723,13 +1748,13 @@ namespace DXBMS.Modules.Service
                                 JobCardPartsDetail_Insert_param[7].Value = PartsDT.Rows[i]["Type"].ToString(); //Type
                                 JobCardPartsDetail_Insert_param[8].Value = PartsDT.Rows[i]["Dep"].ToString(); //Dep
                             }
-                            
+
                             else
                             {
                                 JobCardPartsDetail_Insert_param[7].Value = PartsDT.Rows[i]["Type"].ToString(); //Type
                                 JobCardPartsDetail_Insert_param[8].Value = "0"; //Dep
                             }
-                            
+
                             myFunc.ExecuteSP_NonQuery("sp_W2_JobCard_PartsDetail_Insert", JobCardPartsDetail_Insert_param, Trans);
                             flag = true;
                         }
@@ -1807,7 +1832,7 @@ namespace DXBMS.Modules.Service
                 // if (gvLubParts.Rows.Count > 0)
                 //{
 
-                SqlParameter[] JobCardLubricanteDetail_Delete_param = {                                                       
+                SqlParameter[] JobCardLubricanteDetail_Delete_param = {
                                                                     new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                     new SqlParameter("@JobCardCode",SqlDbType.Char,8)
                                                                   };
@@ -1815,7 +1840,7 @@ namespace DXBMS.Modules.Service
                 //JobCardLubricanteDetail_Delete_param[1].Value = ddlJobCardCode.SelectedIndex == 0 ? HFJobCard.Value.Trim() : ddlJobCardCode.SelectedValue.ToString().Trim();
                 JobCardLubricanteDetail_Delete_param[1].Value = txtJobCardCode.Text.Trim() == "" ? HFJobCard.Value.Trim() : txtJobCardCode.Text.Trim();
 
-                SqlParameter[] JobCardLubricanteDetail_Insert_param = {                                                       
+                SqlParameter[] JobCardLubricanteDetail_Insert_param = {
                                                                     new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                     new SqlParameter("@JobCardCode",SqlDbType.Char,8),
                                                                     new SqlParameter("@ItemCode",SqlDbType.VarChar,8),
@@ -1863,14 +1888,14 @@ namespace DXBMS.Modules.Service
             //  if (gvSublet.Rows.Count > 0)
             //  {
 
-            SqlParameter[] JobCardSubletDetail_Delete_param = {                                                       
+            SqlParameter[] JobCardSubletDetail_Delete_param = {
                                                                 new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                 new SqlParameter("@JobCardCode",SqlDbType.Char,8)
                                                               };
             JobCardSubletDetail_Delete_param[0].Value = Session["DealerCode"].ToString();
             JobCardSubletDetail_Delete_param[1].Value = txtJobCardCode.Text.Trim() == "" ? HFJobCard.Value.Trim() : txtJobCardCode.Text.Trim();// ddlJobCardCode.SelectedValue.ToString().Trim();
 
-            SqlParameter[] JobCardSubletDetail_Insert_param = {                                                       
+            SqlParameter[] JobCardSubletDetail_Insert_param = {
                                                                 new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                 new SqlParameter("@JobCardCode",SqlDbType.Char,8),
                                                                 new SqlParameter("@VendorCode",SqlDbType.Char,6),
@@ -1954,7 +1979,7 @@ namespace DXBMS.Modules.Service
                 if (myFunc.ExecuteSP_NonQuery("sp_W2_SIRMaster_Insert", SIRMaster_Insert_param, Trans))
                 {
                     string jcno = txtJobCardCode.Text.Trim() == "" ? HFJobCard.Value.Trim() : txtJobCardCode.Text.Trim();// ddlJobCardCode.SelectedValue.ToString().Trim();
-                    string strSIRNo = grl.GetStringValuesAgainstCodes("JobCardNO", jcno, "SIRNo", "SIRMaster",Session["DealerCode"].ToString());
+                    string strSIRNo = grl.GetStringValuesAgainstCodes("JobCardNO", jcno, "SIRNo", "SIRMaster", Session["DealerCode"].ToString());
 
 
                     SqlParameter[] SIRDetail_Insert_param = {                                                       
@@ -2000,7 +2025,7 @@ namespace DXBMS.Modules.Service
                     DataRow[] drParts = PartsDT.Select();
                     for (int i = 0; i < drParts.Length; i++)
                     {
-                       
+
                         if (PartsDT.Rows[i]["ItemCode"].ToString() != "")
                         {
                             SIRDetail_Insert_param[0].Value = Session["DealerCode"].ToString();
@@ -2027,7 +2052,7 @@ namespace DXBMS.Modules.Service
                     DataRow[] drConParts = ConPartsDT.Select();
                     for (int i = 0; i < drConParts.Length; i++)
                     {
-                     
+
                         if (ConPartsDT.Rows[i]["ItemCode"].ToString() != "")
                         {
                             SIRDetail_Insert_param[0].Value = Session["DealerCode"].ToString();
@@ -2096,7 +2121,7 @@ namespace DXBMS.Modules.Service
                 bool flag = false;
                 // if (gvJobCardParts.Rows.Count > 0)
                 //{
-                SqlParameter[] JobCardConPartsDetail_Delete_param = {                                                       
+                SqlParameter[] JobCardConPartsDetail_Delete_param = {
                                                                     new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                     new SqlParameter("@JobCardCode",SqlDbType.Char,8)
                                                                  };
@@ -2104,7 +2129,7 @@ namespace DXBMS.Modules.Service
                 //JobCardConPartsDetail_Delete_param[1].Value = ddlJobCardCode.SelectedIndex == 0 ? HFJobCard.Value.Trim() : ddlJobCardCode.SelectedValue.ToString().Trim();
                 JobCardConPartsDetail_Delete_param[1].Value = txtJobCardCode.Text.Trim() == "" ? HFJobCard.Value.Trim() : txtJobCardCode.Text.Trim();// ddlJobCardCode.SelectedValue.ToString().Trim();
 
-                SqlParameter[] JobCardConPartsDetail_Insert_param = {                                                       
+                SqlParameter[] JobCardConPartsDetail_Insert_param = {
                                                                     new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                     new SqlParameter("@JobCardCode",SqlDbType.Char,8),
                                                                     new SqlParameter("@ItemCode",SqlDbType.VarChar,8),
@@ -2178,7 +2203,7 @@ namespace DXBMS.Modules.Service
         {
             //if (ddlPartCode.SelectedIndex == 0)
             //{
-                
+
             //    grl.UserMsg(lblMsg, Color.Red, "Please enter Quantity", txtQuantity);
             //    return;
             //}
@@ -2190,15 +2215,15 @@ namespace DXBMS.Modules.Service
             {
                 txtQuantity.Text = "0";
             }
-            if (Convert.ToInt32(txtQuantity.Text) ==0)
+            if (Convert.ToInt32(txtQuantity.Text) == 0)
             {
-                
+
                 grl.UserMsg(lblMsg, Color.Red, "Please enter Quantity", txtQuantity);
                 return;
             }
             if (Convert.ToInt32(txtQuantity.Text) < Convert.ToInt32(txtPartsRecQuantity.Text))
             {
-                
+
                 grl.UserMsg(lblMsg, Color.Red, "Issue quantity not less then receive quantity", txtQuantity);
                 return;
             }
@@ -2207,7 +2232,7 @@ namespace DXBMS.Modules.Service
                 lblMsg.Text = "";
             }
             //
-            TextBox[] textBoxes = {  txtPartPrice, txtQuantity };
+            TextBox[] textBoxes = { txtPartPrice, txtQuantity };
             if (!MasterValidation(textBoxes)) return;
             else
             {
@@ -2217,7 +2242,7 @@ namespace DXBMS.Modules.Service
                     //if (rowPartsDT["ItemCode"].ToString().Trim() == ""
                     //    | rowPartsDT["ItemCode"].ToString().Trim() == txtItemcodeParts.Text.Trim())
                     //{
-                        Insert_in_PartsDT(rowPartsDT); search_result = true;
+                    Insert_in_PartsDT(rowPartsDT); search_result = true;
                     //}
                 }
                 if (search_result == false)
@@ -2240,7 +2265,7 @@ namespace DXBMS.Modules.Service
             //DataTable dt = myFunc.GetData("select ItemDesc from Item where DealerCode='" + Session["DealerCode"].ToString() + "' And  ItemCode='" + ddlPartCode.SelectedValue.ToString() + "'");
             rowPartsDT["PartNo"] = txtPartItemNo_Parts.Text.Trim();
             rowPartsDT["PartsDesc"] = txtItemDesc.Text.Trim();
-            if (txtDep.Text != "" && SysFunction.CustomCDBL(txtDep.Text)>0)
+            if (txtDep.Text != "" && SysFunction.CustomCDBL(txtDep.Text) > 0)
             {
                 ddlJobCardTypeCode.SelectedValue = "012";
             }
@@ -2265,13 +2290,13 @@ namespace DXBMS.Modules.Service
             rowPartsDT["Price"] = txtPartPrice.Text.Trim();
             if (ddlJobCardTypeCode.SelectedValue == "001")
             {
-                if (sysfun.IsExist("ItemCode",txtItemCode.Text,"FreeParts","COMON","and VehicleCategory='"+Session["VehicleCategory"].ToString()+"'"))
+                if (sysfun.IsExist("ItemCode", txtItemCode.Text, "FreeParts", "COMON", "and VehicleCategory='" + Session["VehicleCategory"].ToString() + "'"))
                 {
                     rowPartsDT["Type"] = "F";
                 }
-                
+
             }
-           else if (ddlJobCardTypeCode.SelectedValue == "013")
+            else if (ddlJobCardTypeCode.SelectedValue == "013")
             {
                 if (sysfun.IsExist("ItemCode", txtItemCode.Text, "FreeParts", "COMON", "and VehicleCategory='" + Session["VehicleCategory"].ToString() + "'"))
                 {
@@ -2297,31 +2322,31 @@ namespace DXBMS.Modules.Service
             }
             else if (ddlJobCardTypeCode.SelectedValue == "012")
             {
-               
-                    rowPartsDT["Type"] = lblPartType.Value;
-                
+
+                rowPartsDT["Type"] = lblPartType.Value;
+
 
             }
             else
             {
                 rowPartsDT["Type"] = "P";
             }
-           
-           
+
+
             rowPartsDT["Total"] = double.Parse(txtQuantity.Text.Trim()) * double.Parse(txtPartPrice.Text.Trim());
             rowPartsDT["ItemCode"] = txtItemCode.Text;
             rowPartsDT["RecQty"] = txtPartsRecQuantity.Text.Trim();
-           
+
         }
         protected void btnLubAddInGrid_Click(object sender, EventArgs e)
         {
-            if(txtLubCode.Text == "") //ddlLubCode.SelectedIndex
+            if (txtLubCode.Text == "") //ddlLubCode.SelectedIndex
             {
-                
+
                 grl.UserMsg(lblMsg, Color.Red, "Please select Lube Item", txtQuantity);
                 return;
             }
-            
+
             TextBox[] textBoxes = { txtLubPrice, txtLubQuantity };
             if (!MasterValidation(textBoxes)) return;
             else
@@ -2357,7 +2382,7 @@ namespace DXBMS.Modules.Service
             {
                 rowLubDT["Dep"] = "0";
                 rowLubDT["DepAmount"] = "0";
-               
+
             }
             else
             {
@@ -2365,7 +2390,7 @@ namespace DXBMS.Modules.Service
                 rowLubDT["DepAmount"] = (Math.Round((SysFunctions.CustomCDBL(txtLubQuantity.Text.Trim()) * SysFunctions.CustomCDBL(txtLubPrice.Text.Trim()) / 100) * SysFunctions.CustomCDBL(txtLubDep.Text.Trim())));
             }
 
-           
+
 
         }
         //protected void btnSubletAddinGrid_Click(object sender, EventArgs e)
@@ -2450,9 +2475,9 @@ namespace DXBMS.Modules.Service
             //rowSubletDT["JobCode"] = ddlJobs_Sublet.SelectedValue.ToString().Trim(); 
             rowSubletDT["JobCode"] = txtSubletJobCode.Text.Trim();
             rowSubletDT["JobDescription"] = txtSubletJobDesc.Text.Trim();
-            rowSubletDT["Remarks"] = txtSubletRemarks.Text.Trim().ToUpper(); 
+            rowSubletDT["Remarks"] = txtSubletRemarks.Text.Trim().ToUpper();
             rowSubletDT["SubletDate"] = txtSubletDate.Text.Trim();
-            rowSubletDT["SubletAmount"] = txtSubletIncAmnt.Text.Trim(); 
+            rowSubletDT["SubletAmount"] = txtSubletIncAmnt.Text.Trim();
             rowSubletDT["PayableAmount"] = txtSubletPayAmnt.Text;
             //rowSubletDT["BayID"] = ddlBaySubletJob.SelectedValue.Trim();
         }
@@ -2488,50 +2513,50 @@ namespace DXBMS.Modules.Service
                 totsubletInv = 0;
                 totBoutInv = 0;
 
-                
-                    foreach (GridViewRow dr in gvJobCardParts.Rows)
-                    {
+
+                foreach (GridViewRow dr in gvJobCardParts.Rows)
+                {
 
                     totParts = totParts + SysFunctions.CustomCDBL(dr.Cells[10].Text);
 
-                    }
+                }
 
-                
+
                 foreach (GridViewRow dr in gvJobCard.Rows)
-                    {
+                {
 
-                        totJob =totJob+ SysFunctions.CustomCDBL(dr.Cells[9].Text);
+                    totJob = totJob + SysFunctions.CustomCDBL(dr.Cells[9].Text);
 
-                    }
-
-                
-                
-                    foreach (GridViewRow dr in gvLubParts.Rows)
-                    {
-
-                        totlub =totlub+SysFunctions.CustomCDBL(dr.Cells[10].Text);
+                }
 
 
-                    }
 
-                
-                 foreach (GridViewRow dr in gvSublet.Rows)
-                    {
+                foreach (GridViewRow dr in gvLubParts.Rows)
+                {
 
-                        totsubletInv =totsubletInv+ SysFunctions.CustomCDBL(dr.Cells[7].Text);
+                    totlub = totlub + SysFunctions.CustomCDBL(dr.Cells[10].Text);
 
-                    }
 
-                
-               
-                    foreach (GridViewRow dr in gvJobCardPartsBought.Rows)
-                    {
+                }
 
-                        totBoutInv =totBoutInv+ SysFunctions.CustomCDBL(dr.Cells[9].Text);
 
-                    }
+                foreach (GridViewRow dr in gvSublet.Rows)
+                {
 
-                
+                    totsubletInv = totsubletInv + SysFunctions.CustomCDBL(dr.Cells[7].Text);
+
+                }
+
+
+
+                foreach (GridViewRow dr in gvJobCardPartsBought.Rows)
+                {
+
+                    totBoutInv = totBoutInv + SysFunctions.CustomCDBL(dr.Cells[9].Text);
+
+                }
+
+
                 totEst = totJob + totlub + totsubletInv + totBoutInv + totParts;
                 txtJobCardTotal.Text = totEst.ToString();
             }
@@ -2556,24 +2581,24 @@ namespace DXBMS.Modules.Service
                 //ddlJobs_Labor.SelectedValue = row.Cells[2].Text.Trim();
                 txtJobs_Labor.Text = row.Cells[2].Text.Trim();
                 txtJobsDesc.Text = row.Cells[3].Text;
-                string techCode= row.Cells[4].Text.Trim();
-          //      ddlTechnicianEmpCode.SelectedValue = row.Cells[4].Text.Trim();
+                string techCode = row.Cells[4].Text.Trim();
+                //      ddlTechnicianEmpCode.SelectedValue = row.Cells[4].Text.Trim();
                 //txtTechnician.Text = row.Cells[4].Text;
                 //txtTechnicianDesc.Text = row.Cells[5].Text;
                 //ddlJobCardType.Text = row.Cells[6].Text;
                 txtJobRemarks.Text = (row.Cells[7].Text != "&nbsp;" ? row.Cells[7].Text : "");
                 txtLabor.Text = row.Cells[9].Text;
                 ddlTechnicianEmpCode.SelectedValue = techCode;
-                if(row.Cells[6].Text !=null || row.Cells[6].Text != "")
+                if (row.Cells[6].Text != null || row.Cells[6].Text != "")
                 {
                     if (ddlJobCardTypeCode.SelectedValue == "012")
                     {
                         ddlJobType.Visible = true;
                     }
-                 
+
                     ddlJobType.SelectedValue = row.Cells[6].Text;
                 }
-              
+
                 //  ViewState["deductAmount"] = decimal.Parse(row.Cells[8].Text);
                 JobDT = (DataTable)ViewState["Job"];
                 JobDT.Rows.RemoveAt(gvJobCard.SelectedIndex);
@@ -2615,6 +2640,7 @@ namespace DXBMS.Modules.Service
                 txtQuantity.Text = row.Cells[8].Text;
                 txtPartPrice.Text = row.Cells[9].Text;
                 ViewState["deductAmount"] = row.Cells[9].Text;
+                imgLookup.Enabled = false;
 
             }
             catch (Exception ex) { throw ex; }
@@ -2634,7 +2660,7 @@ namespace DXBMS.Modules.Service
                 txtLubQuantity.Text = row.Cells[6].Text;
                 txtLubDep.Text = row.Cells[7].Text;
                 txtLubPrice.Text = row.Cells[9].Text;
-                lblLubType.Value= row.Cells[11].Text;
+                lblLubType.Value = row.Cells[11].Text;
 
             }
             catch (Exception ex) { throw ex; }
@@ -2653,7 +2679,7 @@ namespace DXBMS.Modules.Service
                 txtSubletJobCode.Text = row.Cells[4].Text.Trim();
                 txtSubletJobDesc.Text = row.Cells[5].Text;
                 txtSubletDate.Text = row.Cells[6].Text;
-               // txtSubletDate.Text = row.Cells[7].Text;
+                // txtSubletDate.Text = row.Cells[7].Text;
                 txtSubletIncAmnt.Text = row.Cells[7].Text;
                 txtSubletPayAmnt.Text = row.Cells[8].Text;
             }
@@ -2682,9 +2708,9 @@ namespace DXBMS.Modules.Service
 
         }
 
-        
-        
-        
+
+
+
 
 
 
@@ -2701,7 +2727,7 @@ namespace DXBMS.Modules.Service
         }
         protected void btnPartsRemove_Click(object sender, EventArgs e)
         {
-            
+
             if ((ViewState["InvNo"] == null ? "" : ViewState["InvNo"].ToString()) == "")
             {
                 PartsDT = (DataTable)ViewState["Parts"];
@@ -2730,7 +2756,7 @@ namespace DXBMS.Modules.Service
         }
         protected void txtLubRemove_Click(object sender, EventArgs e)
         {
-            
+
             TextBox[] textBoxes = { txtLubPrice, txtLubQuantity };
             if (!MasterValidation(textBoxes)) return;
             else
@@ -2786,7 +2812,7 @@ namespace DXBMS.Modules.Service
         {
             try
             {
-                
+
                 ViewState["lookupid"] = 3; ViewState["ixd1"] = 3; ViewState["ixd2"] = 2; ViewState["txtgroup"] = 1;
                 //clslook.RegChassisEngine(txtChassisNo, ViewState["lookupid"].ToString(), "", "../../../");
             }
@@ -2828,7 +2854,7 @@ namespace DXBMS.Modules.Service
             try
             {
                 ViewState["lookupid"] = 10; ViewState["txtgroup"] = 2; ViewState["ixd1"] = 1; ViewState["ixd2"] = 2; ViewState["ixd3"] = 3;
-               // clslook.LU_Get_Lubs(ImageButton1, ViewState["lookupid"].ToString(), "", "../../../");
+                // clslook.LU_Get_Lubs(ImageButton1, ViewState["lookupid"].ToString(), "", "../../../");
             }
             catch (Exception ex) { throw ex; }
         }
@@ -2845,7 +2871,7 @@ namespace DXBMS.Modules.Service
         {
             try
             {
-                
+
                 ViewState["lookupid"] = 4; ViewState["ixd1"] = 1; ViewState["ixd2"] = 1;
                 //clslook.LU_Get_JobCardNoForm(ImageButton1, ViewState["lookupid"].ToString(), "", "../../../");
             }
@@ -2924,7 +2950,7 @@ namespace DXBMS.Modules.Service
 
         }
 
-        
+
 
         protected void gvJobCardParts_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -2998,9 +3024,9 @@ namespace DXBMS.Modules.Service
             else if (e.Row.RowType == DataControlRowType.Footer)
             {
                 txtSubletTotal.Text = Convert.ToString(totsubletInv);
-                txtSubletPayableTotal.Text = Convert.ToString(totsubletPayable); 
+                txtSubletPayableTotal.Text = Convert.ToString(totsubletPayable);
             }
-            
+
         }
         protected void gvJobCard_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -3023,7 +3049,7 @@ namespace DXBMS.Modules.Service
                 txtJobsTotal.Text = countLabour.ToString();
             }
 
-            
+
         }
 
         private void fillTextBox(string query)
@@ -3040,7 +3066,7 @@ namespace DXBMS.Modules.Service
         {
 
         }
-        
+
 
         protected void btnDelete_Click(object sender, EventArgs e)
         {
@@ -3050,7 +3076,7 @@ namespace DXBMS.Modules.Service
                 //public bool CodeExists(string strTableNames, string strColumnCode, string strColumeValue)
                 //CodeExists(string strTableNames, string strColumnCode, string strColumeValue)
 
-                TextBox[] textBoxes = {txtCustomer, txtEndUser, txtBrand, txtProduct, txtVersion, 
+                TextBox[] textBoxes = {txtCustomer, txtEndUser, txtBrand, txtProduct, txtVersion,
                                 txtReciptTime,txtKM,txtRecieptDate };
                 if (!MasterValidation(textBoxes))
                 {
@@ -3061,13 +3087,13 @@ namespace DXBMS.Modules.Service
                     grl.UserMsg(lblMsg, Color.Red, "Please select advisor", txtCustomer);
                     return;
                 }
-                
+
                 //if (grl.IsExist("JobCardCode", ddlJobCardNo.Text, "JobCardMaster", " And GatePass<>''"))
                 //{
                 //    grl.UserMsg(lblMsg, Color.Red, "JobCard can not delete is has Gatpass", txtCustomer);
                 //    return;
                 //}
-                if (txtGatePass.Text.Length !=0)
+                if (txtGatePass.Text.Length != 0)
                 {
                     grl.UserMsg(lblMsg, Color.Red, "JobCard can not delete it has Gatpass", txtCustomer);
                     return;
@@ -3095,12 +3121,12 @@ namespace DXBMS.Modules.Service
                         }
                     }
                 }
-                if (checkPartissued())
+                if (checkPartissued("Parts issued this JobCard not Delete"))
                 {
                     grl.UserMsg(lblMsg, Color.Red, "Parts issued this JobCard not Delete", txtCustomer);
                     return;
                 }
-                if (checkLubissued())
+                if (checkLubissued("Lubricant issued this JobCard not Delete"))
                 {
                     grl.UserMsg(lblMsg, Color.Red, "Lubricant issued this JobCard not Delete", txtCustomer);
                     return;
@@ -3117,7 +3143,7 @@ namespace DXBMS.Modules.Service
                     grl.UserMsg(lblMsg, Color.Red, "GatePass Exist Against Jobcard ");
                     return;
                 }
-                SqlParameter[] JobCard_Master_Delete_param = {                                                       
+                SqlParameter[] JobCard_Master_Delete_param = {
                                                                 new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                 new SqlParameter("@JobCardCode",SqlDbType.Char,8)
                                                               };
@@ -3125,7 +3151,7 @@ namespace DXBMS.Modules.Service
                 JobCard_Master_Delete_param[1].Value = txtJobCardCode.Text; // ddlJobCardCode.SelectedValue.ToString().Trim();
                 if (myFunc.ExecuteSP_NonQuery("sp_W2_JobCard_Master_Delete", JobCard_Master_Delete_param))
                 {
-                    
+
                     grl.UserMsg(lblMsg, Color.Green, "Record Deleted Successfully: " + txtJobCardCode.Text, txtCustomer); //ddlJobCardCode.SelectedValue.ToString().Trim()
                     clearAll();
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "Deletealert()", true);
@@ -3143,27 +3169,27 @@ namespace DXBMS.Modules.Service
             }
         }
 
-       private bool checkPartissued()
+        private bool checkPartissued(string msg)
         {
-            bool Isissue=false;
+            bool Isissue = false;
             double Recqty;
 
             foreach (GridViewRow gvr in gvJobCardParts.Rows)
             {
-                Recqty = SysFunctions.CustomCDBL(grl.GetStringValuesAgainstCodes("JobCardCode='"+txtJobCardCode.Text+"' and ItemCode='"+ gvr.Cells[2].Text + "'", "JobCardPartsDetail", "RecQty"));
-               
-                    if (Recqty > 0)
-                    {
-                        Isissue = true;
-                        grl.UserMsg(lblMsg, Color.Red, "Parts issued this JobCard not Delete", txtCustomer);
-                        return Isissue;
-                    }
-                
+                Recqty = SysFunctions.CustomCDBL(grl.GetStringValuesAgainstCodes("JobCardCode='" + txtJobCardCode.Text + "' and ItemCode='" + gvr.Cells[2].Text + "'", "JobCardPartsDetail", "RecQty"));
+
+                if (Recqty > 0)
+                {
+                    Isissue = true;
+                    grl.UserMsg(lblMsg, Color.Red, msg, txtCustomer);
+                    return Isissue;
+                }
+
             }
 
             return Isissue;
         }
-        private bool checkLubissued()
+        private bool checkLubissued(string msg)
         {
             bool Isissue = false;
             double Recqty;
@@ -3175,7 +3201,7 @@ namespace DXBMS.Modules.Service
                 if (Recqty > 0)
                 {
                     Isissue = true;
-                    grl.UserMsg(lblMsg, Color.Red, "Lube issued this JobCard not Delete", txtCustomer);
+                    grl.UserMsg(lblMsg, Color.Red, msg, txtCustomer);
                     return Isissue;
                 }
 
@@ -3238,7 +3264,7 @@ namespace DXBMS.Modules.Service
 
 
             RD.Load(Server.MapPath("~/Modules/Service/ServiceReports/rptJobCardPDI.rpt"));
-          
+
 
 
 
@@ -3322,13 +3348,13 @@ namespace DXBMS.Modules.Service
 
             ds = SqlHelper.ExecuteDataset(CCon, CommandType.Text, "sp_JobCardMaster_Print '" + this.Session["DealerCode"].ToString() + "','" + ViewState["JobCardCode"].ToString().Trim() + "'");
 
-          //  QRCodeEncoder encoder = new QRCodeEncoder();
+            //  QRCodeEncoder encoder = new QRCodeEncoder();
 
-          //  Bitmap bi = encoder.Encode(ds.Tables[0].Rows[0]["DealerCode"].ToString() + "" + ds.Tables[0].Rows[0]["JobCardCode"].ToString());
+            //  Bitmap bi = encoder.Encode(ds.Tables[0].Rows[0]["DealerCode"].ToString() + "" + ds.Tables[0].Rows[0]["JobCardCode"].ToString());
 
-          ///  bi.SetPixel(10, 10, Color.Red);
+            ///  bi.SetPixel(10, 10, Color.Red);
 
-          //  bi.Save(Server.MapPath("~/Images/QrCode.jpg"), System.Drawing.Imaging.ImageFormat.Jpeg);
+            //  bi.Save(Server.MapPath("~/Images/QrCode.jpg"), System.Drawing.Imaging.ImageFormat.Jpeg);
 
 
             DSReports.sp_JobCardMaster_Print.Load(ds.CreateDataReader());
@@ -3349,10 +3375,10 @@ namespace DXBMS.Modules.Service
 
 
             RD.Load(Server.MapPath("~/Modules/Service/ServiceReports/rptJobCardStock.rpt"));
-            
+
             RD.OpenSubreport(Server.MapPath("~/Modules/Service/ServiceReports/JobCardPartsDetail.rpt"));
-            
-            
+
+
 
 
             RD.DataDefinition.FormulaFields["DealerName"].Text = "'" + Session["DealerDesc"].ToString() + "'";
@@ -3436,18 +3462,18 @@ namespace DXBMS.Modules.Service
 
 
             ds = SqlHelper.ExecuteDataset(CCon, CommandType.Text, "sp_JobCardMaster_Print '" + this.Session["DealerCode"].ToString() + "','" + ViewState["JobCardCode"].ToString().Trim() + "'");
-            
-           // QRCodeEncoder encoder = new QRCodeEncoder();
 
-           // Bitmap bi = encoder.Encode(ds.Tables[0].Rows[0]["DealerCode"].ToString() + "" + ds.Tables[0].Rows[0]["JobCardCode"].ToString());
+            // QRCodeEncoder encoder = new QRCodeEncoder();
 
-           // bi.SetPixel(10, 10, Color.Red);
+            // Bitmap bi = encoder.Encode(ds.Tables[0].Rows[0]["DealerCode"].ToString() + "" + ds.Tables[0].Rows[0]["JobCardCode"].ToString());
 
-          //  bi.Save(Server.MapPath("~/Images/QrCode.jpg"), System.Drawing.Imaging.ImageFormat.Jpeg);
-            
+            // bi.SetPixel(10, 10, Color.Red);
+
+            //  bi.Save(Server.MapPath("~/Images/QrCode.jpg"), System.Drawing.Imaging.ImageFormat.Jpeg);
+
 
             DSReports.sp_JobCardMaster_Print.Load(ds.CreateDataReader());
-            
+
             ds = SqlHelper.ExecuteDataset(CCon, CommandType.Text, "sp_JobCardDetail_Print'" + this.Session["DealerCode"].ToString() + "','" + ViewState["JobCardCode"].ToString().Trim() + "'");
             DSReports.sp_JobCardDetail_Print.Load(ds.CreateDataReader());
 
@@ -3470,13 +3496,13 @@ namespace DXBMS.Modules.Service
             {
                 RD.Load(Server.MapPath("~/Modules/Service/ServiceReports/rptJobCard.rpt"));
             }
-           
+
             RD.OpenSubreport(Server.MapPath("~/Modules/Service/ServiceReports/rptJobCardDetail.rpt"));
             RD.OpenSubreport(Server.MapPath("~/Modules/Service/ServiceReports/JobCardPartsDetail.rpt"));
             RD.OpenSubreport(Server.MapPath("~/Modules/Service/ServiceReports/rptJobCardLubDetail.rpt.rpt"));
             RD.OpenSubreport(Server.MapPath("~/Modules/Service/ServiceReports/rptJobCardSubletDetail.rpt"));
 
-            
+
             RD.DataDefinition.FormulaFields["DealerName"].Text = "'" + Session["DealerDesc"].ToString().ToUpper() + "'";
             RD.DataDefinition.FormulaFields["DealerAddress"].Text = "'" + Session["DealerAddress"].ToString().ToUpper() + "'";
             RD.DataDefinition.FormulaFields["DealerPhone"].Text = "'" + Session["DealerPhone"].ToString().ToUpper() + "'";
@@ -3494,13 +3520,13 @@ namespace DXBMS.Modules.Service
             RD.DataDefinition.FormulaFields["QRCode"].Text = "'" + Server.MapPath("~") + "/Images/QrCode.jpg'";
 
 
-         
+
             string FilePath = Server.MapPath("~") + "\\Download\\";
             string FileName = "Report.pdf";
             string File = FilePath + FileName;
             RD.SetDataSource(DSReports.sp_JobCardMaster_Print.DataSet);
 
-         
+
 
             Stream stream = RD.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             stream.Seek(0, SeekOrigin.Begin);
@@ -3519,113 +3545,113 @@ namespace DXBMS.Modules.Service
             stream = null;
             RD.Dispose(); RD.Close();
             string URL = "../../../Download/PrintReport.aspx";
-          
+
             string fullURL = "window.open('" + URL + "', '_blank', 'height=800,width=1000,status=no,toolbar=no,menubar=no,location=no,scrollbars=yes,resizable=yes,titlebar=no');";
-       
+
             ScriptManager.RegisterStartupScript(this, typeof(string), "OPEN_WINDOW", fullURL, true);
-          
-            
+
+
         }
 
         //protected void btnPost_Click(object sender, EventArgs e)
         //{
-            //if (ddlJobCardCode.SelectedIndex == 0)
-            //{
-            //    grl.UserMsg(lblMsg, Color.Red, "jobCardNo should not be left blank", txtCustomer);
-            //    return;
-            //}
-            //if (ddlJobType.SelectedItem.Value.ToString() != "001" && ddlJobType.SelectedItem.Value.ToString() != "002")
-            //{
-            //    
-            //    grl.UserMsg(lblMsg, Color.Red, "Posting not allow, please make customer invoine against this jobcard No", txtCustomer);
-            //    return;
-            //}
+        //if (ddlJobCardCode.SelectedIndex == 0)
+        //{
+        //    grl.UserMsg(lblMsg, Color.Red, "jobCardNo should not be left blank", txtCustomer);
+        //    return;
+        //}
+        //if (ddlJobType.SelectedItem.Value.ToString() != "001" && ddlJobType.SelectedItem.Value.ToString() != "002")
+        //{
+        //    
+        //    grl.UserMsg(lblMsg, Color.Red, "Posting not allow, please make customer invoine against this jobcard No", txtCustomer);
+        //    return;
+        //}
 
-            //ds = new DataSet();
-            //grl.CodeExists("JobCardMaster", "JobCardCode='" + ddlJobCardCode.SelectedValue.ToString().Trim() + "' AND DealerCode='" + Session["DealerCode"].ToString() + "'", ref ds);
-            //search_result = false;
+        //ds = new DataSet();
+        //grl.CodeExists("JobCardMaster", "JobCardCode='" + ddlJobCardCode.SelectedValue.ToString().Trim() + "' AND DealerCode='" + Session["DealerCode"].ToString() + "'", ref ds);
+        //search_result = false;
 
-            //if (ddlJobCardTypeCode.SelectedItem.Text == "Warranty")
-            //{
-            //    //double  dJCTotal  = 0.00;
-            //    //string Query = 
-            //    //if()
-            //    //{
+        //if (ddlJobCardTypeCode.SelectedItem.Text == "Warranty")
+        //{
+        //    //double  dJCTotal  = 0.00;
+        //    //string Query = 
+        //    //if()
+        //    //{
 
-            //    //}
-            //    if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", ddlJobCardCode.SelectedValue.ToString().Trim(), " and qty <> recqty"))
-            //    {
-            //        SendAlert("Parts have not been issued yet"); return;
-            //    }
+        //    //}
+        //    if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", ddlJobCardCode.SelectedValue.ToString().Trim(), " and qty <> recqty"))
+        //    {
+        //        SendAlert("Parts have not been issued yet"); return;
+        //    }
 
-            //    if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", ddlJobCardCode.SelectedValue.ToString().Trim(), " and qty <> recqty"))
-            //    {
-            //        SendAlert("Lubricant parts have not been issued yet"); return;
-            //    }
-            //}
-            ////Check RecQuty and IssuQty is equal
-            //string StrSIRNo = string.Empty;
-            //DataSet dsSIR = new DataSet();
-            //StrSIRNo = grl.GetStringValuesAgainstCodes("JobCardCode", ddlJobCardCode.SelectedValue.ToString().Trim(), "SIRMaster", "JobCardMaster");
-            //myFunc.ExecuteQuery("Select * From SIRDetail Where Dealercode='" + Session["DealerCode"].ToString() + "' And SIRNo='" + StrSIRNo + "'", ref dsSIR);
-            //if (ds.Tables[0].Rows.Count > 0)
-            //{
-            //    foreach (DataRow dr in dsSIR.Tables[0].Rows)
-            //    {
-            //        if (Convert.ToInt32(dr["Quantity"]) != Convert.ToInt32(dr["RecQty"]))
-            //        {
-            //            
-            //            grl.UserMsg(lblMsg, Color.Red, "Stock not issue yet", txtCustomer);
-            //            return;
-            //        }
-            //    }
-            //}
-            ///////////////////
-            //if (ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "Repeated JobCard")
-            //{
-            //    callPostingJobCard(); search_result = true;
-            //}
-            //else if (ds.Tables[0].Rows[0]["JobTypeCode"].ToString().Trim() == "001")
-            //{
-            //    callPostingJobCard(); search_result = true;
-            //    if (Create_NDM(ddlJobCardCode.SelectedValue.ToString().Trim(), "InvoiceCreated") == false)
-            //    {
-            //        grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
-            //        ObjTrans.RollBackTransaction(ref Trans);
-            //        return;
-            //    }
-            //    if (PostServiceFollowUp(ddlJobCardCode.SelectedValue.ToString().Trim(), "InvoiceCreated") == false)
-            //    {
-            //        grl.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be inserted");
-            //        ObjTrans.RollBackTransaction(ref Trans);
-            //        return;
-            //    }
-            //}
-            //else if (ds.Tables[0].Rows[0]["JobTypeCode"].ToString().Trim() == "002")
-            //{
-            //    callPostingJobCard(); search_result = true;
+        //    if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", ddlJobCardCode.SelectedValue.ToString().Trim(), " and qty <> recqty"))
+        //    {
+        //        SendAlert("Lubricant parts have not been issued yet"); return;
+        //    }
+        //}
+        ////Check RecQuty and IssuQty is equal
+        //string StrSIRNo = string.Empty;
+        //DataSet dsSIR = new DataSet();
+        //StrSIRNo = grl.GetStringValuesAgainstCodes("JobCardCode", ddlJobCardCode.SelectedValue.ToString().Trim(), "SIRMaster", "JobCardMaster");
+        //myFunc.ExecuteQuery("Select * From SIRDetail Where Dealercode='" + Session["DealerCode"].ToString() + "' And SIRNo='" + StrSIRNo + "'", ref dsSIR);
+        //if (ds.Tables[0].Rows.Count > 0)
+        //{
+        //    foreach (DataRow dr in dsSIR.Tables[0].Rows)
+        //    {
+        //        if (Convert.ToInt32(dr["Quantity"]) != Convert.ToInt32(dr["RecQty"]))
+        //        {
+        //            
+        //            grl.UserMsg(lblMsg, Color.Red, "Stock not issue yet", txtCustomer);
+        //            return;
+        //        }
+        //    }
+        //}
+        ///////////////////
+        //if (ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "Repeated JobCard")
+        //{
+        //    callPostingJobCard(); search_result = true;
+        //}
+        //else if (ds.Tables[0].Rows[0]["JobTypeCode"].ToString().Trim() == "001")
+        //{
+        //    callPostingJobCard(); search_result = true;
+        //    if (Create_NDM(ddlJobCardCode.SelectedValue.ToString().Trim(), "InvoiceCreated") == false)
+        //    {
+        //        grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
+        //        ObjTrans.RollBackTransaction(ref Trans);
+        //        return;
+        //    }
+        //    if (PostServiceFollowUp(ddlJobCardCode.SelectedValue.ToString().Trim(), "InvoiceCreated") == false)
+        //    {
+        //        grl.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be inserted");
+        //        ObjTrans.RollBackTransaction(ref Trans);
+        //        return;
+        //    }
+        //}
+        //else if (ds.Tables[0].Rows[0]["JobTypeCode"].ToString().Trim() == "002")
+        //{
+        //    callPostingJobCard(); search_result = true;
 
-            //    if (Create_NDM(ddlJobCardCode.SelectedValue.ToString().Trim(), "InvoiceCreated") == false)
-            //    {
-            //        grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
-            //        ObjTrans.RollBackTransaction(ref Trans);
-            //        return;
-            //    }
-            //    if (PostServiceFollowUp(ddlJobCardCode.SelectedValue.ToString().Trim(), "InvoiceCreated") == false)
-            //    {
-            //        grl.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be inserted");
-            //        ObjTrans.RollBackTransaction(ref Trans);
-            //        return;
-            //    }
-            //}
+        //    if (Create_NDM(ddlJobCardCode.SelectedValue.ToString().Trim(), "InvoiceCreated") == false)
+        //    {
+        //        grl.UserMsg(lblMsg, Color.Red, "NDM Data Can not be inserted");
+        //        ObjTrans.RollBackTransaction(ref Trans);
+        //        return;
+        //    }
+        //    if (PostServiceFollowUp(ddlJobCardCode.SelectedValue.ToString().Trim(), "InvoiceCreated") == false)
+        //    {
+        //        grl.UserMsg(lblMsg, Color.Red, "Post Service FollowUp Data Can not be inserted");
+        //        ObjTrans.RollBackTransaction(ref Trans);
+        //        return;
+        //    }
+        //}
 
-            //if (search_result == false) { SendAlert("Cannot post due to Job Type / Job Card Type!"); return; }
-            //clearAll();
+        //if (search_result == false) { SendAlert("Cannot post due to Job Type / Job Card Type!"); return; }
+        //clearAll();
         //}
 
         private void callPostingJobCard()
         {
-            SqlParameter[] dsParam = {                                                       
+            SqlParameter[] dsParam = {
                                     new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                     new SqlParameter("@JobCardCode",SqlDbType.Char,8)
                                  };
@@ -3642,7 +3668,7 @@ namespace DXBMS.Modules.Service
                 //    {
                 //        //SendAlert(); return;
                 //        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Parts as per Job Card");
-                        
+
                 //        return;
                 //    }
 
@@ -3650,18 +3676,19 @@ namespace DXBMS.Modules.Service
                 //    {
                 //        //SendAlert(); return;
                 //        myFunc.UserMsg(lblMsg, Color.Red, "Please Isuue All Lubricant");
-                        
+
                 //        return;
                 //    }
 
                 //}
-               
-               
+
+
             }
             else
             {
                 dsJobCardParts = myFunc.FillDataSet("sp_W2_JobCard_PartsDetail_Select", dsParam);
-                if (dsJobCardParts.Tables[0].Rows.Count > 0) {
+                if (dsJobCardParts.Tables[0].Rows.Count > 0)
+                {
                     if (grl.CodeExists("JobCardPartsDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
                     {
                         //SendAlert(); return;
@@ -3669,12 +3696,14 @@ namespace DXBMS.Modules.Service
 
                         return;
                     }
-                    
-                    SendAlert("Cannot Post due to parts entered!"); return; }
+
+                    SendAlert("Cannot Post due to parts entered!"); return;
+                }
 
                 dsJobCardLub = new DataSet();
                 dsJobCardLub = myFunc.FillDataSet("sp_W2_JobCard_LubricanteDetail_Select", dsParam);
-                if (dsJobCardLub.Tables[0].Rows.Count > 0) {
+                if (dsJobCardLub.Tables[0].Rows.Count > 0)
+                {
                     if (grl.CodeExists("JobCardLubricateDetail", "JobCardCode", txtJobCardCode.Text, Session["DealerCode"].ToString(), " and qty <> recqty"))
                     {
                         //SendAlert(); return;
@@ -3683,14 +3712,15 @@ namespace DXBMS.Modules.Service
                         return;
                     }
 
-                    SendAlert("Cannot Post due to lube parts entered!"); return; }
+                    SendAlert("Cannot Post due to lube parts entered!"); return;
+                }
             }
-            
 
-            string strSql = "Update dbo.JobCardMaster set GatePass='" + txtJobCardCode.Text.Trim() +"'," + //ddlJobCardCode.SelectedValue.ToString().Trim() 
+
+            string strSql = "Update dbo.JobCardMaster set GatePass='" + txtJobCardCode.Text.Trim() + "'," + //ddlJobCardCode.SelectedValue.ToString().Trim() 
                             "DelvDate='" + grl.SaveDate(DateTime.Now.ToString("dd/MM/yyyy")) + "'," +
                             "TransferStatus='E' " +
-                            "Where DealerCode='" + Session["DealerCode"].ToString() + "' AND JobCardCode='" + txtJobCardCode.Text.Trim() +"'"; //ddlJobCardCode.SelectedValue.ToString().Trim() 
+                            "Where DealerCode='" + Session["DealerCode"].ToString() + "' AND JobCardCode='" + txtJobCardCode.Text.Trim() + "'"; //ddlJobCardCode.SelectedValue.ToString().Trim() 
             try
             {
                 if (ObjTrans.BeginTransaction(ref Trans) == true)
@@ -3704,7 +3734,7 @@ namespace DXBMS.Modules.Service
                     else
                     {
                         ObjTrans.RollBackTransaction(ref Trans);
-                        
+
                         grl.UserMsg(lblMsg, Color.Red, "JobCard dose not Post");
                     }
                 }
@@ -3712,7 +3742,7 @@ namespace DXBMS.Modules.Service
             catch (Exception ex)
             {
                 ObjTrans.RollBackTransaction(ref Trans);
-                
+
                 grl.UserMsg(lblMsg, Color.Red, ex.Message, txtCustomer);
             }
 
@@ -3744,7 +3774,7 @@ namespace DXBMS.Modules.Service
         }
 
         //Method For POsting PSF Data 
-        private bool PostServiceFollowUp(string strJobCardCode, string Action,string oldgatepass)
+        private bool PostServiceFollowUp(string strJobCardCode, string Action, string oldgatepass)
         {
             SqlParameter[] MDNINV_param = { new SqlParameter("@DealerCode",SqlDbType.Char,5),//0
                                         new SqlParameter("@JobCardCode",SqlDbType.Char,8),//01
@@ -3804,7 +3834,7 @@ namespace DXBMS.Modules.Service
         //        if (ddlAdvisor.SelectedItem.Text.Trim() == "--Select--")
         //        {
         //            grl.UserMsg(lblMsg, Color.Red, "Please select Advisor", txtCustomer);
-                    
+
         //            ddlAdvisor.BackColor = Color.Red;
         //            return;
         //        }
@@ -3829,7 +3859,7 @@ namespace DXBMS.Modules.Service
         //        {
         //            lblMsg.Text = string.Empty;
         //            ddlPayMode.BackColor = Color.White;
-                    
+
         //        }
         //        if (ddlBillingType.SelectedIndex == 0)
         //        {
@@ -3858,9 +3888,9 @@ namespace DXBMS.Modules.Service
         //            grl.UserMsg(lblMsg, Color.Red, "Not all required field entered", txtCustomer);
 
         //            ddlPayMode.BackColor = Color.Red;
-                    
+
         //            ddlAdvisor.BackColor = Color.Red;
-                    
+
         //            txtKM.BackColor = Color.Red;
 
         //            return;
@@ -3915,14 +3945,14 @@ namespace DXBMS.Modules.Service
                     ImageButton btn = sender as ImageButton;
                     TableCell tc = btn.Parent as TableCell;
                     GridViewRow gvr = tc.Parent as GridViewRow;
-                double    Recqty = SysFunctions.CustomCDBL(grl.GetStringValuesAgainstCodes("JobCardCode='" + txtJobCardCode.Text + "' and ItemCode='" + gvr.Cells[2].Text + "'", "JobCardPartsDetail", "RecQty"));
-                    if (gvr.Cells[7].Text == "0" && Recqty==0)
+                    double Recqty = SysFunctions.CustomCDBL(grl.GetStringValuesAgainstCodes("JobCardCode='" + txtJobCardCode.Text + "' and ItemCode='" + gvr.Cells[2].Text + "'", "JobCardPartsDetail", "RecQty"));
+                    if (gvr.Cells[7].Text == "0" && Recqty == 0)
                     {
                         PartsDT.Rows.RemoveAt(gvr.RowIndex);
                     }
                     else
                     {
-                        
+
                         grl.UserMsg(lblMsg, Color.Red, "Part can not remove because Receiving Quantity is not zero(0)...");
                         return;
                     }
@@ -3954,7 +3984,7 @@ namespace DXBMS.Modules.Service
                 }
                 else
                 {
-                    
+
                     grl.UserMsg(lblMsg, Color.Red, "Record can not be deleted after Invoice generated...");
                 }
                 CalculateTotal();
@@ -4007,14 +4037,14 @@ namespace DXBMS.Modules.Service
                     TableCell tc = btn.Parent as TableCell;
                     GridViewRow gvr = tc.Parent as GridViewRow;
                     double Recqty = SysFunctions.CustomCDBL(grl.GetStringValuesAgainstCodes("JobCardCode='" + txtJobCardCode.Text + "' and ItemCode='" + gvr.Cells[2].Text + "'", "JobCardLubricateDetail", "RecQty"));
-                    if (gvr.Cells[5].Text == "0" && Recqty==0)
+                    if (gvr.Cells[5].Text == "0" && Recqty == 0)
                     {
                         LubDT.Rows.RemoveAt(gvr.RowIndex);
-                       
+
                     }
                     else
                     {
-                        
+
                         grl.UserMsg(lblMsg, Color.Red, "Can not Remove because Receiving Quantity not zero(0)...");
                         return;
                     }
@@ -4036,7 +4066,7 @@ namespace DXBMS.Modules.Service
                 }
                 else
                 {
-                    
+
                     grl.UserMsg(lblMsg, Color.Red, "Record can not be deleted after Invoice generated...");
                 }
                 CalculateTotal();
@@ -4073,14 +4103,14 @@ namespace DXBMS.Modules.Service
         }
 
 
-        
+
         protected void btnDelete_Click1(object sender, EventArgs e)
         {
 
-            if (txtJobCardCode.Text.Trim()  == "") //ddlJobCardCode.SelectedIndex
+            if (txtJobCardCode.Text.Trim() == "") //ddlJobCardCode.SelectedIndex
             {
                 grl.UserMsg(lblMsg, Color.Red, "Jobcard code should not be left blank!!!");
-                
+
                 return;
             }
             //if (grl.CodeExists("JobCardMaster", "JobCardCode", ddlJobCardNo.Text) == false)
@@ -4097,10 +4127,10 @@ namespace DXBMS.Modules.Service
             //    return;
             //}
             // Check TransferStatus is not C then should not be deleted
-            if (grl.CodeExists("JobEstimateMaster", "JobCardCode", txtJobCardCode.Text.Trim() , " And DelFlag='N'")) //ddlJobCardCode.SelectedValue.ToString().Trim()
+            if (grl.CodeExists("JobEstimateMaster", "JobCardCode", txtJobCardCode.Text.Trim(), " And DelFlag='N'")) //ddlJobCardCode.SelectedValue.ToString().Trim()
             {
                 grl.UserMsg(lblMsg, Color.Red, "Jobcard exist in Job Estimate ,it can not be deleted ");
-                
+
                 return;
             }
             //PPR made or not
@@ -4108,7 +4138,7 @@ namespace DXBMS.Modules.Service
             if (grl.CodeExists("PPRMaster", "JobCardCode", txtJobCardCode.Text.Trim(), " And DelFlag = 'N'")) //ddlJobCardCode.SelectedValue.ToString().Trim()
             {
                 grl.UserMsg(lblMsg, Color.Red, "Jobcard exist in PPR ,it can not be deleted ");
-                
+
                 return;
             }
             //if (grl.IsExist("JobCardNo", ddlJobCardNo.Text, "StockIssue"))
@@ -4136,7 +4166,7 @@ namespace DXBMS.Modules.Service
                         if (string.IsNullOrEmpty(txtPartsRecQuantity.Text) == false && Convert.ToInt32(txtPartsRecQuantity.Text) > 0)
                         {
                             grl.UserMsg(lblMsg, Color.Red, "Item can not be deleted, because some Parts item quantity has been issued!!! ", txtCustomer);
-                            
+
                             return;
                         }
                     }
@@ -4164,7 +4194,7 @@ namespace DXBMS.Modules.Service
                         if (Convert.ToInt32(txtLubRecQuantity.Text) > 0)
                         {
                             grl.UserMsg(lblMsg, Color.Red, "Item can not be deleted, because some lubricants item quantity has been issued!!! ", txtCustomer);
-                            
+
                             return;
                         }
                     }
@@ -4187,20 +4217,20 @@ namespace DXBMS.Modules.Service
             else
             {
                 grl.UserMsg(lblMsg, Color.Red, "Stock issued information could not found ,because it has been Transferred to PSMC ");
-                
+
                 return;
             }
             /////////////////////////////////////////////ddlJobCardCode.SelectedValue.ToString().Trim()
             if (Delete(txtJobCardCode.Text.Trim(), lblSIRMaster.Text) == false)
             {
                 grl.UserMsg(lblMsg, Color.Red, "Job Card code not deleted ");
-                
+
                 return;
             }
             else
             {
                 grl.UserMsg(lblMsg, Color.Green, "Job Card deleted successfully ");
-                
+
                 clearAll();
             }
         }
@@ -4229,7 +4259,7 @@ namespace DXBMS.Modules.Service
             {
                 ObjTrans.RollBackTransaction(ref stDeleteJobCard);
                 grl.UserMsg(lblMsg, Color.Red, "Error: " + ex.Message);
-                
+
                 return false;
             }
 
@@ -4248,7 +4278,7 @@ namespace DXBMS.Modules.Service
             {
                 ObjTrans.RollBackTransaction(ref stDeleteJobCard);
                 grl.UserMsg(lblMsg, Color.Red, "Error: " + ex.Message);
-                
+
                 return false;
             }
 
@@ -4267,7 +4297,7 @@ namespace DXBMS.Modules.Service
             {
                 ObjTrans.RollBackTransaction(ref stDeleteJobCard);
                 grl.UserMsg(lblMsg, Color.Red, "Error: " + ex.Message);
-                
+
                 return false;
             }
 
@@ -4286,7 +4316,7 @@ namespace DXBMS.Modules.Service
             {
                 ObjTrans.RollBackTransaction(ref stDeleteJobCard);
                 grl.UserMsg(lblMsg, Color.Red, "Error: " + ex.Message);
-                
+
                 return false;
             }
             //5.DELETE FROM JobCardSubletDetail
@@ -4304,7 +4334,7 @@ namespace DXBMS.Modules.Service
             {
                 ObjTrans.RollBackTransaction(ref stDeleteJobCard);
                 grl.UserMsg(lblMsg, Color.Red, "Error: " + ex.Message);
-                
+
                 return false;
             }
             //Special Case: Update SIRMaster
@@ -4322,7 +4352,7 @@ namespace DXBMS.Modules.Service
             {
                 ObjTrans.RollBackTransaction(ref stDeleteJobCard);
                 grl.UserMsg(lblMsg, Color.Red, "Error: " + ex.Message);
-                
+
                 return false;
             }
 
@@ -4342,7 +4372,7 @@ namespace DXBMS.Modules.Service
             {
                 ObjTrans.RollBackTransaction(ref stDeleteJobCard);
                 grl.UserMsg(lblMsg, Color.Red, "Error: " + ex.Message);
-                
+
                 return false;
             }
 
@@ -4500,7 +4530,7 @@ namespace DXBMS.Modules.Service
             {
                 //if (drParts == null)
                 //{
-                    
+
                 //    drParts.Close();
                 //}
                 bool bResult = myFunc.ExecuteQuery(selectQuery, ref drParts);
@@ -4616,21 +4646,31 @@ namespace DXBMS.Modules.Service
             btnPrintJC.Enabled = false;
             //TabContainer1.Enabled = true;
 
-            
+
         }
         protected void ddlJobCardType_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+            string msg = "Parts issued this JobCard Type can not be changed";
+            ddlSubCategory.Items.Clear();
+
             if (ddlJobCardTypeCode.SelectedValue == "012")
             {
+                if (checkPartissued("before change please return all parts"))
+                {
+                    return;
+                }
+                if (checkLubissued("before change please return all Lube"))
+                {
+                    return;
+                }
                 txtDep.ReadOnly = false;
                 ddlJobType.Visible = true;
-               
+
                 ddlJobType.Visible = true;
 
             }
 
-            if (ddlJobCardTypeCode.SelectedValue == "002" )
+            if (ddlJobCardTypeCode.SelectedValue == "002")
             {
                 TabContainer1.Tabs[2].Visible = false;
                 TabContainer1.Tabs[3].Visible = false;
@@ -4638,16 +4678,32 @@ namespace DXBMS.Modules.Service
                 TabContainer1.Tabs[5].Visible = false;
                 TabContainer1.Tabs[6].Visible = false;
                 TabContainer1.Tabs[7].Visible = false;
+                if (checkPartissued("before change please return all parts"))
+                {
+                    return;
+                }
+                if (checkLubissued("before change please return all Lube"))
+                {
+                    return;
+                }
             }
-           else if (ddlJobCardTypeCode.SelectedValue == "001")
+            else if (ddlJobCardTypeCode.SelectedValue == "001")
             {
-               
+
                 TabContainer1.Tabs[4].Visible = false;
                 TabContainer1.Tabs[5].Visible = false;
                 TabContainer1.Tabs[6].Visible = false;
                 TabContainer1.Tabs[7].Visible = false;
+                if (checkPartissued("before change please return all parts"))
+                {
+                    return;
+                }
+                if (checkLubissued("before change please return all Lube"))
+                {
+                    return;
+                }
             }
-           
+
             else
             {
                 TabContainer1.Tabs[3].Visible = true;
@@ -4660,6 +4716,14 @@ namespace DXBMS.Modules.Service
             }
             if (ddlJobCardTypeCode.SelectedValue == "008")
             {
+                if (checkPartissued("before change please return all parts"))
+                {
+                    return;
+                }
+                if (checkLubissued("before change please return all Lube"))
+                {
+                    return;
+                }
                 // txtLabor.Enabled = false;
                 ddlPayMode.Items.Clear();
                 ddlPayMode.Items.Add(new ListItem("Select", "Select"));
@@ -4679,10 +4743,25 @@ namespace DXBMS.Modules.Service
                 ddlPayMode.Items.Add(new ListItem("Good Will Warranty", "Good Will Warranty"));
 
             }
+            if (ddlJobCardTypeCode.SelectedValue == "006")
+            {
+
+                // txtLabor.Enabled = false;
+                ddlSubCategory.Items.Clear();
+               
+
+                ddlSubCategory.Items.Add(new ListItem("Express", "Express"));
+                ddlSubCategory.Items.Add(new ListItem("Standard", "Standard"));
+            }else
+            {
+                ddlSubCategory.Items.Clear();
+                ddlSubCategory.Items.Add(new ListItem("Select", ""));
+
+            }
 
         }
 
-        
+
 
         //protected void ddlBilling_SelectedIndexChanged(object sender, EventArgs e)
         //{
@@ -4695,22 +4774,22 @@ namespace DXBMS.Modules.Service
 
         protected void ddlRegNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void ddlChassisNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void ddlEngineNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void txtJob_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         //protected void ddlJobCardNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -4749,16 +4828,16 @@ namespace DXBMS.Modules.Service
         //    dt.Dispose();
         //}
 
-       
 
-        
 
-        
+
+
+
         private void Insert_in_ConPartsDT(DataRow rowConPartsDT)
         {
 
             rowConPartsDT["PartNo"] = txtPartItemNoConParts.Text.Trim(); rowConPartsDT["PartsDesc"] = txtConPartDesc.Text.Trim();
-            
+
 
             rowConPartsDT["Qty"] = txtConQuantity.Text.Trim(); rowConPartsDT["Price"] = txtConPartPrice.Text.Trim();
             rowConPartsDT["Type"] = "P";
@@ -4789,7 +4868,7 @@ namespace DXBMS.Modules.Service
                     }
                     else
                     {
-                        
+
                         grl.UserMsg(lblMsg, Color.Red, "Part can not remove because Receiving Quantity is not zero(0)...");
                         return;
                     }
@@ -4816,7 +4895,7 @@ namespace DXBMS.Modules.Service
                 }
                 else
                 {
-                    
+
                     grl.UserMsg(lblMsg, Color.Red, "Record can not be deleted after Invoice generated...");
                 }
             }
@@ -4827,11 +4906,11 @@ namespace DXBMS.Modules.Service
             CalculateTotal();
         }
 
-        
+
 
         protected void gvJobCardConParts_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-             e.Row.Cells[9].Visible = false;
+            e.Row.Cells[9].Visible = false;
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
@@ -4854,14 +4933,14 @@ namespace DXBMS.Modules.Service
 
         protected void gvJobCardConParts_SelectedIndexChanged(object sender, EventArgs e)
         {
-           try
+            try
             {
                 ViewState["ridx"] = gvJobCardConParts.SelectedRow.RowIndex;
                 GridViewRow row = gvJobCardConParts.Rows[gvJobCardConParts.SelectedRow.RowIndex];
                 //txtConPartCode.Value = row.Cells[2].Text.Trim();
                 txtConPartCode.Text = row.Cells[2].Text.Trim();
                 //ddlConsumableParts.SelectedValue = row.Cells[2].Text;
-                txtPartItemNoConParts.Text= row.Cells[3].Text.Trim();
+                txtPartItemNoConParts.Text = row.Cells[3].Text.Trim();
                 txtConPartDesc.Text = row.Cells[4].Text;
                 txtConPartsRecQuantity.Text = row.Cells[5].Text;
                 txtConQuantity.Text = row.Cells[6].Text;
@@ -4902,7 +4981,7 @@ namespace DXBMS.Modules.Service
 
         protected void txtColor_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void txtKM_TextChanged(object sender, EventArgs e)
@@ -4923,27 +5002,27 @@ namespace DXBMS.Modules.Service
 
         //protected void ddlRegNo_TextChanged(object sender, EventArgs e)
         //{
-            //DataSet dsVehInfo = new DataSet();
-            //SqlParameter[] param = {                                 
-            //                        new SqlParameter("@DealerCode",SqlDbType.VarChar,5), 
-            //                        new SqlParameter("@RegNo",SqlDbType.VarChar,30)
-            //                   };
+        //DataSet dsVehInfo = new DataSet();
+        //SqlParameter[] param = {                                 
+        //                        new SqlParameter("@DealerCode",SqlDbType.VarChar,5), 
+        //                        new SqlParameter("@RegNo",SqlDbType.VarChar,30)
+        //                   };
 
 
-            //param[0].Value = Session["DealerCode"].ToString();
-            //param[1].Value = ddlVehRegNo.SelectedValue.ToString().Trim(); // ddlRegNo.Text.Trim();//(HFRegNo.Value == "" ? null : HFRegNo.Value);
+        //param[0].Value = Session["DealerCode"].ToString();
+        //param[1].Value = ddlVehRegNo.SelectedValue.ToString().Trim(); // ddlRegNo.Text.Trim();//(HFRegNo.Value == "" ? null : HFRegNo.Value);
 
-            //dsVehInfo = myFunc.FillDataSet("sp_W2_CustomerVehicle_Select", param);
-            //if (dsVehInfo.Tables[0].Rows.Count > 0)
-            //{
-            //    setVehcileInfo(dsVehInfo);
-            //}
-            //PrepareNewJobCard();
+        //dsVehInfo = myFunc.FillDataSet("sp_W2_CustomerVehicle_Select", param);
+        //if (dsVehInfo.Tables[0].Rows.Count > 0)
+        //{
+        //    setVehcileInfo(dsVehInfo);
+        //}
+        //PrepareNewJobCard();
 
-            //if (ddlRegNo.BackColor == Color.Red)
-            //{
-            //    ddlRegNo.BackColor = Color.White;
-            //}
+        //if (ddlRegNo.BackColor == Color.Red)
+        //{
+        //    ddlRegNo.BackColor = Color.White;
+        //}
         //}
 
         //protected void ddlChassisNo_TextChanged(object sender, EventArgs e)
@@ -5000,8 +5079,8 @@ namespace DXBMS.Modules.Service
         {
             DataSet dsVehInfo = new DataSet();
             DataTable dt;
-            SqlParameter[] param = {                                 
-                                    new SqlParameter("@DealerCode",SqlDbType.VarChar,5), 
+            SqlParameter[] param = {
+                                    new SqlParameter("@DealerCode",SqlDbType.VarChar,5),
                                     new SqlParameter("@RegNo",SqlDbType.VarChar,30)
                                };
 
@@ -5021,7 +5100,7 @@ namespace DXBMS.Modules.Service
 
             ShowHistory();
 
-            
+
 
             //PrepareNewJobCard();
 
@@ -5052,7 +5131,7 @@ namespace DXBMS.Modules.Service
         {
             ViewState["lookupid"] = 3; ViewState["ixd1"] = 1; ViewState["ixd2"] = 2; ViewState["ixd3"] = 3;
             string sql = "Select RegNo as'Reg No' , ChassisNo as 'Chassis No' , EngineNo as 'Engine No' , C.CusDesc as 'Customer' from CustomerVehicle A inner join Customer C on C.CusCode = A.CusCode and C.DealerCode = A.DealerCode";
-            clslook.LU_Get_RecVeh(imgVehRegNo, ViewState["lookupid"].ToString(),"", sql, "../../../");
+            clslook.LU_Get_RecVeh(imgVehRegNo, ViewState["lookupid"].ToString(), "", sql, "../../../");
 
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Close Look Up Window First')", true);
         }
@@ -5100,7 +5179,7 @@ namespace DXBMS.Modules.Service
             clslook.LU_Get_ConsumeableParts(imgLubricant, ViewState["lookupid"].ToString(), "", "../../../");
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Close Look Up Window First')", true);
         }
-       
+
         protected void imgTaxDetail_Click(object sender, ImageClickEventArgs e)
         {
 
@@ -5136,7 +5215,7 @@ namespace DXBMS.Modules.Service
                 gv_history.DataSource = dsHistory.Tables[0];
                 gv_history.DataBind();
             }
-        }        
+        }
 
         protected void btnSaveJC_Click(object sender, EventArgs e)
         {
@@ -5151,7 +5230,7 @@ namespace DXBMS.Modules.Service
                     Response.Redirect("~/Test.aspx");
                 }
             }
-           
+
             try
             {
                 if (txtVehRegNo.Text.Trim() == "")
@@ -5167,14 +5246,14 @@ namespace DXBMS.Modules.Service
                     lblMsg.Text = string.Empty;
                     txtVehRegNo.BorderColor = Color.White;
                     txtVehRegNo.Focus();
-                  //  sysfun.ClearTextBoxesColor(Page);
+                    //  sysfun.ClearTextBoxesColor(Page);
                 }
                 if (ddlJobCardTypeCode.SelectedIndex == 0)
                 {
                     myFunc.UserMsg(lblMsg, Color.Red, "Select job card type first");
                     ddlJobCardTypeCode.BorderColor = Color.Red;
-                  //  ddlJobCardTypeCode.Focus();
-                    
+                    //  ddlJobCardTypeCode.Focus();
+
                     return;
                 }
                 else
@@ -5182,7 +5261,7 @@ namespace DXBMS.Modules.Service
                     lblMsg.Text = string.Empty;
                     ddlJobCardTypeCode.BorderColor = Color.White;
                     ddlJobCardTypeCode.Focus();
-                 //   sysfun.ClearTextBoxesColor(Page);
+                    //   sysfun.ClearTextBoxesColor(Page);
                 }
                 if (ddlPayMode.SelectedIndex == 0)
                 {
@@ -5196,7 +5275,7 @@ namespace DXBMS.Modules.Service
                     lblMsg.Text = string.Empty;
                     ddlPayMode.BorderColor = Color.White;
                     ddlPayMode.Focus();
-                 //   sysfun.ClearTextBoxesColor(Page);
+                    //   sysfun.ClearTextBoxesColor(Page);
 
                 }
                 if (ddlTaxType.SelectedIndex == 0)
@@ -5214,7 +5293,7 @@ namespace DXBMS.Modules.Service
                     txtTaxPolicyDesc.BorderColor = Color.White;
                     txtTaxPolicyDesc.Focus();
 
-                   // sysfun.ClearTextBoxesColor(Page);
+                    // sysfun.ClearTextBoxesColor(Page);
 
                 }
 
@@ -5235,8 +5314,8 @@ namespace DXBMS.Modules.Service
                 DataTable dt;
                 if (txtJobCardCode.Text.Trim() != "" || ViewState["JobCardCode"].ToString() != "")
                 {
-                    string sql = "Select GatePass from JobCardMaster where DealerCode = '"+Session["DealerCode"].ToString()+"' AND JobCardCode = '" + ViewState["JobCardCode"].ToString() + "'";
-                   
+                    string sql = "Select GatePass from JobCardMaster where DealerCode = '" + Session["DealerCode"].ToString() + "' AND JobCardCode = '" + ViewState["JobCardCode"].ToString() + "'";
+
                     SysFunction sysfun = new SysFunction();
 
                     dt = sysfun.GetData(sql);
@@ -5248,8 +5327,8 @@ namespace DXBMS.Modules.Service
                     }
                 }
 
-                double limit=0,crdt=0;
-                int JCday,Cdays;
+                double limit = 0, crdt = 0;
+                int JCday, Cdays;
                 dt = sysfun.GetData("Get_CreditLimtCustomer '" + Session["DealerCode"].ToString() + "','" + txtCustomer.Text + "' ");
                 if (dt.Rows.Count > 0)
                 {
@@ -5260,37 +5339,37 @@ namespace DXBMS.Modules.Service
                         limit = 0;
                         limit = limit + Convert.ToDouble(txtOutStanding.Text);
                         crdt = Convert.ToDouble(txtCreditLimit.Text);
-                        if(limit != 0)
+                        if (limit != 0)
                         {
                             if (limit > crdt)
                             {
                                 lblMsg.Text = "JobCard amount is exceeding its Credit Limit";
                                 lblMsg.ForeColor = Color.Red;
                                 txtCreditLimit.Focus();
-                             //   return;
+                                //   return;
                             }
                             if (JCday > Cdays)
                             {
                                 lblMsg.Text = "JobCard amount is exceeding its  Credit Days";
                                 lblMsg.ForeColor = Color.Red;
                                 txtCreditDays.Focus();
-                             //   return;
+                                //   return;
                             }
                         }
-                       
+
 
                     }
                     else
                     {
                         if (Convert.ToDouble(txtOutStanding.Text) == 0)
                         {
-                            limit =   Convert.ToDouble(txtJobCardTotal.Text);
+                            limit = Convert.ToDouble(txtJobCardTotal.Text);
                         }
                         else
                         {
-                            limit = limit  + Convert.ToDouble(txtJobCardTotal.Text);
+                            limit = limit + Convert.ToDouble(txtJobCardTotal.Text);
                         }
-                       
+
                         crdt = Convert.ToDouble(txtCreditLimit.Text);
 
                         if (limit > crdt)
@@ -5300,7 +5379,7 @@ namespace DXBMS.Modules.Service
                             txtOutStanding.Focus();
                             // return;
                         }
-                        
+
                     }
 
                 }
@@ -5316,12 +5395,12 @@ namespace DXBMS.Modules.Service
                 //    }
 
                 //}
-    TextBox[] textBoxes = {  txtCustomer, txtEndUser, txtBrand, txtProduct, txtVersion ,
+                TextBox[] textBoxes = {  txtCustomer, txtEndUser, txtBrand, txtProduct, txtVersion ,
                                     txtReciptTime,txtKM,txtRecieptDate,txtPromistedTime,txtCntPerName,txtCntPerCell};
                 if (!MasterValidation(textBoxes)) return;
                 else
                 {
-                   
+
                     JobCardEntry();
 
                     //Load_ddlJobCardCode();
@@ -5347,7 +5426,7 @@ namespace DXBMS.Modules.Service
                 //public bool CodeExists(string strTableNames, string strColumnCode, string strColumeValue)
                 //CodeExists(string strTableNames, string strColumnCode, string strColumeValue)
 
-                TextBox[] textBoxes = {txtCustomer, txtEndUser, txtBrand, txtProduct, txtVersion, 
+                TextBox[] textBoxes = {txtCustomer, txtEndUser, txtBrand, txtProduct, txtVersion,
                                 txtReciptTime,txtKM,txtRecieptDate };
                 if (!MasterValidation(textBoxes))
                 {
@@ -5375,7 +5454,7 @@ namespace DXBMS.Modules.Service
                     if (gvr.Cells[8].Text != "&nbsp;")
                     {
                         int a = Convert.ToInt32(gvr.Cells[8].Text);
-                        if ( a > 0 || a!=0)
+                        if (a > 0 || a != 0)
                         {
                             grl.UserMsg(lblMsg, Color.Red, "Parts issued this JobCard not Delete", txtCustomer);
                             return;
@@ -5432,7 +5511,7 @@ namespace DXBMS.Modules.Service
                 //JobCardSubletDetail_Delete_param[1].Value = ddlJobCardNo.Text;
                 //myFunc.ExecuteSP_NonQuery("sp_W2_JobCard_Sublet_Delete", JobCardSubletDetail_Delete_param, Trans);    
 
-                SqlParameter[] JobCard_Master_Delete_param = {                                                       
+                SqlParameter[] JobCard_Master_Delete_param = {
                                                                 new SqlParameter("@DealerCode",SqlDbType.Char,5),
                                                                 new SqlParameter("@JobCardCode",SqlDbType.Char,8)
                                                               };
@@ -5441,7 +5520,7 @@ namespace DXBMS.Modules.Service
                 JobCard_Master_Delete_param[1].Value = txtJobCardCode.Text.Trim();
                 if (myFunc.ExecuteSP_NonQuery("sp_W2_JobCard_Master_Delete", JobCard_Master_Delete_param))
                 {
-                    
+
                     grl.UserMsg(lblMsg, Color.Green, "Record Deleted Successfully: " + txtJobCardCode.Text.Trim(), txtCustomer);
                     clearAll();
                 }
@@ -5516,35 +5595,35 @@ namespace DXBMS.Modules.Service
 
                         //if (chkSelect.Checked)
                         //{
-                            if (txtJobCardCode.Text.Trim() != ""
-                            & lblJobCode.Text.Trim() != ""
-                            & lblEmpCode.Text.Trim() != ""
-                            & lblEndTime.Text.Trim() != "")
+                        if (txtJobCardCode.Text.Trim() != ""
+                        & lblJobCode.Text.Trim() != ""
+                        & lblEmpCode.Text.Trim() != ""
+                        & lblEndTime.Text.Trim() != "")
+                        {
+                            Insert_param[0].Value = Session["DealerCode"].ToString();
+                            Insert_param[1].Value = txtJobCardCode.Text.Trim() == "" ? HFJobCard.Value.Trim() : txtJobCardCode.Text; //ddlJobCardCode.SelectedValue.ToString().Trim()
+                            Insert_param[2].Value = lblJobCode.Text.Trim();
+                            Insert_param[3].Value = lblStdTime.Text.Trim();
+                            Insert_param[4].Value = lblStartTime.Text.Trim();
+                            Insert_param[5].Value = lblEndTime.Text.Trim();
+                            Insert_param[6].Value = lblEmpCode.Text.Trim();
+                            Insert_param[7].Value = lblBayCode.Text.Trim();
+                            Insert_param[8].Value = myFunc.SaveDate(DateTime.Now.ToString("dd-MM-yyyy"));
+                            Insert_param[9].Value = GlobalVar.mUserIPAddress;
+                            Insert_param[10].Value = Session["UserName"].ToString();
+
+                            if (myFunc.ExecuteSP_NonQuery("sp_W2_JobCardTech_Insert", Insert_param))
                             {
-                                Insert_param[0].Value = Session["DealerCode"].ToString();
-                                Insert_param[1].Value = txtJobCardCode.Text.Trim() == "" ? HFJobCard.Value.Trim() : txtJobCardCode.Text; //ddlJobCardCode.SelectedValue.ToString().Trim()
-                                Insert_param[2].Value = lblJobCode.Text.Trim();
-                                Insert_param[3].Value = lblStdTime.Text.Trim();
-                                Insert_param[4].Value = lblStartTime.Text.Trim();
-                                Insert_param[5].Value = lblEndTime.Text.Trim();
-                                Insert_param[6].Value = lblEmpCode.Text.Trim();
-                                Insert_param[7].Value = lblBayCode.Text.Trim();
-                                Insert_param[8].Value = myFunc.SaveDate(DateTime.Now.ToString("dd-MM-yyyy"));
-                                Insert_param[9].Value = GlobalVar.mUserIPAddress;
-                                Insert_param[10].Value = Session["UserName"].ToString();
-                                
-                                if(myFunc.ExecuteSP_NonQuery("sp_W2_JobCardTech_Insert", Insert_param))
-                                {
-                                    grl.UserMsg(lblMsg, Color.Green, "JobTech saved Successfully.");
-                                }
+                                grl.UserMsg(lblMsg, Color.Green, "JobTech saved Successfully.");
                             }
+                        }
 
                         //}
                     }
 
                     BayDT = (DataTable)ViewState["Bay"];
                     DataRow[] drr = BayDT.Select();
-                    for (int i = 0; i< drr.Length; i++)
+                    for (int i = 0; i < drr.Length; i++)
                     {
                         if (BayDT.Rows[i]["JobCardCode"].ToString() != ""
                             & BayDT.Rows[i]["JobCode"].ToString() != ""
@@ -5567,7 +5646,7 @@ namespace DXBMS.Modules.Service
                     }
                 }
 
-                
+
             }
             catch (Exception ex) { throw ex; }
         }
@@ -5588,8 +5667,9 @@ namespace DXBMS.Modules.Service
                 dsJobCardBay = new DataSet();
                 dsJobCardBay = myFunc.FillDataSet("sp_W2_JobCard_JobCardTech_Select", dsParam);
                 ViewState["Bay"] = dsJobCardBay.Tables[0]; grdBay.DataSource = dsJobCardBay; grdBay.DataBind();
-                
-            }else
+
+            }
+            else
             {
                 createBayDT();
             }
@@ -5606,16 +5686,16 @@ namespace DXBMS.Modules.Service
 
         protected void txtBQty_TextChanged(object sender, EventArgs e)
         {
-            double amt,rate ;
-           
+            double amt, rate;
+
             amt = double.Parse(txtBQty.Text) * double.Parse(txtBPrice.Text);
-           rate = SysFunctions.CustomCDBL(grl.GetStringValuesAgainstCodes("CusTypeCode='" + txtCusTypeCode.Text + "'", "CustomerType", "BoutRate"));
+            rate = SysFunctions.CustomCDBL(grl.GetStringValuesAgainstCodes("CusTypeCode='" + txtCusTypeCode.Text + "'", "CustomerType", "BoutRate"));
 
 
             amt = (double.Parse(txtBPrice.Text) * rate) / 100;
-            amt = amt+ double.Parse(txtBPrice.Text) ;
+            amt = amt + double.Parse(txtBPrice.Text);
             txtBAmt.Text = amt.ToString();
-           
+
 
         }
         private void LoadEmptyGrid()
@@ -5623,7 +5703,7 @@ namespace DXBMS.Modules.Service
 
             ds = new DataSet();
 
-           // ds.Tables.Add();
+            // ds.Tables.Add();
             ds.Tables.Add("PartsDetailsDS");
 
             ds.Tables["PartsDetailsDS"].Columns.Add(new DataColumn("PartNo", typeof(string)));
@@ -5640,10 +5720,10 @@ namespace DXBMS.Modules.Service
 
             gvJobCardPartsBought.DataSource = ds.Tables["PartsDetailsDS"]; ;
             gvJobCardPartsBought.DataBind();
-            Session["BoutPartsDataTables"]= ds.Tables["PartsDetailsDS"]; ;
+            Session["BoutPartsDataTables"] = ds.Tables["PartsDetailsDS"]; ;
             Session["PartsDetailsDT"] = ds.Tables["PartsDetailsDS"];
-            ViewState["PartsDetailsDS"]= ds;
-            ViewState["BoutParts"]=ds.Tables["PartsDetailsDS"];
+            ViewState["PartsDetailsDS"] = ds;
+            ViewState["BoutParts"] = ds.Tables["PartsDetailsDS"];
         }
         private void LoadGrid()
         {
@@ -5679,7 +5759,7 @@ namespace DXBMS.Modules.Service
             TableCell tc = btn.Parent as TableCell;
             GridViewRow gvr = tc.Parent as GridViewRow;
             BoutDT.Rows.RemoveAt(gvr.RowIndex);
-            
+
             //Load grid 
             gvJobCardPartsBought.DataSource = BoutDT;
             BoutDT.AcceptChanges();
@@ -5711,7 +5791,7 @@ namespace DXBMS.Modules.Service
                 grl.UserMsg(lblMsg, Color.Red, "Please enter Quantity", txtQuantity);
                 return;
             }
-            
+
             //if (Convert.ToInt32(txtQuantity.Text) < Convert.ToInt32(txtPartsRecQuantity.Text))
             //{
 
@@ -5735,9 +5815,9 @@ namespace DXBMS.Modules.Service
                 }
 
             }
-           
 
-                TextBox[] textBoxes = { txtBPrice, txtBQty };
+
+            TextBox[] textBoxes = { txtBPrice, txtBQty };
             if (!MasterValidation(textBoxes)) return;
             else
             {
@@ -5793,14 +5873,14 @@ namespace DXBMS.Modules.Service
                 //dtJobs = ds.Tables["WarrantyLaborTable"];
                 Session["BoutPartsDataTables"] = ds;
                 ViewState["BoutPartsDataTables"] = ds;
-                ViewState["BoutDT"]= ds; 
+                ViewState["BoutDT"] = ds;
                 ClearBoutPartsTextBoxes();
                 CalculateTotal();
 
             }
         }
 
-    
+
         protected void btnUpdJobs_Click(object sender, EventArgs e)
         {
             DataTable dt;
@@ -5819,7 +5899,7 @@ namespace DXBMS.Modules.Service
                 }
                 else
                 {
-                    ddlJobType.SelectedIndex =0;
+                    ddlJobType.SelectedIndex = 0;
                 }
                 byPass = 1;
                 BtnAddJobs_Click(BtnAddJobs, null);
@@ -5829,7 +5909,7 @@ namespace DXBMS.Modules.Service
 
         protected void btnUpdParts_Click1(object sender, EventArgs e)
         {
-           
+
             DataTable dt;
             createPartsDT();
             dt = myFunc.GetData("select C.ItemCode,C.Qty,C.Dep,I.ItemDesc,C.Type from CustomerEstimateParts C Inner Join Item I on I.ItemCode=C.ItemCode and I.DealerCode in ('COMON',C.DealerCode)  where C.DealerCode='" + Session["DealerCode"].ToString() + "' And  C.CustomerEstimateCode='" + txtExtno.Text + "'");
@@ -5839,8 +5919,8 @@ namespace DXBMS.Modules.Service
                 txtDep.Text = dr["Dep"].ToString().Trim();
                 //  SelectedPartDetail(dr["ItemCode"].ToString().Trim());
                 txtItemCode.Text = dr["ItemCode"].ToString().Trim();
-                txtPartsRecQuantity.Text = SysFunctions.CustomCDBL(grl.GetStringValuesAgainstCodes("ItemCode='"+ dr["ItemCode"].ToString().Trim() + "' and JobCardCode='" + txtJobCardCode.Text + "'", "JobCardPartsDetail", "RecQTY")).ToString();
-                lblPartType.Value= dr["Type"].ToString().Trim();
+                txtPartsRecQuantity.Text = SysFunctions.CustomCDBL(grl.GetStringValuesAgainstCodes("ItemCode='" + dr["ItemCode"].ToString().Trim() + "' and JobCardCode='" + txtJobCardCode.Text + "'", "JobCardPartsDetail", "RecQTY")).ToString();
+                lblPartType.Value = dr["Type"].ToString().Trim();
                 ddlPartCode_SelectedIndexChanged(txtItemCode, EventArgs.Empty);
                 byPass = 1;
                 btnAddParts_Click(btnAddParts, null);
@@ -5884,7 +5964,7 @@ namespace DXBMS.Modules.Service
             //if (dsJobCardSublet.Tables[0].Rows.Count == 0) dsJobCardSublet.Tables[0].Rows.Add(dsJobCardSublet.Tables[0].NewRow());
             ViewState["SubLet"] = dsJobCardSublet.Tables[0]; gvSublet.DataSource = dsJobCardSublet; gvSublet.DataBind();
 
-            CalculateTotal(); 
+            CalculateTotal();
 
 
         }
@@ -5958,9 +6038,9 @@ namespace DXBMS.Modules.Service
 
             rowPartsDT["Qty"] = txtQuantity.Text.Trim();
             rowPartsDT["Price"] = txtBPrice.Text.Trim();
-            rowPartsDT["Total"] = double.Parse(txtBQty.Text.Trim()) * double.Parse(txtBPrice.Text.Trim())+double.Parse((txtBPrice.Text.Trim()))*(25/100);
+            rowPartsDT["Total"] = double.Parse(txtBQty.Text.Trim()) * double.Parse(txtBPrice.Text.Trim()) + double.Parse((txtBPrice.Text.Trim())) * (25 / 100);
             rowPartsDT["ItemCode"] = txtBItemCode.Text;
-          
+
         }
         protected void gvJobCardPartsBought_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -5984,7 +6064,7 @@ namespace DXBMS.Modules.Service
             {
                 lblBParts.Text = Convert.ToString(totPayableBout);
                 lblBInvAmt.Text = Convert.ToString(totBoutInv);
-               // txtJobCardTotal.Text = Convert.ToString(totEst);
+                // txtJobCardTotal.Text = Convert.ToString(totEst);
             }
 
 
@@ -6004,10 +6084,18 @@ namespace DXBMS.Modules.Service
                 txtBQty.Text = row.Cells[5].Text;
                 txtBPrice.Text = row.Cells[6].Text;
                 txtBAmt.Text = row.Cells[8].Text;
-              //  ViewState["deductAmount"] = row.Cells[7].Text;
+                //  ViewState["deductAmount"] = row.Cells[7].Text;
 
             }
             catch (Exception ex) { throw ex; }
+        }
+
+        protected void ddlJobCardTypeCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            objMBLL.FillDropDown(ddlJobCardTypeCode, "SELECT J.JobTypeCode,JobTypeDesc FROM JobTypeMaster J inner join JobTypeCategory" +
+                " JTC on  J.JobTypeCode=JTC.JobTypeCode and JTC.DealerCode=J.DealerCode  "
+                + " Where JTC.DealerCode IN('" + Session["DealerCode"].ToString() + "', 'COMON') and JTC.JobNatureCatCode='" + ddlJobCardTypeCategory.SelectedValue + "' and J.Active='Y' "
+                + "order by SortKey Desc ", "JobTypeDesc", "JobTypeCode", "Select");
         }
 
         protected void btnPostJC_Click(object sender, EventArgs e)
@@ -6021,7 +6109,7 @@ namespace DXBMS.Modules.Service
                 grl.UserMsg(lblMsg, Color.Red, "jobCardNo should not be left blank", txtCustomer);
                 return;
             }
-            if (ddlJobCardTypeCode.SelectedValue.ToString() != "001" )
+            if (ddlJobCardTypeCode.SelectedValue.ToString() != "001")
             {
                 if (ddlJobCardTypeCode.SelectedValue.ToString() != "002")
                 {
@@ -6040,8 +6128,8 @@ namespace DXBMS.Modules.Service
                         }
                     }
                 }
-                
-               
+
+
             }
 
             ds = new DataSet();
@@ -6050,29 +6138,29 @@ namespace DXBMS.Modules.Service
 
             if (ddlJobCardTypeCode.SelectedValue == "008")
             {
-               
+
                 callPostingJobCard(); search_result = true;
 
 
             }
-           
-          
+
+
             /////////////////
             if (ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "007")
             {
                 callPostingJobCard(); search_result = true;
             }
-            else if (ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "001" || ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "013"|| ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "014")
+            else if (ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "001" || ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "013" || ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "014")
             {
                 callPostingJobCard(); search_result = true;
-               
+
             }
             else if (ds.Tables[0].Rows[0]["JobCardType"].ToString().Trim() == "002")
             {
                 callPostingJobCard(); search_result = true;
             }
-            btnGatePass_Click(null,null);
-           
+            btnGatePass_Click(null, null);
+
             if (search_result == false) { SendAlert("Cannot post due to Job Type / Job Card Type!"); return; }
             clearAll();
         }
@@ -6097,12 +6185,13 @@ namespace DXBMS.Modules.Service
             DataTable dt = new DataTable();
 
             //dt = myFunc.GetData("select Amount from LaborDetail where DealerCode='" + Session["DealerCode"].ToString() + "' And ProdCode='" + txtProduct.Text + "' And DefJobCode ='"+ddlJobs_Labor.SelectedValue+"' ");
-            if (ddlJobCardTypeCode.SelectedValue == "002") {
+            if (ddlJobCardTypeCode.SelectedValue == "002")
+            {
                 if (sysfun.IsExist("JobCode", item, "FreeJobs", "COMON", "and VehicleCategory='" + Session["VehicleCategory"].ToString() + "'"))
                 {
                     dt = myFunc.GetData("select PDI as Amount from Vehicle where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And ProdCode='" + txtProduct.Text + "'  ");
                 }
-               
+
             }
             else if (ddlJobCardTypeCode.SelectedValue == "001")
             {
@@ -6110,7 +6199,7 @@ namespace DXBMS.Modules.Service
                 {
                     dt = myFunc.GetData("select FFS as Amount from Vehicle where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And ProdCode='" + txtProduct.Text + "'  ");
                 }
-               
+
             }
             else if (ddlJobCardTypeCode.SelectedValue == "014")
             {
@@ -6118,7 +6207,7 @@ namespace DXBMS.Modules.Service
                 {
                     dt = myFunc.GetData("select SFS as Amount from Vehicle where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And ProdCode='" + txtProduct.Text + "'  ");
                 }
-                
+
             }
             else if (ddlJobCardTypeCode.SelectedValue == "013")
             {
@@ -6127,7 +6216,7 @@ namespace DXBMS.Modules.Service
                     dt = myFunc.GetData("select TFS as Amount from Vehicle where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And ProdCode='" + txtProduct.Text + "'  ");
                 }
 
-                
+
             }
             else if (ddlJobCardTypeCode.SelectedValue == "013")
             {
@@ -6135,7 +6224,7 @@ namespace DXBMS.Modules.Service
                 {
                     dt = myFunc.GetData("select TFS as Amount from Vehicle where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And ProdCode='" + txtProduct.Text + "'  ");
                 }
-               
+
             }
             else if (ddlJobCardTypeCode.SelectedValue == "018")
             {
@@ -6143,7 +6232,7 @@ namespace DXBMS.Modules.Service
                 {
                     dt = myFunc.GetData("select F4S as Amount from Vehicle where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And ProdCode='" + txtProduct.Text + "'  ");
                 }
-                
+
             }
             else if (ddlJobCardTypeCode.SelectedValue == "019")
             {
@@ -6151,22 +6240,22 @@ namespace DXBMS.Modules.Service
                 {
                     dt = myFunc.GetData("select F5S as Amount from Vehicle where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And ProdCode='" + txtProduct.Text + "'  ");
                 }
-               
+
             }
             else
             {
                 dt = myFunc.GetData("select Amount from LaborDetail where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And ProdCode='" + txtProduct.Text + "' And DefJobCode ='" + item + "' ");
             }
-           
+
             txtLabor.Focus();
             if (dt.Rows.Count == 0)
             {
                 return;
             }
-            if(dt.Rows[0]["Amount"].ToString() != "")
-                {
-                    txtLabor.Text = dt.Rows[0]["Amount"].ToString();
-                }
+            if (dt.Rows[0]["Amount"].ToString() != "")
+            {
+                txtLabor.Text = dt.Rows[0]["Amount"].ToString();
+            }
             txtJobs_Labor.Text = item;
         }
 
@@ -6178,9 +6267,9 @@ namespace DXBMS.Modules.Service
                 txtJobs_Labor.Focus();
                 return;
             }
-              
-            
-           
+
+
+
             if (txtJobs_Labor.Text == "")
             {
                 txtJobs_Labor.BorderColor = Color.Red;
@@ -6212,7 +6301,7 @@ namespace DXBMS.Modules.Service
             TextBox[] textBoxes = { txtLabor };
             if (ddlTechnicianEmpCode.SelectedIndex == 0)
             {
-                
+
                 grl.UserMsg(lblMsg, Color.Red, "Please select Technician Person");
                 return;
             }
@@ -6233,7 +6322,7 @@ namespace DXBMS.Modules.Service
 
                     DataRow rowJobDT = JobDT.NewRow(); Insert_in_JobDT(rowJobDT); JobDT.Rows.Add(rowJobDT);
                 }
-                ViewState["Job"] = JobDT; gvJobCard.DataSource = JobDT.DefaultView; gvJobCard.DataBind();                
+                ViewState["Job"] = JobDT; gvJobCard.DataSource = JobDT.DefaultView; gvJobCard.DataBind();
                 txtJobsTotal.Text = JobDT.Rows.Count.ToString();
                 CalculateTotal();
 
@@ -6248,16 +6337,17 @@ namespace DXBMS.Modules.Service
 
         protected void btnAddParts_Click(object sender, ImageClickEventArgs e)
         {
+            imgLookup.Enabled = true;
             if (ddlJobCardTypeCode.SelectedValue == "007")
             {
                 grl.UserMsg(lblMsg, Color.Red, "You Can Not Parts  in ComeBack Case");
                 txtItemCode.Focus();
                 return;
             }
-           
-                
-            
-           
+
+
+
+
 
             if (txtQuantity.Text == "")
             {
@@ -6265,13 +6355,13 @@ namespace DXBMS.Modules.Service
             }
             if (txtQuantity.Text == "0")
             {
-                
+
                 grl.UserMsg(lblMsg, Color.Red, "Please enter Quantity", txtQuantity);
                 return;
             }
             if (SysFunctions.CustomCDBL(txtQuantity.Text) < SysFunctions.CustomCDBL(txtPartsRecQuantity.Text))
             {
-                
+
                 grl.UserMsg(lblMsg, Color.Red, "Issue quantity not less then receive quantity", txtQuantity);
                 return;
             }
@@ -6286,7 +6376,7 @@ namespace DXBMS.Modules.Service
             {
                 foreach (DataRow dr in BoutDT.Rows)
                 {
-                 string   itemdesc = dr["ItemCode"].ToString();
+                    string itemdesc = dr["ItemCode"].ToString();
                     if (itemdesc == txtItemCode.Text)
                     {
                         lblMsg.Text = "Part Already exist in BoughtOut Tab";
@@ -6359,9 +6449,10 @@ namespace DXBMS.Modules.Service
                     }
                     txtPartItemNo_Parts.Text = dt.Rows[0]["PartItemNo"].ToString().Trim();
                     // txtPartPrice.Text = dt.Rows[0]["SaleRate"].ToString().Trim();
-                   SetFocus(txtQuantity);
+                    SetFocus(txtQuantity);
+                    txtPartsRecQuantity.Text = "0";
                 }
-                else if (ViewState["lookupid"].ToString() == "10" && ViewState["Bout"].ToString()== "Bout")
+                else if (ViewState["lookupid"].ToString() == "10" && ViewState["Bout"].ToString() == "Bout")
                 {
                     decimal purchaserate = 0, tax;
                     dt = myFunc.GetData("select ItemDesc,SaleRate,PartItemNo from Item where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And  ItemCode='" + item + "'");
@@ -6377,7 +6468,7 @@ namespace DXBMS.Modules.Service
                     txtVehRegNo.Text = item;
                     ddlVehRegNo_SelectedIndexChanged(txtVehRegNo, EventArgs.Empty);
                     SetFocus(ddlJobCardTypeCode);
-                   
+
 
                 }
                 else if (ViewState["lookupid"].ToString() == "4")
@@ -6388,6 +6479,14 @@ namespace DXBMS.Modules.Service
                 }
                 else if (ViewState["lookupid"].ToString() == "73")
                 {
+                    if (checkPartissued("before change please return all parts"))
+                    {
+                        return;
+                    }
+                    if (checkLubissued("before change please return all Lube"))
+                    {
+                        return;
+                    }
                     txtExtno.Text = item;
                     ddlEstNo_SelectedIndexChanged(txtExtno, EventArgs.Empty);
                 }
@@ -6398,19 +6497,21 @@ namespace DXBMS.Modules.Service
                         txtLubCode.Text = item;
                         ddlLubCode_SelectedIndexChanged(txtLubCode, EventArgs.Empty);
                         SetFocus(txtLubQuantity);
+                        txtLubRecQuantity.Text = "0";
                     }
                     else
                     {
                         txtConPartCode.Text = item;
                         ddlConsumableParts_SelectedIndexChanged(txtConPartCode, EventArgs.Empty);
                         SetFocus(txtConPartsRecQuantity);
+                        txttotConPartsRecQty.Text = "0";
                     }
 
                 }
                 else if (ViewState["lookupid"].ToString() == "94")
                 {
-                       txtTaxPolicyCode.Text = item;
-                   
+                    txtTaxPolicyCode.Text = item;
+
                     string[] splt = item.Split('|');
                     if (splt.Length > 0)
                     {
@@ -6419,7 +6520,7 @@ namespace DXBMS.Modules.Service
                         hdnTaxType.Value = splt[1];
 
                     }
-                   
+
 
 
 
@@ -6427,7 +6528,7 @@ namespace DXBMS.Modules.Service
                 }
                 else
                 {
-                    if(ViewState["job"].ToString() == "Labor")
+                    if (ViewState["job"].ToString() == "Labor")
                     {
                         ddlJobs_SelectedIndexChanged(item);
                         dt = myFunc.GetData("select DefJobDesc from DefaultJob where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And  DefJobCode ='" + item + "'");
@@ -6449,9 +6550,9 @@ namespace DXBMS.Modules.Service
                         //txtSubletJobDesc.Text = dt.Rows[0]["DefJobDesc"].ToString().Trim();
                         SetFocus(txtSubletPayAmnt);
                     }
-                    
+
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -6503,7 +6604,7 @@ namespace DXBMS.Modules.Service
                 //if (ddlJobCardTypeCode.SelectedValue != "012")
                 //{
                 //    lblLubType.Value = "P";
-                
+
                 //}
                 //else
                 //{
@@ -6526,9 +6627,9 @@ namespace DXBMS.Modules.Service
                 txtLubCode.Focus();
                 return;
             }
-           
-               
-           
+
+
+
 
             if (txtLubCode.Text == "")
             {
@@ -6536,7 +6637,7 @@ namespace DXBMS.Modules.Service
                 grl.UserMsg(lblMsg, Color.Red, "Please select Lube Item", txtQuantity);
                 return;
             }
-            if (txtLubPrice.Text == "0"|| txtLubPrice.Text == "")
+            if (txtLubPrice.Text == "0" || txtLubPrice.Text == "")
             {
 
                 grl.UserMsg(lblMsg, Color.Red, "Zero amount can not be add in grid", txtQuantity);
@@ -6635,7 +6736,7 @@ namespace DXBMS.Modules.Service
                 double invoiceAmt = Convert.ToDouble(txtSubletIncAmnt.Text.Trim());
                 double paymentAmt = Convert.ToDouble(txtSubletPayAmnt.Text.Trim());
 
-                if(paymentAmt > invoiceAmt)
+                if (paymentAmt > invoiceAmt)
                 {
                     grl.UserMsg(lblMsg, Color.Red, "Payable amount should not be greater than Invoice amount", txtSubletPayAmnt);
                     return;
@@ -6672,9 +6773,9 @@ namespace DXBMS.Modules.Service
         protected void ddlJobs_Sublet_SelectedIndexChanged(string item)
         {
             try
-            { 
-               DataTable dt = new DataTable();
-               dt = myFunc.GetData("select DefJobDesc from DefaultJob where DealerCode IN('" + Session["DealerCode"].ToString() + "','COMON') And  DefJobCode='" + item + "'");
+            {
+                DataTable dt = new DataTable();
+                dt = myFunc.GetData("select DefJobDesc from DefaultJob where DealerCode IN('" + Session["DealerCode"].ToString() + "','COMON') And  DefJobCode='" + item + "'");
                 txtSubletJobCode.Text = item;
                 txtSubletJobDesc.Text = dt.Rows[0]["DefJobDesc"].ToString().Trim();
                 dt = myFunc.GetData("select Amount from LaborDetail where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And ProdCode='" + txtProduct.Text + "' And DefJobCode ='" + item + "' ");
@@ -6705,9 +6806,9 @@ namespace DXBMS.Modules.Service
         protected void ddlConsumableParts_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            {   
+            {
                 DataTable dt = new DataTable();
-                dt = myFunc.GetData("select ItemDesc,SaleRate,PartItemNo from Item where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And  ItemCode='" + txtConPartCode.Text+ "'");
+                dt = myFunc.GetData("select ItemDesc,SaleRate,PartItemNo from Item where DealerCode in('" + Session["DealerCode"].ToString() + "','COMON') And  ItemCode='" + txtConPartCode.Text + "'");
                 txtConPartDesc.Text = dt.Rows[0]["ItemDesc"].ToString().Trim();
                 txtPartItemNoConParts.Text = dt.Rows[0]["PartItemNo"].ToString().Trim();
                 txtConPartPrice.Text = dt.Rows[0]["SaleRate"].ToString().Trim();
@@ -6723,7 +6824,7 @@ namespace DXBMS.Modules.Service
         {
             if (txtConPartDesc.Text == "")
             {
-                
+
                 grl.UserMsg(lblMsg, Color.Red, "Please select item", txtConPartDesc);
                 return;
             }
@@ -6733,13 +6834,13 @@ namespace DXBMS.Modules.Service
             }
             if (Convert.ToDecimal(txtConQuantity.Text) == 0)
             {
-                
+
                 grl.UserMsg(lblMsg, Color.Red, "Please enter Quantity", txtConQuantity);
                 return;
             }
             if (Convert.ToDecimal(txtConQuantity.Text) < Convert.ToDecimal(txtConPartsRecQuantity.Text))
             {
-                
+
                 grl.UserMsg(lblMsg, Color.Red, "Issue quantity not less then receive quantity", txtConQuantity);
                 return;
             }
@@ -6747,7 +6848,7 @@ namespace DXBMS.Modules.Service
             {
                 lblMsg.Text = "";
             }
-            
+
             TextBox[] textBoxes = { txtConPartPrice, txtConQuantity };
             if (!MasterValidation(textBoxes)) return;
             else
@@ -6788,7 +6889,7 @@ namespace DXBMS.Modules.Service
             //{
             //    ddlJobCardCode.SelectedValue = ViewState["JobCardCode"].ToString();
             //}
-          
+
             ViewState["JobCardCode"] = txtJobCardCode.Text.Trim();
             txtExtno.Text = string.Empty;
             LoadMasterData();
@@ -6799,14 +6900,15 @@ namespace DXBMS.Modules.Service
         {
             try
             {
-               // ddlJobCardTypeCode.SelectedItem.Text=grl.GetStringValuesAgainstCodes("EstimateCode='" + txtExtno.Text + "'", "CustomerEstimateMaster", "Type","",Session["DealerCode"].ToString());
-               
+
+                // ddlJobCardTypeCode.SelectedItem.Text=grl.GetStringValuesAgainstCodes("EstimateCode='" + txtExtno.Text + "'", "CustomerEstimateMaster", "Type","",Session["DealerCode"].ToString());
+
                 DataTable dt = new DataTable();
                 DataTable total = new DataTable();
                 dt = myFunc.GetData("select RegNo,isnull(JobsTotal,0)JobsTotal,isnull(PartsTotal,0)PartsTotal,isnull(SubletTotal,0)SubletTotal,isnull(LubsTotal,0)LubsTotal,isnull(BoutTotal,0)BoutTotal,Type from CustomerEstimateMaster where DealerCode='" + Session["DealerCode"].ToString() + "' And  CustomerEstimateCode='" + txtExtno.Text + "'"); //ddlEstNo.SelectedValue.ToString().Trim()
                 txtVehRegNo.Text = dt.Rows[0]["RegNo"].ToString().Trim();
                 ddlVehRegNo_SelectedIndexChanged(txtVehRegNo, EventArgs.Empty);
-                if (dt.Rows[0]["Type"].ToString().Trim()== "Insurance")
+                if (dt.Rows[0]["Type"].ToString().Trim() == "Insurance")
                 {
                     ddlJobCardTypeCode.SelectedValue = "012";
                 }
@@ -6814,21 +6916,21 @@ namespace DXBMS.Modules.Service
                 {
                     ddlJobCardTypeCode.SelectedValue = "003";
                 }
-                
+
 
                 total = dt;
                 /////////Customer Credit
-               
-                 /////////////////////////////////////
+
+                /////////////////////////////////////
                 createPartsDT();
                 dt = myFunc.GetData("select C.ItemCode,C.Qty,C.Dep,I.ItemDesc,C.Type from CustomerEstimateParts C Inner Join Item I on I.ItemCode=C.ItemCode and I.DealerCode in ('COMON',C.DealerCode)  where C.DealerCode='" + Session["DealerCode"].ToString() + "' And  C.CustomerEstimateCode='" + txtExtno.Text + "'");
                 foreach (DataRow dr in dt.Rows)
                 {
                     txtQuantity.Text = dr["Qty"].ToString().Trim();
                     txtDep.Text = dr["Dep"].ToString().Trim();
-                  //  SelectedPartDetail(dr["ItemCode"].ToString().Trim());
+                    //  SelectedPartDetail(dr["ItemCode"].ToString().Trim());
                     txtItemCode.Text = dr["ItemCode"].ToString().Trim();
-                    lblPartType.Value= dr["Type"].ToString().Trim();
+                    lblPartType.Value = dr["Type"].ToString().Trim();
 
                     ddlPartCode_SelectedIndexChanged(txtItemCode, EventArgs.Empty);
                     btnAddParts_Click(btnAddParts, null);
@@ -6894,7 +6996,7 @@ namespace DXBMS.Modules.Service
             }
             ViewState["lookupid"] = 10; ViewState["ixd1"] = 1; ViewState["ixd2"] = 2; ViewState["ixd3"] = 3; ViewState["Partss"] = "Parts";
             clslook.LU_Get_Parts(imgLookup, ViewState["lookupid"].ToString(), "", "../../../");
-            
+
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Close Look Up Window First')", true);
 
         }
@@ -6906,7 +7008,7 @@ namespace DXBMS.Modules.Service
             {
                 return;
             }
-            ScheduleData();            
+            ScheduleData();
         }
 
         private void ScheduleData()
@@ -6960,8 +7062,8 @@ namespace DXBMS.Modules.Service
                     TextBox txtEndTime = (TextBox)e.Row.FindControl("txtEndTime");
 
                     txtStartTime.Text = Session["lblStartTime"].ToString();
-                    txtEndTime.Text = Session["lblEndTime"].ToString();                   
-                }               
+                    txtEndTime.Text = Session["lblEndTime"].ToString();
+                }
 
             }
             catch (Exception ex)
@@ -7091,11 +7193,11 @@ namespace DXBMS.Modules.Service
                     grl.UserMsg(lblMsg, Color.Green, "JobTech saved Successfully.");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 grl.UserMsg(lblMsg, Color.Red, ex.Message);
             }
-            
+
         }
 
         protected void gv_JobTech_DataBound(object sender, EventArgs e)
@@ -7276,7 +7378,7 @@ namespace DXBMS.Modules.Service
             string FileName = "Report.pdf";
             string File = FilePath + FileName;
 
-         
+
             Stream stream = RD.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
             stream.Seek(0, SeekOrigin.Begin);
             DirectoryInfo info = new DirectoryInfo(FilePath);

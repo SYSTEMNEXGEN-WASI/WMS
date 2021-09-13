@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DXBMS.Modules.Reports {
-    
-    
-    public partial class JobCardDetailReport {
-        
+namespace DXBMS.Modules.Reports
+{
+
+
+    public partial class JobCardDetailReport
+    {
+
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace DXBMS.Modules.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-        
+
         /// <summary>
         /// lblMSG control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace DXBMS.Modules.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxEditors.ASPxLabel lblMSG;
-        
+
         /// <summary>
         /// ASPxFormLayout1 control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace DXBMS.Modules.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxFormLayout.ASPxFormLayout ASPxFormLayout1;
-        
+
         /// <summary>
         /// LayoutItemNestedControlContainer1 control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace DXBMS.Modules.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxFormLayout.LayoutItemNestedControlContainer LayoutItemNestedControlContainer1;
-        
+
         /// <summary>
         /// dtFrom control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace DXBMS.Modules.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit dtFrom;
-        
+
         /// <summary>
         /// LayoutItemNestedControlContainer2 control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace DXBMS.Modules.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxFormLayout.LayoutItemNestedControlContainer LayoutItemNestedControlContainer2;
-        
+
         /// <summary>
         /// dtTo control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace DXBMS.Modules.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit dtTo;
-        
+
         /// <summary>
         /// LayoutItemNestedControlContainer3 control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace DXBMS.Modules.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxFormLayout.LayoutItemNestedControlContainer LayoutItemNestedControlContainer3;
-        
+
         /// <summary>
         /// rbStatus control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace DXBMS.Modules.Reports {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxEditors.ASPxRadioButtonList rbStatus;
-        
+
         /// <summary>
         /// btnShowReport control.
         /// </summary>

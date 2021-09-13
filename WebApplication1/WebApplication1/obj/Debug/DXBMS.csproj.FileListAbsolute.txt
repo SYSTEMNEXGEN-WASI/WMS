@@ -1151,6 +1151,7 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedger
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptGSTInvoice.rpt
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\AppointmentDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\JobCardPartsDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptJobCardLubDetail.rpt
@@ -1217,6 +1218,7 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\rptCounterSaleGatePass.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\SpareParts\SpareReports\partyLedgerReportIns.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptAdvancePayment.rpt
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\AppointmentDetail.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\PSFReport.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Reports\rptStockLedgerNew.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Reports\SpareReports\rptCounterSaleDetail.cs
@@ -1314,7 +1316,6 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\PdfSharp.Charting.xml
 E:\github-WMS\WebApplication1\WebApplication1\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
 E:\github-WMS\WebApplication1\WebApplication1\bin\de\PdfSharp.resources.dll
 E:\github-WMS\WebApplication1\WebApplication1\bin\de\PdfSharp.Charting.resources.dll
-E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\Interop.CRDESIGNERLib.dll
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\Interop.CRQUERYENGINE.dll
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\Interop.CRReportPromptEMFLib.dll
@@ -1348,3 +1349,4 @@ E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csproj.GenerateRes
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll.licenses
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.dll
 E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.pdb
+E:\github-WMS\WebApplication1\WebApplication1\obj\Debug\DXBMS.csprojResolveAssemblyReference.cache

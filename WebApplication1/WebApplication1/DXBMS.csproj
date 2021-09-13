@@ -379,6 +379,7 @@
     <Content Include="Modules\CustomerExperience\Appointment.aspx" />
     <Content Include="Modules\CustomerExperience\NDM.aspx" />
     <Content Include="Modules\CustomerExperience\PSF.aspx" />
+    <Content Include="Modules\CustomerExperience\Reports\Critaria\AppoinmentDetailReport.aspx" />
     <Content Include="Modules\CustomerExperience\Reports\Critaria\crtPSF.aspx" />
     <Content Include="Modules\Reports\SpareViewer.aspx" />
     <Content Include="Modules\Service\Forms\WarrantyFromJC.aspx" />
@@ -405,6 +406,8 @@
     <Content Include="Modules\Service\Forms\Warranty.aspx" />
     <Content Include="Modules\Service\Forms\Schedule.aspx" />
     <Content Include="Modules\Service\ServiceReports\Critaria\Aging.aspx" />
+    <Content Include="Modules\Service\ServiceReports\Critaria\CategorywiseInvoiceReport.aspx" />
+    <Content Include="Modules\Service\ServiceReports\Critaria\CategorywiseJobCardReport.aspx" />
     <Content Include="Modules\Service\ServiceReports\Critaria\DailyCollectionReport.aspx" />
     <Content Include="Modules\Service\Forms\Approval.aspx" />
     <Content Include="Modules\Service\ServiceReports\Critaria\DTRDetail.aspx" />
@@ -439,6 +442,7 @@
     <Content Include="Modules\Setup\TaxType.aspx" />
     <Content Include="Modules\Setup\TaxTypes.aspx" />
     <Content Include="Modules\Setup\Unit.aspx" />
+    <Content Include="Modules\Setup\unPostJobCard.aspx" />
     <Content Include="Modules\Setup\URF.aspx" />
     <Content Include="Modules\Setup\VehicleMaster.aspx" />
     <Content Include="Modules\Setup\Version.aspx" />
@@ -644,12 +648,26 @@
     <Compile Include="Modules\CustomerExperience\PSF.aspx.designer.cs">
       <DependentUpon>PSF.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Modules\CustomerExperience\Reports\Critaria\AppoinmentDetailReport.aspx.cs">
+      <DependentUpon>AppoinmentDetailReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\CustomerExperience\Reports\Critaria\AppoinmentDetailReport.aspx.designer.cs">
+      <DependentUpon>AppoinmentDetailReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Modules\CustomerExperience\Reports\Critaria\crtPSF.aspx.cs">
       <DependentUpon>crtPSF.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Modules\CustomerExperience\Reports\Critaria\crtPSF.aspx.designer.cs">
       <DependentUpon>crtPSF.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\CustomerExperience\Reports\AppointmentDetail.cs">
+      <DependentUpon>AppointmentDetail.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Modules\CustomerExperience\Reports\PSFReport.cs">
       <AutoGen>True</AutoGen>
@@ -873,6 +891,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CombineReport.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modules\Service\ServiceReports\Critaria\CategorywiseInvoiceReport.aspx.cs">
+      <DependentUpon>CategorywiseInvoiceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Service\ServiceReports\Critaria\CategorywiseInvoiceReport.aspx.designer.cs">
+      <DependentUpon>CategorywiseInvoiceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Service\ServiceReports\Critaria\CategorywiseJobCardReport.aspx.cs">
+      <DependentUpon>CategorywiseJobCardReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Service\ServiceReports\Critaria\CategorywiseJobCardReport.aspx.designer.cs">
+      <DependentUpon>CategorywiseJobCardReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modules\Service\ServiceReports\Critaria\DTRDetail.aspx.cs">
       <DependentUpon>DTRDetail.aspx</DependentUpon>
@@ -1129,12 +1161,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Modules\Service\ServiceReports\rptCustomerEstimatePrint2.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>rptCustomerEstimatePrint.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Modules\Service\ServiceReports\rptDTR%28HCV%29.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1185,6 +1211,19 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Modules\Service\ServiceReports\rptJobCardDateWise - Copy.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptJobCardDateWise - Copy.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Modules\Setup\unPostJobCard.aspx.cs">
+      <DependentUpon>unPostJobCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\Setup\unPostJobCard.aspx.designer.cs">
+      <DependentUpon>unPostJobCard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Modules\SpareParts\SpareReports\rptInvoiceRevenue.cs">
       <DependentUpon>rptInvoiceRevenue.rpt</DependentUpon>
@@ -1291,12 +1330,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptWarrantyDetailHCV.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Modules\Service\ServiceReports\TRReport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TRReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Modules\Service\ServiceReports\TRReportHCV.cs">
@@ -2132,6 +2165,11 @@
       <LastGenOutput>rptGSTInvoice.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Modules\CustomerExperience\Reports\AppointmentDetail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>AppointmentDetail.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Modules\Reports\SpareReports\rptGSTInvoiceCounterSale.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptGSTInvoiceCounterSale.cs</LastGenOutput>
@@ -2344,6 +2382,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>JobCardSummary.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Service\ServiceReports\JobCardSummaryCategory.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>JobCardSummaryCategory1.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Service\ServiceReports\PSTDetailReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PSTDetailReport.cs</LastGenOutput>
@@ -2474,6 +2516,7 @@
     <Content Include="Modules\Service\ServiceReports\rptGatePass.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <LastGenOutput>rptGatePass1.cs</LastGenOutput>
     </Content>
     <Content Include="Modules\Service\ServiceReports\rptPaymentRecPrintIns.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2509,6 +2552,14 @@
       <LastGenOutput>rptFFIPDIPaymentReceiptTaxDetail.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Modules\Service\ServiceReports\rptJobCardDateCategoryWise.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptJobCardDateCategoryWise1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Service\ServiceReports\rptJobCardDateWise - Copy.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptJobCardDateWise - Copy.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\Service\ServiceReports\rptSFIBilling.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptSFIBilling.cs</LastGenOutput>
@@ -2516,6 +2567,10 @@
     <EmbeddedResource Include="Modules\Service\ServiceReports\rptFFIPDIBilling1_New.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptFFIPDIBilling1_New.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Service\ServiceReports\rptSFIBilling_New.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptSFIBilling_New1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\Service\ServiceReports\rptSSTInvoice.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -2710,6 +2765,7 @@
     <None Include="Jquery\jquery.min.cache" />
     <Content Include="packages.config" />
     <Content Include="Modules\Service\Forms\ImageHandler.ashx" />
+    <Content Include="Modules\Service\ServiceReports\ServiceReports.zip" />
     <None Include="Properties\PublishProfiles\HinoBMS.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Properties\Settings.settings">

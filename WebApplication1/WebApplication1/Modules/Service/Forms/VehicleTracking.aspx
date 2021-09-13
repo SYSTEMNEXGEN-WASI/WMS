@@ -79,7 +79,7 @@
                         <td colspan="6">
                             <asp:Timer ID="Timer1" runat="server" Enabled="false" OnTick="OnClick_btnCheck">
                             </asp:Timer>
-                            <asp:GridView ID="gvVehicleTrack"  runat="server" AutoGenerateColumns="False" Width="100%" CssClass="Grid input-lg">
+                            <asp:GridView ID="gvVehicleTrack"  runat="server" AutoGenerateColumns="False" Width="100%" CssClass="Grid input-lg" AllowPaging="true">
                                 <Columns>
                                     
                                     <asp:BoundField HeaderText="JobCard" DataField="JobCardCode" />
@@ -105,7 +105,7 @@
                     </tr>  
                     <tr>
                         <td align="center" colspan="6">
-                            <asp:Button ID="Button1" runat="server" Text="Start" OnClick="Button1_OnClick" />
+                            <asp:Button ID="Button1" runat="server" Text="Start" OnClick="OnClick_btnCheck" />
                             <asp:Button ID="Button2" runat="server" Text="Stop" OnClick="Button2_OnClick"/>
                         </td>
                     </tr>                  

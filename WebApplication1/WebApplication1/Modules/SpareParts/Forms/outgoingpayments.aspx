@@ -252,7 +252,7 @@
                     <asp:ImageButton runat="server" ID="imgLookup" ImageUrl="~/Images/LookupNew.png" OnClick="imgLookup_Click"  CausesValidation="false"/>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtAccountCode" runat="server" ReadOnly="true" SkinID="ROTextBox"></asp:TextBox>
+                    <asp:TextBox ID="txtAccountCode" runat="server" ReadOnly="false" SkinID="ROTextBox"></asp:TextBox>
                 </td>
                 <td width="12%"> <asp:TextBox ID="txtpaymenttax_amount" runat="server" placeholder="Enter Amount.." Width="80px"></asp:TextBox></td>
                 <td>
@@ -359,7 +359,7 @@
                         <asp:TextBox ID="txtins_amount" runat="server" style="text-align:right;" MaxLength="10" Width="100%" AutoPostBack="true" CausesValidation="false" OnTextChanged="txtins_amount_TextChanged"></asp:TextBox>
                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="txtins_amount"  ForeColor="Red" Font-Bold="true"></asp:RequiredFieldValidator>
                        <asp:FilteredTextBoxExtender ID="txtOtherChargers_FilteredTextBoxExtender" 
-                    runat="server" FilterType="Custom, Numbers" TargetControlID="txtins_amount" >
+                    runat="server" FilterType="Custom" TargetControlID="txtins_amount" ValidChars=".0123456789" >
                 </asp:FilteredTextBoxExtender>
                     </td>
                 </tr>

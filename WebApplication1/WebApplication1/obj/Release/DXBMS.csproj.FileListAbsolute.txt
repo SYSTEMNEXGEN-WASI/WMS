@@ -1310,3 +1310,5 @@ E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentReceiptTaxDetail.rpt
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentRecPrint.cs
 E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\Service\ServiceReports\rptFFIPDIPaymentReceiptTaxDetail.cs
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\AppointmentDetail.rpt
+E:\github-WMS\WebApplication1\WebApplication1\bin\Modules\CustomerExperience\Reports\AppointmentDetail.cs

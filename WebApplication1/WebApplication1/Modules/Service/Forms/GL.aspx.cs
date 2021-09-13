@@ -668,9 +668,9 @@ namespace DXBMS.Modules.Service.Forms
 
                         for (int i = 0; i < dsTaxDetails.Tables[0].Rows.Count; i++)
                         {
-                            AccountCode1 = dsTaxDetails.Tables[0].Rows[0]["AccountCode"].ToString();
-                            string VehExpDesc = dsTaxDetails.Tables[0].Rows[0]["TaxHead"].ToString().Trim();
-                            double Amount = Convert.ToDouble(dsTaxDetails.Tables[0].Rows[0]["Amount"]);
+                            AccountCode1 = dsTaxDetails.Tables[0].Rows[i]["AccountCode"].ToString();
+                            string VehExpDesc = dsTaxDetails.Tables[0].Rows[i]["TaxHead"].ToString().Trim();
+                            double Amount = Convert.ToDouble(dsTaxDetails.Tables[0].Rows[i]["Amount"]);
 
 
                             AddCreditAmount(Amount, AccountCode1, Naration);
@@ -705,9 +705,9 @@ namespace DXBMS.Modules.Service.Forms
 
                         for (int i = 0; i < dsTaxDetail.Tables[0].Rows.Count; i++)
                         {
-                            AccountCode1 = dsTaxDetail.Tables[0].Rows[0]["AccountCode"].ToString();
-                            string VehExpDesc = dsTaxDetail.Tables[0].Rows[0]["TaxHead"].ToString().Trim();
-                            double Amount = Convert.ToDouble(dsTaxDetail.Tables[0].Rows[0]["Amount"]);
+                            AccountCode1 = dsTaxDetail.Tables[0].Rows[i]["AccountCode"].ToString();
+                            string VehExpDesc = dsTaxDetail.Tables[0].Rows[i]["TaxHead"].ToString().Trim();
+                            double Amount = Convert.ToDouble(dsTaxDetail.Tables[0].Rows[i]["Amount"]);
 
 
                             AddCreditAmount(Amount, AccountCode1, Naration);

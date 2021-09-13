@@ -337,6 +337,15 @@ namespace DXBMS {
         protected global::System.Web.UI.WebControls.LinkButton LinkButton25;
         
         /// <summary>
+        /// LinkButton52 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton52;
+        
+        /// <summary>
         /// LinkButton27 control.
         /// </summary>
         /// <remarks>
@@ -821,6 +830,15 @@ namespace DXBMS {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButton6;
+        
+        /// <summary>
+        /// LinkButton51 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton51;
         
         /// <summary>
         /// LinkButton18 control.

@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
-using CConn;
-using Microsoft.ApplicationBlocks.Data;
 using System.Data;
 using System.Drawing;
-using System.Text;
-using CrystalDecisions.Shared;
-using CrystalDecisions.CrystalReports.Engine;
 
 namespace DXBMS.Modules.CustomerExperience
 {
@@ -353,13 +345,13 @@ namespace DXBMS.Modules.CustomerExperience
                    if(TransType.Text== "Invoice")
                     {
                         string sql = "update CRM_Post_PostServiceFollowup set Satisfied = '" + ddlSatisfied.SelectedValue.ToString() + "', Remarks = '" + txtRemakrs.Text + "' , FollowUpDate ='" + sysFunc.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "'" +
-                                              ", Complain = '" + txtComplain.Text + "' where DealerCode = '" + Session["DealerCode"].ToString() + "' and TransCode = '" + TransCode.Text + "' ";
+                                              ", Complain = '" + txtComplain.Text + "' where DealerCode = '" + Session["DealerCode"].ToString() + "' and JobCardCode = '" + JobCode.Text + "'  and TransType='Invoice' ";
                         myFunc.ExecuteQuery(sql, Trans);
                     }
                    else if (TransType.Text == "JobCard")
                     {
                         string sql = "update CRM_Post_PostServiceFollowup set Satisfied = '" + ddlSatisfied.SelectedValue.ToString() + "', Remarks = '" + txtRemakrs.Text + "' , FollowUpDate ='" + sysFunc.SaveDate(DateTime.Now.ToString("dd-MM-yyyy")) + "'" +
-                      ", Complain = '" + txtComplain.Text + "' where DealerCode = '" + Session["DealerCode"].ToString() + "' and JobCardCode = '" + JobCode.Text + "' ";
+                      ", Complain = '" + txtComplain.Text + "' where DealerCode = '" + Session["DealerCode"].ToString() + "' and TransCode = '" + TransCode.Text + "' and TransType='JobCard' ";
                         myFunc.ExecuteQuery(sql, Trans);
 
                     }

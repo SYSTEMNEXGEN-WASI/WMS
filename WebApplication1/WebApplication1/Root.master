@@ -410,7 +410,9 @@
 												<asp:LinkButton ID="lnkBrand" runat="server"  Visible="false"  CausesValidation="False" PostBackUrl="~/Modules/Setup/Brand.aspx">Brand Master</asp:LinkButton></li>
                                             <li>
 												<asp:LinkButton ID="LinkButton25" runat="server"  Visible="True"  CausesValidation="False" PostBackUrl="~/Modules/Setup/AccCodeAsgmt.aspx">Account Assignment</asp:LinkButton></li>
-                                           
+                                           <li>
+                                                <asp:LinkButton ID="LinkButton52" runat="server" Visible="True" CausesValidation="false" PostBackUrl="~/Modules/Setup/unPostJobCard.aspx">UnPost JobCard</asp:LinkButton>
+                                            </li> 
                                             <li><asp:LinkButton ID="LinkButton27" runat="server"  Visible="False"  CausesValidation="False" PostBackUrl="~/Modules/Setup/Complaint.aspx">Complaints</asp:LinkButton></li>
                                             <li><asp:LinkButton ID="LinkButton28" runat="server"  Visible="true"  CausesValidation="False" PostBackUrl="~/Modules/Setup/CVO.aspx">CVO</asp:LinkButton></li>
                                             <li><asp:LinkButton ID="LinkButton29" runat="server"  Visible="true"  CausesValidation="False" PostBackUrl="~/Modules/Setup/TaxTypes.aspx">Tax Type</asp:LinkButton></li>
@@ -557,14 +559,16 @@
                                                 	<li>                                                                        
 												<asp:LinkButton ID="LinkButton45" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/InsAging.aspx">Insurance Aging Report</asp:LinkButton></li>
 											<li>                                                                        
-												<asp:LinkButton ID="LinkButton10" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/DailyCollectionReport.aspx?Name=ASI">After Sale Invoice Report</asp:LinkButton></li>
+												<asp:LinkButton ID="LinkButton10" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/CategorywiseInvoiceReport.aspx">After Sale Invoice Report</asp:LinkButton></li>
 											<li>                                                                        
 												<asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/NewJobCardDetailReport.aspx">JobCard Detail Report</asp:LinkButton></li>
 											<li>                                                                        
 												<asp:LinkButton ID="LinkButton5" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/JobCardHistoryReport.aspx">JobCard History Report</asp:LinkButton></li>
 											<li>                                                                       
 												<asp:LinkButton ID="LinkButton6" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/CustomerExperience/Reports/Critaria/crtPSF.aspx">PSF Report</asp:LinkButton></li>
-											<li>
+											<li>                                                                       
+												<asp:LinkButton ID="LinkButton51" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/CustomerExperience/Reports/Critaria/AppoinmentDetailReport.aspx">Appointment Detail Report</asp:LinkButton></li>
+                                            <li>
 												<asp:LinkButton ID="LinkButton18" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/UtilityAuditReport.aspx">Utility Audit Report</asp:LinkButton></li>
                                             <li>                                                                         
 												<asp:LinkButton ID="LinkButton38" runat="server" CausesValidation="False" OnClientClick="this.style.backgroundColor = 'black';" PostBackUrl="~/Modules/Service/ServiceReports/Critaria/DTRDetail.aspx"> Dealer Technical Report</asp:LinkButton></li>
